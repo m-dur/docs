@@ -3,14 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Data Fetcher - Documentation</title>
-
-    <!-- GitHub Markdown CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
-
-    <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-
+    <title>Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -18,602 +11,307 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --text: #111;
+            --bg: #fff;
+            --accent: #0066cc;
+            --border: #e0e0e0;
+            --hover: #f5f5f5;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #1f2328;
-            background: #f6f8fa;
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: 1200px;
+            color: var(--text);
+            background: var(--bg);
+            padding: 2rem;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
+        header {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
             font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            transition: background 0.3s;
             font-weight: 500;
+            margin-bottom: 0.5rem;
         }
 
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .subtitle {
+            color: #666;
+            font-size: 1rem;
         }
 
-        .github-link {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        section {
+            margin-bottom: 4rem;
         }
 
-        /* Sidebar Table of Contents */
-        .layout {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .sidebar {
-            width: 280px;
-            position: sticky;
-            top: 80px;
-            height: calc(100vh - 80px);
-            overflow-y: auto;
-            padding: 2rem 1rem;
-            border-right: 1px solid #e1e4e8;
-            background: white;
-        }
-
-        .toc-title {
-            font-size: 0.875rem;
+        h2 {
+            font-size: 1rem;
             font-weight: 600;
             text-transform: uppercase;
-            color: #656d76;
-            margin-bottom: 1rem;
-            padding: 0 0.5rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            color: #666;
         }
 
-        .toc-list {
-            list-style: none;
-            padding: 0;
+        .projects {
+            display: grid;
+            gap: 2rem;
         }
 
-        .toc-list li {
-            margin-bottom: 0.25rem;
-        }
-
-        .toc-list a {
-            display: block;
-            padding: 0.375rem 0.5rem;
-            color: #1f2328;
+        .project {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            transition: all 0.2s;
+            color: inherit;
+            display: block;
         }
 
-        .toc-list a:hover {
-            background: #f6f8fa;
-            color: #0969da;
+        .project:hover {
+            background: var(--hover);
+            border-color: var(--accent);
         }
 
-        .toc-list a.active {
-            background: #ddf4ff;
-            color: #0969da;
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            padding: 0.25rem 0.5rem;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 500;
         }
 
-        .toc-list .toc-h2 {
-            padding-left: 1.5rem;
-            font-size: 0.8125rem;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
         }
 
-        .toc-list .toc-h3 {
-            padding-left: 2.5rem;
-            font-size: 0.75rem;
-            color: #656d76;
+        .skill-category h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
         }
 
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            background: white;
-            min-height: calc(100vh - 80px);
+        .skill-category ul {
+            list-style: none;
+            color: #666;
         }
 
-        /* Markdown Container */
-        .markdown-body {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 2rem;
+        .skill-category li {
+            padding: 0.25rem 0;
+            font-size: 0.95rem;
         }
 
-        /* Loading State */
-        .loading {
+        .contact {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .contact a:hover {
+            opacity: 0.7;
+        }
+
+        footer {
+            margin-top: 6rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
             text-align: center;
-            padding: 4rem;
-            color: #656d76;
-        }
-
-        .spinner {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Error State */
-        .error {
-            background: #ffebe9;
-            border: 1px solid #ff8182;
-            color: #cf222e;
-            padding: 1rem;
-            border-radius: 6px;
-            margin: 2rem;
-        }
-
-        /* Code Enhancements */
-        .markdown-body pre {
-            background-color: #f6f8fa;
-            border-radius: 6px;
-            font-size: 85%;
-            line-height: 1.45;
-            overflow: auto;
-            padding: 16px;
-            position: relative;
-        }
-
-        .markdown-body code {
-            background-color: rgba(175, 184, 193, 0.2);
-            border-radius: 3px;
-            font-size: 85%;
-            margin: 0;
-            padding: 0.2em 0.4em;
-        }
-
-        .markdown-body pre code {
-            background-color: transparent;
-            border: 0;
-            display: inline;
-            line-height: inherit;
-            margin: 0;
-            overflow: visible;
-            padding: 0;
-            word-wrap: normal;
-        }
-
-        /* Copy button for code blocks */
-        .code-block-wrapper {
-            position: relative;
-        }
-
-        .copy-button {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            padding: 4px 8px;
-            background: #f6f8fa;
-            border: 1px solid #d1d9e0;
-            border-radius: 6px;
-            color: #656d76;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s;
-        }
-
-        .copy-button:hover {
-            background: white;
-            color: #0969da;
-        }
-
-        .copy-button.copied {
-            color: #1a7f37;
-            border-color: #1a7f37;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .sidebar {
-                display: none;
-            }
-
-            .main-content {
-                padding: 1rem;
-            }
-
-            .markdown-body {
-                padding: 1rem;
-            }
+            color: #999;
+            font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
+            body {
+                padding: 1.5rem;
             }
 
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .logo {
-                font-size: 1.25rem;
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e0e0e0;
+                --bg: #111;
+                --accent: #4da3ff;
+                --border: #333;
+                --hover: #1a1a1a;
+            }
 
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #667eea;
-            color: white;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s;
-            opacity: 0;
-            visibility: hidden;
-        }
+            .tech-tag {
+                background: #222;
+                color: #999;
+            }
 
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: #764ba2;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            .subtitle,
+            .project-description,
+            .skill-category ul,
+            h2 {
+                color: #999;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <span>Financial Data Fetcher</span>
-            </div>
-            <nav class="nav-links">
-                <a href="#" class="nav-link">Documentation</a>
-            </nav>
-        </div>
+    <header>
+        <h1>Software Engineer</h1>
+        <p class="subtitle">Building scalable applications with modern technologies</p>
     </header>
 
-    <div class="layout">
-        <!-- Sidebar Table of Contents -->
-        <aside class="sidebar" id="sidebar">
-            <div class="toc-title">Table of Contents</div>
-            <ul class="toc-list" id="toc-list">
-                <!-- TOC will be generated here -->
-            </ul>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <div id="content" class="markdown-body">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Loading documentation...</p>
+    <section>
+        <h2>Projects</h2>
+        <div class="projects">
+            <a href="financial-data-fetcher.html" class="project">
+                <h3 class="project-title">Financial Data Fetcher</h3>
+                <p class="project-description">
+                    Comprehensive financial management platform with real-time data aggregation from multiple institutions.
+                    Features investment portfolio tracking, automated ETL pipelines, and net worth monitoring.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Apache Airflow</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Plaid API</span>
                 </div>
+                <span class="project-link">View Documentation →</span>
+            </a>
+
+            <div class="project">
+                <h3 class="project-title">E-Commerce Platform</h3>
+                <p class="project-description">
+                    Scalable microservices-based marketplace with real-time inventory management and
+                    multi-gateway payment processing.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+                <span class="project-link">Coming Soon</span>
             </div>
-        </main>
-    </div>
 
-    <!-- Back to top button -->
-    <div class="back-to-top" id="back-to-top" onclick="scrollToTop()">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 15l-6-6-6 6"/>
-        </svg>
-    </div>
+            <div class="project">
+                <h3 class="project-title">Analytics Dashboard</h3>
+                <p class="project-description">
+                    Business intelligence tool providing real-time insights through customizable visualizations
+                    and complex query support.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Chart.js</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Celery</span>
+                </div>
+                <span class="project-link">Coming Soon</span>
+            </div>
+        </div>
+    </section>
 
-    <!-- Marked.js for Markdown parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <section>
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>JavaScript / TypeScript</li>
+                    <li>SQL</li>
+                    <li>HTML / CSS</li>
+                </ul>
+            </div>
 
-    <!-- PlantUML support -->
-    <script src="https://unpkg.com/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <ul>
+                    <li>React / Redux</li>
+                    <li>Vue.js</li>
+                    <li>TanStack Query</li>
+                    <li>Vite / Webpack</li>
+                </ul>
+            </div>
 
-    <!-- Prism.js for syntax highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+            <div class="skill-category">
+                <h3>Backend</h3>
+                <ul>
+                    <li>Flask / Django</li>
+                    <li>Node.js / Express</li>
+                    <li>RESTful APIs</li>
+                    <li>GraphQL</li>
+                </ul>
+            </div>
 
-    <script>
-        // Configure marked options
-        marked.setOptions({
-            highlight: function(code, lang) {
-                if (Prism.languages[lang]) {
-                    return Prism.highlight(code, Prism.languages[lang], lang);
-                }
-                return code;
-            },
-            breaks: true,
-            gfm: true,
-            headerIds: true,
-            mangle: false
-        });
+            <div class="skill-category">
+                <h3>Data & Infrastructure</h3>
+                <ul>
+                    <li>PostgreSQL / MySQL</li>
+                    <li>MongoDB / Redis</li>
+                    <li>Docker / Kubernetes</li>
+                    <li>Apache Airflow</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-        // Generate table of contents
-        function generateTOC(markdown) {
-            const toc = [];
-            const headingRegex = /^(#{1,3})\s+(.+)$/gm;
-            let match;
+    <section>
+        <h2>Contact</h2>
+        <div class="contact">
+            <a href="mailto:contact@example.com">Email</a>
+            <a href="https://github.com/m-dur" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+        </div>
+    </section>
 
-            while ((match = headingRegex.exec(markdown)) !== null) {
-                const level = match[1].length;
-                const text = match[2];
-                const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-
-                toc.push({
-                    level: level,
-                    text: text,
-                    id: id
-                });
-            }
-
-            return toc;
-        }
-
-        // Render table of contents
-        function renderTOC(toc) {
-            const tocList = document.getElementById('toc-list');
-            tocList.innerHTML = '';
-
-            toc.forEach(item => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = `#${item.id}`;
-                a.textContent = item.text;
-                a.className = `toc-h${item.level}`;
-
-                // Add click event for smooth scrolling and active state
-                a.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.getElementById(item.id);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                        // Update active state
-                        document.querySelectorAll('.toc-list a').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                });
-
-                li.appendChild(a);
-                tocList.appendChild(li);
-            });
-        }
-
-        // Add IDs to headings for navigation
-        function addHeadingIds(html) {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
-
-            tempDiv.querySelectorAll('h1, h2, h3').forEach(heading => {
-                const text = heading.textContent;
-                const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-                heading.id = id;
-            });
-
-            return tempDiv.innerHTML;
-        }
-
-        // Add copy buttons to code blocks
-        function addCopyButtons() {
-            document.querySelectorAll('pre').forEach(pre => {
-                // Skip PlantUML code blocks for copy button
-                const code = pre.querySelector('code');
-                if (code && code.className.includes('language-plantuml')) {
-                    return;
-                }
-
-                const wrapper = document.createElement('div');
-                wrapper.className = 'code-block-wrapper';
-                pre.parentNode.insertBefore(wrapper, pre);
-                wrapper.appendChild(pre);
-
-                const button = document.createElement('button');
-                button.className = 'copy-button';
-                button.textContent = 'Copy';
-                button.onclick = function() {
-                    const code = pre.querySelector('code');
-                    const text = code ? code.textContent : pre.textContent;
-
-                    navigator.clipboard.writeText(text).then(() => {
-                        button.textContent = 'Copied!';
-                        button.classList.add('copied');
-                        setTimeout(() => {
-                            button.textContent = 'Copy';
-                            button.classList.remove('copied');
-                        }, 2000);
-                    });
-                };
-
-                wrapper.appendChild(button);
-            });
-        }
-
-        // Render PlantUML diagrams
-        function renderPlantUML() {
-            const plantumlServer = 'https://www.plantuml.com/plantuml/svg/';
-
-            document.querySelectorAll('code.language-plantuml').forEach(codeBlock => {
-                const pre = codeBlock.parentElement;
-                const plantumlCode = codeBlock.textContent;
-
-                // Remove @startuml and @enduml if present
-                const cleanCode = plantumlCode
-                    .replace(/@startuml\s*/g, '')
-                    .replace(/@enduml\s*/g, '')
-                    .trim();
-
-                try {
-                    // Encode the PlantUML code
-                    const encoded = plantumlEncoder.encode(cleanCode);
-                    const imageUrl = plantumlServer + encoded;
-
-                    // Create an image element
-                    const img = document.createElement('img');
-                    img.src = imageUrl;
-                    img.style.maxWidth = '100%';
-                    img.style.height = 'auto';
-                    img.style.display = 'block';
-                    img.style.margin = '1rem auto';
-                    img.alt = 'Architecture Diagram';
-
-                    // Replace the code block with the image
-                    pre.parentNode.replaceChild(img, pre);
-                } catch (error) {
-                    console.error('Error rendering PlantUML:', error);
-                    // Keep the code block if rendering fails
-                }
-            });
-        }
-
-        // Load and render README
-        async function loadReadme() {
-            const contentDiv = document.getElementById('content');
-
-            try {
-                const response = await fetch('README.md');
-
-                if (!response.ok) {
-                    throw new Error('README.md not found');
-                }
-
-                const markdown = await response.text();
-
-                // Generate and render table of contents
-                const toc = generateTOC(markdown);
-                renderTOC(toc);
-
-                // Parse and render markdown
-                let html = marked.parse(markdown);
-                html = addHeadingIds(html);
-                contentDiv.innerHTML = html;
-
-                // Apply syntax highlighting
-                Prism.highlightAll();
-
-                // Render PlantUML diagrams
-                renderPlantUML();
-
-                // Add copy buttons to code blocks
-                addCopyButtons();
-
-                // Make external links open in new tab
-                document.querySelectorAll('.markdown-body a').forEach(link => {
-                    if (link.hostname !== window.location.hostname) {
-                        link.setAttribute('target', '_blank');
-                        link.setAttribute('rel', 'noopener noreferrer');
-                    }
-                });
-
-                // Highlight current section in TOC on scroll
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const id = entry.target.id;
-                            document.querySelectorAll('.toc-list a').forEach(link => {
-                                link.classList.remove('active');
-                                if (link.getAttribute('href') === `#${id}`) {
-                                    link.classList.add('active');
-                                }
-                            });
-                        }
-                    });
-                }, { rootMargin: '-80px 0px -80% 0px' });
-
-                document.querySelectorAll('h1, h2, h3').forEach(heading => {
-                    observer.observe(heading);
-                });
-
-            } catch (error) {
-                contentDiv.innerHTML = `
-                    <div class="error">
-                        <h2>Unable to load README.md</h2>
-                        <p>Please ensure that your README.md file is in the root of your repository.</p>
-                        <p><strong>Error:</strong> ${error.message}</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Back to top functionality
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Show/hide back to top button
-        window.addEventListener('scroll', () => {
-            const backToTop = document.getElementById('back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        // Load README when page loads
-        document.addEventListener('DOMContentLoaded', loadReadme);
-    </script>
+    <footer>
+        <p>© 2024</p>
+    </footer>
 </body>
 </html>
