@@ -1,0 +1,15 @@
+# GitHub Pages configuration
+title: "Financial Data Fetcher - Documentation"
+description: "Comprehensive documentation for the Financial Data Fetcher platform - a full-stack financial management application with real-time data aggregation and investment tracking"
+
+# GitHub Pages will use this theme by default
+theme: null
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Include the README.md in the build
+include:
+  - README.md
+  - index.html
