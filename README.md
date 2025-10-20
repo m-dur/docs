@@ -94,7 +94,6 @@ Proxy --> Flask : HTTP
 Routes --> Logic : Process
 Logic --> Pool : Query/Update
 ETL --> Pool : Batch Processing
-PlaidAPI --> Routes : Webhook
 
 ' Styling
 skinparam component {
@@ -159,13 +158,6 @@ API -> EXT : Fetch quotes
 EXT -> API : Market data
 API -> DB : Update portfolio
 API -> DB : Calculate metrics
-
-== Real-time Webhooks ==
-EXT -> API : POST /webhook
-API -> PS : Validate
-PS -> DB : Update transaction
-DB -> API : Confirm
-API -> EXT : 200 OK
 
 @enduml
 ```
@@ -239,7 +231,7 @@ API -> EXT : 200 OK
 └── requirements.txt            # Python dependencies
 ```
 
-## 🛠️ Technical Implementation
+## Technical Implementation
 
 ### Backend Architecture
 
@@ -413,7 +405,7 @@ All database changes must be made in `app/database_info.sql`:
 - Includes tables, views, and indexes
 - Never create separate migration files
 
-## 📈 Monitoring & Observability
+## Monitoring & Observability
 
 ### API Telemetry
 - All Plaid API calls tracked in `plaid_api_calls` table
@@ -426,7 +418,7 @@ All database changes must be made in `app/database_info.sql`:
 - Error detection and logging
 - Historical quality trends
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Backend tests
@@ -438,37 +430,3 @@ cd frontend && npm test
 # Integration tests
 python app/tests/integration/
 ```
-
-## 📝 Development Guidelines
-
-### Code Style
-- Python: Follow PEP 8, use type hints
-- JavaScript: ESLint configuration provided
-- SQL: Use CTEs for complex queries
-- Git: Conventional commits
-
-### Best Practices
-- Never store calculated balances
-- Always validate CSV imports
-- Use database transactions for data integrity
-- Cache expensive calculations
-- Log all external API calls
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make changes following coding standards
-4. Add tests for new functionality
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Plaid API for financial data access
-- Apache Airflow for workflow orchestration
-- React and Vite communities
-- Chart.js and Plotly.js for visualizations
