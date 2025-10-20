@@ -191,13 +191,22 @@ API -> DB : Calculate metrics
 │   ├── app.py                   # Main Flask application (port 5001)
 │   ├── config.py                # Environment configuration
 │   ├── plaid_service.py         # Plaid API integration
-│   ├── database_info.sql        # Centralized database schema (single source of truth)
-│   ├── routes/                  # API endpoints (all use /api/ prefix)
+│   ├── database_info.sql        # Consolidated database schema
+│   ├── routes/                  # API endpoints (17 route files)
 │   │   ├── analytics.py         # Financial analytics endpoints
+│   │   ├── api_routes.py        # Core API endpoints
+│   │   ├── bank_balance_history.py  # Bank balance tracking
+│   │   ├── categories.py        # Transaction categorization
+│   │   ├── investment_transfers.py  # Investment transfer detection
 │   │   ├── investments.py       # Investment portfolio operations
-│   │   ├── transactions.py      # Transaction management
+│   │   ├── mapped_payments.py   # Payment mapping functionality
 │   │   ├── net_worth_routes.py  # Net worth calculations
-│   │   └── plaid_routes.py      # Plaid API integrations
+│   │   ├── payment_mappings.py  # Payment mapping routes
+│   │   ├── refresh_routes.py    # Data refresh endpoints
+│   │   ├── schema_routes.py     # Database schema access
+│   │   ├── sql.py              # SQL query execution
+│   │   ├── transactions.py      # Transaction management
+│   │   └── transaction_mappings.py  # Transaction mappings
 │   └── financial_data/          # Clean architecture data layer
 │       ├── db_operations/       # Database access layer
 │       ├── handlers/            # Business logic coordination
@@ -220,9 +229,10 @@ API -> DB : Calculate metrics
 │   └── package.json            # Frontend dependencies
 │
 ├── airflow/                    # Apache Airflow orchestration
-│   └── dags/                   # Data pipeline definitions
+│   └── dags/                   # Data pipeline definitions (4 DAGs)
 │       ├── financial_data_dag.py      # Main sync pipeline
 │       ├── stock_price_tracker_dag.py # Stock price updates
+│       ├── daily_stock_price_updater_dag.py # Daily price updates
 │       └── net_worth_snapshot_dag.py  # Net worth calculations
 │
 ├── docker-compose.yml          # Multi-service orchestration
