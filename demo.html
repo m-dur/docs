@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Data Fetcher - Demo</title>
+    <title>Plaid Dashboard App - Demo</title>
     <style>
         * {
             margin: 0;
@@ -11,1154 +11,302 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #667eea;
-            --primary-dark: #5a67d8;
-            --success: #48bb78;
-            --danger: #f56565;
-            --warning: #ed8936;
-            --bg: #f7fafc;
-            --surface: #ffffff;
-            --text: #2d3748;
-            --text-light: #718096;
-            --border: #e2e8f0;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
-        /* Layout */
-        .app-container {
-            display: flex;
-            height: 100vh;
+        .container {
+            max-width: 1200px;
+            width: 100%;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background: var(--surface);
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
         .logo {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .nav-menu {
-            flex: 1;
-            padding: 1rem 0;
-        }
-
-        .nav-item {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .nav-item:hover {
-            background: var(--bg);
-            color: var(--primary);
-        }
-
-        .nav-item.active {
-            background: #edf2ff;
-            color: var(--primary);
-            border-left: 3px solid var(--primary);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+            border-radius: 20px;
+            margin: 0 auto 30px;
             display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        /* Header */
-        .header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
         }
 
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+        h1 {
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #00ff00, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .header-actions {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        .subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 10px;
         }
 
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            border: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
+        .version {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            border-radius: 20px;
+            color: #00ff00;
+            font-size: 12px;
+            margin-bottom: 40px;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-        }
-
-        .btn-secondary {
-            background: var(--surface);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg);
-        }
-
-        /* Content Area */
-        .content {
-            flex: 1;
-            padding: 2rem;
-            overflow-y: auto;
-        }
-
-        /* Dashboard Grid */
-        .dashboard-grid {
+        /* Navigation Grid */
+        .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
-        .metric-card {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .metric-label {
-            color: var(--text-light);
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-value {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-change {
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .metric-change.positive {
-            color: var(--success);
-        }
-
-        .metric-change.negative {
-            color: var(--danger);
-        }
-
-        /* Charts */
-        .chart-container {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            margin-bottom: 2rem;
-        }
-
-        .chart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .chart-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-        }
-
-        .chart-filters {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .filter-btn {
-            padding: 0.375rem 0.75rem;
-            font-size: 0.875rem;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-btn:hover {
-            background: var(--bg);
-        }
-
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .chart-placeholder {
-            height: 300px;
-            background: linear-gradient(to top, #f7fafc 0%, #edf2ff 100%);
-            border-radius: 4px;
+        .nav-card {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .chart-line {
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+            border-color: #00ff00;
+        }
+
+        .nav-card::before {
+            content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 60%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            clip-path: polygon(
-                0% 100%,
-                5% 85%,
-                10% 88%,
-                15% 82%,
-                20% 78%,
-                25% 75%,
-                30% 70%,
-                35% 65%,
-                40% 60%,
-                45% 55%,
-                50% 52%,
-                55% 48%,
-                60% 45%,
-                65% 40%,
-                70% 38%,
-                75% 35%,
-                80% 32%,
-                85% 30%,
-                90% 28%,
-                95% 25%,
-                100% 20%,
-                100% 100%
-            );
-            opacity: 0.8;
-        }
-
-        /* Tables */
-        .table-container {
-            background: var(--surface);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .table-header {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        table {
+            top: 0;
+            left: -100%;
             width: 100%;
-            border-collapse: collapse;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transition: left 0.5s;
         }
 
-        th {
-            text-align: left;
-            padding: 0.75rem 1.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-light);
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
+        .nav-card:hover::before {
+            left: 100%;
         }
 
-        td {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover {
-            background: var(--bg);
-        }
-
-        /* Page Sections */
-        .page-section {
-            display: none;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        /* Tabs */
-        .tabs {
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #5a67d8 100%);
+            border-radius: 10px;
             display: flex;
-            gap: 2rem;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 2rem;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 20px;
         }
 
-        .tab {
-            padding: 1rem 0;
-            color: var(--text-light);
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+        .nav-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
         }
 
-        .tab:hover {
-            color: var(--text);
+        .nav-description {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.5;
         }
 
-        .tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
-        }
-
-        /* Investment Cards */
-        .investment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .investment-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .stock-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .stock-symbol {
-            font-size: 1.25rem;
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 10px;
+            background: #00ff00;
+            color: #000;
+            border-radius: 12px;
+            font-size: 10px;
             font-weight: 600;
         }
 
-        .stock-name {
-            color: var(--text-light);
-            font-size: 0.875rem;
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
         }
 
-        .stock-price {
-            text-align: right;
+        .features-title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #00ff00;
         }
 
-        .price-current {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .price-change {
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        .stock-details {
+        .features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
         }
 
-        .detail-item {
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(102, 126, 234, 0.2);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
         }
 
-        .detail-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            margin-bottom: 0.25rem;
+        .feature-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
-        .detail-value {
-            font-size: 0.875rem;
-            font-weight: 500;
+        .feature-desc {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 60px;
+        }
+
+        .footer-text {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #00ff00;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .app-container {
-                flex-direction: column;
+            h1 {
+                font-size: 36px;
             }
 
-            .sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-menu {
-                display: flex;
-                overflow-x: auto;
-                padding: 0;
-            }
-
-            .nav-item {
-                white-space: nowrap;
+            .nav-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">Financial Data Fetcher</div>
-            <nav class="nav-menu">
-                <a class="nav-item active" onclick="showPage('dashboard')">Dashboard</a>
-                <a class="nav-item" onclick="showPage('transactions')">Transactions</a>
-                <a class="nav-item" onclick="showPage('investments')">Investments</a>
-                <a class="nav-item" onclick="showPage('networth')">Net Worth</a>
-                <a class="nav-item" onclick="showPage('analytics')">Analytics</a>
-            </nav>
-        </aside>
+    <div class="container">
+        <div class="header">
+            <div class="logo">P</div>
+            <h1>Plaid Dashboard App</h1>
+            <p class="subtitle">Complete Financial Management Interface</p>
+            <span class="version">Demo v1.0</span>
+        </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <h1 class="page-title" id="pageTitle">Dashboard</h1>
-                <div class="header-actions">
-                    <button class="btn btn-secondary">Export</button>
-                    <button class="btn btn-primary">Sync Data</button>
-                </div>
-            </header>
+        <div class="nav-grid">
+            <a href="dashboard.html" class="nav-card">
+                <span class="badge">Main</span>
+                <div class="nav-icon"></div>
+                <div class="nav-title">Dashboard</div>
+                <div class="nav-description">Financial overview with net worth, assets, liabilities, and portfolio metrics</div>
+            </a>
 
-            <!-- Content Area -->
-            <div class="content">
-                <!-- Dashboard Page -->
-                <div id="dashboard" class="page-section active">
-                    <div class="dashboard-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Net Worth</div>
-                            <div class="metric-value">$247,853</div>
-                            <div class="metric-change positive">
-                                ↑ 5.2% ($12,245) this month
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Total Assets</div>
-                            <div class="metric-value">$285,420</div>
-                            <div class="metric-change positive">
-                                ↑ 3.8% from last month
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Total Liabilities</div>
-                            <div class="metric-value">$37,567</div>
-                            <div class="metric-change negative">
-                                ↑ 1.2% from last month
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Monthly Cash Flow</div>
-                            <div class="metric-value">$3,245</div>
-                            <div class="metric-change positive">
-                                ↑ 12% from last month
-                            </div>
-                        </div>
-                    </div>
+            <a href="transactions.html" class="nav-card">
+                <div class="nav-icon"></div>
+                <div class="nav-title">Transactions</div>
+                <div class="nav-description">Complete transaction history with filtering, categorization, and search</div>
+            </a>
 
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h2 class="chart-title">Net Worth Trend</h2>
-                            <div class="chart-filters">
-                                <button class="filter-btn">1M</button>
-                                <button class="filter-btn">3M</button>
-                                <button class="filter-btn active">6M</button>
-                                <button class="filter-btn">1Y</button>
-                                <button class="filter-btn">ALL</button>
-                            </div>
-                        </div>
-                        <div class="chart-placeholder">
-                            <div class="chart-line"></div>
-                        </div>
-                    </div>
+            <a href="payment-history.html" class="nav-card">
+                <div class="nav-icon"></div>
+                <div class="nav-title">Payment History</div>
+                <div class="nav-description">External payment tracking with monthly charts and payment analytics</div>
+            </a>
 
-                    <div class="table-container">
-                        <div class="table-header">
-                            <h3>Recent Transactions</h3>
-                            <a href="#" style="color: var(--primary); text-decoration: none;">View All →</a>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Account</th>
-                                    <th style="text-align: right">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Oct 19, 2024</td>
-                                    <td>Direct Deposit - EMPLOYER</td>
-                                    <td>Income</td>
-                                    <td>Chase Checking</td>
-                                    <td style="text-align: right; color: var(--success)">+$5,234.56</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 18, 2024</td>
-                                    <td>Whole Foods Market</td>
-                                    <td>Groceries</td>
-                                    <td>Chase Sapphire</td>
-                                    <td style="text-align: right; color: var(--danger)">-$127.43</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 17, 2024</td>
-                                    <td>Netflix Subscription</td>
-                                    <td>Entertainment</td>
-                                    <td>Chase Sapphire</td>
-                                    <td style="text-align: right; color: var(--danger)">-$15.99</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 16, 2024</td>
-                                    <td>Transfer to Savings</td>
-                                    <td>Transfer</td>
-                                    <td>Chase Checking</td>
-                                    <td style="text-align: right;">-$1,000.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 15, 2024</td>
-                                    <td>Dividend - AAPL</td>
-                                    <td>Investment Income</td>
-                                    <td>Fidelity</td>
-                                    <td style="text-align: right; color: var(--success)">+$52.88</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <a href="institutions.html" class="nav-card">
+                <div class="nav-icon"></div>
+                <div class="nav-title">Financial Institutions</div>
+                <div class="nav-description">Manage connected bank accounts and financial institutions</div>
+            </a>
 
-                <!-- Transactions Page -->
-                <div id="transactions" class="page-section">
-                    <div class="tabs">
-                        <div class="tab active">All Transactions</div>
-                        <div class="tab">Income</div>
-                        <div class="tab">Expenses</div>
-                        <div class="tab">Transfers</div>
-                    </div>
+            <a href="expenses.html" class="nav-card">
+                <div class="nav-icon"></div>
+                <div class="nav-title">Expense Analysis</div>
+                <div class="nav-description">Detailed expense breakdown with category charts and spending patterns</div>
+            </a>
 
-                    <div class="table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Account</th>
-                                    <th>Tags</th>
-                                    <th style="text-align: right">Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Oct 19, 2024</td>
-                                    <td>Direct Deposit - EMPLOYER</td>
-                                    <td>Income</td>
-                                    <td>Chase Checking</td>
-                                    <td><span style="background: #edf2ff; color: var(--primary); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Salary</span></td>
-                                    <td style="text-align: right; color: var(--success)">+$5,234.56</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 18, 2024</td>
-                                    <td>Whole Foods Market</td>
-                                    <td>Groceries</td>
-                                    <td>Chase Sapphire</td>
-                                    <td></td>
-                                    <td style="text-align: right; color: var(--danger)">-$127.43</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 17, 2024</td>
-                                    <td>PG&E Utilities</td>
-                                    <td>Bills</td>
-                                    <td>Chase Checking</td>
-                                    <td><span style="background: #fff5f5; color: var(--danger); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Recurring</span></td>
-                                    <td style="text-align: right; color: var(--danger)">-$245.67</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 16, 2024</td>
-                                    <td>Amazon.com</td>
-                                    <td>Shopping</td>
-                                    <td>Chase Sapphire</td>
-                                    <td></td>
-                                    <td style="text-align: right; color: var(--danger)">-$89.99</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 15, 2024</td>
-                                    <td>Spotify</td>
-                                    <td>Entertainment</td>
-                                    <td>Chase Sapphire</td>
-                                    <td><span style="background: #fff5f5; color: var(--danger); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Recurring</span></td>
-                                    <td style="text-align: right; color: var(--danger)">-$9.99</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 14, 2024</td>
-                                    <td>Chevron Gas Station</td>
-                                    <td>Transportation</td>
-                                    <td>Chase Sapphire</td>
-                                    <td></td>
-                                    <td style="text-align: right; color: var(--danger)">-$65.43</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 13, 2024</td>
-                                    <td>Target</td>
-                                    <td>Shopping</td>
-                                    <td>Chase Sapphire</td>
-                                    <td></td>
-                                    <td style="text-align: right; color: var(--danger)">-$234.78</td>
-                                </tr>
-                                <tr>
-                                    <td>Oct 12, 2024</td>
-                                    <td>Transfer to Fidelity</td>
-                                    <td>Transfer</td>
-                                    <td>Chase Checking</td>
-                                    <td><span style="background: #f0f0f0; color: #666; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Investment</span></td>
-                                    <td style="text-align: right;">-$2,000.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <a href="analysis.html" class="nav-card">
+                <div class="nav-icon"></div>
+                <div class="nav-title">Financial Analysis</div>
+                <div class="nav-description">Income vs expenses trends with monthly comparisons and insights</div>
+            </a>
 
-                <!-- Investments Page -->
-                <div id="investments" class="page-section">
-                    <div class="dashboard-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Portfolio Value</div>
-                            <div class="metric-value">$142,567</div>
-                            <div class="metric-change positive">
-                                ↑ 8.3% ($10,926) YTD
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Today's Change</div>
-                            <div class="metric-value">+$1,245</div>
-                            <div class="metric-change positive">
-                                ↑ 0.88%
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Total Gain/Loss</div>
-                            <div class="metric-value">+$22,567</div>
-                            <div class="metric-change positive">
-                                ↑ 18.8%
-                            </div>
-                        </div>
-                    </div>
+            <a href="subscriptions.html" class="nav-card">
+                <div class="nav-icon"></div>
+                <div class="nav-title">Subscriptions</div>
+                <div class="nav-description">Track recurring subscriptions with cost analysis and management</div>
+            </a>
+        </div>
 
-                    <div class="investment-grid">
-                        <div class="investment-card">
-                            <div class="stock-header">
-                                <div>
-                                    <div class="stock-symbol">AAPL</div>
-                                    <div class="stock-name">Apple Inc.</div>
-                                </div>
-                                <div class="stock-price">
-                                    <div class="price-current">$178.72</div>
-                                    <div class="price-change positive">+2.45 (1.39%)</div>
-                                </div>
-                            </div>
-                            <div class="stock-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">SHARES</span>
-                                    <span class="detail-value">150</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL VALUE</span>
-                                    <span class="detail-value">$26,808</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">AVG COST</span>
-                                    <span class="detail-value">$145.23</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL GAIN</span>
-                                    <span class="detail-value positive">+$5,024 (23.1%)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="investment-card">
-                            <div class="stock-header">
-                                <div>
-                                    <div class="stock-symbol">MSFT</div>
-                                    <div class="stock-name">Microsoft Corporation</div>
-                                </div>
-                                <div class="stock-price">
-                                    <div class="price-current">$378.85</div>
-                                    <div class="price-change negative">-3.15 (-0.82%)</div>
-                                </div>
-                            </div>
-                            <div class="stock-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">SHARES</span>
-                                    <span class="detail-value">75</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL VALUE</span>
-                                    <span class="detail-value">$28,414</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">AVG COST</span>
-                                    <span class="detail-value">$325.50</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL GAIN</span>
-                                    <span class="detail-value positive">+$4,001 (16.4%)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="investment-card">
-                            <div class="stock-header">
-                                <div>
-                                    <div class="stock-symbol">VOO</div>
-                                    <div class="stock-name">Vanguard S&P 500 ETF</div>
-                                </div>
-                                <div class="stock-price">
-                                    <div class="price-current">$432.15</div>
-                                    <div class="price-change positive">+4.32 (1.01%)</div>
-                                </div>
-                            </div>
-                            <div class="stock-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">SHARES</span>
-                                    <span class="detail-value">120</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL VALUE</span>
-                                    <span class="detail-value">$51,858</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">AVG COST</span>
-                                    <span class="detail-value">$398.75</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL GAIN</span>
-                                    <span class="detail-value positive">+$4,008 (8.4%)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="investment-card">
-                            <div class="stock-header">
-                                <div>
-                                    <div class="stock-symbol">GOOGL</div>
-                                    <div class="stock-name">Alphabet Inc.</div>
-                                </div>
-                                <div class="stock-price">
-                                    <div class="price-current">$141.80</div>
-                                    <div class="price-change positive">+1.85 (1.32%)</div>
-                                </div>
-                            </div>
-                            <div class="stock-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">SHARES</span>
-                                    <span class="detail-value">100</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL VALUE</span>
-                                    <span class="detail-value">$14,180</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">AVG COST</span>
-                                    <span class="detail-value">$125.40</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL GAIN</span>
-                                    <span class="detail-value positive">+$1,640 (13.1%)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="investment-card">
-                            <div class="stock-header">
-                                <div>
-                                    <div class="stock-symbol">NVDA</div>
-                                    <div class="stock-name">NVIDIA Corporation</div>
-                                </div>
-                                <div class="stock-price">
-                                    <div class="price-current">$486.20</div>
-                                    <div class="price-change positive">+12.15 (2.56%)</div>
-                                </div>
-                            </div>
-                            <div class="stock-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">SHARES</span>
-                                    <span class="detail-value">25</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL VALUE</span>
-                                    <span class="detail-value">$12,155</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">AVG COST</span>
-                                    <span class="detail-value">$412.00</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">TOTAL GAIN</span>
-                                    <span class="detail-value positive">+$1,855 (18.0%)</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="investment-card">
-                            <div class="stock-header">
-                                <div>
-                                    <div class="stock-symbol">Cash</div>
-                                    <div class="stock-name">Settlement Fund</div>
-                                </div>
-                                <div class="stock-price">
-                                    <div class="price-current">$9,352</div>
-                                    <div class="price-change">SPAXX</div>
-                                </div>
-                            </div>
-                            <div class="stock-details">
-                                <div class="detail-item">
-                                    <span class="detail-label">TYPE</span>
-                                    <span class="detail-value">Money Market</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">YIELD</span>
-                                    <span class="detail-value">4.75% APY</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">YTD INTEREST</span>
-                                    <span class="detail-value">$387.42</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-label">AVAILABLE</span>
-                                    <span class="detail-value">$9,352</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Net Worth Page -->
-                <div id="networth" class="page-section">
-                    <div class="dashboard-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Total Net Worth</div>
-                            <div class="metric-value">$247,853</div>
-                            <div class="metric-change positive">
-                                ↑ $32,456 (15.1%) YTD
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h2 class="chart-title">Net Worth History</h2>
-                            <div class="chart-filters">
-                                <button class="filter-btn">1Y</button>
-                                <button class="filter-btn active">2Y</button>
-                                <button class="filter-btn">5Y</button>
-                                <button class="filter-btn">ALL</button>
-                            </div>
-                        </div>
-                        <div class="chart-placeholder">
-                            <div class="chart-line"></div>
-                        </div>
-                    </div>
-
-                    <div class="table-container">
-                        <div class="table-header">
-                            <h3>Asset Breakdown</h3>
-                        </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Account</th>
-                                    <th style="text-align: right">Balance</th>
-                                    <th style="text-align: right">% of Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Cash & Savings</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right"><strong>$52,853</strong></td>
-                                    <td style="text-align: right">18.5%</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Chase Checking</td>
-                                    <td style="text-align: right">$12,453</td>
-                                    <td style="text-align: right">4.4%</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Chase Savings</td>
-                                    <td style="text-align: right">$35,000</td>
-                                    <td style="text-align: right">12.3%</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Marcus HYSA</td>
-                                    <td style="text-align: right">$5,400</td>
-                                    <td style="text-align: right">1.9%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Investments</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right"><strong>$142,567</strong></td>
-                                    <td style="text-align: right">49.9%</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Fidelity Brokerage</td>
-                                    <td style="text-align: right">$87,345</td>
-                                    <td style="text-align: right">30.6%</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Vanguard IRA</td>
-                                    <td style="text-align: right">$55,222</td>
-                                    <td style="text-align: right">19.3%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Retirement</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right"><strong>$90,000</strong></td>
-                                    <td style="text-align: right">31.5%</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>401(k)</td>
-                                    <td style="text-align: right">$90,000</td>
-                                    <td style="text-align: right">31.5%</td>
-                                </tr>
-                                <tr style="background: var(--bg)">
-                                    <td><strong>Total Assets</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right"><strong>$285,420</strong></td>
-                                    <td style="text-align: right"><strong>100%</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Credit Cards</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right; color: var(--danger)"><strong>-$2,567</strong></td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Chase Sapphire</td>
-                                    <td style="text-align: right; color: var(--danger)">-$1,234</td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Amex Gold</td>
-                                    <td style="text-align: right; color: var(--danger)">-$1,333</td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Loans</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right; color: var(--danger)"><strong>-$35,000</strong></td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Auto Loan</td>
-                                    <td style="text-align: right; color: var(--danger)">-$15,000</td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Student Loan</td>
-                                    <td style="text-align: right; color: var(--danger)">-$20,000</td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                                <tr style="background: var(--bg); font-size: 1.125rem;">
-                                    <td><strong>Net Worth</strong></td>
-                                    <td></td>
-                                    <td style="text-align: right"><strong>$247,853</strong></td>
-                                    <td style="text-align: right"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Analytics Page -->
-                <div id="analytics" class="page-section">
-                    <div class="tabs">
-                        <div class="tab active">Spending Analysis</div>
-                        <div class="tab">Income Analysis</div>
-                        <div class="tab">Cash Flow</div>
-                        <div class="tab">Trends</div>
-                    </div>
-
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <h2 class="chart-title">Monthly Spending by Category</h2>
-                        </div>
-                        <div class="chart-placeholder" style="height: 400px;">
-                            <div style="padding: 2rem;">
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                                    <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <div style="width: 20px; height: 20px; background: #667eea; border-radius: 4px;"></div>
-                                            <div>
-                                                <div style="font-weight: 500;">Housing</div>
-                                                <div style="color: var(--text-light); font-size: 0.875rem;">$2,500 (35%)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <div style="width: 20px; height: 20px; background: #48bb78; border-radius: 4px;"></div>
-                                            <div>
-                                                <div style="font-weight: 500;">Food & Dining</div>
-                                                <div style="color: var(--text-light); font-size: 0.875rem;">$850 (12%)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <div style="width: 20px; height: 20px; background: #ed8936; border-radius: 4px;"></div>
-                                            <div>
-                                                <div style="font-weight: 500;">Transportation</div>
-                                                <div style="color: var(--text-light); font-size: 0.875rem;">$650 (9%)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <div style="width: 20px; height: 20px; background: #f56565; border-radius: 4px;"></div>
-                                            <div>
-                                                <div style="font-weight: 500;">Shopping</div>
-                                                <div style="color: var(--text-light); font-size: 0.875rem;">$450 (6%)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <div style="width: 20px; height: 20px; background: #9f7aea; border-radius: 4px;"></div>
-                                            <div>
-                                                <div style="font-weight: 500;">Utilities</div>
-                                                <div style="color: var(--text-light); font-size: 0.875rem;">$350 (5%)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="background: var(--bg); padding: 1rem; border-radius: 8px;">
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <div style="width: 20px; height: 20px; background: #4299e1; border-radius: 4px;"></div>
-                                            <div>
-                                                <div style="font-weight: 500;">Entertainment</div>
-                                                <div style="color: var(--text-light); font-size: 0.875rem;">$250 (3.5%)</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dashboard-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Average Monthly Spending</div>
-                            <div class="metric-value">$5,234</div>
-                            <div class="metric-change negative">
-                                ↑ 8% from 3-month avg
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Average Monthly Income</div>
-                            <div class="metric-value">$8,500</div>
-                            <div class="metric-change positive">
-                                ↑ 2% from 3-month avg
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Savings Rate</div>
-                            <div class="metric-value">38.4%</div>
-                            <div class="metric-change positive">
-                                ↑ 5% from last month
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="footer">
+            <p class="footer-text">Plaid Dashboard App - Financial Data Visualization Demo</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">API Reference</a>
+                <a href="#" class="footer-link">GitHub</a>
+                <a href="#" class="footer-link">Support</a>
             </div>
-        </main>
+        </div>
     </div>
-
-    <script>
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page-section');
-            pages.forEach(page => page.classList.remove('active'));
-
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
-
-            // Update navigation
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => item.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // Update page title
-            const titles = {
-                'dashboard': 'Dashboard',
-                'transactions': 'Transactions',
-                'investments': 'Investments',
-                'networth': 'Net Worth',
-                'analytics': 'Analytics'
-            };
-            document.getElementById('pageTitle').textContent = titles[pageId];
-        }
-    </script>
 </body>
 </html>

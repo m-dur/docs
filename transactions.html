@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Transactions - Plaid Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 140px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .app-title {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 10px 0;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00ff00;
+            font-size: 11px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #00ff00;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0a0a0a;
+        }
+
+        .header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .page-title {
+            color: #00ff00;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .back-home {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-home:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #4299e1;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ed8936;
+            color: white;
+        }
+
+        .btn-success {
+            background: #48bb78;
+            color: white;
+        }
+
+        /* View Controls */
+        .view-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .view-btn:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .filter-dropdown {
+            padding: 8px 12px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            min-width: 150px;
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 8px 12px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .search-box::placeholder {
+            color: #666;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-apply {
+            padding: 8px 16px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn-reset {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn-clear {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #666;
+            color: #666;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 20px 30px;
+            overflow-y: auto;
+        }
+
+        /* Transactions Table */
+        .transactions-table {
+            width: 100%;
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 100px 150px 150px 100px 100px 200px auto 120px;
+            padding: 12px 20px;
+            background: #1a1a1a;
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 100px 150px 150px 100px 100px 200px auto 120px;
+            padding: 12px 20px;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 12px;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .table-row:hover {
+            background: #141414;
+        }
+
+        .date-cell {
+            color: #00ff00;
+        }
+
+        .account-cell {
+            color: #fff;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .category-transfer {
+            background: rgba(66, 153, 225, 0.2);
+            color: #4299e1;
+        }
+
+        .category-dividend {
+            background: rgba(72, 187, 120, 0.2);
+            color: #48bb78;
+        }
+
+        .category-groceries {
+            background: rgba(237, 137, 54, 0.2);
+            color: #ed8936;
+        }
+
+        .group-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .group-transfer {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+
+        .group-income {
+            background: rgba(72, 187, 120, 0.2);
+            color: #48bb78;
+        }
+
+        .group-food {
+            background: rgba(245, 101, 101, 0.2);
+            color: #f56565;
+        }
+
+        .merchant-cell {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .description-cell {
+            color: #aaa;
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .amount-cell {
+            text-align: right;
+            font-weight: 500;
+        }
+
+        .amount-positive {
+            color: #00ff00;
+        }
+
+        .amount-negative {
+            color: #ff4444;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .page-info {
+            color: #666;
+            font-size: 12px;
+        }
+
+        .page-select {
+            padding: 5px 10px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-title">Plaid Dashboard App</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="nav-item active">Transactions</button>
+                <button class="nav-item" onclick="window.location.href='payment-history.html'">Payment History</button>
+                <button class="nav-item" onclick="window.location.href='payment-mappings.html'">Payment Mappings</button>
+                <button class="nav-item" onclick="window.location.href='institutions.html'">Institutions</button>
+                <button class="nav-item" onclick="window.location.href='expenses.html'">Expenses</button>
+                <button class="nav-item" onclick="window.location.href='analysis.html'">Analysis</button>
+                <button class="nav-item" onclick="window.location.href='subscriptions.html'">Subscriptions</button>
+                <button class="nav-item" onclick="window.location.href='balances.html'">Balances</button>
+                <button class="nav-item" onclick="window.location.href='investments.html'">Investments</button>
+                <button class="nav-item" onclick="window.location.href='net-worth.html'">Net Worth</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <a href="dashboard.html" class="back-home">Back to Home</a>
+                <h1 class="page-title">All Transactions</h1>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary">🔍 Find Duplicates</button>
+                    <button class="btn btn-warning">⚙️ Manage Market Duplicates</button>
+                </div>
+
+                <div class="view-controls">
+                    <button class="view-btn">View Excluded Transactions</button>
+                    <button class="view-btn">View Mappings</button>
+                </div>
+
+                <div class="filters">
+                    <select class="filter-dropdown">
+                        <option>Accounts ▼</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>Account Types ▼</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>Categories ▼</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>Groups ▼</option>
+                    </select>
+                    <input type="text" class="search-box" placeholder="🔍 Show only non-zero with empty category/group">
+                    <div class="filter-actions">
+                        <button class="btn-apply">Apply Filters</button>
+                        <button class="btn-reset">Reset Selections</button>
+                        <button class="btn-clear">Clear Filters</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="transactions-table">
+                    <div class="table-header">
+                        <div>Date ▼</div>
+                        <div>Account</div>
+                        <div>Category</div>
+                        <div>Group</div>
+                        <div>Merchant</div>
+                        <div>Name/Description</div>
+                        <div></div>
+                        <div style="text-align: right;">Amount ▲</div>
+                    </div>
+
+                    <!-- Sample Transaction Rows -->
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Demo Store Card</div>
+                        <div><span class="category-badge category-transfer">Transfer</span></div>
+                        <div><span class="group-badge group-transfer">Transfer</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">AUTOMATIC PAYMENT - THANK YOU</div>
+                        <div></div>
+                        <div class="amount-cell amount-negative">-$809.30</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Checking</div>
+                        <div><span class="category-badge category-dividend">Dividend</span></div>
+                        <div><span class="group-badge group-income">Income</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">Dividend/Interest</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$0.02</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Demo Rewards Card</div>
+                        <div><span class="category-badge category-transfer">Transfer</span></div>
+                        <div><span class="group-badge group-transfer">Transfer</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">AUTOPAY PAYMENT - THANK YOU</div>
+                        <div></div>
+                        <div class="amount-cell amount-negative">-$2699.48</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Demo Savings Account</div>
+                        <div><span class="category-badge category-dividend">Dividend</span></div>
+                        <div><span class="group-badge group-income">Income</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">Dividend/Interest</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$0.38</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Spending Money</div>
+                        <div><span class="category-badge category-dividend">Dividend</span></div>
+                        <div><span class="group-badge group-income">Income</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">Dividend/Interest</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$0.04</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Recurring Expenses</div>
+                        <div><span class="category-badge category-dividend">Dividend</span></div>
+                        <div><span class="group-badge group-income">Income</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">Dividend/Interest</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$0.16</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-17-2025</div>
+                        <div class="account-cell">Deposit Account</div>
+                        <div><span class="category-badge category-dividend">Dividend</span></div>
+                        <div><span class="group-badge group-income">Income</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">Dividend/Interest</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$3.64</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-16-2025</div>
+                        <div class="account-cell">Deposit Account</div>
+                        <div><span class="category-badge category-transfer">Transfer</span></div>
+                        <div><span class="group-badge group-transfer">Transfer</span></div>
+                        <div class="merchant-cell">Fidelity</div>
+                        <div class="description-cell">External Withdrawal - FID BKG SVC LLC - MONEYLINE</div>
+                        <div></div>
+                        <div class="amount-cell amount-negative">-$20000.00</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-16-2025</div>
+                        <div class="account-cell">Demo Visa Signature</div>
+                        <div><span class="category-badge category-groceries">Groceries</span></div>
+                        <div><span class="group-badge group-food">Food</span></div>
+                        <div class="merchant-cell">Trader Joe's</div>
+                        <div class="description-cell">Trader Joe's</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$187.90</div>
+                    </div>
+
+                    <div class="table-row">
+                        <div class="date-cell">10-15-2025</div>
+                        <div class="account-cell">Recurring Expenses</div>
+                        <div><span class="category-badge category-transfer">Transfer</span></div>
+                        <div><span class="group-badge group-transfer">Transfer</span></div>
+                        <div class="merchant-cell">N/A</div>
+                        <div class="description-cell">Deposit - Online Banking Transfer from 3603170189 CK</div>
+                        <div></div>
+                        <div class="amount-cell amount-positive">$4000.00</div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <span class="page-info">Page 1 of 154</span>
+                    <select class="page-select">
+                        <option>Show 10</option>
+                        <option>Show 25</option>
+                        <option>Show 50</option>
+                        <option>Show 100</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Analysis - Plaid Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 140px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .app-title {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 10px 0;
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00ff00;
+            font-size: 11px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #00ff00;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0a0a0a;
+        }
+
+        .header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        .page-title {
+            color: #00ff00;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .back-home {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-home:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Filter Controls */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-dropdown {
+            padding: 8px 12px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            min-width: 150px;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        /* Stats Overview */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .stat-change {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .stat-change.positive {
+            color: #00ff00;
+        }
+
+        .stat-change.negative {
+            color: #ff4444;
+        }
+
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-container {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* Pie Chart */
+        .pie-chart {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 20px;
+        }
+
+        .pie-svg {
+            transform: rotate(-90deg);
+        }
+
+        .pie-legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .legend-label {
+            color: #aaa;
+            flex: 1;
+        }
+
+        .legend-value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Bar Chart */
+        .bar-chart {
+            margin-top: 20px;
+        }
+
+        .bar-item {
+            margin-bottom: 15px;
+        }
+
+        .bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .bar-label {
+            color: #aaa;
+        }
+
+        .bar-value {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .bar-track {
+            width: 100%;
+            height: 8px;
+            background: #1a1a1a;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Category Breakdown */
+        .category-breakdown {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .breakdown-title {
+            font-size: 14px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .category-item {
+            display: grid;
+            grid-template-columns: 30px 1fr auto auto;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .category-item:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .category-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .category-name {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .category-count {
+            color: #666;
+            font-size: 11px;
+        }
+
+        .category-amount {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            text-align: right;
+        }
+
+        .category-percentage {
+            font-size: 11px;
+            color: #666;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        /* Color variants */
+        .color-food { background: linear-gradient(135deg, #f56565 0%, #c53030 100%); }
+        .color-transport { background: linear-gradient(135deg, #4299e1 0%, #2c5282 100%); }
+        .color-shopping { background: linear-gradient(135deg, #9f7aea 0%, #6b46c1 100%); }
+        .color-utilities { background: linear-gradient(135deg, #48bb78 0%, #2f855a 100%); }
+        .color-entertainment { background: linear-gradient(135deg, #ed8936 0%, #c05621 100%); }
+        .color-healthcare { background: linear-gradient(135deg, #667eea 0%, #4c51bf 100%); }
+        .color-other { background: linear-gradient(135deg, #718096 0%, #4a5568 100%); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-title">Plaid Dashboard App</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="nav-item" onclick="window.location.href='transactions.html'">Transactions</button>
+                <button class="nav-item" onclick="window.location.href='payment-history.html'">Payment History</button>
+                <button class="nav-item" onclick="window.location.href='payment-mappings.html'">Payment Mappings</button>
+                <button class="nav-item" onclick="window.location.href='institutions.html'">Institutions</button>
+                <button class="nav-item active">Expenses</button>
+                <button class="nav-item" onclick="window.location.href='analysis.html'">Analysis</button>
+                <button class="nav-item" onclick="window.location.href='subscriptions.html'">Subscriptions</button>
+                <button class="nav-item" onclick="window.location.href='balances.html'">Balances</button>
+                <button class="nav-item" onclick="window.location.href='investments.html'">Investments</button>
+                <button class="nav-item" onclick="window.location.href='net-worth.html'">Net Worth</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <a href="dashboard.html" class="back-home">Back to Home</a>
+                <h1 class="page-title">Expense Analysis</h1>
+                <p class="page-subtitle">Visualize and analyze your spending patterns</p>
+
+                <div class="filter-bar">
+                    <select class="filter-dropdown">
+                        <option>Last 30 Days</option>
+                        <option>Last 60 Days</option>
+                        <option>Last 90 Days</option>
+                        <option>This Year</option>
+                        <option>Custom Range</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>All Accounts</option>
+                        <option>Checking Accounts</option>
+                        <option>Credit Cards</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>All Categories</option>
+                        <option>Food & Dining</option>
+                        <option>Transportation</option>
+                        <option>Shopping</option>
+                        <option>Utilities</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Stats Overview -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Expenses</div>
+                        <div class="stat-value">$9,664</div>
+                        <div class="stat-change negative">-12% from last month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Average Daily</div>
+                        <div class="stat-value">$322</div>
+                        <div class="stat-change positive">+5% from last month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Largest Expense</div>
+                        <div class="stat-value">$2,698</div>
+                        <div class="stat-change">American Express Payment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Categories</div>
+                        <div class="stat-value">12</div>
+                        <div class="stat-change">Active categories</div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <!-- Pie Chart -->
+                    <div class="chart-container">
+                        <div class="chart-title">Expenses by Category</div>
+                        <div class="pie-chart">
+                            <svg class="pie-svg" width="250" height="250" viewBox="0 0 250 250">
+                                <circle cx="125" cy="125" r="100" fill="none" stroke="#f56565" stroke-width="50"
+                                        stroke-dasharray="188.4 628.3" stroke-dashoffset="0"></circle>
+                                <circle cx="125" cy="125" r="100" fill="none" stroke="#4299e1" stroke-width="50"
+                                        stroke-dasharray="125.6 628.3" stroke-dashoffset="-188.4"></circle>
+                                <circle cx="125" cy="125" r="100" fill="none" stroke="#9f7aea" stroke-width="50"
+                                        stroke-dasharray="94.2 628.3" stroke-dashoffset="-314"></circle>
+                                <circle cx="125" cy="125" r="100" fill="none" stroke="#48bb78" stroke-width="50"
+                                        stroke-dasharray="75.4 628.3" stroke-dashoffset="-408.2"></circle>
+                                <circle cx="125" cy="125" r="100" fill="none" stroke="#ed8936" stroke-width="50"
+                                        stroke-dasharray="62.8 628.3" stroke-dashoffset="-483.6"></circle>
+                                <circle cx="125" cy="125" r="100" fill="none" stroke="#718096" stroke-width="50"
+                                        stroke-dasharray="81.9 628.3" stroke-dashoffset="-546.4"></circle>
+                            </svg>
+                        </div>
+                        <div class="pie-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #f56565"></div>
+                                <span class="legend-label">Food & Dining</span>
+                                <span class="legend-value">30%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #4299e1"></div>
+                                <span class="legend-label">Transportation</span>
+                                <span class="legend-value">20%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #9f7aea"></div>
+                                <span class="legend-label">Shopping</span>
+                                <span class="legend-value">15%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #48bb78"></div>
+                                <span class="legend-label">Utilities</span>
+                                <span class="legend-value">12%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #ed8936"></div>
+                                <span class="legend-label">Entertainment</span>
+                                <span class="legend-value">10%</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #718096"></div>
+                                <span class="legend-label">Other</span>
+                                <span class="legend-value">13%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bar Chart -->
+                    <div class="chart-container">
+                        <div class="chart-title">Top Spending Categories</div>
+                        <div class="bar-chart">
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Food & Dining</span>
+                                    <span class="bar-value">$2,900</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 100%; background: #f56565;"></div>
+                                </div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Transportation</span>
+                                    <span class="bar-value">$1,934</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 67%; background: #4299e1;"></div>
+                                </div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Shopping</span>
+                                    <span class="bar-value">$1,450</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 50%; background: #9f7aea;"></div>
+                                </div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Utilities</span>
+                                    <span class="bar-value">$1,160</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 40%; background: #48bb78;"></div>
+                                </div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Entertainment</span>
+                                    <span class="bar-value">$966</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 33%; background: #ed8936;"></div>
+                                </div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Healthcare</span>
+                                    <span class="bar-value">$796</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 27%; background: #667eea;"></div>
+                                </div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-header">
+                                    <span class="bar-label">Other</span>
+                                    <span class="bar-value">$458</span>
+                                </div>
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 16%; background: #718096;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Breakdown -->
+                <div class="category-breakdown">
+                    <div class="breakdown-title">Detailed Category Breakdown</div>
+                    <div class="category-list">
+                        <div class="category-item">
+                            <div class="category-icon color-food">🍽️</div>
+                            <div>
+                                <div class="category-name">Food & Dining</div>
+                                <div class="category-count">45 transactions</div>
+                            </div>
+                            <div class="category-amount">$2,900</div>
+                            <div class="category-percentage">30.0%</div>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-icon color-transport">🚗</div>
+                            <div>
+                                <div class="category-name">Transportation</div>
+                                <div class="category-count">28 transactions</div>
+                            </div>
+                            <div class="category-amount">$1,934</div>
+                            <div class="category-percentage">20.0%</div>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-icon color-shopping">🛍️</div>
+                            <div>
+                                <div class="category-name">Shopping</div>
+                                <div class="category-count">32 transactions</div>
+                            </div>
+                            <div class="category-amount">$1,450</div>
+                            <div class="category-percentage">15.0%</div>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-icon color-utilities">⚡</div>
+                            <div>
+                                <div class="category-name">Utilities</div>
+                                <div class="category-count">12 transactions</div>
+                            </div>
+                            <div class="category-amount">$1,160</div>
+                            <div class="category-percentage">12.0%</div>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-icon color-entertainment">🎬</div>
+                            <div>
+                                <div class="category-name">Entertainment</div>
+                                <div class="category-count">18 transactions</div>
+                            </div>
+                            <div class="category-amount">$966</div>
+                            <div class="category-percentage">10.0%</div>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-icon color-healthcare">🏥</div>
+                            <div>
+                                <div class="category-name">Healthcare</div>
+                                <div class="category-count">8 transactions</div>
+                            </div>
+                            <div class="category-amount">$796</div>
+                            <div class="category-percentage">8.2%</div>
+                        </div>
+
+                        <div class="category-item">
+                            <div class="category-icon color-other">📦</div>
+                            <div>
+                                <div class="category-name">Other</div>
+                                <div class="category-count">15 transactions</div>
+                            </div>
+                            <div class="category-amount">$458</div>
+                            <div class="category-percentage">4.8%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

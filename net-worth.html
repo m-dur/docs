@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net Worth - Plaid Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 140px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .app-title {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 10px 0;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00ff00;
+            font-size: 11px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #00ff00;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        .nav-section {
+            border-top: 1px solid #1a1a1a;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0a0a0a;
+        }
+
+        .header {
+            padding: 30px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+        }
+
+        /* Financial Overview Cards */
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .overview-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .overview-card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .overview-card-icon {
+            width: 20px;
+            height: 20px;
+            background: #4facfe;
+            border-radius: 4px;
+        }
+
+        .overview-card-label {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .overview-card-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .overview-card-subtext {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .change-positive {
+            color: #00ff00;
+        }
+
+        .change-negative {
+            color: #ff4444;
+        }
+
+        /* 6-Month Change Table */
+        .change-table-section {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .change-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .change-icon {
+            font-size: 16px;
+        }
+
+        .change-title {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .change-badge {
+            background: #00ff00;
+            color: #000;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .change-table {
+            width: 100%;
+        }
+
+        .change-table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+            align-items: center;
+        }
+
+        .change-table-header {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .change-table-header.right {
+            text-align: right;
+        }
+
+        .change-value {
+            text-align: right;
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .net-worth-row {
+            background: rgba(79, 172, 254, 0.1);
+            margin: 0 -25px;
+            padding: 12px 25px;
+            font-weight: 600;
+            border-bottom: none;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chart-tabs {
+            display: flex;
+            gap: 15px;
+        }
+
+        .chart-tab {
+            padding: 6px 15px;
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chart-tab:hover {
+            border-color: #4facfe;
+            color: #4facfe;
+        }
+
+        .chart-tab.active {
+            background: #4facfe;
+            border-color: #4facfe;
+            color: #ffffff;
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+            width: 100%;
+        }
+
+        canvas {
+            width: 100%;
+            display: block;
+        }
+
+        /* Asset Breakdown */
+        .breakdown-section {
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .breakdown-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .breakdown-item {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .breakdown-label {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .breakdown-value {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .breakdown-percentage {
+            font-size: 11px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-title">Plaid Dashboard App</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="nav-item" onclick="window.location.href='transactions.html'">Transactions</button>
+                <button class="nav-item" onclick="window.location.href='payment-history.html'">Payment History</button>
+                <button class="nav-item" onclick="window.location.href='payment-mappings.html'">Payment Mappings</button>
+                <button class="nav-item" onclick="window.location.href='institutions.html'">Institutions</button>
+                <button class="nav-item" onclick="window.location.href='expenses.html'">Expenses</button>
+                <button class="nav-item" onclick="window.location.href='analysis.html'">Analysis</button>
+                <button class="nav-item" onclick="window.location.href='subscriptions.html'">Subscriptions</button>
+                <button class="nav-item" onclick="window.location.href='balances.html'">Balances</button>
+                <button class="nav-item" onclick="window.location.href='investments.html'">Investments</button>
+                <button class="nav-item active">Net Worth</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1 class="main-title">Net Worth Tracker</h1>
+                <p class="header-subtitle">Monitor your financial growth and asset allocation</p>
+            </div>
+
+            <div class="content">
+                <!-- Financial Overview Cards -->
+                <div class="overview-cards">
+                    <div class="overview-card">
+                        <div class="overview-card-header">
+                            <div class="overview-card-icon"></div>
+                            <div class="overview-card-label">NET WORTH</div>
+                        </div>
+                        <div class="overview-card-value">$478,636</div>
+                        <div class="overview-card-subtext">
+                            <span class="change-positive">+$17,084</span><br>
+                            <span style="color: #666;">+3.70%</span><br>
+                            <span style="font-size: 9px; color: #444;">VS LAST MONTH</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-card-header">
+                            <div class="overview-card-icon"></div>
+                            <div class="overview-card-label">TOTAL ASSETS</div>
+                        </div>
+                        <div class="overview-card-value">$481,596</div>
+                        <div class="overview-card-subtext">
+                            <span style="color: #666;">ALL HOLDINGS</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-card-header">
+                            <div class="overview-card-icon"></div>
+                            <div class="overview-card-label">LIQUID ASSETS</div>
+                        </div>
+                        <div class="overview-card-value">$157,856</div>
+                        <div class="overview-card-subtext">
+                            <span style="color: #666;">32.8% of assets</span><br>
+                            <span style="font-size: 9px; color: #444;">CASH & INVESTMENT CASH</span>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="overview-card-header">
+                            <div class="overview-card-icon"></div>
+                            <div class="overview-card-label">TOTAL DEBT</div>
+                        </div>
+                        <div class="overview-card-value">$2,958</div>
+                        <div class="overview-card-subtext">
+                            <span style="color: #666;">0.6% debt ratio</span><br>
+                            <span style="font-size: 9px; color: #444;">ALL LIABILITIES</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6-Month Change Table -->
+                <div class="change-table-section">
+                    <div class="change-header">
+                        <div class="change-icon">📊</div>
+                        <div class="change-title">6-MONTH CHANGE</div>
+                        <div class="change-badge">+$36,864</div>
+                    </div>
+                    <div class="change-table">
+                        <div class="change-table-row">
+                            <div class="change-table-header">COMPONENT</div>
+                            <div class="change-table-header right">BEGINNING</div>
+                            <div class="change-table-header right">ENDING</div>
+                            <div class="change-table-header right">CHANGE</div>
+                        </div>
+                        <div class="change-table-row">
+                            <div>Bank</div>
+                            <div class="change-value">$84,300</div>
+                            <div class="change-value">$91,646</div>
+                            <div class="change-value change-positive">+$7,346</div>
+                        </div>
+                        <div class="change-table-row">
+                            <div>Invest Cash</div>
+                            <div class="change-value">$70,400</div>
+                            <div class="change-value">$66,210</div>
+                            <div class="change-value change-negative">-$4,190</div>
+                        </div>
+                        <div class="change-table-row">
+                            <div>Portfolio</div>
+                            <div class="change-value">$436,512</div>
+                            <div class="change-value">$471,490</div>
+                            <div class="change-value change-positive">+$34,978</div>
+                        </div>
+                        <div class="change-table-row">
+                            <div>Credit</div>
+                            <div class="change-value">-$3,688</div>
+                            <div class="change-value">-$2,958</div>
+                            <div class="change-value change-positive">+$730</div>
+                        </div>
+                        <div class="change-table-row net-worth-row">
+                            <div>Net Worth</div>
+                            <div class="change-value">$441,772</div>
+                            <div class="change-value">$478,636</div>
+                            <div class="change-value change-positive">+$36,864</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Net Worth Trend Chart -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <div class="chart-title">Net Worth Trend</div>
+                        <div class="chart-tabs">
+                            <button class="chart-tab active">Asset Breakdown</button>
+                            <button class="chart-tab">Daily Change</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="netWorthChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Asset Breakdown -->
+                <div class="breakdown-section">
+                    <div class="breakdown-title">Asset Allocation</div>
+                    <div class="breakdown-grid">
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">INVESTMENT PORTFOLIO</div>
+                            <div class="breakdown-value">$471,490</div>
+                            <div class="breakdown-percentage">97.9% of assets</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">CHECKING ACCOUNTS</div>
+                            <div class="breakdown-value">$56,912</div>
+                            <div class="breakdown-percentage">11.8% of assets</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">SAVINGS ACCOUNTS</div>
+                            <div class="breakdown-value">$34,734</div>
+                            <div class="breakdown-percentage">7.2% of assets</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">INVESTMENT CASH</div>
+                            <div class="breakdown-value">$66,210</div>
+                            <div class="breakdown-percentage">13.8% of assets</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">CREDIT CARDS</div>
+                            <div class="breakdown-value">-$2,958</div>
+                            <div class="breakdown-percentage">Liabilities</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-label">TOTAL CASH</div>
+                            <div class="breakdown-value">$157,856</div>
+                            <div class="breakdown-percentage">32.8% of assets</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Net Worth Trend Chart
+        const canvas = document.getElementById('netWorthChart');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas size
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 300;
+
+        // Sample data for 6-month period
+        const dataPoints = [
+            { x: 0, y: 441772, label: 'Apr' },
+            { x: 1, y: 444900, label: 'May' },
+            { x: 2, y: 448200, label: 'Jun' },
+            { x: 3, y: 453000, label: 'Jul' },
+            { x: 4, y: 460400, label: 'Aug' },
+            { x: 5, y: 469000, label: 'Sep' },
+            { x: 6, y: 478636, label: 'Oct' }
+        ];
+
+        // Calculate scale
+        const minY = Math.min(...dataPoints.map(p => p.y)) - 5000;
+        const maxY = Math.max(...dataPoints.map(p => p.y)) + 5000;
+        const padding = 50;
+        const chartHeight = canvas.height - 2 * padding;
+        const chartWidth = canvas.width - 2 * padding;
+
+        // Draw grid
+        ctx.strokeStyle = '#1a1a1a';
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= 6; i++) {
+            const y = padding + (chartHeight / 6) * i;
+            ctx.beginPath();
+            ctx.moveTo(padding, y);
+            ctx.lineTo(canvas.width - padding, y);
+            ctx.stroke();
+        }
+
+        // Draw vertical grid
+        for (let i = 0; i < dataPoints.length; i++) {
+            const x = padding + (i / (dataPoints.length - 1)) * chartWidth;
+            ctx.beginPath();
+            ctx.moveTo(x, padding);
+            ctx.lineTo(x, canvas.height - padding);
+            ctx.stroke();
+        }
+
+        // Draw chart line
+        ctx.strokeStyle = '#00ff00';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+
+        dataPoints.forEach((point, index) => {
+            const x = padding + (point.x / (dataPoints.length - 1)) * chartWidth;
+            const y = canvas.height - padding - ((point.y - minY) / (maxY - minY)) * chartHeight;
+
+            if (index === 0) {
+                ctx.moveTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+        });
+
+        ctx.stroke();
+
+        // Draw area fill
+        ctx.lineTo(canvas.width - padding, canvas.height - padding);
+        ctx.lineTo(padding, canvas.height - padding);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(0, 255, 0, 0.08)';
+        ctx.fill();
+
+        // Draw data points
+        ctx.fillStyle = '#00ff00';
+        dataPoints.forEach((point) => {
+            const x = padding + (point.x / (dataPoints.length - 1)) * chartWidth;
+            const y = canvas.height - padding - ((point.y - minY) / (maxY - minY)) * chartHeight;
+
+            ctx.beginPath();
+            ctx.arc(x, y, 4, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        // Draw Y-axis labels
+        ctx.fillStyle = '#666';
+        ctx.font = '11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.textAlign = 'right';
+        for (let i = 0; i <= 6; i++) {
+            const y = padding + (chartHeight / 6) * i;
+            const value = maxY - ((maxY - minY) / 6) * i;
+            ctx.fillText('$' + (value / 1000).toFixed(0) + 'K', padding - 10, y + 4);
+        }
+
+        // Draw X-axis labels
+        ctx.textAlign = 'center';
+        dataPoints.forEach((point, index) => {
+            const x = padding + (index / (dataPoints.length - 1)) * chartWidth;
+            ctx.fillText(point.label, x, canvas.height - padding + 20);
+        });
+
+        // Draw label on last data point
+        const lastPoint = dataPoints[dataPoints.length - 1];
+        const lastX = padding + (lastPoint.x / (dataPoints.length - 1)) * chartWidth;
+        const lastY = canvas.height - padding - ((lastPoint.y - minY) / (maxY - minY)) * chartHeight;
+
+        ctx.fillStyle = '#00ff00';
+        ctx.font = 'bold 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        ctx.textAlign = 'right';
+        const labelText = '$478,636';
+        const textWidth = ctx.measureText(labelText).width;
+        ctx.fillText(labelText, lastX - 10, lastY - 10);
+
+        // Chart tab functionality
+        const chartTabs = document.querySelectorAll('.chart-tab');
+        chartTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                chartTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

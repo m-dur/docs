@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Balances - Plaid Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 140px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .app-title {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 10px 0;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00ff00;
+            font-size: 11px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #00ff00;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        /* Modal Container */
+        .modal-container {
+            flex: 1;
+            padding: 40px;
+            background: #f7f7f7;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .modal-header {
+            padding: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            margin-top: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: #718096;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-button:hover {
+            color: #4a5568;
+        }
+
+        .tab-button.active {
+            color: #4299e1;
+            border-bottom-color: #4299e1;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            padding: 30px;
+        }
+
+        /* Balance Section */
+        .balance-section {
+            background: #0a0a0a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: #00ff00;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* View Controls */
+        .view-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn.active {
+            background: #00ff00;
+            color: #000;
+        }
+
+        .view-btn:hover:not(.active) {
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        /* Chart Mode Toggle */
+        .chart-mode {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .mode-label {
+            color: #00ff00;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+
+        .mode-button {
+            padding: 6px 14px;
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mode-button.active {
+            border-color: #00ff00;
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        /* Chart Container */
+        .chart-container {
+            height: 500px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .chart-container.monthly-view {
+            background: #0a0a0a;
+        }
+
+        .chart-title {
+            color: #2d3748;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .chart-container.monthly-view .chart-title {
+            color: #00ff00;
+        }
+
+        /* Bar Chart */
+        .bar-chart {
+            height: 320px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .bar-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 8px;
+            position: relative;
+        }
+
+        .bar {
+            width: 60px;
+            background: #000000;
+            border: 2px solid #00ff00;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .bar:hover {
+            opacity: 0.8;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #00ff00;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .bar-label {
+            margin-top: 10px;
+            font-size: 10px;
+            color: #666;
+            text-align: center;
+            transform: rotate(-45deg);
+            transform-origin: center;
+            white-space: nowrap;
+        }
+
+        /* Average Line */
+        .average-line {
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            border-top: 2px dashed #ff00ff;
+            color: #ff00ff;
+            font-size: 11px;
+        }
+
+        .average-label {
+            position: absolute;
+            right: -80px;
+            top: -8px;
+            background: #0f0f0f;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+
+        /* Waterfall Chart */
+        .waterfall-chart {
+            height: 380px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 0 20px;
+            position: relative;
+            border-left: 2px solid #cbd5e0;
+            border-bottom: 2px solid #cbd5e0;
+            margin-left: 80px;
+        }
+
+        /* Clarify visual axis for CC chart: let zero-baseline be the axis */
+        #waterfallChartContainer {
+            border-bottom: 0;
+        }
+
+        /* Y-Axis */
+        .y-axis {
+            position: absolute;
+            left: -60px;
+            bottom: 0;
+            height: 100%;
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #718096;
+            padding: 10px 0;
+        }
+
+        .y-axis-label {
+            text-align: right;
+            padding-right: 8px;
+            position: relative;
+        }
+
+        .y-axis-label::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 5px;
+            height: 1px;
+            background: #cbd5e0;
+        }
+
+        /* Zero baseline */
+        .zero-baseline {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #2d3748;
+            z-index: 5; /* draw axis above bars so bars sit on it */
+        }
+
+        .waterfall-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            max-width: 80px;
+        }
+
+        .waterfall-bar-wrapper {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .waterfall-spacer {
+            width: 50px;
+            background: transparent;
+        }
+
+        .waterfall-bar {
+            width: 50px;
+            position: relative;
+            transition: opacity 0.3s;
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .waterfall-bar:hover {
+            opacity: 0.85;
+            cursor: pointer;
+        }
+
+        .waterfall-positive {
+            background: #10b981;
+            border: 1px solid #059669;
+        }
+
+        .waterfall-negative {
+            background: #ef4444;
+            border: 1px solid #dc2626;
+        }
+
+        .waterfall-total {
+            background: #3b82f6;
+        }
+
+        /* Neutral base bar for beginning balance (CC chart) */
+        .waterfall-base {
+            background: #9ca3af;
+            border: 1px solid #6b7280;
+        }
+
+        .waterfall-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10px;
+            font-weight: 600;
+            color: white;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .waterfall-balance {
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #2d3748;
+            white-space: nowrap;
+        }
+
+        .waterfall-label {
+            margin-top: 8px;
+            font-size: 10px;
+            color: #718096;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .waterfall-connector {
+            position: absolute;
+            border-bottom: 1px dashed #cbd5e0;
+            height: 1px;
+            z-index: 1;
+        }
+
+        /* Balance Table */
+        .balance-table {
+            width: 100%;
+            background: #0f0f0f;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            padding: 15px 20px;
+            background: #1a1a1a;
+            font-size: 12px;
+            color: #00ff00;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            padding: 12px 20px;
+            border-bottom: 1px solid #1a1a1a;
+            font-size: 13px;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .table-row:hover {
+            background: #141414;
+        }
+
+        .account-name {
+            color: #00ff00;
+        }
+
+        .balance-amount {
+            text-align: right;
+            color: #00ff00;
+            font-weight: 600;
+        }
+
+        .total-row {
+            background: #1a1a1a;
+            font-weight: 600;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-title">Plaid Dashboard App</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="nav-item" onclick="window.location.href='transactions.html'">Transactions</button>
+                <button class="nav-item" onclick="window.location.href='payment-history.html'">Payment History</button>
+                <button class="nav-item" onclick="window.location.href='payment-mappings.html'">Payment Mappings</button>
+                <button class="nav-item" onclick="window.location.href='institutions.html'">Institutions</button>
+                <button class="nav-item" onclick="window.location.href='expenses.html'">Expenses</button>
+                <button class="nav-item" onclick="window.location.href='analysis.html'">Analysis</button>
+                <button class="nav-item" onclick="window.location.href='subscriptions.html'">Subscriptions</button>
+                <button class="nav-item active">Balances</button>
+                <button class="nav-item" onclick="window.location.href='investments.html'">Investments</button>
+                <button class="nav-item" onclick="window.location.href='net-worth.html'">Net Worth</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="modal-container">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h1 class="modal-title">All Account Balances</h1>
+                        <div class="tab-nav">
+                            <button class="tab-button active" data-tab="creditCard">Credit Card Balances</button>
+                            <button class="tab-button" data-tab="bankAccount">Bank Account Balances</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-content">
+                        <!-- Credit Card Balances Section -->
+                        <div class="balance-section" id="creditCardSection">
+                            <div class="section-header">
+                                <h2 class="section-title">Credit Card Balances</h2>
+                                <span class="last-updated">Last Updated: 10 hours ago</span>
+                            </div>
+
+                            <div class="view-controls">
+                                <button class="view-btn" id="monthlyViewBtn">Monthly View</button>
+                                <button class="view-btn active" id="balanceChangesBtn">Balance Changes</button>
+                            </div>
+
+                            <!-- Monthly View Chart -->
+                            <div class="chart-container monthly-view" id="monthlyViewChart" style="display: none;">
+                                <h3 class="chart-title">Monthly Total Credit Card Balances</h3>
+                                <div class="bar-chart">
+                                    <div class="average-line" style="bottom: 150px;">
+                                        <span class="average-label">Avg: $5,812</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 100px;">
+                                            <span class="bar-value">$2,556</span>
+                                        </div>
+                                        <span class="bar-label">Dec 2024</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 180px;">
+                                            <span class="bar-value">$7,050</span>
+                                        </div>
+                                        <span class="bar-label">Jan 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 190px;">
+                                            <span class="bar-value">$7,172</span>
+                                        </div>
+                                        <span class="bar-label">Feb 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 240px;">
+                                            <span class="bar-value">$9,998</span>
+                                        </div>
+                                        <span class="bar-label">Mar 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 220px;">
+                                            <span class="bar-value">$8,930</span>
+                                        </div>
+                                        <span class="bar-label">Apr 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 165px;">
+                                            <span class="bar-value">$6,496</span>
+                                        </div>
+                                        <span class="bar-label">May 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 155px;">
+                                            <span class="bar-value">$6,006</span>
+                                        </div>
+                                        <span class="bar-label">Jun 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 135px;">
+                                            <span class="bar-value">$5,442</span>
+                                        </div>
+                                        <span class="bar-label">Jul 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 110px;">
+                                            <span class="bar-value">$3,542</span>
+                                        </div>
+                                        <span class="bar-label">Aug 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 145px;">
+                                            <span class="bar-value">$5,688</span>
+                                        </div>
+                                        <span class="bar-label">Sep 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 100px;">
+                                            <span class="bar-value">$2,832</span>
+                                        </div>
+                                        <span class="bar-label">Oct 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Balance Changes Chart -->
+                            <div class="chart-container" id="balanceChangesChart">
+                                <h3 class="chart-title">Balance Changes (Stacked Bar Chart)</h3>
+                                <div class="waterfall-chart" id="waterfallChartContainer">
+                                    <!-- Chart will be rendered by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Current Balances Table -->
+                            <h3 style="color: #00ff00; margin-bottom: 15px; font-size: 16px;">CURRENT CREDIT CARD BALANCES</h3>
+                            <h4 style="color: #00ff00; margin-bottom: 10px; font-size: 14px;">Demo Financial Institution</h4>
+                            <div class="balance-table">
+                                <div class="table-header">
+                                    <div>Account</div>
+                                    <div style="text-align: right;">Balance</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Visa Signature</div>
+                                    <div class="balance-amount">$534</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Rewards Card</div>
+                                    <div class="balance-amount">$1,086</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Shopping Card</div>
+                                    <div class="balance-amount">$220</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Store Card</div>
+                                    <div class="balance-amount">$700</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Platinum Card</div>
+                                    <div class="balance-amount">$126</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Venture</div>
+                                    <div class="balance-amount">$50</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Visa Credit Card</div>
+                                    <div class="balance-amount">$242</div>
+                                </div>
+                                <div class="table-row total-row">
+                                    <div class="account-name">Total</div>
+                                    <div class="balance-amount">$2,958</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bank Account Balances Section -->
+                        <div class="balance-section" id="bankAccountSection" style="display: none;">
+                            <div class="section-header">
+                                <h2 class="section-title">Bank Account Balances</h2>
+                                <span class="last-updated">Last Updated: 10 hours ago</span>
+                            </div>
+
+                            <div class="view-controls">
+                                <button class="view-btn" id="bankMonthlyViewBtn">Monthly View</button>
+                                <button class="view-btn active" id="bankBalanceChangesBtn">Balance Changes</button>
+                            </div>
+
+                            <!-- Monthly View Chart -->
+                            <div class="chart-container monthly-view" id="bankMonthlyViewChart" style="display: none;">
+                                <h3 class="chart-title">Monthly Total Bank Account Balances</h3>
+                                <div class="bar-chart">
+                                    <div class="average-line" style="bottom: 160px;">
+                                        <span class="average-label">Avg: $148,250</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 140px;">
+                                            <span class="bar-value">$142,450</span>
+                                        </div>
+                                        <span class="bar-label">Dec 2024</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 155px;">
+                                            <span class="bar-value">$146,890</span>
+                                        </div>
+                                        <span class="bar-label">Jan 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 145px;">
+                                            <span class="bar-value">$144,320</span>
+                                        </div>
+                                        <span class="bar-label">Feb 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 165px;">
+                                            <span class="bar-value">$151,230</span>
+                                        </div>
+                                        <span class="bar-label">Mar 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 160px;">
+                                            <span class="bar-value">$149,670</span>
+                                        </div>
+                                        <span class="bar-label">Apr 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 168px;">
+                                            <span class="bar-value">$152,340</span>
+                                        </div>
+                                        <span class="bar-label">May 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 150px;">
+                                            <span class="bar-value">$146,120</span>
+                                        </div>
+                                        <span class="bar-label">Jun 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 158px;">
+                                            <span class="bar-value">$148,890</span>
+                                        </div>
+                                        <span class="bar-label">Jul 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 162px;">
+                                            <span class="bar-value">$150,450</span>
+                                        </div>
+                                        <span class="bar-label">Aug 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 148px;">
+                                            <span class="bar-value">$145,780</span>
+                                        </div>
+                                        <span class="bar-label">Sep 2025</span>
+                                    </div>
+                                    <div class="bar-group">
+                                        <div class="bar" style="height: 155px;">
+                                            <span class="bar-value">$150,578</span>
+                                        </div>
+                                        <span class="bar-label">Oct 2025</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Balance Changes Chart -->
+                            <div class="chart-container" id="bankBalanceChangesChart">
+                                <h3 class="chart-title">Balance Changes (Stacked Bar Chart)</h3>
+                                <div class="waterfall-chart" id="bankWaterfallChartContainer">
+                                    <!-- Chart will be rendered by JavaScript -->
+                                </div>
+                            </div>
+
+                            <!-- Current Balances Table -->
+                            <h3 style="color: #00ff00; margin-bottom: 15px; font-size: 16px;">CURRENT BANK ACCOUNT BALANCES</h3>
+                            <h4 style="color: #00ff00; margin-bottom: 10px; font-size: 14px;">Demo Financial Institution</h4>
+                            <div class="balance-table">
+                                <div class="table-header">
+                                    <div>Account</div>
+                                    <div style="text-align: right;">Balance</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Checking Account</div>
+                                    <div class="balance-amount">$15,234</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Savings Account</div>
+                                    <div class="balance-amount">$45,678</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Money Market</div>
+                                    <div class="balance-amount">$23,456</div>
+                                </div>
+                                <div class="table-row">
+                                    <div class="account-name">Demo Investment Cash</div>
+                                    <div class="balance-amount">$66,210</div>
+                                </div>
+                                <div class="table-row total-row">
+                                    <div class="account-name">Total</div>
+                                    <div class="balance-amount">$150,578</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+
+                const tabType = button.getAttribute('data-tab');
+                const creditCardSection = document.getElementById('creditCardSection');
+                const bankAccountSection = document.getElementById('bankAccountSection');
+
+                if (tabType === 'creditCard') {
+                    creditCardSection.style.display = 'block';
+                    bankAccountSection.style.display = 'none';
+                } else if (tabType === 'bankAccount') {
+                    creditCardSection.style.display = 'none';
+                    bankAccountSection.style.display = 'block';
+                    renderBankWaterfallChart();
+                }
+            });
+        });
+
+        // View controls functionality
+        const monthlyViewBtn = document.getElementById('monthlyViewBtn');
+        const balanceChangesBtn = document.getElementById('balanceChangesBtn');
+        const monthlyViewChart = document.getElementById('monthlyViewChart');
+        const balanceChangesChart = document.getElementById('balanceChangesChart');
+
+        monthlyViewBtn.addEventListener('click', () => {
+            monthlyViewBtn.classList.add('active');
+            balanceChangesBtn.classList.remove('active');
+            monthlyViewChart.style.display = 'block';
+            balanceChangesChart.style.display = 'none';
+        });
+
+        balanceChangesBtn.addEventListener('click', () => {
+            balanceChangesBtn.classList.add('active');
+            monthlyViewBtn.classList.remove('active');
+            balanceChangesChart.style.display = 'block';
+            monthlyViewChart.style.display = 'none';
+        });
+
+        // Bank Account view controls
+        const bankMonthlyViewBtn = document.getElementById('bankMonthlyViewBtn');
+        const bankBalanceChangesBtn = document.getElementById('bankBalanceChangesBtn');
+        const bankMonthlyViewChart = document.getElementById('bankMonthlyViewChart');
+        const bankBalanceChangesChart = document.getElementById('bankBalanceChangesChart');
+
+        bankMonthlyViewBtn.addEventListener('click', () => {
+            bankMonthlyViewBtn.classList.add('active');
+            bankBalanceChangesBtn.classList.remove('active');
+            bankMonthlyViewChart.style.display = 'block';
+            bankBalanceChangesChart.style.display = 'none';
+        });
+
+        bankBalanceChangesBtn.addEventListener('click', () => {
+            bankBalanceChangesBtn.classList.add('active');
+            bankMonthlyViewBtn.classList.remove('active');
+            bankBalanceChangesChart.style.display = 'block';
+            bankMonthlyViewChart.style.display = 'none';
+        });
+
+        // Mode button functionality
+        document.querySelectorAll('.mode-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.mode-button').forEach(b => b.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // Stacked Bar Chart Data
+        const waterfallData = [
+            { label: 'Dec 2024', base: 8892, change: 2290, balance: 11183 },
+            { label: 'Jan 2025', base: 11183, change: 1503, balance: 12686 },
+            { label: 'Feb 2025', base: 12686, change: 600, balance: 13285 },
+            { label: 'Mar 2025', base: 13285, change: -4073, balance: 9212 },
+            { label: 'Apr 2025', base: 9131, change: 4358, balance: 13458 },
+            { label: 'May 2025', base: 13458, change: -1529, balance: 11929 },
+            { label: 'Jun 2025', base: 11929, change: 3758, balance: 15403 },
+            { label: 'Jul 2025', base: 15403, change: -7431, balance: 7972 },
+            { label: 'Aug 2025', base: 7972, change: 3177, balance: 11149 },
+            { label: 'Sep 2025', base: 11149, change: 3059, balance: 14208 },
+            { label: 'Oct 2025', base: 14208, change: -7313, balance: 6895 }
+        ];
+
+        // Render Stacked Bar Chart (updated to true waterfall structure with base + change)
+        function renderWaterfallChart() {
+            const container = document.getElementById('waterfallChartContainer');
+            container.innerHTML = '';
+
+            const chartHeight = 380;
+            const maxValue = 20000;  // Max balance range for scaling
+            const minValue = -10000; // Allocate space below 0 for payment bars
+            const totalRange = maxValue - minValue;
+            const pixelsPerDollar = chartHeight / totalRange;
+            const zeroPosition = Math.round(Math.abs(minValue) * pixelsPerDollar); // Baseline Y in whole px
+
+            // Add Y-axis (labels positioned so 0 aligns with zero baseline)
+            const yAxis = document.createElement('div');
+            yAxis.className = 'y-axis';
+            const yAxisLabels = [20000, 15000, 10000, 5000, 0];
+            yAxisLabels.forEach(value => {
+                const label = document.createElement('div');
+                label.className = 'y-axis-label';
+                label.textContent = '$' + value.toLocaleString();
+                // Position label relative to zero baseline; no negatives for CC chart
+                label.style.position = 'absolute';
+                const labelBottom = zeroPosition + (value / (maxValue - 0)) * (chartHeight - zeroPosition);
+                label.style.bottom = labelBottom + 'px';
+                yAxis.appendChild(label);
+            });
+            container.appendChild(yAxis);
+
+            // Add zero baseline at computed position
+            const baseline = document.createElement('div');
+            baseline.className = 'zero-baseline';
+            baseline.style.bottom = zeroPosition + 'px';
+            container.appendChild(baseline);
+
+            waterfallData.forEach((data) => {
+                const column = document.createElement('div');
+                column.className = 'waterfall-column';
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'waterfall-bar-wrapper';
+                wrapper.style.height = chartHeight + 'px';
+                wrapper.style.position = 'relative';
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.justifyContent = 'flex-end';
+                wrapper.style.alignItems = 'center';
+
+                // Positions relative to axis
+                const baseFromMin = ((data.base - minValue) / totalRange) * chartHeight;
+                const baseFromZero = baseFromMin - zeroPosition; // height from baseline up to base
+                const changeHeight = (Math.abs(data.change) / totalRange) * chartHeight;
+
+                // Draw beginning balance bar from zero to base
+                const baseBar = document.createElement('div');
+                baseBar.className = 'waterfall-bar waterfall-base';
+                baseBar.style.height = Math.max(0, baseFromZero) + 'px';
+                baseBar.style.width = '50px';
+                baseBar.style.position = 'absolute';
+                baseBar.style.bottom = zeroPosition + 'px';
+                wrapper.appendChild(baseBar);
+
+                // For credit cards: positive change = debt increase (red), negative change = payment (green)
+                if (data.change > 0) {
+                    // Debt increase: red bar above base
+                    const debtBar = document.createElement('div');
+                    debtBar.className = 'waterfall-bar waterfall-negative';
+                    debtBar.style.height = changeHeight + 'px';
+                    debtBar.style.width = '50px';
+                    debtBar.style.position = 'absolute';
+                    debtBar.style.bottom = baseFromMin + 'px';
+
+                    const changeValue = document.createElement('div');
+                    changeValue.className = 'waterfall-value';
+                    changeValue.style.position = 'absolute';
+                    changeValue.style.top = '-20px';
+                    changeValue.style.left = '50%';
+                    changeValue.style.transform = 'translateX(-50%)';
+                    changeValue.style.color = '#ef4444';
+                    changeValue.textContent = '+$' + data.change.toLocaleString();
+                    debtBar.appendChild(changeValue);
+
+                    wrapper.appendChild(debtBar);
+                } else if (data.change < 0) {
+                    // Payment: green bar below base
+                    const paymentBar = document.createElement('div');
+                    paymentBar.className = 'waterfall-bar waterfall-positive';
+                    paymentBar.style.height = changeHeight + 'px';
+                    paymentBar.style.width = '50px';
+                    paymentBar.style.position = 'absolute';
+                    // Anchor from zero baseline downward so it sits below X-axis
+                    paymentBar.style.bottom = (zeroPosition - changeHeight) + 'px';
+
+                    const changeValue = document.createElement('div');
+                    changeValue.className = 'waterfall-value';
+                    changeValue.style.color = '#fff';
+                    changeValue.textContent = '-$' + Math.abs(data.change).toLocaleString();
+                    paymentBar.appendChild(changeValue);
+
+                    wrapper.appendChild(paymentBar);
+                }
+
+                column.appendChild(wrapper);
+
+                const balanceLabel = document.createElement('div');
+                balanceLabel.className = 'waterfall-balance';
+                balanceLabel.textContent = '$' + data.balance.toLocaleString();
+                column.appendChild(balanceLabel);
+
+                const label = document.createElement('div');
+                label.className = 'waterfall-label';
+                label.textContent = data.label;
+                column.appendChild(label);
+
+                container.appendChild(column);
+            });
+        }
+
+        // Bank Account Waterfall Data
+        const bankWaterfallData = [
+            { label: 'Dec 2024', base: 135450, change: 7000, balance: 142450 },
+            { label: 'Jan 2025', base: 142450, change: 4440, balance: 146890 },
+            { label: 'Feb 2025', base: 146890, change: -2570, balance: 144320 },
+            { label: 'Mar 2025', base: 144320, change: 6910, balance: 151230 },
+            { label: 'Apr 2025', base: 151230, change: -1560, balance: 149670 },
+            { label: 'May 2025', base: 149670, change: 2670, balance: 152340 },
+            { label: 'Jun 2025', base: 152340, change: -6220, balance: 146120 },
+            { label: 'Jul 2025', base: 146120, change: 2770, balance: 148890 },
+            { label: 'Aug 2025', base: 148890, change: 1560, balance: 150450 },
+            { label: 'Sep 2025', base: 150450, change: -4670, balance: 145780 },
+            { label: 'Oct 2025', base: 145780, change: 4798, balance: 150578 }
+        ];
+
+        // Render Bank Account Waterfall Chart
+        function renderBankWaterfallChart() {
+            const container = document.getElementById('bankWaterfallChartContainer');
+            container.innerHTML = '';
+
+            const chartHeight = 380;
+            const maxValue = 160000; // Maximum value for scaling
+            const minValue = 130000; // Minimum value for scaling
+            const totalRange = maxValue - minValue;
+            const pixelsPerDollar = chartHeight / totalRange;
+
+            // For bank accounts, set zero position at 145000 (middle of typical range)
+            const zeroValue = 145000;
+            const zeroPosition = ((zeroValue - minValue) / totalRange) * chartHeight;
+
+            // Add Y-axis
+            const yAxis = document.createElement('div');
+            yAxis.className = 'y-axis';
+            const yAxisLabels = [160000, 155000, 150000, 145000, 140000, 135000, 130000];
+            yAxisLabels.forEach(value => {
+                const label = document.createElement('div');
+                label.className = 'y-axis-label';
+                label.textContent = '$' + (value / 1000).toFixed(0) + 'K';
+                yAxis.appendChild(label);
+            });
+            container.appendChild(yAxis);
+
+            // Add zero baseline at middle
+            const baseline = document.createElement('div');
+            baseline.className = 'zero-baseline';
+            baseline.style.bottom = zeroPosition + 'px';
+            baseline.style.opacity = '0.5';
+            container.appendChild(baseline);
+
+            bankWaterfallData.forEach((data) => {
+                const column = document.createElement('div');
+                column.className = 'waterfall-column';
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'waterfall-bar-wrapper';
+                wrapper.style.height = chartHeight + 'px';
+                wrapper.style.position = 'relative';
+                wrapper.style.display = 'flex';
+                wrapper.style.flexDirection = 'column';
+                wrapper.style.justifyContent = 'flex-end';
+                wrapper.style.alignItems = 'center';
+
+                // Calculate positions relative to zero line
+                const balanceFromMin = ((data.balance - minValue) / totalRange) * chartHeight;
+                const baseFromMin = ((data.base - minValue) / totalRange) * chartHeight;
+                const changeHeight = (Math.abs(data.change) / totalRange) * chartHeight;
+
+                if (data.change > 0) {
+                    // Positive change: green bar above the starting point
+                    const positiveBar = document.createElement('div');
+                    positiveBar.className = 'waterfall-bar waterfall-positive';
+                    positiveBar.style.height = changeHeight + 'px';
+                    positiveBar.style.width = '50px';
+                    positiveBar.style.position = 'absolute';
+                    positiveBar.style.bottom = baseFromMin + 'px';
+
+                    // Change value label on top
+                    const changeValue = document.createElement('div');
+                    changeValue.className = 'waterfall-value';
+                    changeValue.style.position = 'absolute';
+                    changeValue.style.top = '-20px';
+                    changeValue.style.left = '50%';
+                    changeValue.style.transform = 'translateX(-50%)';
+                    changeValue.style.color = '#000';
+                    changeValue.textContent = '+$' + (data.change / 1000).toFixed(1) + 'K';
+                    positiveBar.appendChild(changeValue);
+
+                    wrapper.appendChild(positiveBar);
+                } else {
+                    // Negative change: red bar below the starting point
+                    const negativeBar = document.createElement('div');
+                    negativeBar.className = 'waterfall-bar waterfall-negative';
+                    negativeBar.style.height = changeHeight + 'px';
+                    negativeBar.style.width = '50px';
+                    negativeBar.style.position = 'absolute';
+                    negativeBar.style.bottom = (baseFromMin - changeHeight) + 'px';
+
+                    // Change value label inside red bar
+                    const changeValue = document.createElement('div');
+                    changeValue.className = 'waterfall-value';
+                    changeValue.textContent = '-$' + (Math.abs(data.change) / 1000).toFixed(1) + 'K';
+                    negativeBar.appendChild(changeValue);
+
+                    wrapper.appendChild(negativeBar);
+                }
+
+                // Add semi-transparent green bar showing the resulting balance
+                const balanceBar = document.createElement('div');
+                balanceBar.className = 'waterfall-bar waterfall-positive';
+                balanceBar.style.height = (balanceFromMin - zeroPosition) + 'px';
+                balanceBar.style.width = '50px';
+                balanceBar.style.position = 'absolute';
+                balanceBar.style.bottom = zeroPosition + 'px';
+                balanceBar.style.opacity = '0.3';
+                wrapper.appendChild(balanceBar);
+
+                column.appendChild(wrapper);
+
+                // Add final balance below the bar
+                const balanceLabel = document.createElement('div');
+                balanceLabel.className = 'waterfall-balance';
+                balanceLabel.textContent = '$' + (data.balance / 1000).toFixed(1) + 'K';
+                column.appendChild(balanceLabel);
+
+                // Add month label
+                const label = document.createElement('div');
+                label.className = 'waterfall-label';
+                label.textContent = data.label;
+                column.appendChild(label);
+
+                container.appendChild(column);
+            });
+        }
+
+        // Render chart on page load
+        renderWaterfallChart();
+    </script>
+</body>
+</html>

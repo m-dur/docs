@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Analysis - Plaid Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 140px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .app-title {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 10px 0;
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00ff00;
+            font-size: 11px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #00ff00;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0a0a0a;
+        }
+
+        .header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        .page-title {
+            color: #00ff00;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .back-home {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-home:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+        }
+
+        .btn-secondary:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        /* Stats Overview */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .stat-change {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .stat-change.positive {
+            color: #00ff00;
+        }
+
+        .stat-change.negative {
+            color: #ff4444;
+        }
+
+        /* Subscriptions Grid */
+        .subscriptions-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .subscriptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        /* Subscription Card */
+        .subscription-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .subscription-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.1);
+        }
+
+        .subscription-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #2a2a3e;
+        }
+
+        .subscription-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .subscription-info {
+            flex: 1;
+        }
+
+        .subscription-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .subscription-category {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .subscription-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #00ff00;
+            margin-bottom: 5px;
+        }
+
+        .subscription-frequency {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .subscription-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+
+        .meta-label {
+            color: #666;
+        }
+
+        .meta-value {
+            color: #aaa;
+        }
+
+        .subscription-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .status-active {
+            background: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+        }
+
+        .status-expiring {
+            background: rgba(255, 165, 0, 0.2);
+            color: #ffa500;
+        }
+
+        .subscription-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .action-edit {
+            background: #667eea;
+            color: white;
+        }
+
+        .action-edit:hover {
+            background: #5a67d8;
+        }
+
+        .action-cancel {
+            background: transparent;
+            border: 1px solid #ff4444;
+            color: #ff4444;
+        }
+
+        .action-cancel:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        /* Annual Cost Chart */
+        .annual-cost-section {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .annual-title {
+            font-size: 16px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .cost-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cost-category {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .cost-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* Upcoming Charges */
+        .upcoming-charges-section {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .upcoming-title {
+            font-size: 16px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .upcoming-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .upcoming-item {
+            display: grid;
+            grid-template-columns: 60px 40px 1fr auto auto;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .upcoming-item:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .upcoming-date {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .upcoming-day {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .upcoming-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .upcoming-name {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .upcoming-amount {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00ff00;
+            text-align: right;
+        }
+
+        /* Color variants */
+        .color-streaming { background: linear-gradient(135deg, #f56565 0%, #c53030 100%); }
+        .color-software { background: linear-gradient(135deg, #4299e1 0%, #2c5282 100%); }
+        .color-music { background: linear-gradient(135deg, #9f7aea 0%, #6b46c1 100%); }
+        .color-fitness { background: linear-gradient(135deg, #48bb78 0%, #2f855a 100%); }
+        .color-news { background: linear-gradient(135deg, #ed8936 0%, #c05621 100%); }
+        .color-cloud { background: linear-gradient(135deg, #667eea 0%, #4c51bf 100%); }
+        .color-productivity { background: linear-gradient(135deg, #38b2ac 0%, #2c7a7b 100%); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-title">Plaid Dashboard App</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="nav-item" onclick="window.location.href='transactions.html'">Transactions</button>
+                <button class="nav-item" onclick="window.location.href='payment-history.html'">Payment History</button>
+                <button class="nav-item" onclick="window.location.href='payment-mappings.html'">Payment Mappings</button>
+                <button class="nav-item" onclick="window.location.href='institutions.html'">Institutions</button>
+                <button class="nav-item" onclick="window.location.href='expenses.html'">Expenses</button>
+                <button class="nav-item" onclick="window.location.href='analysis.html'">Analysis</button>
+                <button class="nav-item active">Subscriptions</button>
+                <button class="nav-item" onclick="window.location.href='balances.html'">Balances</button>
+                <button class="nav-item" onclick="window.location.href='investments.html'">Investments</button>
+                <button class="nav-item" onclick="window.location.href='net-worth.html'">Net Worth</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <a href="dashboard.html" class="back-home">Back to Home</a>
+                <h1 class="page-title">Subscription Manager</h1>
+                <p class="page-subtitle">Track and manage all your recurring subscriptions</p>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary">+ Add Subscription</button>
+                    <button class="btn btn-secondary">Export Report</button>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Stats Overview -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-label">Total Monthly</div>
+                        <div class="stat-value">$295.84</div>
+                        <div class="stat-change">12 active subscriptions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Total Yearly</div>
+                        <div class="stat-value">$3,550.08</div>
+                        <div class="stat-change positive">Savings potential: $490</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Most Expensive</div>
+                        <div class="stat-value">$79.98</div>
+                        <div class="stat-change">Adobe Creative Cloud</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Expiring Soon</div>
+                        <div class="stat-value">2</div>
+                        <div class="stat-change negative">Renewal required</div>
+                    </div>
+                </div>
+
+                <!-- Annual Cost Breakdown -->
+                <div class="annual-cost-section">
+                    <div class="annual-title">Annual Cost by Category</div>
+                    <div class="cost-breakdown">
+                        <div class="cost-item">
+                            <div class="cost-category">Entertainment</div>
+                            <div class="cost-amount">$1,079.76</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-category">Software</div>
+                            <div class="cost-amount">$1,919.52</div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="cost-category">Other</div>
+                            <div class="cost-amount">$550.80</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Subscriptions -->
+                <div class="subscriptions-section">
+                    <div class="section-title">Active Subscriptions</div>
+                    <div class="subscriptions-grid">
+                        <!-- Netflix -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-streaming">🎬</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">Netflix</div>
+                                    <div class="subscription-category">Entertainment</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$30.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 12, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$371.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Jan 2023</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Spotify -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-music">🎵</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">Spotify Premium</div>
+                                    <div class="subscription-category">Entertainment</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$21.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 5, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$263.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Mar 2022</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Adobe Creative Cloud -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-software">🎨</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">Adobe Creative Cloud</div>
+                                    <div class="subscription-category">Software</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$79.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 1, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$959.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">May 2024</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- GitHub Pro -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-productivity">💻</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">GitHub Pro</div>
+                                    <div class="subscription-category">Software</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$14.00</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 15, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$168.00</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Aug 2023</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Amazon Prime -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-streaming">📦</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">Amazon Prime</div>
+                                    <div class="subscription-category">Entertainment</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$29.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 20, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$359.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Feb 2021</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- iCloud Storage -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-cloud">☁️</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">iCloud Storage</div>
+                                    <div class="subscription-category">Software</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$19.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 8, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$239.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Dec 2022</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- NYTimes Digital -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-news">📰</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">NY Times Digital</div>
+                                    <div class="subscription-category">News</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$34.00</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-expiring">Expiring Soon</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Oct 28, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$408.00</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Oct 2024</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Planet Fitness -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-fitness">💪</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">Planet Fitness</div>
+                                    <div class="subscription-category">Fitness</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$49.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 10, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$599.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Jun 2024</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+
+                        <!-- Microsoft 365 -->
+                        <div class="subscription-card">
+                            <div class="subscription-header">
+                                <div class="subscription-icon color-software">📊</div>
+                                <div class="subscription-info">
+                                    <div class="subscription-name">Microsoft 365</div>
+                                    <div class="subscription-category">Software</div>
+                                </div>
+                            </div>
+
+                            <div class="subscription-price">$13.98</div>
+                            <div class="subscription-frequency">per month</div>
+
+                            <div class="subscription-status status-active">Active</div>
+
+                            <div class="subscription-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Next Charge:</span>
+                                    <span class="meta-value">Nov 3, 2025</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Annual Cost:</span>
+                                    <span class="meta-value">$167.76</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Started:</span>
+                                    <span class="meta-value">Apr 2024</span>
+                                </div>
+                            </div>
+
+                            <div class="subscription-actions">
+                                <button class="action-btn action-edit">Edit</button>
+                                <button class="action-btn action-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Charges -->
+                <div class="upcoming-charges-section">
+                    <div class="upcoming-title">Upcoming Charges (Next 30 Days)</div>
+                    <div class="upcoming-list">
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">OCT</div>
+                                <div class="upcoming-day">28</div>
+                            </div>
+                            <div class="upcoming-icon color-news">📰</div>
+                            <div class="upcoming-name">NY Times Digital</div>
+                            <div class="upcoming-amount">$34.00</div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">NOV</div>
+                                <div class="upcoming-day">1</div>
+                            </div>
+                            <div class="upcoming-icon color-software">🎨</div>
+                            <div class="upcoming-name">Adobe Creative Cloud</div>
+                            <div class="upcoming-amount">$79.98</div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">NOV</div>
+                                <div class="upcoming-day">3</div>
+                            </div>
+                            <div class="upcoming-icon color-software">📊</div>
+                            <div class="upcoming-name">Microsoft 365</div>
+                            <div class="upcoming-amount">$13.98</div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">NOV</div>
+                                <div class="upcoming-day">5</div>
+                            </div>
+                            <div class="upcoming-icon color-music">🎵</div>
+                            <div class="upcoming-name">Spotify Premium</div>
+                            <div class="upcoming-amount">$21.98</div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">NOV</div>
+                                <div class="upcoming-day">8</div>
+                            </div>
+                            <div class="upcoming-icon color-cloud">☁️</div>
+                            <div class="upcoming-name">iCloud Storage</div>
+                            <div class="upcoming-amount">$19.98</div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">NOV</div>
+                                <div class="upcoming-day">10</div>
+                            </div>
+                            <div class="upcoming-icon color-fitness">💪</div>
+                            <div class="upcoming-name">Planet Fitness</div>
+                            <div class="upcoming-amount">$49.98</div>
+                        </div>
+
+                        <div class="upcoming-item">
+                            <div>
+                                <div class="upcoming-date">NOV</div>
+                                <div class="upcoming-day">12</div>
+                            </div>
+                            <div class="upcoming-icon color-streaming">🎬</div>
+                            <div class="upcoming-name">Netflix</div>
+                            <div class="upcoming-amount">$30.98</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

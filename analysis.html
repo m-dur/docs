@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income & Expense Analysis - Plaid Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 140px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .app-title {
+            color: #00ff00;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 10px 0;
+            overflow-y: auto;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 10px 15px;
+            color: #00ff00;
+            font-size: 11px;
+            text-decoration: none;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #1a1a1a;
+        }
+
+        .nav-item.active {
+            background: #00ff00;
+            color: #000000;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #0a0a0a;
+        }
+
+        .header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #1a1a1a;
+            position: relative;
+        }
+
+        .page-title {
+            color: #00ff00;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .back-home {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-home:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Filter Controls */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-dropdown {
+            padding: 8px 12px;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #00ff00;
+            border-radius: 4px;
+            font-size: 12px;
+            min-width: 150px;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        /* Stats Overview */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .stat-change {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .stat-change.positive {
+            color: #00ff00;
+        }
+
+        .stat-change.negative {
+            color: #ff4444;
+        }
+
+        /* Line Chart Container */
+        .line-chart-container {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .chart-title {
+            font-size: 18px;
+            color: #00ff00;
+            font-weight: 500;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-income {
+            background: #00ff00;
+        }
+
+        .legend-expense {
+            background: #ff4444;
+        }
+
+        .legend-net {
+            background: #4299e1;
+        }
+
+        /* Chart SVG */
+        .chart-svg {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .grid-line {
+            stroke: #1a1a1a;
+            stroke-width: 1;
+        }
+
+        .axis-label {
+            fill: #666;
+            font-size: 11px;
+        }
+
+        .data-line {
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .income-line {
+            stroke: #00ff00;
+        }
+
+        .expense-line {
+            stroke: #ff4444;
+        }
+
+        .net-line {
+            stroke: #4299e1;
+        }
+
+        .data-point {
+            r: 4;
+        }
+
+        .data-point:hover {
+            r: 6;
+        }
+
+        /* Monthly Comparison */
+        .monthly-comparison {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .comparison-title {
+            font-size: 14px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .comparison-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .comparison-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+        }
+
+        .comparison-month {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .comparison-amount {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .amount-income {
+            color: #00ff00;
+        }
+
+        .amount-expense {
+            color: #ff4444;
+        }
+
+        .amount-net {
+            color: #4299e1;
+        }
+
+        /* Insights Section */
+        .insights-section {
+            margin-top: 30px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 1px solid #2a2a3e;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .insight-icon.success {
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        .insight-icon.warning {
+            background: rgba(255, 165, 0, 0.2);
+        }
+
+        .insight-icon.info {
+            background: rgba(66, 153, 225, 0.2);
+        }
+
+        .insight-title {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .insight-text {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="app-title">Plaid Dashboard App</div>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="nav-item" onclick="window.location.href='transactions.html'">Transactions</button>
+                <button class="nav-item" onclick="window.location.href='payment-history.html'">Payment History</button>
+                <button class="nav-item" onclick="window.location.href='payment-mappings.html'">Payment Mappings</button>
+                <button class="nav-item" onclick="window.location.href='institutions.html'">Institutions</button>
+                <button class="nav-item" onclick="window.location.href='expenses.html'">Expenses</button>
+                <button class="nav-item active">Analysis</button>
+                <button class="nav-item" onclick="window.location.href='subscriptions.html'">Subscriptions</button>
+                <button class="nav-item" onclick="window.location.href='balances.html'">Balances</button>
+                <button class="nav-item" onclick="window.location.href='investments.html'">Investments</button>
+                <button class="nav-item" onclick="window.location.href='net-worth.html'">Net Worth</button>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <a href="dashboard.html" class="back-home">Back to Home</a>
+                <h1 class="page-title">Income & Expense Analysis</h1>
+                <p class="page-subtitle">Track your financial trends over time</p>
+
+                <div class="filter-bar">
+                    <select class="filter-dropdown">
+                        <option>Last 6 Months</option>
+                        <option>Last 12 Months</option>
+                        <option>This Year</option>
+                        <option>Custom Range</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>All Accounts</option>
+                        <option>Checking Accounts</option>
+                        <option>Credit Cards</option>
+                    </select>
+                    <select class="filter-dropdown">
+                        <option>Monthly View</option>
+                        <option>Weekly View</option>
+                        <option>Quarterly View</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Stats Overview -->
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-label">Average Income</div>
+                        <div class="stat-value">$6,234</div>
+                        <div class="stat-change positive">+3.2% from last period</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Average Expenses</div>
+                        <div class="stat-value">$4,832</div>
+                        <div class="stat-change negative">-1.8% from last period</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Average Net</div>
+                        <div class="stat-value">$1,402</div>
+                        <div class="stat-change positive">+12.5% from last period</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Savings Rate</div>
+                        <div class="stat-value">22.5%</div>
+                        <div class="stat-change positive">+2.1% from last period</div>
+                    </div>
+                </div>
+
+                <!-- Line Chart -->
+                <div class="line-chart-container">
+                    <div class="chart-header">
+                        <div class="chart-title">6-Month Trend</div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot legend-income"></div>
+                                <span>Income</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot legend-expense"></div>
+                                <span>Expenses</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <svg class="chart-svg" viewBox="0 0 1000 400">
+                        <!-- Grid Lines -->
+                        <line class="grid-line" x1="0" y1="50" x2="1000" y2="50"/>
+                        <line class="grid-line" x1="0" y1="120" x2="1000" y2="120"/>
+                        <line class="grid-line" x1="0" y1="190" x2="1000" y2="190"/>
+                        <line class="grid-line" x1="0" y1="260" x2="1000" y2="260"/>
+                        <line class="grid-line" x1="0" y1="330" x2="1000" y2="330"/>
+                        <line class="grid-line" x1="0" y1="400" x2="1000" y2="400"/>
+
+                        <!-- Y-axis labels -->
+                        <text class="axis-label" x="10" y="45">$15,000</text>
+                        <text class="axis-label" x="10" y="115">$12,500</text>
+                        <text class="axis-label" x="10" y="185">$10,000</text>
+                        <text class="axis-label" x="10" y="255">$7,500</text>
+                        <text class="axis-label" x="10" y="325">$5,000</text>
+                        <text class="axis-label" x="10" y="395">$0</text>
+
+                        <!-- Income Line (green) - Income values: $12,800, $11,900, $13,400, $12,200, $13,800, $12,500 -->
+                        <polyline class="data-line income-line"
+                                  points="120,124 280,145 440,100 600,132 760,90 920,120"/>
+
+                        <!-- Expense Line (red) - Expense values: $9,200, $8,900, $10,100, $9,400, $10,200, $9,100 -->
+                        <polyline class="data-line expense-line"
+                                  points="120,238 280,248 440,220 600,240 760,214 920,245"/>
+
+                        <!-- Income Data Points -->
+                        <circle class="data-point income-line" cx="120" cy="124" fill="#00ff00"/>
+                        <circle class="data-point income-line" cx="280" cy="145" fill="#00ff00"/>
+                        <circle class="data-point income-line" cx="440" cy="100" fill="#00ff00"/>
+                        <circle class="data-point income-line" cx="600" cy="132" fill="#00ff00"/>
+                        <circle class="data-point income-line" cx="760" cy="90" fill="#00ff00"/>
+                        <circle class="data-point income-line" cx="920" cy="120" fill="#00ff00"/>
+
+                        <!-- Expense Data Points -->
+                        <circle class="data-point expense-line" cx="120" cy="238" fill="#ff4444"/>
+                        <circle class="data-point expense-line" cx="280" cy="248" fill="#ff4444"/>
+                        <circle class="data-point expense-line" cx="440" cy="220" fill="#ff4444"/>
+                        <circle class="data-point expense-line" cx="600" cy="240" fill="#ff4444"/>
+                        <circle class="data-point expense-line" cx="760" cy="214" fill="#ff4444"/>
+                        <circle class="data-point expense-line" cx="920" cy="245" fill="#ff4444"/>
+
+                        <!-- Income Data Labels -->
+                        <text x="120" y="110" text-anchor="middle" font-size="11" font-weight="600" fill="#00ff00">$12,800</text>
+                        <text x="280" y="131" text-anchor="middle" font-size="11" font-weight="600" fill="#00ff00">$11,900</text>
+                        <text x="440" y="86" text-anchor="middle" font-size="11" font-weight="600" fill="#00ff00">$13,400</text>
+                        <text x="600" y="118" text-anchor="middle" font-size="11" font-weight="600" fill="#00ff00">$12,200</text>
+                        <text x="760" y="76" text-anchor="middle" font-size="11" font-weight="600" fill="#00ff00">$13,800</text>
+                        <text x="920" y="106" text-anchor="middle" font-size="11" font-weight="600" fill="#00ff00">$12,500</text>
+
+                        <!-- Expense Data Labels -->
+                        <text x="120" y="260" text-anchor="middle" font-size="11" font-weight="600" fill="#ff4444">$9,200</text>
+                        <text x="280" y="270" text-anchor="middle" font-size="11" font-weight="600" fill="#ff4444">$8,900</text>
+                        <text x="440" y="242" text-anchor="middle" font-size="11" font-weight="600" fill="#ff4444">$10,100</text>
+                        <text x="600" y="262" text-anchor="middle" font-size="11" font-weight="600" fill="#ff4444">$9,400</text>
+                        <text x="760" y="236" text-anchor="middle" font-size="11" font-weight="600" fill="#ff4444">$10,200</text>
+                        <text x="920" y="267" text-anchor="middle" font-size="11" font-weight="600" fill="#ff4444">$9,100</text>
+
+                        <!-- X-axis labels -->
+                        <text class="axis-label" x="120" y="430" text-anchor="middle">May</text>
+                        <text class="axis-label" x="280" y="430" text-anchor="middle">Jun</text>
+                        <text class="axis-label" x="440" y="430" text-anchor="middle">Jul</text>
+                        <text class="axis-label" x="600" y="430" text-anchor="middle">Aug</text>
+                        <text class="axis-label" x="760" y="430" text-anchor="middle">Sep</text>
+                        <text class="axis-label" x="920" y="430" text-anchor="middle">Oct</text>
+                    </svg>
+                </div>
+
+                <!-- Monthly Comparison -->
+                <div class="monthly-comparison">
+                    <div class="comparison-card">
+                        <div class="comparison-title">Monthly Income</div>
+                        <div class="comparison-list">
+                            <div class="comparison-item">
+                                <span class="comparison-month">October 2025</span>
+                                <span class="comparison-amount amount-income">$6,540</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">September 2025</span>
+                                <span class="comparison-amount amount-income">$6,320</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">August 2025</span>
+                                <span class="comparison-amount amount-income">$6,687</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">July 2025</span>
+                                <span class="comparison-amount amount-income">$6,250</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">June 2025</span>
+                                <span class="comparison-amount amount-income">$6,780</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">May 2025</span>
+                                <span class="comparison-amount amount-income">$5,950</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card">
+                        <div class="comparison-title">Monthly Expenses</div>
+                        <div class="comparison-list">
+                            <div class="comparison-item">
+                                <span class="comparison-month">October 2025</span>
+                                <span class="comparison-amount amount-expense">$4,832</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">September 2025</span>
+                                <span class="comparison-amount amount-expense">$5,120</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">August 2025</span>
+                                <span class="comparison-amount amount-expense">$4,950</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">July 2025</span>
+                                <span class="comparison-amount amount-expense">$5,678</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">June 2025</span>
+                                <span class="comparison-amount amount-expense">$5,234</span>
+                            </div>
+                            <div class="comparison-item">
+                                <span class="comparison-month">May 2025</span>
+                                <span class="comparison-amount amount-expense">$4,689</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights -->
+                <div class="insights-section">
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-icon success">📈</div>
+                            <div class="insight-title">Positive Trend</div>
+                            <div class="insight-text">
+                                Your savings rate has increased by 2.1% compared to last period. Keep up the good work!
+                            </div>
+                        </div>
+
+                        <div class="insight-card">
+                            <div class="insight-icon warning">⚠️</div>
+                            <div class="insight-title">Expense Alert</div>
+                            <div class="insight-text">
+                                Food & dining expenses are 15% higher than your 6-month average. Consider reviewing this category.
+                            </div>
+                        </div>
+
+                        <div class="insight-card">
+                            <div class="insight-icon info">💡</div>
+                            <div class="insight-title">Recommendation</div>
+                            <div class="insight-text">
+                                You're saving $1,402 per month on average. At this rate, you'll reach your $20,000 goal in 12 months.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
