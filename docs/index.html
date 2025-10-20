@@ -48,13 +48,8 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
             font-size: 1.5rem;
             font-weight: 600;
-        }
-
-        .logo-icon {
-            font-size: 2rem;
         }
 
         .nav-links {
@@ -328,7 +323,6 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <span class="logo-icon">📊</span>
                 <span>Financial Data Fetcher</span>
             </div>
             <nav class="nav-links">
@@ -372,6 +366,9 @@
 
     <!-- Marked.js for Markdown parsing -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- PlantUML support -->
+    <script src="https://unpkg.com/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
 
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
@@ -468,6 +465,12 @@
         // Add copy buttons to code blocks
         function addCopyButtons() {
             document.querySelectorAll('pre').forEach(pre => {
+                // Skip PlantUML code blocks for copy button
+                const code = pre.querySelector('code');
+                if (code && code.className.includes('language-plantuml')) {
+                    return;
+                }
+
                 const wrapper = document.createElement('div');
                 wrapper.className = 'code-block-wrapper';
                 pre.parentNode.insertBefore(wrapper, pre);
@@ -491,6 +494,43 @@
                 };
 
                 wrapper.appendChild(button);
+            });
+        }
+
+        // Render PlantUML diagrams
+        function renderPlantUML() {
+            const plantumlServer = 'https://www.plantuml.com/plantuml/svg/';
+
+            document.querySelectorAll('code.language-plantuml').forEach(codeBlock => {
+                const pre = codeBlock.parentElement;
+                const plantumlCode = codeBlock.textContent;
+
+                // Remove @startuml and @enduml if present
+                const cleanCode = plantumlCode
+                    .replace(/@startuml\s*/g, '')
+                    .replace(/@enduml\s*/g, '')
+                    .trim();
+
+                try {
+                    // Encode the PlantUML code
+                    const encoded = plantumlEncoder.encode(cleanCode);
+                    const imageUrl = plantumlServer + encoded;
+
+                    // Create an image element
+                    const img = document.createElement('img');
+                    img.src = imageUrl;
+                    img.style.maxWidth = '100%';
+                    img.style.height = 'auto';
+                    img.style.display = 'block';
+                    img.style.margin = '1rem auto';
+                    img.alt = 'Architecture Diagram';
+
+                    // Replace the code block with the image
+                    pre.parentNode.replaceChild(img, pre);
+                } catch (error) {
+                    console.error('Error rendering PlantUML:', error);
+                    // Keep the code block if rendering fails
+                }
             });
         }
 
@@ -518,6 +558,9 @@
 
                 // Apply syntax highlighting
                 Prism.highlightAll();
+
+                // Render PlantUML diagrams
+                renderPlantUML();
 
                 // Add copy buttons to code blocks
                 addCopyButtons();
@@ -552,7 +595,7 @@
             } catch (error) {
                 contentDiv.innerHTML = `
                     <div class="error">
-                        <h2>⚠️ Unable to load README.md</h2>
+                        <h2>Unable to load README.md</h2>
                         <p>Please ensure that your README.md file is in the root of your repository.</p>
                         <p><strong>Error:</strong> ${error.message}</p>
                     </div>

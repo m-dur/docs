@@ -2,7 +2,7 @@
 
 A comprehensive full-stack financial management application integrating with Plaid API for real-time financial data aggregation, investment portfolio tracking, and automated data pipeline orchestration.
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 This application is built as a modern full-stack solution with enterprise-grade data management capabilities:
 
@@ -12,7 +12,165 @@ This application is built as a modern full-stack solution with enterprise-grade 
 - **Orchestration**: Apache Airflow for automated ETL pipelines
 - **API Integration**: Plaid API for multi-institution financial data
 
-## 🚀 Key Features
+### System Architecture Diagram
+
+```plantuml
+@startuml
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam boxPadding 10
+skinparam defaultFontSize 11
+
+title Financial Data Fetcher - System Architecture
+
+package "Frontend Layer" #E8F5E9 {
+  [React 18 Application] as React
+  [Vite Dev Server] as Vite
+  [TanStack Query] as Query
+  React --> Query : State Management
+  React --> Vite : Build & HMR
+}
+
+package "API Gateway" #E3F2FD {
+  [HTTPS Proxy] as Proxy
+  note right of Proxy : Port 3000 → 5001
+}
+
+package "Backend Layer" #FFF3E0 {
+  [Flask Application] as Flask
+  [Blueprint Routes] as Routes
+  [Plaid Service] as PlaidSvc
+  Flask --> Routes : /api/*
+  Routes --> PlaidSvc : Financial Data
+}
+
+package "Data Processing" #F3E5F5 {
+  [Business Logic] as Logic
+  [Data Handlers] as Handlers
+  [Processors] as Processors
+  Logic --> Handlers
+  Handlers --> Processors
+}
+
+package "External APIs" #FFEBEE {
+  cloud "Plaid API" as PlaidAPI
+  cloud "Yahoo Finance" as YahooAPI
+  PlaidSvc ..> PlaidAPI : HTTPS
+  Processors ..> YahooAPI : Market Data
+}
+
+package "Data Layer" #E0F2F1 {
+  database "PostgreSQL" as DB {
+    collections Institutions
+    collections Accounts
+    collections Transactions
+    collections Investments
+    collections NetWorth
+  }
+  [Connection Pool] as Pool
+  Pool --> DB
+}
+
+package "Orchestration" #FCE4EC {
+  [Apache Airflow] as Airflow
+  [DAG Scheduler] as DAGs
+  [ETL Pipelines] as ETL
+  Airflow --> DAGs
+  DAGs --> ETL
+  ETL --> Flask : Trigger Updates
+}
+
+package "Infrastructure" #F1F8E9 {
+  node "Docker Compose" as Docker {
+    [Flask Container]
+    [Airflow Container]
+    [Postgres Container]
+  }
+}
+
+' Connections
+React --> Proxy : HTTPS
+Proxy --> Flask : HTTP
+Routes --> Logic : Process
+Logic --> Pool : Query/Update
+ETL --> Pool : Batch Processing
+PlaidAPI --> Routes : Webhook
+
+' Styling
+skinparam component {
+  BackgroundColor #FFFFFF
+  BorderColor #90A4AE
+  FontColor #37474F
+  ArrowColor #607D8B
+}
+
+skinparam database {
+  BackgroundColor #ECEFF1
+  BorderColor #607D8B
+}
+
+skinparam cloud {
+  BackgroundColor #FFF9C4
+  BorderColor #F57C00
+}
+
+@enduml
+```
+
+### Data Flow Architecture
+
+```plantuml
+@startuml
+!theme plain
+skinparam backgroundColor #FEFEFE
+
+title Financial Data Flow - ETL Pipeline
+
+actor User as U
+participant "React UI" as UI
+participant "Flask API" as API
+participant "Plaid Service" as PS
+participant "Airflow DAG" as DAG
+database "PostgreSQL" as DB
+participant "External APIs" as EXT
+
+== User Initiated Flow ==
+U -> UI : Request Data
+UI -> API : GET /api/transactions
+API -> DB : Query cached data
+DB -> API : Return results
+API -> UI : JSON response
+UI -> U : Display data
+
+== Automated ETL Pipeline ==
+DAG -> DAG : Scheduled trigger
+DAG -> API : POST /api/sync
+API -> PS : Fetch updates
+PS -> EXT : Request data
+EXT -> PS : Financial data
+PS -> API : Process data
+API -> DB : Upsert records
+API -> DAG : Success/Failure
+DAG -> DB : Log telemetry
+
+== Investment Updates ==
+DAG -> API : Update prices
+API -> EXT : Fetch quotes
+EXT -> API : Market data
+API -> DB : Update portfolio
+API -> DB : Calculate metrics
+
+== Real-time Webhooks ==
+EXT -> API : POST /webhook
+API -> PS : Validate
+PS -> DB : Update transaction
+DB -> API : Confirm
+API -> EXT : 200 OK
+
+@enduml
+```
+
+## Key Features
 
 ### Financial Data Management
 - **Multi-Institution Support**: Connect and sync data from multiple banks and financial institutions
@@ -34,7 +192,7 @@ This application is built as a modern full-stack solution with enterprise-grade 
 - **Transaction Processing**: Complex SQL transformations for financial analytics
 - **API Telemetry**: Comprehensive tracking of all Plaid API calls
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── app/                          # Flask backend application
@@ -146,7 +304,7 @@ This application is built as a modern full-stack solution with enterprise-grade 
 - Incremental data loading
 - Connection pooling
 
-## 🚦 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.9+
@@ -195,7 +353,7 @@ make up     # Start all services
 - Backend API: http://localhost:5001/api/
 - Airflow UI: http://localhost:8080
 
-## 📊 Key Features in Detail
+## Key Features in Detail
 
 ### Investment CSV Import System
 
@@ -230,7 +388,7 @@ The application supports sophisticated CSV import for investment transactions:
 - Historical trending
 - Asset allocation breakdown
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables (.env)
 ```bash
