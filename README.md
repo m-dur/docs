@@ -25,12 +25,14 @@ skinparam defaultFontSize 11
 
 title Financial Data Fetcher - System Architecture
 
-package "Frontend Layer" #E8F5E9 {
+package "Frontend Layer (20 Pages)" #E8F5E9 {
   [React 18 Application] as React
   [Vite Dev Server] as Vite
   [TanStack Query] as Query
+  [Chart.js + Plotly] as Charts
   React --> Query : State Management
   React --> Vite : Build & HMR
+  React --> Charts : Visualizations
 }
 
 package "API Gateway" #E3F2FD {
@@ -38,7 +40,7 @@ package "API Gateway" #E3F2FD {
   note right of Proxy : Port 3000 → 5001
 }
 
-package "Backend Layer" #FFF3E0 {
+package "Backend Layer (17 Routes)" #FFF3E0 {
   [Flask Application] as Flask
   [Blueprint Routes] as Routes
   [Plaid Service] as PlaidSvc
@@ -47,11 +49,11 @@ package "Backend Layer" #FFF3E0 {
 }
 
 package "Data Processing" #F3E5F5 {
-  [Business Logic] as Logic
-  [Data Handlers] as Handlers
+  [FinancialDataHandler] as FDH
+  [SingleInstitutionHandler] as SIH
   [Processors] as Processors
-  Logic --> Handlers
-  Handlers --> Processors
+  FDH --> SIH : Per-Institution
+  SIH --> Processors : Transform
 }
 
 package "External APIs" #FFEBEE {
@@ -61,25 +63,30 @@ package "External APIs" #FFEBEE {
   Processors ..> YahooAPI : Market Data
 }
 
-package "Data Layer" #E0F2F1 {
+package "Data Layer (27 Tables + 3 Mat. Views + 19 Views)" #E0F2F1 {
   database "PostgreSQL" as DB {
-    collections Institutions
-    collections Accounts
-    collections Transactions
-    collections Investments
-    collections NetWorth
+    collections "Plaid: institutions, items, access_tokens"
+    collections "Transactions: transactions, mappings"
+    collections "Investments: portfolio_holdings, stock_sales"
+    collections "Cash: cash_transactions"
+    collections "Net Worth: net_worth_snapshots"
   }
   [Connection Pool] as Pool
+  [Materialized Views] as MatViews
+  note bottom of MatViews : stg_transactions\ncash_inflow_summary\ncash_outflow_summary
   Pool --> DB
+  Pool --> MatViews
 }
 
-package "Orchestration" #FCE4EC {
+package "Orchestration (5 DAGs)" #FCE4EC {
   [Apache Airflow] as Airflow
-  [DAG Scheduler] as DAGs
-  [ETL Pipelines] as ETL
-  Airflow --> DAGs
-  DAGs --> ETL
-  ETL --> Flask : Trigger Updates
+  [financial_data_dag] as DAG1
+  [stock_price_tracker_dag] as DAG2
+  [net_worth_snapshot_dag] as DAG3
+  Airflow --> DAG1 : Plaid Sync
+  Airflow --> DAG2 : Price Updates
+  Airflow --> DAG3 : Snapshots
+  DAG1 --> Flask : Trigger Updates
 }
 
 package "Infrastructure" #F1F8E9 {
@@ -93,9 +100,10 @@ package "Infrastructure" #F1F8E9 {
 ' Connections
 React --> Proxy : HTTPS
 Proxy --> Flask : HTTP
-Routes --> Logic : Process
-Logic --> Pool : Query/Update
-ETL --> Pool : Batch Processing
+Routes --> FDH : Process
+FDH --> Pool : Query/Update
+DAG1 --> Pool : Batch Processing
+DAG1 --> MatViews : REFRESH
 
 ' Styling
 skinparam component {
