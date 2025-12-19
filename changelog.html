@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog - Financial Data Fetcher</title>
+
+    <!-- GitHub Markdown CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown-light.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2328;
+            background: #f6f8fa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Layout */
+        .layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding: 2rem 1rem;
+            border-right: 1px solid #e1e4e8;
+            background: white;
+        }
+
+        .toc-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #656d76;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        .toc-list a {
+            display: block;
+            padding: 0.375rem 0.5rem;
+            color: #1f2328;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .toc-list a:hover {
+            background: #f6f8fa;
+            color: #0969da;
+        }
+
+        .toc-list a.active {
+            background: #ddf4ff;
+            color: #0969da;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            background: white;
+            min-height: calc(100vh - 80px);
+        }
+
+        .markdown-body {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Month sections */
+        .month-section {
+            margin-bottom: 3rem;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .month-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .month-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .month-meta {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .month-content {
+            padding: 1.5rem;
+        }
+
+        .focus-tag {
+            display: inline-block;
+            background: #ddf4ff;
+            color: #0969da;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        /* Feature categories */
+        .category {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2328;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-title::before {
+            content: '';
+            width: 4px;
+            height: 1rem;
+            background: #667eea;
+            border-radius: 2px;
+        }
+
+        .category-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .category-list li {
+            padding: 0.375rem 0;
+            color: #656d76;
+            font-size: 0.9375rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .file-name {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: #f6f8fa;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            color: #0969da;
+        }
+
+        .commit-hash {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            background: #f6f8fa;
+            padding: 0.125rem 0.375rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #656d76;
+        }
+
+        /* Commits table */
+        .commits-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .commits-table th {
+            background: #f6f8fa;
+            padding: 0.625rem 0.75rem;
+            text-align: left;
+            font-weight: 600;
+            color: #656d76;
+            border-bottom: 2px solid #e1e4e8;
+        }
+
+        .commits-table td {
+            padding: 0.625rem 0.75rem;
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .commits-table tr:hover {
+            background: #f6f8fa;
+        }
+
+        /* Stats section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #656d76;
+            margin-top: 0.25rem;
+        }
+
+        /* Summary table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .summary-table th,
+        .summary-table td {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e1e4e8;
+            text-align: left;
+        }
+
+        .summary-table th {
+            background: #f6f8fa;
+            font-weight: 600;
+        }
+
+        .summary-table tr:hover {
+            background: #f6f8fa;
+        }
+
+        /* Version badges */
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 0.625rem;
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #667eea;
+            color: white;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #764ba2;
+            transform: translateY(-3px);
+        }
+
+        /* Git commands box */
+        .git-commands {
+            background: #1f2328;
+            color: #e6edf3;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+
+        .git-commands code {
+            color: #7ee787;
+        }
+
+        .git-commands .comment {
+            color: #8b949e;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>Changelog</span>
+            </div>
+            <nav class="nav-links">
+                <a href="financial-data-fetcher.html" class="nav-link">Documentation</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="toc-title">Jump to Month</div>
+            <ul class="toc-list">
+                <li><a href="#december-2025">December 2025</a></li>
+                <li><a href="#november-2025">November 2025</a></li>
+                <li><a href="#october-2025">October 2025</a></li>
+                <li><a href="#september-2025">September 2025</a></li>
+                <li><a href="#august-2025">August 2025</a></li>
+                <li><a href="#july-2025">July 2025</a></li>
+                <li><a href="#june-2025">June 2025</a></li>
+                <li><a href="#summary">Summary</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="markdown-body">
+                <h1>Changelog</h1>
+                <p>All notable changes to the Financial Data Fetcher project, based on actual git history.</p>
+
+                <!-- Stats Overview -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">57</div>
+                        <div class="stat-label">Total Commits</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">163+</div>
+                        <div class="stat-label">API Endpoints</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Frontend Pages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">27+</div>
+                        <div class="stat-label">Database Tables</div>
+                    </div>
+                </div>
+
+                <!-- Git Commands -->
+                <details style="margin: 1.5rem 0;">
+                    <summary style="cursor: pointer; font-weight: 600; color: #656d76;">Git History Commands</summary>
+                    <div class="git-commands">
+                        <div><span class="comment"># View full commit history</span></div>
+                        <div><code>git log --oneline</code></div>
+                        <br>
+                        <div><span class="comment"># View commits for specific month</span></div>
+                        <div><code>git log --format="%h %ad %s" --date=short --since="2025-07-01" --until="2025-08-01"</code></div>
+                        <br>
+                        <div><span class="comment"># View files changed in a commit</span></div>
+                        <div><code>git show &lt;commit-hash&gt; --stat --name-only</code></div>
+                    </div>
+                </details>
+
+                <!-- December 2025 -->
+                <div class="month-section" id="december-2025">
+                    <div class="month-header">
+                        <div class="month-title">December 2025</div>
+                        <div class="month-meta">5 commits</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Data lineage visualization, expense charts</span>
+
+                        <div class="category">
+                            <div class="category-title">Added</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">ModelExplorerPage.jsx</span> - ReactFlow-based data lineage visualization showing API routes to database tables to frontend pages</li>
+                                <li><span class="file-name">SchemaPage.jsx</span> - Database schema visualization page</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Changed</div>
+                            <ul class="category-list">
+                                <li>Expense chart improvements</li>
+                                <li>Query performance optimizations for downstream data</li>
+                                <li>Sidebar navigation updates for new pages</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">28e2c8b</span></td><td>2025-12-17</td><td>expense chart changes</td></tr>
+                                <tr><td><span class="commit-hash">79408f9</span></td><td>2025-12-07</td><td>misc lineage chart</td></tr>
+                                <tr><td><span class="commit-hash">33dbed9</span></td><td>2025-12-01</td><td>linage chart - Added ModelExplorerPage</td></tr>
+                                <tr><td><span class="commit-hash">eecdac3</span></td><td>2025-11-30</td><td>query performance - down stream</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- November 2025 -->
+                <div class="month-section" id="november-2025">
+                    <div class="month-header">
+                        <div class="month-title">November 2025</div>
+                        <div class="month-meta">8 commits</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Performance optimizations, misc improvements</span>
+
+                        <div class="category">
+                            <div class="category-title">Changed</div>
+                            <ul class="category-list">
+                                <li>Query performance improvements</li>
+                                <li>Various bug fixes and improvements</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">9f9b837</span></td><td>2025-11-30</td><td>misc</td></tr>
+                                <tr><td><span class="commit-hash">2125723</span></td><td>2025-11-29</td><td>misc</td></tr>
+                                <tr><td><span class="commit-hash">fb23072</span></td><td>2025-11-24</td><td>misc</td></tr>
+                                <tr><td><span class="commit-hash">f90b05a</span></td><td>2025-11-18</td><td>misc</td></tr>
+                                <tr><td><span class="commit-hash">77ebdc3</span></td><td>2025-11-14</td><td>misc</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- October 2025 -->
+                <div class="month-section" id="october-2025">
+                    <div class="month-header">
+                        <div class="month-title">October 2025</div>
+                        <div class="month-meta">3 commits</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Transaction filtering, balance tracking</span>
+
+                        <div class="category">
+                            <div class="category-title">Added</div>
+                            <ul class="category-list">
+                                <li>Top N transactions feature for analytics</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Changed</div>
+                            <ul class="category-list">
+                                <li>Balance tracking improvements</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">eca2b33</span></td><td>2025-10-26</td><td>top n transactions</td></tr>
+                                <tr><td><span class="commit-hash">340307e</span></td><td>2025-10-18</td><td>balance changes</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- September 2025 -->
+                <div class="month-section" id="september-2025">
+                    <div class="month-header">
+                        <div class="month-title">September 2025</div>
+                        <div class="month-meta">2 commits</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Chart improvements</span>
+
+                        <div class="category">
+                            <div class="category-title">Changed</div>
+                            <ul class="category-list">
+                                <li>Balance tracking updates</li>
+                                <li>Graph scaling improvements</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">f8f0574</span></td><td>2025-09-19</td><td>balance changes</td></tr>
+                                <tr><td><span class="commit-hash">51e4353</span></td><td>2025-09-04</td><td>graph scaling</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- August 2025 -->
+                <div class="month-section" id="august-2025">
+                    <div class="month-header">
+                        <div class="month-title">August 2025</div>
+                        <div class="month-meta">6 commits</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Stock price reliability, investment charts</span>
+
+                        <div class="category">
+                            <div class="category-title">Added</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">daily_stock_price_updater_dag.py</span> - New DAG for 7-day stock price backfill</li>
+                                <li>Investment chart crosshair feature</li>
+                                <li>Multiple data validation and backfill scripts</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Fixed</div>
+                            <ul class="category-list">
+                                <li>Investment chart price history gaps</li>
+                                <li>Stock price data accuracy issues</li>
+                                <li>Investment chart filter bugs</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Changed</div>
+                            <ul class="category-list">
+                                <li>Payment history filtering improvements</li>
+                                <li>Stock table display enhancements</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">4cedb9f</span></td><td>2025-08-30</td><td>payment history filtering</td></tr>
+                                <tr><td><span class="commit-hash">d637311</span></td><td>2025-08-23</td><td>Fix investment chart price history gaps and add crosshair</td></tr>
+                                <tr><td><span class="commit-hash">7a3fa11</span></td><td>2025-08-03</td><td>fixing stock prices - Added daily_stock_price_updater_dag</td></tr>
+                                <tr><td><span class="commit-hash">283871f</span></td><td>2025-08-01</td><td>investment chart filter fix</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- July 2025 -->
+                <div class="month-section" id="july-2025">
+                    <div class="month-header">
+                        <div class="month-title">July 2025</div>
+                        <div class="month-meta">30 commits</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Major feature development</span>
+
+                        <div class="category">
+                            <div class="category-title">Added - Transfer Detection System</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">investment_transfers.py</span> - Backend route for bank-to-investment transfer detection</li>
+                                <li><span class="file-name">TransferDetectionBanner.jsx</span> - UI component for transfer alerts</li>
+                                <li><span class="file-name">FrontendTransferBanner.jsx</span> - Frontend-based detection alternative</li>
+                                <li><span class="file-name">useTransferDetection.js</span> - Custom React hook for transfer pattern matching</li>
+                                <li><span class="file-name">categories.py</span> - Category management routes</li>
+                                <li>Database tables: custom_transfer_patterns, detected_investment_transfers</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Added - Payment Mapping System</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">mapped_payments.py</span> - Payment pattern mapping routes</li>
+                                <li><span class="file-name">payment_mappings.py</span> - Payment mappings management</li>
+                                <li><span class="file-name">transaction_mappings.py</span> - Transaction categorization API</li>
+                                <li><span class="file-name">PaymentMappingsPage.jsx</span> - UI for managing payment patterns</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Added - Net Worth & Analytics</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">bank_balance_history.py</span> - Account balance history tracking</li>
+                                <li><span class="file-name">schema_routes.py</span> - Database schema introspection</li>
+                                <li><span class="file-name">route_discovery.py</span> - Auto-generated API documentation</li>
+                                <li><span class="file-name">DailyChangeBreakdown.jsx</span> - Net worth daily change attribution</li>
+                                <li><span class="file-name">NetWorthFormula.jsx</span> - Visual net worth formula display</li>
+                                <li><span class="file-name">BankBalanceChangeView.jsx</span> - Bank balance trend visualization</li>
+                                <li><span class="file-name">CalendarSpendingView.jsx</span> - Calendar-based spending heat map</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Added - Investment Features</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">RealizedGains.jsx</span> - Capital gains tracking component</li>
+                                <li>Earnings dates tracking with graph visualization</li>
+                                <li>Database tables: stock_earnings_dates, stock_earnings_results</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Added - Infrastructure</div>
+                            <ul class="category-list">
+                                <li>Airflow email notifications for DAG failures</li>
+                                <li>DAG internet connectivity checks</li>
+                                <li>DAG security improvements</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Fixed</div>
+                            <ul class="category-list">
+                                <li>Double subscription counting</li>
+                                <li>DAG error handling and payment mapping formatting</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">9242a64</span></td><td>2025-07-29</td><td>investment chart filter, stock sales, etc</td></tr>
+                                <tr><td><span class="commit-hash">4f464aa</span></td><td>2025-07-26</td><td><strong>massive changes</strong> - Transfer detection system</td></tr>
+                                <tr><td><span class="commit-hash">5db8a8b</span></td><td>2025-07-25</td><td>db org - Payment mappings system</td></tr>
+                                <tr><td><span class="commit-hash">629e1d6</span></td><td>2025-07-21</td><td>naming fix - Route discovery, Subscription manager</td></tr>
+                                <tr><td><span class="commit-hash">1bc51ad</span></td><td>2025-07-18</td><td>new nw views - DailyChangeBreakdown, NetWorthFormula</td></tr>
+                                <tr><td><span class="commit-hash">cf9bb2a</span></td><td>2025-07-14</td><td>earnings dates - Stock earnings tracking</td></tr>
+                                <tr><td><span class="commit-hash">d614f94</span></td><td>2025-07-09</td><td>misc changes - Schema routes, balance history</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- June 2025 -->
+                <div class="month-section" id="june-2025">
+                    <div class="month-header">
+                        <div class="month-title">June 2025</div>
+                        <div class="month-meta">3 commits - Initial Release</div>
+                    </div>
+                    <div class="month-content">
+                        <span class="focus-tag">Project initialization</span>
+
+                        <div class="category">
+                            <div class="category-title">Backend (Flask)</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">app.py</span> - Main Flask application (port 5001)</li>
+                                <li><span class="file-name">config.py</span> - Environment configuration</li>
+                                <li><span class="file-name">plaid_service.py</span> - Plaid API integration</li>
+                                <li><span class="file-name">net_worth_service.py</span> - Net worth calculation service</li>
+                                <li><span class="file-name">database_info.sql</span> - Centralized database schema</li>
+                                <li>Routes: analytics, investments, transactions, net_worth_routes</li>
+                                <li>Clean architecture data layer (db_operations, handlers, processors, services, utils)</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Frontend (React 18 + Vite)</div>
+                            <ul class="category-list">
+                                <li>Core pages: HomePage, TransactionsPage, ExpensesPage, InvestmentsPage, NetWorthPage</li>
+                                <li>Investment components: PortfolioSummary, PortfolioChart, StockHoldings, AssetAllocation, TopPerformers, CashSummary, AddStockForm, SellStockForm, TransactionImporter</li>
+                                <li>Net worth components: NetWorthSummary, NetWorthChart, LiabilityBreakdown</li>
+                                <li>Common components: Header, Sidebar</li>
+                                <li>State management: TanStack Query, SidebarContext</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Infrastructure (Airflow)</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">financial_data_dag.py</span> - Main Plaid sync pipeline (4x daily)</li>
+                                <li><span class="file-name">stock_price_tracker_dag.py</span> - Yahoo Finance price updates</li>
+                                <li><span class="file-name">net_worth_snapshot_dag.py</span> - Net worth calculations</li>
+                                <li><span class="file-name">test_import_dag.py</span> - Diagnostic DAG</li>
+                                <li>Docker Compose configuration with PostgreSQL</li>
+                                <li>Makefile automation</li>
+                            </ul>
+                        </div>
+
+                        <table class="commits-table">
+                            <thead>
+                                <tr><th>Hash</th><th>Date</th><th>Description</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="commit-hash">e472d64</span></td><td>2025-06-19</td><td><strong>Initial commit with .gitignore</strong></td></tr>
+                                <tr><td><span class="commit-hash">709a963</span></td><td>2025-06-25</td><td>misc changes</td></tr>
+                                <tr><td><span class="commit-hash">7493d24</span></td><td>2025-06-26</td><td>misc changes</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Summary Section -->
+                <div id="summary">
+                    <h2>Summary</h2>
+
+                    <h3>Commits by Month</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Month</th><th>Commits</th><th>Key Features</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jun 2025</td><td>3</td><td>Initial release</td></tr>
+                            <tr><td>Jul 2025</td><td>30</td><td>Transfer detection, payment mappings, net worth views</td></tr>
+                            <tr><td>Aug 2025</td><td>6</td><td>Stock price reliability, chart improvements</td></tr>
+                            <tr><td>Sep 2025</td><td>2</td><td>Graph scaling, balance changes</td></tr>
+                            <tr><td>Oct 2025</td><td>3</td><td>Top N transactions</td></tr>
+                            <tr><td>Nov 2025</td><td>8</td><td>Performance optimizations</td></tr>
+                            <tr><td>Dec 2025</td><td>5</td><td>Data lineage visualization</td></tr>
+                            <tr><td><strong>Total</strong></td><td><strong>57</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Version Reference</h3>
+                    <table class="summary-table">
+                        <thead>
+                            <tr><th>Version</th><th>Date</th><th>Milestone</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><span class="version-badge">v1.0.0</span></td><td>2025-06-19</td><td>Initial release (e472d64)</td></tr>
+                            <tr><td><span class="version-badge">v1.1.0</span></td><td>2025-07-09</td><td>Schema routes, balance history (d614f94)</td></tr>
+                            <tr><td><span class="version-badge">v1.2.0</span></td><td>2025-07-18</td><td>Net worth views, earnings dates (1bc51ad, cf9bb2a)</td></tr>
+                            <tr><td><span class="version-badge">v2.0.0</span></td><td>2025-07-26</td><td>Transfer detection, payment mappings (4f464aa, 5db8a8b)</td></tr>
+                            <tr><td><span class="version-badge">v2.1.0</span></td><td>2025-08-03</td><td>Stock price reliability (7a3fa11)</td></tr>
+                            <tr><td><span class="version-badge">v2.2.0</span></td><td>2025-12-01</td><td>Data lineage visualization (33dbed9)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Back to top button -->
+    <div class="back-to-top" id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </div>
+
+    <script>
+        // Show/hide back to top button
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+
+        // Highlight active section in sidebar
+        const sections = document.querySelectorAll('.month-section, #summary');
+        const navLinks = document.querySelectorAll('.toc-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
