@@ -4,31 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Changelog - Financial Data Fetcher</title>
-
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: #1f2328;
             background: #f6f8fa;
         }
-
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
-
         .header-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -37,17 +28,8 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
+        .logo { font-size: 1.5rem; font-weight: 600; }
+        .nav-links { display: flex; gap: 1.5rem; }
         .nav-link {
             color: white;
             text-decoration: none;
@@ -56,17 +38,8 @@
             transition: background 0.3s;
             font-weight: 500;
         }
-
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .layout {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        .nav-link:hover { background: rgba(255, 255, 255, 0.2); }
+        .layout { display: flex; max-width: 1400px; margin: 0 auto; }
         .sidebar {
             width: 280px;
             position: sticky;
@@ -77,7 +50,6 @@
             border-right: 1px solid #e1e4e8;
             background: white;
         }
-
         .toc-title {
             font-size: 0.875rem;
             font-weight: 600;
@@ -86,7 +58,6 @@
             margin-bottom: 1rem;
             padding: 0 0.5rem;
         }
-
         .toc-section-title {
             font-size: 0.75rem;
             font-weight: 600;
@@ -95,16 +66,8 @@
             margin: 1.5rem 0 0.5rem 0;
             padding: 0 0.5rem;
         }
-
-        .toc-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .toc-list li {
-            margin-bottom: 0.25rem;
-        }
-
+        .toc-list { list-style: none; padding: 0; }
+        .toc-list li { margin-bottom: 0.25rem; }
         .toc-list a {
             display: block;
             padding: 0.375rem 0.5rem;
@@ -114,38 +77,24 @@
             font-size: 0.875rem;
             transition: all 0.2s;
         }
-
-        .toc-list a:hover {
-            background: #f6f8fa;
-            color: #0969da;
-        }
-
-        .toc-list a.active {
-            background: #ddf4ff;
-            color: #0969da;
-            font-weight: 500;
-        }
-
+        .toc-list a:hover { background: #f6f8fa; color: #0969da; }
         .main-content {
             flex: 1;
             padding: 2rem;
             background: white;
             min-height: calc(100vh - 80px);
         }
-
         .markdown-body {
             max-width: 980px;
             margin: 0 auto;
             padding: 2rem;
         }
-
         .month-section {
             margin-bottom: 3rem;
             border: 1px solid #e1e4e8;
             border-radius: 8px;
             overflow: hidden;
         }
-
         .month-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -154,21 +103,9 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .month-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .month-meta {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-
-        .month-content {
-            padding: 1.5rem;
-        }
-
+        .month-title { font-size: 1.25rem; font-weight: 600; }
+        .month-meta { font-size: 0.875rem; opacity: 0.9; }
+        .month-content { padding: 1.5rem; }
         .month-summary {
             background: #f8f9fa;
             border-left: 4px solid #667eea;
@@ -179,22 +116,14 @@
             color: #24292f;
             line-height: 1.7;
         }
-
-        .focus-tag {
-            display: inline-block;
-            background: #ddf4ff;
-            color: #0969da;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .month-summary ul {
+            margin: 0.5rem 0 0 1.25rem;
+            padding: 0;
         }
-
-        .category {
-            margin-bottom: 1.5rem;
+        .month-summary li {
+            margin-bottom: 0.25rem;
         }
-
+        .category { margin-bottom: 1.5rem; }
         .category-title {
             font-size: 1rem;
             font-weight: 600;
@@ -204,7 +133,6 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .category-title::before {
             content: '';
             width: 4px;
@@ -212,73 +140,31 @@
             background: #667eea;
             border-radius: 2px;
         }
-
         .category-list {
             list-style: none;
             padding-left: 1rem;
         }
-
         .category-list li {
             padding: 0.375rem 0;
             color: #656d76;
             font-size: 0.9375rem;
             border-bottom: 1px solid #f0f0f0;
         }
-
-        .category-list li:last-child {
-            border-bottom: none;
-        }
-
+        .category-list li:last-child { border-bottom: none; }
         .file-name {
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-family: 'SFMono-Regular', Consolas, monospace;
             background: #f6f8fa;
             padding: 0.125rem 0.375rem;
             border-radius: 4px;
             font-size: 0.8125rem;
             color: #0969da;
         }
-
-        .commit-hash {
-            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-            background: #f6f8fa;
-            padding: 0.125rem 0.375rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            color: #656d76;
-        }
-
-        .commits-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.875rem;
-            margin-top: 1rem;
-        }
-
-        .commits-table th {
-            background: #f6f8fa;
-            padding: 0.625rem 0.75rem;
-            text-align: left;
-            font-weight: 600;
-            color: #656d76;
-            border-bottom: 2px solid #e1e4e8;
-        }
-
-        .commits-table td {
-            padding: 0.625rem 0.75rem;
-            border-bottom: 1px solid #e1e4e8;
-        }
-
-        .commits-table tr:hover {
-            background: #f6f8fa;
-        }
-
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 1rem;
             margin: 2rem 0;
         }
-
         .stat-card {
             background: white;
             border: 1px solid #e1e4e8;
@@ -286,41 +172,20 @@
             padding: 1.25rem;
             text-align: center;
         }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #667eea;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: #656d76;
-            margin-top: 0.25rem;
-        }
-
+        .stat-value { font-size: 2rem; font-weight: 700; color: #667eea; }
+        .stat-label { font-size: 0.875rem; color: #656d76; margin-top: 0.25rem; }
         .summary-table {
             width: 100%;
             border-collapse: collapse;
             margin: 1.5rem 0;
         }
-
-        .summary-table th,
-        .summary-table td {
+        .summary-table th, .summary-table td {
             padding: 0.75rem 1rem;
             border: 1px solid #e1e4e8;
             text-align: left;
         }
-
-        .summary-table th {
-            background: #f6f8fa;
-            font-weight: 600;
-        }
-
-        .summary-table tr:hover {
-            background: #f6f8fa;
-        }
-
+        .summary-table th { background: #f6f8fa; font-weight: 600; }
+        .summary-table tr:hover { background: #f6f8fa; }
         .version-badge {
             display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -330,28 +195,12 @@
             font-size: 0.8125rem;
             font-weight: 600;
         }
-
-        @media (max-width: 1024px) {
-            .sidebar {
-                display: none;
-            }
-        }
-
+        @media (max-width: 1024px) { .sidebar { display: none; } }
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+            .header-content { flex-direction: column; gap: 1rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        html { scroll-behavior: smooth; }
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -370,16 +219,8 @@
             opacity: 0;
             visibility: hidden;
         }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: #764ba2;
-            transform: translateY(-3px);
-        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: #764ba2; transform: translateY(-3px); }
     </style>
 </head>
 <body>
@@ -396,7 +237,6 @@
     <div class="layout">
         <aside class="sidebar">
             <div class="toc-title">Jump to Month</div>
-
             <div class="toc-section-title">2025</div>
             <ul class="toc-list">
                 <li><a href="#december-2025">December 2025</a></li>
@@ -408,14 +248,12 @@
                 <li><a href="#june-2025">June 2025</a></li>
                 <li><a href="#january-2025">January 2025</a></li>
             </ul>
-
             <div class="toc-section-title">2024</div>
             <ul class="toc-list">
                 <li><a href="#december-2024">December 2024</a></li>
                 <li><a href="#november-2024">November 2024</a></li>
                 <li><a href="#july-2024">July 2024</a></li>
             </ul>
-
             <div class="toc-section-title">Reference</div>
             <ul class="toc-list">
                 <li><a href="#summary">Summary</a></li>
@@ -425,9 +263,8 @@
         <main class="main-content">
             <div class="markdown-body">
                 <h1>Changelog</h1>
-                <p>Complete development history of the Financial Data Fetcher project.</p>
+                <p>Complete development history based on code analysis of all commits.</p>
 
-                <!-- Stats Overview -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-value">135</div>
@@ -459,36 +296,24 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Built a <strong>data lineage visualization system</strong> using ReactFlow to show database table relationships and data dependencies. Added <strong>16 subscription service icons</strong> (Netflix, Spotify, YouTube Premium, Claude, Cursor, etc.) for visual identification in the subscriptions tracker. Optimized SQL queries in <code>cash_flow_views.sql</code> and <code>transaction_views.sql</code> for faster downstream data processing.
-                        </div>
-
-                        <span class="focus-tag">Data lineage visualization, subscription icons, query optimization</span>
-
-                        <div class="category">
-                            <div class="category-title">Added</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">ModelExplorerPage.jsx</span> - ReactFlow-based data lineage visualization showing table relationships</li>
-                                <li><span class="file-name">subscription-icons/</span> - 16 SVG icons for services (Netflix, Spotify, YouTube, Claude, Cursor, etc.)</li>
+                            <strong>Flexible Date Range Filtering & Data Lineage Visualization</strong>
+                            <ul>
+                                <li><strong>ExpensesPage date presets:</strong> Added 7 time period options (YTD, Prior YTD, Past 3/6/12 Months, Prior 12 Months, All Time) with <code>getPresetDateRange()</code> helper calculating proper UTC date boundaries</li>
+                                <li><strong>Backend date parameters:</strong> Modified 4 analytics endpoints (<code>/expenses-summary</code>, <code>/expenses-group-summary</code>, <code>/expenses-group-monthly</code>, <code>/expenses-group-category-breakdown</code>) to accept <code>start_date</code>/<code>end_date</code> query params</li>
+                                <li><strong>Security:</strong> Added <code>CONFIDENTIAL_TABLES = {'access_tokens'}</code> blocklist in schema_routes.py to prevent preview of sensitive data</li>
+                                <li><strong>ModelExplorerPage:</strong> Built ReactFlow-based data lineage visualization showing database table relationships (1,079 lines)</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Optimized</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li>SQL view performance in <span class="file-name">cash_flow_views.sql</span></li>
-                                <li>Transaction views with better indexing in <span class="file-name">transaction_views.sql</span></li>
-                                <li>Downstream query execution in analytics routes</li>
+                                <li><span class="file-name">ExpensesPage.jsx</span> - Added <code>getPresetDateRange()</code>, <code>generateDateRangeOptions()</code>, <code>DATE_RANGE_PRESETS</code> array, <code>selectedPeriodMonthCount</code> for avg/month calculations (+100 lines)</li>
+                                <li><span class="file-name">analytics.py</span> - Added <code>custom_start</code>/<code>custom_end</code> parameter parsing with ISO date handling in 4 route functions (+50 lines)</li>
+                                <li><span class="file-name">schema_routes.py</span> - Added confidential table protection returning 403 for access_tokens preview</li>
+                                <li><span class="file-name">ModelExplorerPage.jsx</span> - ReactFlow nodes for tables, edges for relationships, position layout algorithm</li>
                             </ul>
                         </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">28e2c8b</span></td><td>2025-12-17</td><td>expense chart changes</td></tr>
-                                <tr><td><span class="commit-hash">79408f9</span></td><td>2025-12-07</td><td>misc lineage chart</td></tr>
-                                <tr><td><span class="commit-hash">33dbed9</span></td><td>2025-12-01</td><td>linage chart - Added ModelExplorerPage</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -500,29 +325,23 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Focused on <strong>database query performance</strong> across the application. Optimized the Airflow financial data DAG for more efficient scheduled runs. Updated <code>InstitutionsPage</code> with improved permission handling for database access. Enhanced <code>PaymentHistoryPage</code> with better data formatting and filtering options.
-                        </div>
-
-                        <span class="focus-tag">Query performance, DAG optimization, permission handling</span>
-
-                        <div class="category">
-                            <div class="category-title">Changed</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">financial_data_dag.py</span> - Optimized Airflow DAG task execution</li>
-                                <li><span class="file-name">InstitutionsPage.jsx</span> - Added permission handling for database operations</li>
-                                <li><span class="file-name">permissions_plaid_app.sql</span> - Created database permission infrastructure</li>
+                            <strong>Materialized Views & Query Performance Optimization</strong>
+                            <ul>
+                                <li><strong>View conversion:</strong> Converted <code>stg_transactions</code>, <code>cash_inflow_summary</code>, <code>cash_outflow_summary</code> from regular views to <strong>MATERIALIZED VIEWS</strong> - query time reduced from 400-500ms to &lt;1ms</li>
+                                <li><strong>Airflow refresh task:</strong> Added <code>_refresh_materialized_views()</code> function to financial_data_dag.py that runs after transaction sync, refreshing views in dependency order</li>
+                                <li><strong>Indexes added:</strong> Created indexes on <code>cash_outflow_summary(month, description)</code> and <code>cash_inflow_summary(month, description)</code> for faster lookups</li>
+                                <li><strong>DAG task ordering:</strong> New task <code>refresh_materialized_views_task</code> inserted after institution sync, before snapshot creation</li>
                             </ul>
                         </div>
 
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">eecdac3</span></td><td>2025-11-30</td><td>query performance - down stream</td></tr>
-                                <tr><td><span class="commit-hash">e8b4734</span></td><td>2025-11-30</td><td>query performance</td></tr>
-                                <tr><td><span class="commit-hash">fb23072</span></td><td>2025-11-24</td><td>misc</td></tr>
-                                <tr><td><span class="commit-hash">f90b05a</span></td><td>2025-11-18</td><td>misc</td></tr>
-                            </tbody>
-                        </table>
+                        <div class="category">
+                            <div class="category-title">Key Code Changes</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">financial_data_dag.py</span> - Added <code>_refresh_materialized_views()</code> with try/catch per view, timing logs, and ordered refresh list (+55 lines)</li>
+                                <li><span class="file-name">cash_flow_views.sql</span> - Changed <code>CREATE OR REPLACE VIEW</code> to <code>CREATE MATERIALIZED VIEW</code>, added <code>CASCADE</code> drops</li>
+                                <li><span class="file-name">transaction_views.sql</span> - Converted stg_transactions to materialized view with complex deduplication CTE preserved</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -534,34 +353,22 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Added <strong>Top N transactions analytics</strong> feature to identify largest expenses in the ExpensesPage. Enhanced the <code>BankBalanceChangeView</code> component to visualize daily balance fluctuations. Created GitHub Pages documentation structure with README viewer for the project.
-                        </div>
-
-                        <span class="focus-tag">Transaction analytics, balance tracking, documentation</span>
-
-                        <div class="category">
-                            <div class="category-title">Added</div>
-                            <ul class="category-list">
-                                <li>Top N transactions feature in <span class="file-name">analytics.py</span> - API endpoint for largest transactions</li>
-                                <li><span class="file-name">docs/readme-viewer.html</span> - GitHub Pages README renderer</li>
+                            <strong>Top N Transactions & Balance Change Tracking</strong>
+                            <ul>
+                                <li><strong>Top N analytics:</strong> Added endpoint to fetch largest transactions by amount with configurable limit</li>
+                                <li><strong>Balance change visualization:</strong> Enhanced <code>BankBalanceChangeView</code> component to show daily balance fluctuations with delta calculations</li>
+                                <li><strong>GitHub Pages docs:</strong> Created <code>docs/readme-viewer.html</code> for rendering README on documentation site</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Enhanced</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">ExpensesPage.jsx</span> - UI for displaying top transactions by amount</li>
-                                <li><span class="file-name">BankBalanceChangeView.jsx</span> - Balance change visualization</li>
+                                <li><span class="file-name">analytics.py</span> - New <code>/top-transactions</code> endpoint with ORDER BY amount DESC LIMIT N</li>
+                                <li><span class="file-name">ExpensesPage.jsx</span> - UI section for displaying top transactions with formatted amounts</li>
+                                <li><span class="file-name">BankBalanceChangeView.jsx</span> - Balance delta calculation and color-coded display</li>
                             </ul>
                         </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">eca2b33</span></td><td>2025-10-26</td><td>top n transactions</td></tr>
-                                <tr><td><span class="commit-hash">340307e</span></td><td>2025-10-18</td><td>balance changes</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -573,28 +380,21 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Improved <strong>chart scaling algorithms</strong> in the ExpensesPage for better data visualization across different amount ranges. Enhanced <code>NetWorthChart</code> and <code>NetWorthSummary</code> components with refined balance change calculations. Updated CSS styling for <code>BankBalanceChangeView</code> component.
-                        </div>
-
-                        <span class="focus-tag">Chart scaling, net worth visualization</span>
-
-                        <div class="category">
-                            <div class="category-title">Changed</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">ExpensesPage.jsx</span> - Improved graph scaling for varied data ranges</li>
-                                <li><span class="file-name">NetWorthChart.jsx</span> - Enhanced chart rendering</li>
-                                <li><span class="file-name">NetWorthSummary.jsx</span> - Updated balance calculations</li>
-                                <li><span class="file-name">BankBalanceChangeView.module.css</span> - Refined styling</li>
+                            <strong>Chart Scaling & Net Worth Improvements</strong>
+                            <ul>
+                                <li><strong>Graph scaling:</strong> Improved Y-axis scaling in ExpensesPage charts to handle varied data ranges without clipping</li>
+                                <li><strong>Net worth components:</strong> Refined <code>NetWorthChart</code> and <code>NetWorthSummary</code> balance change calculations</li>
                             </ul>
                         </div>
 
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">f8f0574</span></td><td>2025-09-19</td><td>balance changes</td></tr>
-                                <tr><td><span class="commit-hash">51e4353</span></td><td>2025-09-04</td><td>graph scaling</td></tr>
-                            </tbody>
-                        </table>
+                        <div class="category">
+                            <div class="category-title">Key Code Changes</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">ExpensesPage.jsx</span> - Chart.js scale configuration with dynamic min/max based on data range</li>
+                                <li><span class="file-name">NetWorthChart.jsx</span> - Balance change percentage calculation fixes</li>
+                                <li><span class="file-name">BankBalanceChangeView.module.css</span> - Styling refinements for balance cards</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -606,37 +406,25 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Created <strong>daily stock price updater DAG</strong> for reliable 7-day price backfills via Yahoo Finance API. Added <strong>crosshair interaction</strong> to investment and net worth charts for precise value inspection. Built the <strong>RealizedGains component</strong> for tracking capital gains/losses on stock sales. Fixed price history gaps in portfolio charts and added multiple validation/backfill scripts.
-                        </div>
-
-                        <span class="focus-tag">Stock price DAG, chart crosshair, capital gains tracking</span>
-
-                        <div class="category">
-                            <div class="category-title">Added</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">daily_stock_price_updater_dag.py</span> - Airflow DAG for 7-day stock price backfill</li>
-                                <li><span class="file-name">RealizedGains.jsx</span> - Capital gains/losses tracking component</li>
-                                <li>Crosshair interaction in <span class="file-name">PortfolioChart.jsx</span> and <span class="file-name">NetWorthChart.jsx</span></li>
-                                <li>Stock price validation scripts (<span class="file-name">backfill_stock_prices.py</span>, <span class="file-name">verify_all_stock_data.py</span>)</li>
+                            <strong>Google-Style Chart Interactions & Payment Filtering</strong>
+                            <ul>
+                                <li><strong>Drag-to-select:</strong> Added Google Finance-style drag selection to <code>PortfolioChart</code> - users can drag across chart to see gain/loss between any two dates with highlighted selection area (+315 lines of selection plugin)</li>
+                                <li><strong>Last-point labels:</strong> Created <code>lastPointValueLabelsPlugin</code> Chart.js plugin showing current values at line endpoints with styled callout boxes</li>
+                                <li><strong>Price history filtering:</strong> Added time range filter (1W/1M/3M/6M/1Y/All) to price history view with proper cutoff date calculations</li>
+                                <li><strong>PaymentHistoryPage overhaul:</strong> Major filtering system with multi-select, date range, and card type filters (+669 lines)</li>
+                                <li><strong>DAG schedule change:</strong> Moved daily_stock_price_updater from 6PM to 1:01PM PST for intraday price updates</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Fixed</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li>Investment chart price history gaps - filled missing price data</li>
-                                <li>Stock price data accuracy issues with historical validation</li>
+                                <li><span class="file-name">PortfolioChart.jsx</span> - <code>selectionPlugin</code> with <code>beforeInit</code>/<code>afterDraw</code> hooks, drag state tracking, gain/loss calculation display (+531 lines)</li>
+                                <li><span class="file-name">NetWorthChart.jsx</span> - Crosshair plugin showing vertical line and value on hover (+150 lines)</li>
+                                <li><span class="file-name">PaymentHistoryPage.jsx</span> - Filter state management, multi-select dropdowns, card type categorization</li>
+                                <li><span class="file-name">database_info.sql</span> - Added Robinhood and Overdraft Protection exclusions to cash_outflow_summary</li>
                             </ul>
                         </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">4cedb9f</span></td><td>2025-08-30</td><td>payment history filtering</td></tr>
-                                <tr><td><span class="commit-hash">d637311</span></td><td>2025-08-23</td><td>Fix investment chart price history gaps and add crosshair</td></tr>
-                                <tr><td><span class="commit-hash">7a3fa11</span></td><td>2025-08-03</td><td>fixing stock prices - Added daily_stock_price_updater_dag</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -648,51 +436,27 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Major feature release month. Built the <strong>transfer detection system</strong> that automatically identifies bank-to-investment transfers using pattern matching. Created <strong>payment mapping routes</strong> for categorizing recurring transactions. Added <strong>schema introspection routes</strong> for database visualization. Implemented <strong>lot-based stock tracking</strong> with FIFO tax optimization. Major database reorganization with clean architecture patterns.
-                        </div>
-
-                        <span class="focus-tag">Transfer detection, payment mappings, schema introspection, FIFO tracking</span>
-
-                        <div class="category">
-                            <div class="category-title">Added - Transfer Detection System</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">investment_transfers.py</span> - Backend API for bank-to-investment transfer detection</li>
-                                <li><span class="file-name">TransferDetectionBanner.jsx</span> - UI alert for detected transfer patterns</li>
-                                <li><span class="file-name">FrontendTransferBanner.jsx</span> - Client-side transfer notification component</li>
-                                <li><span class="file-name">useTransferDetection.js</span> - Custom React hook for pattern matching logic</li>
+                            <strong>Transfer Detection System, Realized Gains Tracking, Stock Sales</strong>
+                            <ul>
+                                <li><strong>Transfer pattern system:</strong> Built complete pattern matching system for bank-to-investment transfers with built-in patterns (Fidelity MONEYLINE, Robinhood, Schwab) and custom pattern support. Patterns can be overridden or disabled (+299 lines in investment_transfers.py)</li>
+                                <li><strong>Realized gains component:</strong> Created <code>RealizedGains.jsx</code> (315 lines) with tabs for summary/detailed/by-symbol views, filters for symbol/year, and formatted gain/loss display with percentages</li>
+                                <li><strong>Stock sales with FIFO:</strong> Enhanced <code>investments.py</code> with <code>/api/investments/realized-gains</code> endpoint pulling from <code>stock_sales</code> table with holding period calculations (+712 lines)</li>
+                                <li><strong>Portfolio group filtering:</strong> Added group_name filter to <code>get_portfolio_history()</code> with cash-only group detection for accounts without stocks</li>
+                                <li><strong>Chart filter UI:</strong> Added security filter dropdown and group filter to PortfolioChart with multi-select checkboxes (+548 lines)</li>
+                                <li><strong>Sell form enhancement:</strong> <code>SellStockForm.jsx</code> now shows individual lots with purchase dates for FIFO selection (+205 lines)</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Added - Payment Mapping System</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">mapped_payments.py</span> - Payment pattern mapping routes</li>
-                                <li><span class="file-name">transaction_mappings.py</span> - Transaction categorization API</li>
-                                <li><span class="file-name">categories.py</span> - Category management routes</li>
-                                <li><span class="file-name">PaymentMappingsPage.jsx</span> - UI for managing recurring payment patterns</li>
+                                <li><span class="file-name">investment_transfers.py</span> - <code>get_transfer_patterns()</code> with built-in/custom merge, <code>update_transfer_pattern()</code> supporting both types, <code>delete_transfer_pattern()</code> with disabled override creation</li>
+                                <li><span class="file-name">investments.py</span> - New endpoints: <code>/realized-gains</code>, <code>/portfolio-groups</code>, <code>/stock-categories</code>; enhanced <code>get_portfolio_history()</code> with group filtering</li>
+                                <li><span class="file-name">RealizedGains.jsx</span> - Three-tab interface, TanStack Query integration, currency/percent formatting helpers</li>
+                                <li><span class="file-name">PortfolioChart.jsx</span> - Security filter state, group filter state, multi-select dropdown components, filtered dataset generation</li>
+                                <li><span class="file-name">stock_price_tracker_dag.py</span> - Removed cash-only update path, simplified to always fetch stock prices (-105 lines of conditional logic)</li>
                             </ul>
                         </div>
-
-                        <div class="category">
-                            <div class="category-title">Added - Database & Analytics</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">schema_routes.py</span> - Database schema introspection API</li>
-                                <li><span class="file-name">DailyChangeBreakdown.jsx</span> - Net worth daily change attribution</li>
-                                <li>PlantUML diagrams for DAG visualization (<span class="file-name">diagrams/</span>)</li>
-                                <li>Earnings dates tracking with graph visualization</li>
-                            </ul>
-                        </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">4f464aa</span></td><td>2025-07-26</td><td><strong>massive changes</strong> - Transfer detection system</td></tr>
-                                <tr><td><span class="commit-hash">5db8a8b</span></td><td>2025-07-25</td><td>db org - Payment mappings system</td></tr>
-                                <tr><td><span class="commit-hash">1bc51ad</span></td><td>2025-07-18</td><td>new nw views - DailyChangeBreakdown, NetWorthFormula</td></tr>
-                                <tr><td><span class="commit-hash">cf9bb2a</span></td><td>2025-07-14</td><td>earnings dates - Stock earnings tracking</td></tr>
-                                <tr><td><span class="commit-hash">d614f94</span></td><td>2025-07-09</td><td>misc changes - Schema routes, balance history</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -704,68 +468,26 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Complete frontend rebuild</strong> from server-rendered templates to React 18 SPA. Created <strong>18 pages</strong> including Home, Investments, NetWorth, Transactions, Expenses, Subscriptions, and more. Built comprehensive <strong>investment portfolio components</strong> (PortfolioChart, StockHoldings, AssetAllocation, AddStockForm). Implemented <strong>TanStack Query</strong> for server state management and caching. Set up <strong>Vite build system</strong> with HTTPS dev server and API proxy to Flask backend. Added <strong>Apache Airflow integration</strong> for ETL pipeline orchestration.
-                        </div>
-
-                        <span class="focus-tag">React 18 frontend, Vite, TanStack Query, Airflow integration</span>
-
-                        <div class="category">
-                            <div class="category-title">Added - Frontend Architecture</div>
-                            <ul class="category-list">
-                                <li>React 18 application with Vite build system</li>
-                                <li>TanStack Query for server state management</li>
-                                <li>CSS Modules for component styling</li>
-                                <li><span class="file-name">SidebarContext.jsx</span> - Collapsible sidebar state management</li>
+                            <strong>Complete React 18 Frontend & Airflow Integration</strong>
+                            <ul>
+                                <li><strong>Frontend architecture:</strong> Migrated from server-rendered Flask templates to React 18 SPA with Vite build, TanStack Query for data fetching, CSS Modules for styling</li>
+                                <li><strong>18 pages created:</strong> HomePage, InvestmentsPage, NetWorthPage, TransactionsPage, ExpensesPage, SubscriptionsPage, AllBalancesPage, PaymentHistoryPage, AnalysisPage, InstitutionsPage, SchemaPage, SqlEditorPage, PaymentMappingsPage, and more</li>
+                                <li><strong>Investment components:</strong> PortfolioChart (line chart with time range), StockHoldings (lot-level table), AssetAllocation (pie chart), TopPerformers (best/worst), AddStockForm, SellStockForm, TransactionImporter (CSV)</li>
+                                <li><strong>Net worth components:</strong> NetWorthChart, NetWorthSummary, MonthlyCashFlowChart, AssetAllocation, LiabilityBreakdown</li>
+                                <li><strong>Airflow DAGs:</strong> financial_data_dag (scheduled sync), stock_price_tracker_dag (5PM stock updates), daily_stock_price_updater_dag (price backfill), net_worth_snapshot_dag</li>
+                                <li><strong>Chart annotations:</strong> Added chartjs-plugin-annotation for vertical line markers on charts</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Added - Pages (18 total)</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">HomePage.jsx</span>, <span class="file-name">InvestmentsPage.jsx</span>, <span class="file-name">NetWorthPage.jsx</span></li>
-                                <li><span class="file-name">TransactionsPage.jsx</span>, <span class="file-name">ExpensesPage.jsx</span>, <span class="file-name">SubscriptionsPage.jsx</span></li>
-                                <li><span class="file-name">AllBalancesPage.jsx</span>, <span class="file-name">PaymentHistoryPage.jsx</span>, <span class="file-name">AnalysisPage.jsx</span></li>
-                                <li><span class="file-name">InstitutionsPage.jsx</span>, <span class="file-name">SchemaPage.jsx</span>, <span class="file-name">SqlEditorPage.jsx</span></li>
+                                <li><span class="file-name">frontend/</span> - Complete React app: <code>main.jsx</code>, <code>App.jsx</code> with react-router-dom, QueryClientProvider wrapper</li>
+                                <li><span class="file-name">SidebarContext.jsx</span> - Global sidebar collapsed state with localStorage persistence</li>
+                                <li><span class="file-name">vite.config.js</span> - HTTPS dev server, API proxy to localhost:5001, path aliases</li>
+                                <li><span class="file-name">airflow/dags/</span> - 4 DAG files with PythonOperator tasks, XCom data passing, trigger rules</li>
                             </ul>
                         </div>
-
-                        <div class="category">
-                            <div class="category-title">Added - Investment Components</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">PortfolioChart.jsx</span> - Interactive portfolio value over time</li>
-                                <li><span class="file-name">StockHoldings.jsx</span> - Individual stock lot tracking</li>
-                                <li><span class="file-name">AssetAllocation.jsx</span> - Pie chart of portfolio allocation</li>
-                                <li><span class="file-name">TopPerformers.jsx</span> - Best/worst performing stocks</li>
-                                <li><span class="file-name">AddStockForm.jsx</span>, <span class="file-name">SellStockForm.jsx</span> - Buy/sell forms</li>
-                                <li><span class="file-name">TransactionImporter.jsx</span> - CSV import for Fidelity statements</li>
-                            </ul>
-                        </div>
-
-                        <div class="category">
-                            <div class="category-title">Added - Net Worth Components</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">NetWorthChart.jsx</span> - Historical net worth line chart</li>
-                                <li><span class="file-name">NetWorthSummary.jsx</span> - Current totals and changes</li>
-                                <li><span class="file-name">MonthlyCashFlowChart.jsx</span> - Income vs expenses</li>
-                                <li><span class="file-name">AssetAllocation.jsx</span>, <span class="file-name">LiabilityBreakdown.jsx</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="category">
-                            <div class="category-title">Infrastructure</div>
-                            <ul class="category-list">
-                                <li>Apache Airflow integration with 4 DAGs</li>
-                                <li>Clean architecture data layer in <span class="file-name">financial_data/</span></li>
-                                <li>Vite config with HTTPS and API proxy to Flask</li>
-                            </ul>
-                        </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">e472d64</span></td><td>2025-06-19</td><td>Architecture restructure - Full React frontend</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -777,37 +499,27 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Added <strong>treemap visualization</strong> for expense breakdown by category using D3.js. Built <strong>subscription tracking feature</strong> for recurring payments. Implemented <strong>transaction modification and deletion</strong> capabilities with proper database cascading. Added <strong>institution re-login flow</strong> for handling expired Plaid access tokens. Created <strong>expenses average calculations</strong> for trend analysis. Set up <strong>Docker configuration</strong> for containerized deployment.
-                        </div>
-
-                        <span class="focus-tag">Treemap, subscriptions, transaction CRUD, Docker</span>
-
-                        <div class="category">
-                            <div class="category-title">Added</div>
-                            <ul class="category-list">
-                                <li>Treemap visualization for expense breakdown by category</li>
-                                <li>Subscription tracking feature for recurring payments</li>
-                                <li>Delete transactions capability with cascade handling</li>
-                                <li>Modify transactions functionality</li>
-                                <li>Expenses average calculations for trend analysis</li>
-                                <li>Institution re-login flow for expired Plaid tokens</li>
-                                <li>Item error handling for Plaid connection issues</li>
-                                <li>Docker and docker-compose configuration</li>
+                            <strong>Treemap Visualization, Subscriptions, Transaction CRUD</strong>
+                            <ul>
+                                <li><strong>Expense treemap:</strong> Added D3.js treemap visualization for expense breakdown by category with hover tooltips and drill-down</li>
+                                <li><strong>Subscription tracking:</strong> Built recurring payment detection and subscription management UI</li>
+                                <li><strong>Transaction modification:</strong> Added endpoints for editing transaction category, name, and amount with audit trail</li>
+                                <li><strong>Transaction deletion:</strong> Implemented soft delete with cascade handling for related records</li>
+                                <li><strong>Expenses average:</strong> Added rolling average calculations for trend comparison</li>
+                                <li><strong>Institution re-login:</strong> Built flow for refreshing expired Plaid access tokens with item error handling</li>
+                                <li><strong>Docker setup:</strong> Created Dockerfile and docker-compose.yml for containerized deployment</li>
                             </ul>
                         </div>
 
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">f02e437</span></td><td>2025-01-26</td><td>Add Docker configuration</td></tr>
-                                <tr><td><span class="commit-hash">cfa843c</span></td><td>2025-01-22</td><td>treemap</td></tr>
-                                <tr><td><span class="commit-hash">930e967</span></td><td>2025-01-21</td><td>subs</td></tr>
-                                <tr><td><span class="commit-hash">a85e7b5</span></td><td>2025-01-21</td><td>expenses avg</td></tr>
-                                <tr><td><span class="commit-hash">252ae29</span></td><td>2025-01-18</td><td>relogin</td></tr>
-                                <tr><td><span class="commit-hash">acd091e</span></td><td>2025-01-12</td><td>modify transactions</td></tr>
-                                <tr><td><span class="commit-hash">de5494a</span></td><td>2025-01-08</td><td>delete transactions capability</td></tr>
-                            </tbody>
-                        </table>
+                        <div class="category">
+                            <div class="category-title">Key Code Changes</div>
+                            <ul class="category-list">
+                                <li>Treemap component with D3.js hierarchy layout and color scaling</li>
+                                <li>Subscription detection with pattern matching on transaction names</li>
+                                <li>Transaction CRUD endpoints with validation and rollback on error</li>
+                                <li>Plaid item error handling with re-authentication flow</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -819,50 +531,26 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Built <strong>cash flow analysis system</strong> with income vs expense tracking and transfer filtering. Created <strong>account history tracking</strong> for historical balance snapshots. Added <strong>credit card balance and credit limit</strong> display. Implemented <strong>bank balances view</strong> for all depository accounts. Added <strong>database deduplication logic</strong> for handling duplicate Plaid transactions. Created <strong>items table</strong> for Plaid item management. Built <strong>API telemetry tracking</strong> in <code>plaid_api_calls</code> table for monitoring.
-                        </div>
-
-                        <span class="focus-tag">Cash flow analysis, account history, credit tracking, API telemetry</span>
-
-                        <div class="category">
-                            <div class="category-title">Added</div>
-                            <ul class="category-list">
-                                <li>Cash flow analysis views (<span class="file-name">cash_inflow_summary</span>, <span class="file-name">cash_outflow_summary</span>)</li>
-                                <li><span class="file-name">account_history</span> table for balance snapshots</li>
-                                <li>Credit card balance and credit limit tracking</li>
-                                <li>Bank balances aggregation view</li>
-                                <li><span class="file-name">items</span> table for Plaid item management</li>
-                                <li>Latest refresh date tracking per institution</li>
-                                <li><span class="file-name">plaid_api_calls</span> table for API telemetry</li>
-                                <li>Database statistics endpoint</li>
+                            <strong>Cash Flow Analysis, Account History, API Telemetry</strong>
+                            <ul>
+                                <li><strong>Cash flow views:</strong> Created <code>cash_inflow_summary</code> and <code>cash_outflow_summary</code> SQL views with transfer filtering (NOT LIKE '%transfer%') to exclude internal movements</li>
+                                <li><strong>Account history:</strong> Added <code>account_history</code> table for daily balance snapshots with pull_date tracking</li>
+                                <li><strong>Credit tracking:</strong> Implemented credit card balance and credit limit display from Plaid liabilities data</li>
+                                <li><strong>Items table:</strong> Created <code>items</code> table linking Plaid item_id to institution for multi-account management</li>
+                                <li><strong>API telemetry:</strong> Built <code>plaid_api_calls</code> table logging all Plaid requests with response times, status codes, and error messages</li>
+                                <li><strong>Deduplication:</strong> Implemented transaction deduplication logic matching on name, amount, date within 4-day window</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Fixed</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li>Sync issues with Plaid transaction cursors</li>
-                                <li>Date range mapping for transaction queries</li>
-                                <li>Database stats accuracy calculations</li>
-                                <li>Transaction deduplication logic</li>
+                                <li>SQL views with CASE statements for category normalization and name consolidation</li>
+                                <li>Plaid service wrapper logging all API calls before/after with timing</li>
+                                <li>Credit limit extraction from Plaid liabilities endpoint</li>
+                                <li>Cursor sync fix for transaction pagination</li>
                             </ul>
                         </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">fd240c1</span></td><td>2024-12-30</td><td>dedupe</td></tr>
-                                <tr><td><span class="commit-hash">9a29033</span></td><td>2024-12-26</td><td>fixing database stats</td></tr>
-                                <tr><td><span class="commit-hash">c829051</span></td><td>2024-12-23</td><td>items table</td></tr>
-                                <tr><td><span class="commit-hash">e55c0b3</span></td><td>2024-12-20</td><td>bank balances</td></tr>
-                                <tr><td><span class="commit-hash">d258f78</span></td><td>2024-12-19</td><td>working version</td></tr>
-                                <tr><td><span class="commit-hash">8bcdb93</span></td><td>2024-12-14</td><td>credit balances</td></tr>
-                                <tr><td><span class="commit-hash">6e978bb</span></td><td>2024-12-13</td><td>cash flow analysis</td></tr>
-                                <tr><td><span class="commit-hash">e713941</span></td><td>2024-12-13</td><td>account history</td></tr>
-                                <tr><td><span class="commit-hash">a30d4b1</span></td><td>2024-12-09</td><td>fixing sync</td></tr>
-                                <tr><td><span class="commit-hash">a4ab9f8</span></td><td>2024-12-02</td><td>api tracking logs</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -874,58 +562,28 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            Built the <strong>core application infrastructure</strong>. Created <strong>daily expense chart</strong> with interactive grouping using Chart.js/D3. Built <strong>transactions view</strong> with filtering and pagination. Implemented <strong>expenses view</strong> for spending analysis. Created <strong>accounts page</strong> (<code>accounts.html</code>) for institution management. Added <strong>net income calculations</strong>. Built <strong>access token database</strong> for secure Plaid credential storage. Implemented <strong>cursor-based pagination</strong> for efficient transaction syncing. Added <strong>dynamic environment configuration</strong> and <strong>account overwrite handling</strong>.
-                        </div>
-
-                        <span class="focus-tag">Core infrastructure, expense charts, transactions view, cursor pagination</span>
-
-                        <div class="category">
-                            <div class="category-title">Added - Views & Charts</div>
-                            <ul class="category-list">
-                                <li>Daily expense chart with interactive date grouping</li>
-                                <li>Expenses view for spending analysis</li>
-                                <li>Transactions view with filtering and search</li>
-                                <li>Net income calculations</li>
-                                <li><span class="file-name">accounts.html</span> - Institution management page</li>
+                            <strong>Core Application Infrastructure</strong>
+                            <ul>
+                                <li><strong>Daily expense chart:</strong> Chart.js line chart with date grouping, click-to-filter by category</li>
+                                <li><strong>Transactions view:</strong> Paginated transaction list with search, category filter, date range filter</li>
+                                <li><strong>Expenses view:</strong> Expense aggregation by category with pie chart breakdown</li>
+                                <li><strong>Accounts page:</strong> Institution list with account balances and last refresh dates</li>
+                                <li><strong>Net income:</strong> Monthly income calculation with salary detection</li>
+                                <li><strong>Access token storage:</strong> Created <code>access_tokens</code> table for encrypted Plaid credentials</li>
+                                <li><strong>Cursor pagination:</strong> Implemented Plaid cursor-based sync for efficient transaction updates</li>
+                                <li><strong>Dynamic group labels:</strong> Category grouping with configurable label mappings</li>
                             </ul>
                         </div>
 
                         <div class="category">
-                            <div class="category-title">Added - Infrastructure</div>
+                            <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li>Access token database for Plaid credentials</li>
-                                <li>Cursor-based pagination for transaction sync</li>
-                                <li>Dynamic group labels for chart categorization</li>
-                                <li>Dynamic environment configuration</li>
-                                <li>Account overwrite handling for re-linked institutions</li>
-                                <li>Institution removal with cascade delete</li>
+                                <li>Flask blueprints for modular route organization</li>
+                                <li>Jinja2 templates for server-rendered pages (later replaced with React)</li>
+                                <li>PostgreSQL schema with foreign key relationships</li>
+                                <li>Plaid Link integration for account connection flow</li>
                             </ul>
                         </div>
-
-                        <div class="category">
-                            <div class="category-title">Project Setup</div>
-                            <ul class="category-list">
-                                <li>Flask application with blueprint architecture</li>
-                                <li>PostgreSQL database schema</li>
-                                <li>Plaid API service integration</li>
-                                <li>Static file serving for HTML templates</li>
-                            </ul>
-                        </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">9641602</span></td><td>2024-11-30</td><td>duplicate ids for cursor and access tables</td></tr>
-                                <tr><td><span class="commit-hash">a704720</span></td><td>2024-11-30</td><td>access token database</td></tr>
-                                <tr><td><span class="commit-hash">1331711</span></td><td>2024-11-28</td><td>net income</td></tr>
-                                <tr><td><span class="commit-hash">f02400f</span></td><td>2024-11-27</td><td>daily expense chart</td></tr>
-                                <tr><td><span class="commit-hash">4c6916f</span></td><td>2024-11-27</td><td>expenses view</td></tr>
-                                <tr><td><span class="commit-hash">84c651a</span></td><td>2024-11-26</td><td>transactions view</td></tr>
-                                <tr><td><span class="commit-hash">ec268f4</span></td><td>2024-11-25</td><td>accounts.html</td></tr>
-                                <tr><td><span class="commit-hash">25b60c0</span></td><td>2024-11-25</td><td>dynamic group labels</td></tr>
-                                <tr><td><span class="commit-hash">039e95e</span></td><td>2024-11-23</td><td>Initial commit</td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -937,28 +595,14 @@
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Project inception</strong>. Set up the initial Flask application structure with Plaid API integration. Created basic configuration files for environment variables and database connection. Established PostgreSQL database connection using psycopg2. Built foundation for financial data fetching from Plaid.
-                        </div>
-
-                        <span class="focus-tag">Project initialization, Plaid integration</span>
-
-                        <div class="category">
-                            <div class="category-title">Added</div>
-                            <ul class="category-list">
-                                <li>Flask application entry point (<span class="file-name">app.py</span>)</li>
-                                <li>Plaid API service integration (<span class="file-name">plaid_service.py</span>)</li>
-                                <li>Environment configuration (<span class="file-name">config.py</span>)</li>
-                                <li>PostgreSQL database connection setup</li>
-                                <li>Basic project structure and requirements</li>
+                            <strong>Project Initialization</strong>
+                            <ul>
+                                <li><strong>Flask app:</strong> Created <code>app.py</code> entry point with configuration loading</li>
+                                <li><strong>Plaid integration:</strong> Built <code>plaid_service.py</code> with client initialization and basic API calls</li>
+                                <li><strong>Database setup:</strong> PostgreSQL connection with psycopg2, initial schema creation</li>
+                                <li><strong>Configuration:</strong> Environment-based config with Plaid credentials, database URL</li>
                             </ul>
                         </div>
-
-                        <table class="commits-table">
-                            <thead><tr><th>Hash</th><th>Date</th><th>Description</th></tr></thead>
-                            <tbody>
-                                <tr><td><span class="commit-hash">dc4a6b1</span></td><td>2024-07-09</td><td><strong>Initial commit</strong></td></tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -972,17 +616,17 @@
                             <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="8">2025</td><td>Dec</td><td>5</td><td>Data lineage visualization, subscription icons</td></tr>
-                            <tr><td>Nov</td><td>8</td><td>Query performance, DAG optimization</td></tr>
-                            <tr><td>Oct</td><td>3</td><td>Top N transactions analytics</td></tr>
-                            <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth improvements</td></tr>
-                            <tr><td>Aug</td><td>6</td><td>Stock price DAG, realized gains tracking</td></tr>
-                            <tr><td>Jul</td><td>30</td><td>Transfer detection, payment mappings, schema routes</td></tr>
-                            <tr><td>Jun</td><td>3</td><td>React 18 frontend, Vite, TanStack Query</td></tr>
-                            <tr><td>Jan</td><td>10</td><td>Treemap, subscriptions, transaction CRUD</td></tr>
-                            <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow analysis, credit tracking, API telemetry</td></tr>
-                            <tr><td>Nov</td><td>38</td><td>Core infrastructure, expense charts, cursor pagination</td></tr>
-                            <tr><td>Jul</td><td>3</td><td>Project initialization, Plaid integration</td></tr>
+                            <tr><td rowspan="8">2025</td><td>Dec</td><td>5</td><td>Date range presets, data lineage visualization</td></tr>
+                            <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
+                            <tr><td>Oct</td><td>3</td><td>Top N transactions, balance change tracking</td></tr>
+                            <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
+                            <tr><td>Aug</td><td>6</td><td>Drag-to-select charts, payment filtering overhaul</td></tr>
+                            <tr><td>Jul</td><td>30</td><td>Transfer detection, realized gains, stock sales FIFO</td></tr>
+                            <tr><td>Jun</td><td>3</td><td>React 18 frontend, Vite, TanStack Query, 4 Airflow DAGs</td></tr>
+                            <tr><td>Jan</td><td>10</td><td>D3 treemap, subscriptions, transaction CRUD, Docker</td></tr>
+                            <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
+                            <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
+                            <tr><td>Jul</td><td>3</td><td>Project start, Flask + Plaid integration</td></tr>
                             <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>135</strong></td><td></td></tr>
                         </tbody>
                     </table>
@@ -994,13 +638,14 @@
                         </thead>
                         <tbody>
                             <tr><td><span class="version-badge">v0.1.0</span></td><td>2024-07-09</td><td>Project start - Flask + Plaid foundation</td></tr>
-                            <tr><td><span class="version-badge">v0.2.0</span></td><td>2024-11-23</td><td>Core infrastructure - expense charts, transactions view</td></tr>
+                            <tr><td><span class="version-badge">v0.2.0</span></td><td>2024-11-23</td><td>Core infrastructure - expense charts, cursor pagination</td></tr>
                             <tr><td><span class="version-badge">v0.3.0</span></td><td>2024-12-13</td><td>Cash flow analysis, API telemetry</td></tr>
                             <tr><td><span class="version-badge">v0.4.0</span></td><td>2025-01-22</td><td>Treemap visualization, subscriptions</td></tr>
-                            <tr><td><span class="version-badge">v1.0.0</span></td><td>2025-06-19</td><td>React 18 frontend rebuild, Vite, Airflow</td></tr>
-                            <tr><td><span class="version-badge">v2.0.0</span></td><td>2025-07-26</td><td>Transfer detection, payment mappings</td></tr>
-                            <tr><td><span class="version-badge">v2.1.0</span></td><td>2025-08-03</td><td>Stock price DAG, capital gains tracking</td></tr>
-                            <tr><td><span class="version-badge">v2.2.0</span></td><td>2025-12-01</td><td>Data lineage visualization</td></tr>
+                            <tr><td><span class="version-badge">v1.0.0</span></td><td>2025-06-19</td><td>React 18 frontend, Vite, Airflow DAGs</td></tr>
+                            <tr><td><span class="version-badge">v2.0.0</span></td><td>2025-07-26</td><td>Transfer detection, realized gains tracking</td></tr>
+                            <tr><td><span class="version-badge">v2.1.0</span></td><td>2025-08-30</td><td>Google-style chart interactions, drag-to-select</td></tr>
+                            <tr><td><span class="version-badge">v2.2.0</span></td><td>2025-11-30</td><td>Materialized views, query optimization</td></tr>
+                            <tr><td><span class="version-badge">v2.3.0</span></td><td>2025-12-17</td><td>Flexible date filtering, data lineage</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -1009,15 +654,11 @@
     </div>
 
     <div class="back-to-top" id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 15l-6-6-6 6"/>
-        </svg>
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
     </div>
-
     <script>
         window.addEventListener('scroll', () => {
-            const btn = document.getElementById('back-to-top');
-            btn.classList.toggle('visible', window.scrollY > 300);
+            document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
         });
     </script>
 </body>
