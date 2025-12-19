@@ -342,6 +342,7 @@
         /* Clarify visual axis for CC chart: let zero-baseline be the axis */
         #waterfallChartContainer {
             border-bottom: 0;
+            padding-left: 0;
         }
 
         /* Y-Axis */
@@ -380,9 +381,9 @@
             position: absolute;
             left: 0;
             right: 0;
-            height: 2px;
+            height: 1px; /* crisp axis */
             background: #2d3748;
-            z-index: 5; /* draw axis above bars so bars sit on it */
+            z-index: 0; /* axis behind bars; bars align exactly */
         }
 
         .waterfall-column {
