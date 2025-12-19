@@ -2,6 +2,8 @@
 
 A comprehensive full-stack financial management application integrating with Plaid API for real-time financial data aggregation, investment portfolio tracking, and automated data pipeline orchestration.
 
+> **[View Changelog](CHANGELOG.md)** - See the complete development history with monthly summaries and key commits.
+
 ## Architecture Overview
 
 This application is built as a modern full-stack solution with enterprise-grade data management capabilities:
