@@ -125,7 +125,7 @@ skinparam cloud {
 !theme plain
 skinparam backgroundColor #FEFEFE
 
-title Financial Data Flow - ETL Pipeline
+title Financial Data Flow - Complete ETL Pipeline
 
 actor User as U
 participant "React UI" as UI
@@ -138,28 +138,64 @@ participant "External APIs" as EXT
 == User Initiated Flow ==
 U -> UI : Request Data
 UI -> API : GET /api/transactions
-API -> DB : Query cached data
-DB -> API : Return results
+API -> DB : Query materialized views
+note right: stg_transactions,\ncash_inflow_summary,\ncash_outflow_summary
+DB -> API : Return cached results
 API -> UI : JSON response
 UI -> U : Display data
 
-== Automated ETL Pipeline ==
-DAG -> DAG : Scheduled trigger
-DAG -> API : POST /api/sync
-API -> PS : Fetch updates
-PS -> EXT : Request data
-EXT -> PS : Financial data
-PS -> API : Process data
-API -> DB : Upsert records
-API -> DAG : Success/Failure
-DAG -> DB : Log telemetry
+== Plaid Institution Sync (Sequential) ==
+U -> UI : Click "Sync All"
+UI -> API : POST /fetch_financial_data
+loop For each institution (rate limited)
+  API -> PS : Get access token
+  PS -> EXT : Plaid transactions/sync
+  EXT -> PS : Financial data
+  PS -> API : Process & validate
+  API -> DB : Upsert transactions
+  API -> DB : Update account_history
+end
+API -> DB : REFRESH MATERIALIZED VIEWS
+note right: stg_transactions,\ncash_inflow_summary,\ncash_outflow_summary
+API -> UI : Success with counts
 
-== Investment Updates ==
-DAG -> API : Update prices
-API -> EXT : Fetch quotes
-EXT -> API : Market data
-API -> DB : Update portfolio
-API -> DB : Calculate metrics
+== Plaid Link Flow ==
+U -> UI : Add Institution
+UI -> API : GET /create_link_token
+API -> EXT : Plaid Link Token
+EXT -> UI : Open Plaid Link
+U -> UI : Select bank & login
+UI -> API : POST /exchange_public_token
+API -> EXT : Exchange for access_token
+API -> DB : Store access_token
+
+== Automated Airflow Pipeline ==
+DAG -> DAG : Scheduled trigger (daily)
+DAG -> API : Sync all institutions
+API -> DB : Process transactions
+DAG -> DB : Refresh materialized views
+DAG -> DB : Log telemetry in plaid_api_calls
+
+== Investment Price Updates ==
+DAG -> DAG : Check if trading day
+alt Is Trading Day
+  DAG -> EXT : Yahoo Finance API
+  EXT -> DAG : Market prices
+  DAG -> DB : Update stock_price_history
+  DAG -> DB : Update portfolio_history
+else Weekend/Holiday
+  DAG -> DAG : Skip (AirflowSkipException)
+end
+
+== CSV Import Flow ==
+U -> UI : Upload Fidelity CSV
+UI -> UI : Parse & detect duplicates
+UI -> API : POST /api/investments/import-csv
+API -> DB : Check existing holdings
+API -> DB : Create portfolio_holdings
+API -> DB : Record cash_transactions
+API -> DB : FIFO stock_sales processing
+API -> UI : Import summary
 
 @enduml
 ```
@@ -195,16 +231,19 @@ API -> DB : Calculate metrics
 │   ├── plaid_service.py         # Plaid API integration
 │   ├── database_info.sql        # Consolidated database schema
 │   ├── routes/                  # API endpoints (17 route files)
-│   │   ├── analytics.py         # Financial analytics endpoints
+│   │   ├── analytics.py         # Financial analytics & date range presets
 │   │   ├── api_routes.py        # Core API endpoints
 │   │   ├── bank_balance_history.py  # Bank balance tracking
 │   │   ├── categories.py        # Transaction categorization
-│   │   ├── investment_transfers.py  # Investment transfer detection
-│   │   ├── investments.py       # Investment portfolio operations
+│   │   ├── investment_transfers.py  # Transfer pattern detection
+│   │   ├── investments.py       # Portfolio operations, realized gains, CSV import
 │   │   ├── mapped_payments.py   # Payment mapping functionality
+│   │   ├── misc.py             # Miscellaneous utilities
+│   │   ├── misc_mappings_stats.py  # Mapping statistics
 │   │   ├── net_worth_routes.py  # Net worth calculations
 │   │   ├── payment_mappings.py  # Payment mapping routes
 │   │   ├── refresh_routes.py    # Data refresh endpoints
+│   │   ├── route_discovery.py   # API route introspection
 │   │   ├── schema_routes.py     # Database schema access
 │   │   ├── sql.py              # SQL query execution
 │   │   ├── transactions.py      # Transaction management
@@ -220,22 +259,31 @@ API -> DB : Calculate metrics
 │   ├── src/
 │   │   ├── main.jsx            # Application entry point
 │   │   ├── App.jsx             # Main app component with routing
-│   │   ├── components/         # Reusable UI components
-│   │   │   ├── common/         # Shared components
-│   │   │   ├── dashboard/      # Dashboard widgets
-│   │   │   ├── investments/    # Investment components
-│   │   │   └── networth/       # Net worth visualizations
-│   │   ├── pages/              # Route-level components
+│   │   ├── components/         # 32 reusable UI components
+│   │   │   ├── common/         # Header, Sidebar, CircularProgressRing
+│   │   │   ├── dashboard/      # SummaryCard
+│   │   │   ├── investments/    # PortfolioChart, StockHoldings, RealizedGains, TransactionImporter, etc.
+│   │   │   ├── networth/       # NetWorthChart, AssetAllocation, LiabilityBreakdown, MonthlyCashFlowChart, etc.
+│   │   │   ├── widgets/        # CreditCardWidget
+│   │   │   └── notifications/  # TransferDetectionBanner, FrontendTransferBanner
+│   │   ├── pages/              # 20 route-level pages
+│   │   │   ├── HomePage.jsx, ExpensesPage.jsx, TransactionsPage.jsx
+│   │   │   ├── InvestmentsPage.jsx, NetWorthPage.jsx, AllBalancesPage.jsx
+│   │   │   ├── PaymentHistoryPage.jsx, SubscriptionsPage.jsx, InstitutionsPage.jsx
+│   │   │   ├── AnalysisPage.jsx, PaymentMappingsPage.jsx, PlaidApiCatalogPage.jsx
+│   │   │   ├── SqlEditorPage.jsx, DatabaseSchemaPage.jsx, SchemaPage.jsx
+│   │   │   └── ModelExplorerPage.jsx, RouteMapPage.jsx
 │   │   └── context/            # React context providers
 │   ├── vite.config.js          # Vite config with API proxy
 │   └── package.json            # Frontend dependencies
 │
 ├── airflow/                    # Apache Airflow orchestration
-│   └── dags/                   # Data pipeline definitions (4 DAGs)
-│       ├── financial_data_dag.py      # Main sync pipeline
-│       ├── stock_price_tracker_dag.py # Stock price updates
-│       ├── daily_stock_price_updater_dag.py # Daily price updates
-│       └── net_worth_snapshot_dag.py  # Net worth calculations
+│   └── dags/                   # Data pipeline definitions (5 DAGs)
+│       ├── financial_data_dag.py      # Main sync + materialized view refresh
+│       ├── stock_price_tracker_dag.py # Stock price updates from Yahoo Finance
+│       ├── daily_stock_price_updater_dag.py # Daily price batch updates
+│       ├── net_worth_snapshot_dag.py  # Net worth snapshot calculations
+│       └── test_import_dag.py         # Import testing utilities
 │
 ├── docker-compose.yml          # Multi-service orchestration
 ├── Dockerfile                  # Custom Airflow image
@@ -255,10 +303,16 @@ API -> DB : Calculate metrics
 
 **Data Layer** (Clean Architecture):
 - **db_operations**: Low-level database access with prepared statements
-- **handlers**: Business logic orchestration
+- **handlers**: `FinancialDataHandler` (main orchestrator), `SingleInstitutionHandler` (per-institution refresh)
 - **processors**: Data transformation and validation
-- **services**: Domain-specific business rules
-- **utils**: Shared database connections and helpers
+- **services**: Domain-specific business rules (investments, net worth)
+- **utils**: `get_db_connection()`, shared helpers
+
+**Key Backend Patterns**:
+- Sequential institution processing with rate limiting (2s delay between institutions)
+- Materialized view refresh after every sync and institution removal
+- Plaid Link update mode for re-authentication without losing data
+- FIFO stock sale processing for capital gains tracking
 
 ### Frontend Architecture
 
@@ -269,11 +323,22 @@ API -> DB : Calculate metrics
 - CSS Modules for component styling
 - Chart.js and Plotly.js for data visualization
 
+**20 Pages** organized by domain:
+
+| Category | Pages |
+|----------|-------|
+| **Financial** | ExpensesPage, TransactionsPage, PaymentHistoryPage, SubscriptionsPage, AnalysisPage |
+| **Investment** | InvestmentsPage, NetWorthPage, AllBalancesPage |
+| **Admin/Dev** | SqlEditorPage, DatabaseSchemaPage, SchemaPage, ModelExplorerPage, RouteMapPage, PlaidApiCatalogPage, InstitutionsPage |
+| **Home** | HomePage |
+| **Mappings** | PaymentMappingsPage |
+
 **Key Components**:
-- Portfolio charts with real-time valuations
-- Transaction importer with CSV parsing
-- Net worth tracking with historical trends
-- Cash flow analysis with customizable date ranges
+- `PortfolioChart`: Drag-to-select with gain/loss calculation, crosshair plugin
+- `TransactionImporter`: CSV parsing with duplicate detection (1% price tolerance)
+- `NetWorthChart`: Historical trends with asset allocation breakdown
+- `TransferDetectionBanner`: Pattern-based transfer identification
+- `RealizedGains`: Three-tab view (summary/detailed/by-symbol) with FIFO tracking
 
 ### Database Design
 
@@ -282,27 +347,42 @@ API -> DB : Calculate metrics
 - No stored balances to prevent discrepancies
 - FIFO stock sale tracking for accurate tax reporting
 
-**Key Tables**:
-- `portfolio_holdings`: Individual stock lots with cost basis
-- `cash_transactions`: All cash movements with categorization
-- `investment_cash_holdings`: Account metadata (balance always 0)
-- `stock_sales`: Capital gains tracking with tax implications
-- `plaid_api_calls`: Comprehensive API telemetry
+**27 Base Tables** organized by domain:
 
-**Optimized Views**:
-- `current_investment_cash`: Real-time cash balances
-- `net_worth_history`: Historical net worth calculations
-- `cash_inflow/outflow_summary`: Cash flow analysis with transfer filtering
+| Domain | Tables |
+|--------|--------|
+| **Plaid Integration** | `institutions`, `items`, `access_tokens`, `institution_cursors`, `plaid_api_calls` |
+| **Transactions** | `transactions`, `transaction_mappings`, `transaction_specific_mappings`, `category_mappings`, `group_mappings` |
+| **Investments** | `portfolio_holdings`, `portfolio_history`, `stock_sales`, `stock_price_history`, `stock_market_data`, `stock_earnings_dates`, `stock_earnings_results` |
+| **Cash Management** | `cash_transactions`, `investment_cash_holdings`, `investment_account_balances` |
+| **Transfers** | `custom_transfer_patterns`, `detected_investment_transfers` |
+| **Net Worth** | `net_worth_snapshots`, `account_history`, `earnings_history` |
+
+**3 Materialized Views** (for performance, refreshed via Airflow):
+- `stg_transactions`: Pre-aggregated transaction data
+- `cash_inflow_summary`: Income aggregation with transfer filtering
+- `cash_outflow_summary`: Expense aggregation with transfer filtering
+
+**19 Calculated Views**:
+
+| Category | Views |
+|----------|-------|
+| **Accounts** | `accounts`, `depository_accounts`, `credit_accounts`, `items_calc` |
+| **Net Worth** | `current_net_worth`, `current_net_worth_enhanced`, `net_worth_history`, `monthly_net_worth_summary`, `asset_allocation`, `liability_breakdown` |
+| **Investments** | `current_investment_cash`, `current_portfolio_value_by_lots`, `portfolio_performance`, `portfolio_performance_enhanced`, `tax_year_capital_gains`, `cash_transaction_history` |
+| **Transactions** | `transactions_v2`, `subscription_name_resolver`, `view_credit_card_monthly_summary`, `account_history_with_calcs` |
 
 ### Data Pipeline Architecture
 
-**Apache Airflow DAGs**:
-- Scheduled financial data synchronization
-- Stock price updates from Yahoo Finance
-- Net worth snapshot calculations
-- Error handling and retry logic
+**5 Apache Airflow DAGs**:
+- `financial_data_dag`: Plaid sync + materialized view refresh (`stg_transactions`, `cash_inflow_summary`, `cash_outflow_summary`)
+- `stock_price_tracker_dag`: Yahoo Finance price updates with market hours detection
+- `daily_stock_price_updater_dag`: Batch price updates for all holdings
+- `net_worth_snapshot_dag`: Daily net worth calculations and snapshots
+- `test_import_dag`: Import testing and validation utilities
 
 **Performance Optimizations**:
+- Materialized views reduced query time from 400ms to <1ms
 - Cached market data (no API calls on page load)
 - Batch processing for efficiency
 - Incremental data loading
