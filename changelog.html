@@ -298,19 +298,19 @@
                         <div class="month-summary">
                             <strong>Flexible Date Range Filtering & Data Lineage Visualization</strong>
                             <ul>
-                                <li><strong>ExpensesPage date presets:</strong> Added 7 time period options (YTD, Prior YTD, Past 3/6/12 Months, Prior 12 Months, All Time) with <code>getPresetDateRange()</code> helper calculating proper UTC date boundaries</li>
-                                <li><strong>Backend date parameters:</strong> Modified 4 analytics endpoints (<code>/expenses-summary</code>, <code>/expenses-group-summary</code>, <code>/expenses-group-monthly</code>, <code>/expenses-group-category-breakdown</code>) to accept <code>start_date</code>/<code>end_date</code> query params</li>
-                                <li><strong>Security:</strong> Added <code>CONFIDENTIAL_TABLES = {'access_tokens'}</code> blocklist in schema_routes.py to prevent preview of sensitive data</li>
-                                <li><strong>ModelExplorerPage:</strong> Built ReactFlow-based data lineage visualization showing database table relationships (1,079 lines)</li>
+                                <li><strong>ExpensesPage date presets:</strong> Added 7 time period options (YTD, Prior YTD, Past 3/6/12 Months, Prior 12 Months, All Time) with helper calculating proper UTC date boundaries</li>
+                                <li><strong>Backend date parameters:</strong> Modified analytics endpoints to accept start/end date query params</li>
+                                <li><strong>Security:</strong> Added confidential table blocklist to prevent preview of sensitive data in schema explorer</li>
+                                <li><strong>ModelExplorerPage:</strong> Built ReactFlow-based data lineage visualization showing database table relationships</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">ExpensesPage.jsx</span> - Added <code>getPresetDateRange()</code>, <code>generateDateRangeOptions()</code>, <code>DATE_RANGE_PRESETS</code> array, <code>selectedPeriodMonthCount</code> for avg/month calculations (+100 lines)</li>
-                                <li><span class="file-name">analytics.py</span> - Added <code>custom_start</code>/<code>custom_end</code> parameter parsing with ISO date handling in 4 route functions (+50 lines)</li>
-                                <li><span class="file-name">schema_routes.py</span> - Added confidential table protection returning 403 for access_tokens preview</li>
+                                <li><span class="file-name">ExpensesPage.jsx</span> - Added date range preset functions and average/month calculations</li>
+                                <li><span class="file-name">Analytics Routes</span> - Added custom date parameter parsing with ISO date handling</li>
+                                <li><span class="file-name">Schema Routes</span> - Added confidential table protection with 403 responses</li>
                                 <li><span class="file-name">ModelExplorerPage.jsx</span> - ReactFlow nodes for tables, edges for relationships, position layout algorithm</li>
                             </ul>
                         </div>
@@ -327,19 +327,19 @@
                         <div class="month-summary">
                             <strong>Materialized Views & Query Performance Optimization</strong>
                             <ul>
-                                <li><strong>View conversion:</strong> Converted <code>stg_transactions</code>, <code>cash_inflow_summary</code>, <code>cash_outflow_summary</code> from regular views to <strong>MATERIALIZED VIEWS</strong> - query time reduced from 400-500ms to &lt;1ms</li>
-                                <li><strong>Airflow refresh task:</strong> Added <code>_refresh_materialized_views()</code> function to financial_data_dag.py that runs after transaction sync, refreshing views in dependency order</li>
-                                <li><strong>Indexes added:</strong> Created indexes on <code>cash_outflow_summary(month, description)</code> and <code>cash_inflow_summary(month, description)</code> for faster lookups</li>
-                                <li><strong>DAG task ordering:</strong> New task <code>refresh_materialized_views_task</code> inserted after institution sync, before snapshot creation</li>
+                                <li><strong>View conversion:</strong> Converted key transaction and cash flow views from regular views to <strong>MATERIALIZED VIEWS</strong> - query time reduced from 400-500ms to &lt;1ms</li>
+                                <li><strong>Airflow refresh task:</strong> Added materialized view refresh function to sync pipeline that runs after transaction sync, refreshing views in dependency order</li>
+                                <li><strong>Indexes added:</strong> Created indexes on cash flow summary views for faster lookups</li>
+                                <li><strong>DAG task ordering:</strong> New refresh task inserted after institution sync, before snapshot creation</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">financial_data_dag.py</span> - Added <code>_refresh_materialized_views()</code> with try/catch per view, timing logs, and ordered refresh list (+55 lines)</li>
-                                <li><span class="file-name">cash_flow_views.sql</span> - Changed <code>CREATE OR REPLACE VIEW</code> to <code>CREATE MATERIALIZED VIEW</code>, added <code>CASCADE</code> drops</li>
-                                <li><span class="file-name">transaction_views.sql</span> - Converted stg_transactions to materialized view with complex deduplication CTE preserved</li>
+                                <li><span class="file-name">Sync Pipeline DAG</span> - Added materialized view refresh with try/catch per view, timing logs, and ordered refresh list</li>
+                                <li><span class="file-name">Cash Flow Views</span> - Changed to materialized views with CASCADE drops</li>
+                                <li><span class="file-name">Transaction Views</span> - Converted to materialized view with complex deduplication CTE preserved</li>
                             </ul>
                         </div>
                     </div>
@@ -356,15 +356,15 @@
                             <strong>Top N Transactions & Balance Change Tracking</strong>
                             <ul>
                                 <li><strong>Top N analytics:</strong> Added endpoint to fetch largest transactions by amount with configurable limit</li>
-                                <li><strong>Balance change visualization:</strong> Enhanced <code>BankBalanceChangeView</code> component to show daily balance fluctuations with delta calculations</li>
-                                <li><strong>GitHub Pages docs:</strong> Created <code>docs/readme-viewer.html</code> for rendering README on documentation site</li>
+                                <li><strong>Balance change visualization:</strong> Enhanced balance change component to show daily balance fluctuations with delta calculations</li>
+                                <li><strong>GitHub Pages docs:</strong> Created documentation viewer for rendering README on documentation site</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">analytics.py</span> - New <code>/top-transactions</code> endpoint with ORDER BY amount DESC LIMIT N</li>
+                                <li><span class="file-name">Analytics Routes</span> - New top transactions endpoint with ORDER BY amount DESC LIMIT N</li>
                                 <li><span class="file-name">ExpensesPage.jsx</span> - UI section for displaying top transactions with formatted amounts</li>
                                 <li><span class="file-name">BankBalanceChangeView.jsx</span> - Balance delta calculation and color-coded display</li>
                             </ul>
@@ -383,7 +383,7 @@
                             <strong>Chart Scaling & Net Worth Improvements</strong>
                             <ul>
                                 <li><strong>Graph scaling:</strong> Improved Y-axis scaling in ExpensesPage charts to handle varied data ranges without clipping</li>
-                                <li><strong>Net worth components:</strong> Refined <code>NetWorthChart</code> and <code>NetWorthSummary</code> balance change calculations</li>
+                                <li><strong>Net worth components:</strong> Refined chart and summary balance change calculations</li>
                             </ul>
                         </div>
 
@@ -408,21 +408,21 @@
                         <div class="month-summary">
                             <strong>Google-Style Chart Interactions & Payment Filtering</strong>
                             <ul>
-                                <li><strong>Drag-to-select:</strong> Added Google Finance-style drag selection to <code>PortfolioChart</code> - users can drag across chart to see gain/loss between any two dates with highlighted selection area (+315 lines of selection plugin)</li>
-                                <li><strong>Last-point labels:</strong> Created <code>lastPointValueLabelsPlugin</code> Chart.js plugin showing current values at line endpoints with styled callout boxes</li>
+                                <li><strong>Drag-to-select:</strong> Added Google Finance-style drag selection to PortfolioChart - users can drag across chart to see gain/loss between any two dates with highlighted selection area</li>
+                                <li><strong>Last-point labels:</strong> Created Chart.js plugin showing current values at line endpoints with styled callout boxes</li>
                                 <li><strong>Price history filtering:</strong> Added time range filter (1W/1M/3M/6M/1Y/All) to price history view with proper cutoff date calculations</li>
-                                <li><strong>PaymentHistoryPage overhaul:</strong> Major filtering system with multi-select, date range, and card type filters (+669 lines)</li>
-                                <li><strong>DAG schedule change:</strong> Moved daily_stock_price_updater from 6PM to 1:01PM PST for intraday price updates</li>
+                                <li><strong>PaymentHistoryPage overhaul:</strong> Major filtering system with multi-select, date range, and card type filters</li>
+                                <li><strong>DAG schedule change:</strong> Moved stock price updates to intraday schedule for more current data</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">PortfolioChart.jsx</span> - <code>selectionPlugin</code> with <code>beforeInit</code>/<code>afterDraw</code> hooks, drag state tracking, gain/loss calculation display (+531 lines)</li>
-                                <li><span class="file-name">NetWorthChart.jsx</span> - Crosshair plugin showing vertical line and value on hover (+150 lines)</li>
+                                <li><span class="file-name">PortfolioChart.jsx</span> - Selection plugin with drag state tracking, gain/loss calculation display</li>
+                                <li><span class="file-name">NetWorthChart.jsx</span> - Crosshair plugin showing vertical line and value on hover</li>
                                 <li><span class="file-name">PaymentHistoryPage.jsx</span> - Filter state management, multi-select dropdowns, card type categorization</li>
-                                <li><span class="file-name">database_info.sql</span> - Added Robinhood and Overdraft Protection exclusions to cash_outflow_summary</li>
+                                <li><span class="file-name">Database Schema</span> - Added exclusions to cash flow summary for internal transfers</li>
                             </ul>
                         </div>
                     </div>
@@ -438,23 +438,23 @@
                         <div class="month-summary">
                             <strong>Transfer Detection System, Realized Gains Tracking, Stock Sales</strong>
                             <ul>
-                                <li><strong>Transfer pattern system:</strong> Built complete pattern matching system for bank-to-investment transfers with built-in patterns (Fidelity MONEYLINE, Robinhood, Schwab) and custom pattern support. Patterns can be overridden or disabled (+299 lines in investment_transfers.py)</li>
-                                <li><strong>Realized gains component:</strong> Created <code>RealizedGains.jsx</code> (315 lines) with tabs for summary/detailed/by-symbol views, filters for symbol/year, and formatted gain/loss display with percentages</li>
-                                <li><strong>Stock sales with FIFO:</strong> Enhanced <code>investments.py</code> with <code>/api/investments/realized-gains</code> endpoint pulling from <code>stock_sales</code> table with holding period calculations (+712 lines)</li>
-                                <li><strong>Portfolio group filtering:</strong> Added group_name filter to <code>get_portfolio_history()</code> with cash-only group detection for accounts without stocks</li>
-                                <li><strong>Chart filter UI:</strong> Added security filter dropdown and group filter to PortfolioChart with multi-select checkboxes (+548 lines)</li>
-                                <li><strong>Sell form enhancement:</strong> <code>SellStockForm.jsx</code> now shows individual lots with purchase dates for FIFO selection (+205 lines)</li>
+                                <li><strong>Transfer pattern system:</strong> Built complete pattern matching system for bank-to-investment transfers with built-in patterns (major brokerages) and custom pattern support. Patterns can be overridden or disabled</li>
+                                <li><strong>Realized gains component:</strong> Created RealizedGains component with tabs for summary/detailed/by-symbol views, filters for symbol/year, and formatted gain/loss display with percentages</li>
+                                <li><strong>Stock sales with FIFO:</strong> Enhanced investment routes with realized gains endpoint pulling from sales data with holding period calculations</li>
+                                <li><strong>Portfolio group filtering:</strong> Added group_name filter to portfolio history with cash-only group detection for accounts without stocks</li>
+                                <li><strong>Chart filter UI:</strong> Added security filter dropdown and group filter to PortfolioChart with multi-select checkboxes</li>
+                                <li><strong>Sell form enhancement:</strong> Sell form now shows individual lots with purchase dates for FIFO selection</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">investment_transfers.py</span> - <code>get_transfer_patterns()</code> with built-in/custom merge, <code>update_transfer_pattern()</code> supporting both types, <code>delete_transfer_pattern()</code> with disabled override creation</li>
-                                <li><span class="file-name">investments.py</span> - New endpoints: <code>/realized-gains</code>, <code>/portfolio-groups</code>, <code>/stock-categories</code>; enhanced <code>get_portfolio_history()</code> with group filtering</li>
+                                <li><span class="file-name">Investment Transfer Routes</span> - Transfer pattern management with built-in/custom merge, update, and delete functionality</li>
+                                <li><span class="file-name">Investment Routes</span> - New endpoints for realized gains, portfolio groups, stock categories; enhanced portfolio history with group filtering</li>
                                 <li><span class="file-name">RealizedGains.jsx</span> - Three-tab interface, TanStack Query integration, currency/percent formatting helpers</li>
-                                <li><span class="file-name">PortfolioChart.jsx</span> - Security filter state, group filter state, multi-select dropdown components, filtered dataset generation</li>
-                                <li><span class="file-name">stock_price_tracker_dag.py</span> - Removed cash-only update path, simplified to always fetch stock prices (-105 lines of conditional logic)</li>
+                                <li><span class="file-name">PortfolioChart.jsx</span> - Security filter state, group filter state, multi-select dropdown components</li>
+                                <li><span class="file-name">Price Update Pipeline</span> - Simplified to always fetch stock prices, removed conditional logic</li>
                             </ul>
                         </div>
                     </div>
@@ -471,10 +471,10 @@
                             <strong>Complete React 18 Frontend & Airflow Integration</strong>
                             <ul>
                                 <li><strong>Frontend architecture:</strong> Migrated from server-rendered Flask templates to React 18 SPA with Vite build, TanStack Query for data fetching, CSS Modules for styling</li>
-                                <li><strong>18 pages created:</strong> HomePage, InvestmentsPage, NetWorthPage, TransactionsPage, ExpensesPage, SubscriptionsPage, AllBalancesPage, PaymentHistoryPage, AnalysisPage, InstitutionsPage, SchemaPage, SqlEditorPage, PaymentMappingsPage, and more</li>
+                                <li><strong>18 pages created:</strong> Home, Investments, Net Worth, Transactions, Expenses, Subscriptions, Balances, Payment History, Analysis, Institutions, Schema, SQL Editor, Payment Mappings, and more</li>
                                 <li><strong>Investment components:</strong> PortfolioChart (line chart with time range), StockHoldings (lot-level table), AssetAllocation (pie chart), TopPerformers (best/worst), AddStockForm, SellStockForm, TransactionImporter (CSV)</li>
                                 <li><strong>Net worth components:</strong> NetWorthChart, NetWorthSummary, MonthlyCashFlowChart, AssetAllocation, LiabilityBreakdown</li>
-                                <li><strong>Airflow DAGs:</strong> financial_data_dag (scheduled sync), stock_price_tracker_dag (5PM stock updates), daily_stock_price_updater_dag (price backfill), net_worth_snapshot_dag</li>
+                                <li><strong>Airflow DAGs:</strong> Sync pipeline, stock price updates, daily price backfill, net worth snapshots</li>
                                 <li><strong>Chart annotations:</strong> Added chartjs-plugin-annotation for vertical line markers on charts</li>
                             </ul>
                         </div>
@@ -482,9 +482,9 @@
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">frontend/</span> - Complete React app: <code>main.jsx</code>, <code>App.jsx</code> with react-router-dom, QueryClientProvider wrapper</li>
+                                <li><span class="file-name">frontend/</span> - Complete React app with react-router-dom, QueryClientProvider wrapper</li>
                                 <li><span class="file-name">SidebarContext.jsx</span> - Global sidebar collapsed state with localStorage persistence</li>
-                                <li><span class="file-name">vite.config.js</span> - HTTPS dev server, API proxy to localhost:5001, path aliases</li>
+                                <li><span class="file-name">vite.config.js</span> - HTTPS dev server, API proxy, path aliases</li>
                                 <li><span class="file-name">airflow/dags/</span> - 4 DAG files with PythonOperator tasks, XCom data passing, trigger rules</li>
                             </ul>
                         </div>
@@ -506,7 +506,7 @@
                                 <li><strong>Transaction modification:</strong> Added endpoints for editing transaction category, name, and amount with audit trail</li>
                                 <li><strong>Transaction deletion:</strong> Implemented soft delete with cascade handling for related records</li>
                                 <li><strong>Expenses average:</strong> Added rolling average calculations for trend comparison</li>
-                                <li><strong>Institution re-login:</strong> Built flow for refreshing expired Plaid access tokens with item error handling</li>
+                                <li><strong>Institution re-login:</strong> Built flow for refreshing expired Plaid credentials with item error handling</li>
                                 <li><strong>Docker setup:</strong> Created Dockerfile and docker-compose.yml for containerized deployment</li>
                             </ul>
                         </div>
@@ -533,11 +533,11 @@
                         <div class="month-summary">
                             <strong>Cash Flow Analysis, Account History, API Telemetry</strong>
                             <ul>
-                                <li><strong>Cash flow views:</strong> Created <code>cash_inflow_summary</code> and <code>cash_outflow_summary</code> SQL views with transfer filtering (NOT LIKE '%transfer%') to exclude internal movements</li>
-                                <li><strong>Account history:</strong> Added <code>account_history</code> table for daily balance snapshots with pull_date tracking</li>
+                                <li><strong>Cash flow views:</strong> Created income and expense summary SQL views with transfer filtering to exclude internal movements</li>
+                                <li><strong>Account history:</strong> Added daily balance snapshot tracking with pull date tracking</li>
                                 <li><strong>Credit tracking:</strong> Implemented credit card balance and credit limit display from Plaid liabilities data</li>
-                                <li><strong>Items table:</strong> Created <code>items</code> table linking Plaid item_id to institution for multi-account management</li>
-                                <li><strong>API telemetry:</strong> Built <code>plaid_api_calls</code> table logging all Plaid requests with response times, status codes, and error messages</li>
+                                <li><strong>Items management:</strong> Created institution linking for multi-account management</li>
+                                <li><strong>API telemetry:</strong> Built logging for all Plaid requests with response times, status codes, and error messages</li>
                                 <li><strong>Deduplication:</strong> Implemented transaction deduplication logic matching on name, amount, date within 4-day window</li>
                             </ul>
                         </div>
@@ -569,7 +569,7 @@
                                 <li><strong>Expenses view:</strong> Expense aggregation by category with pie chart breakdown</li>
                                 <li><strong>Accounts page:</strong> Institution list with account balances and last refresh dates</li>
                                 <li><strong>Net income:</strong> Monthly income calculation with salary detection</li>
-                                <li><strong>Access token storage:</strong> Created <code>access_tokens</code> table for encrypted Plaid credentials</li>
+                                <li><strong>Credential storage:</strong> Created secure encrypted credential storage for Plaid</li>
                                 <li><strong>Cursor pagination:</strong> Implemented Plaid cursor-based sync for efficient transaction updates</li>
                                 <li><strong>Dynamic group labels:</strong> Category grouping with configurable label mappings</li>
                             </ul>
@@ -597,10 +597,10 @@
                         <div class="month-summary">
                             <strong>Project Initialization</strong>
                             <ul>
-                                <li><strong>Flask app:</strong> Created <code>app.py</code> entry point with configuration loading</li>
-                                <li><strong>Plaid integration:</strong> Built <code>plaid_service.py</code> with client initialization and basic API calls</li>
+                                <li><strong>Flask app:</strong> Created main application entry point with configuration loading</li>
+                                <li><strong>Plaid integration:</strong> Built Plaid service with client initialization and basic API calls</li>
                                 <li><strong>Database setup:</strong> PostgreSQL connection with psycopg2, initial schema creation</li>
-                                <li><strong>Configuration:</strong> Environment-based config with Plaid credentials, database URL</li>
+                                <li><strong>Configuration:</strong> Environment-based config with API credentials, database connection</li>
                             </ul>
                         </div>
                     </div>
@@ -622,7 +622,7 @@
                             <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
                             <tr><td>Aug</td><td>6</td><td>Drag-to-select charts, payment filtering overhaul</td></tr>
                             <tr><td>Jul</td><td>30</td><td>Transfer detection, realized gains, stock sales FIFO</td></tr>
-                            <tr><td>Jun</td><td>3</td><td>React 18 frontend, Vite, TanStack Query, 4 Airflow DAGs</td></tr>
+                            <tr><td>Jun</td><td>3</td><td>React 18 frontend, Vite, TanStack Query, Airflow DAGs</td></tr>
                             <tr><td>Jan</td><td>10</td><td>D3 treemap, subscriptions, transaction CRUD, Docker</td></tr>
                             <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
                             <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
