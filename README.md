@@ -183,6 +183,8 @@ DAG -> DB : Log telemetry
 == Investment Price Updates ==
 DAG -> DAG : Check if trading day
 alt Is Trading Day
+  DAG -> EXT : Check for stock splits (yfinance)
+  DAG -> DB : Update holdings/history if split detected
   DAG -> EXT : Market Data API
   EXT -> DAG : Market prices
   DAG -> DB : Update price history
@@ -210,18 +212,20 @@ API -> UI : Import summary
 - **Multi-Institution Support**: Connect and sync data from multiple banks and financial institutions
 - **Real-time Transaction Syncing**: Automated transaction categorization and tracking
 - **Investment Portfolio Tracking**: Stock holdings, performance metrics, and capital gains calculations
-- **Net Worth Monitoring**: Historical net worth tracking with asset allocation analysis
-- **Cash Flow Analysis**: Income and expense tracking with transfer filtering
+- **Net Worth Monitoring**: Historical net worth tracking with asset allocation analysis and transfer in-transit handling
+- **Cash Flow Analysis**: Income and expense tracking with transfer filtering and flexible date range presets
 
 ### Investment Management
 - **Portfolio Dashboard**: Real-time portfolio valuation with performance metrics
 - **Stock Trading**: Buy/sell functionality with FIFO tax lot tracking
+- **Stock Split Handling**: Automatic detection and adjustment of stock splits via Airflow DAG
 - **CSV Import**: Bulk import investment transactions from brokers
 - **Duplicate Detection**: Intelligent handling of duplicate transactions across imports
 - **Market Data**: Cached pricing with scheduled updates via Airflow DAGs
 
 ### Data Pipeline & ETL
 - **Automated Syncing**: Scheduled data pulls via Airflow DAGs
+- **Stock Split Detection**: Automatic detection of recent splits with holdings/history adjustment
 - **Data Quality Checks**: Validation and consistency monitoring
 - **Transaction Processing**: Complex SQL transformations for financial analytics
 - **API Telemetry**: Comprehensive tracking of all API calls
@@ -264,8 +268,12 @@ API -> UI : Import summary
 ├── airflow/                    # Apache Airflow orchestration
 │   └── dags/                   # Data pipeline definitions
 │       ├── sync_pipeline.py          # Main sync + materialized view refresh
-│       ├── price_update_pipeline.py  # Stock price updates
+│       ├── stock_price_tracker_dag.py # Stock price updates + split detection
 │       └── snapshot_pipeline.py      # Net worth snapshot calculations
+│
+├── scripts/                    # Utility scripts
+│   ├── refetch_split_adjusted_prices.py   # Refetch prices with split adjustment
+│   └── update_portfolio_history_prices.py # Update portfolio history from price data
 │
 ├── docker-compose.yml          # Multi-service orchestration
 ├── Dockerfile                  # Custom Airflow image
@@ -333,10 +341,17 @@ API -> UI : Import summary
 |--------|-------------|
 | **Plaid Integration** | Institution connections and encrypted credentials |
 | **Transactions** | Transaction records with categorization and mappings |
-| **Investments** | Portfolio holdings, sales history, price data |
+| **Investments** | Portfolio holdings, sales history, price data, stock splits |
 | **Cash Management** | Cash transactions and account balances |
 | **Transfers** | Custom transfer patterns and detected transfers |
-| **Analytics** | Net worth snapshots, account history, earnings |
+| **Analytics** | Net worth snapshots (with in-transit tracking), account history, earnings |
+
+**Key Tables**:
+- `portfolio_holdings`: Individual stock lots with cost basis
+- `cash_transactions`: All cash movements with categorization
+- `stock_sales`: Capital gains tracking with tax implications
+- `stock_splits`: Stock split events for price/quantity normalization
+- `net_worth_snapshots`: Daily snapshots with in_transit_amount for transfers between accounts
 
 **Materialized Views** (for performance, refreshed via Airflow):
 - Pre-aggregated transaction data
@@ -351,14 +366,23 @@ API -> UI : Import summary
 | **Net Worth** | Current and historical net worth with breakdowns |
 | **Investments** | Portfolio value, performance, capital gains |
 | **Transactions** | Enhanced transaction views with mappings |
+| **Stock Splits** | Cumulative split factors for price adjustment |
 
 ### Data Pipeline Architecture
 
 **Apache Airflow DAGs**:
 - Plaid sync + materialized view refresh
+- Stock split detection with automatic holdings/history adjustment
 - Market data price updates with market hours detection
 - Daily price batch updates for all holdings
 - Net worth snapshot calculations
+
+**Stock Split Detection**:
+- Checks yfinance for splits in last 60 days for all portfolio symbols
+- Records new splits in `stock_splits` table
+- Automatically adjusts `portfolio_holdings` (quantity × ratio, price ÷ ratio)
+- Updates `portfolio_history` for dates before split
+- Pre-populated with known major splits (NFLX, GOOGL, AMZN, TSLA, AAPL, NVDA)
 
 **Performance Optimizations**:
 - Materialized views reduced query time from 400ms to <1ms
@@ -440,7 +464,8 @@ The application supports sophisticated CSV import for investment transactions:
 - Transfer transactions excluded to prevent double-counting
 - Income vs expense categorization
 - Monthly and yearly aggregations
-- Custom date range analysis
+- Custom date range analysis with presets (YTD, Prior YTD, Past 3/6/12 Months, All Time)
+- 12-month rolling averages for expense comparisons
 
 ### Net Worth Monitoring
 
@@ -450,6 +475,7 @@ The application supports sophisticated CSV import for investment transactions:
 - Credit card balances
 - Historical trending
 - Asset allocation breakdown
+- Transfer in-transit handling (money between accounts)
 
 ## Configuration
 
