@@ -391,55 +391,6 @@ API -> UI : Import summary
 - Incremental data loading
 - Connection pooling
 
-## Getting Started
-
-### Prerequisites
-- Python 3.9+
-- Node.js 18+
-- PostgreSQL 12+
-- Docker & Docker Compose
-
-### Quick Start
-
-1. **Clone the repository**:
-```bash
-git clone <repository-url>
-cd frontend_change
-```
-
-2. **Set up environment**:
-```bash
-cp .env.example .env
-# Configure API credentials and database settings in .env
-```
-
-3. **Start the backend**:
-```bash
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Run Flask application
-python app/app.py
-```
-
-4. **Start the frontend**:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-5. **Start Airflow** (optional for automated pipelines):
-```bash
-make build  # Build custom Airflow image
-make up     # Start all services
-```
-
-### Development URLs
-- Frontend: https://localhost:3000
-- Backend API: http://localhost:5001/api/
-- Airflow UI: http://localhost:8080
-
 ## Key Features in Detail
 
 ### Investment CSV Import System
@@ -477,32 +428,6 @@ The application supports sophisticated CSV import for investment transactions:
 - Asset allocation breakdown
 - Transfer in-transit handling (money between accounts)
 
-## Configuration
-
-### Environment Variables
-
-Create a `.env` file with the following configuration categories:
-
-```bash
-# API Integration (obtain from provider dashboard)
-# - Client ID and Secret for Plaid API
-# - Environment setting (sandbox/development/production)
-
-# Database Connection
-# - PostgreSQL connection string
-
-# Application Settings
-# - Flask environment and debug mode
-```
-
-### Database Schema Management
-
-All database changes are managed through a centralized schema file:
-- Single source of truth for schema
-- Organized into clearly marked sections
-- Includes tables, views, and indexes
-- Never create separate migration files
-
 ## Monitoring & Observability
 
 ### API Telemetry
@@ -516,15 +441,3 @@ All database changes are managed through a centralized schema file:
 - Error detection and logging
 - Historical quality trends
 
-## Testing
-
-```bash
-# Backend tests
-pytest app/tests/
-
-# Frontend tests
-cd frontend && npm test
-
-# Integration tests
-python app/tests/integration/
-```
