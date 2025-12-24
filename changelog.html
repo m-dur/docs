@@ -267,7 +267,7 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">136</div>
+                        <div class="stat-value">138</div>
                         <div class="stat-label">Total Commits</div>
                     </div>
                     <div class="stat-card">
@@ -292,37 +292,24 @@
                 <div class="month-section" id="december-2025">
                     <div class="month-header">
                         <div class="month-title">December 2025</div>
-                        <div class="month-meta">6 commits</div>
+                        <div class="month-meta">8 commits</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Stock Split Detection, Transfer Tracking & Date Range Filtering</strong>
+                            <strong>Performance Optimization, Stock Split Detection & Enhanced Data Visualization</strong>
                             <ul>
-                                <li><strong>Stock split detection:</strong> Automated Airflow task checks yfinance for splits in last 60 days, updates portfolio_holdings (quantity × ratio, price ÷ ratio), and adjusts portfolio_history for pre-split dates</li>
-                                <li><strong>Stock splits schema:</strong> New <code>stock_splits</code> table with known major splits pre-populated (NFLX 10:1, GOOGL 20:1, AMZN 20:1, TSLA 3:1/5:1, AAPL 4:1, NVDA 10:1/4:1), plus <code>stock_split_factors</code> view and <code>get_split_adjustment()</code> function</li>
-                                <li><strong>Transfer in-transit tracking:</strong> Added <code>in_transit_amount</code> column to net_worth_snapshots for money moving between accounts; net worth service now calculates adjusted_net_worth</li>
-                                <li><strong>Holdings comparison API:</strong> New <code>/api/investments/holdings-for-comparison</code> endpoint returns both current and sold holdings with "if held to today" calculations</li>
-                                <li><strong>Date range filtering:</strong> Analytics endpoints (<code>/income-monthly</code>, <code>/net-income-monthly</code>, <code>/cash-flow</code>) now accept start_date and end_date query parameters</li>
-                                <li><strong>12-month rolling averages:</strong> Monthly average calculations now use prior 12 months only (excluding current month) for more relevant expense comparisons</li>
-                                <li><strong>ExpensesPage date presets:</strong> Added 7 time period options (YTD, Prior YTD, Past 3/6/12 Months, Prior 12 Months, All Time) with helper calculating proper UTC date boundaries</li>
-                                <li><strong>Security:</strong> Added confidential table blocklist to prevent preview of sensitive data in schema explorer</li>
-                                <li><strong>ModelExplorerPage:</strong> Built ReactFlow-based data lineage visualization showing database table relationships</li>
-                            </ul>
-                        </div>
-
-                        <div class="category">
-                            <div class="category-title">Key Code Changes</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">stock_price_tracker_dag.py</span> - New <code>_detect_and_handle_stock_splits()</code> task with yfinance integration, portfolio/history updates, and split recording</li>
-                                <li><span class="file-name">database_info.sql</span> - Added stock_splits table, stock_split_factors view, get_split_adjustment() function, in_transit_amount column</li>
-                                <li><span class="file-name">net_worth_service.py</span> - Query now includes in_transit_amount, calculates adjusted_net_worth in response</li>
-                                <li><span class="file-name">analytics.py</span> - Added date parameter parsing to income/expense endpoints, 12-month filter for monthly averages</li>
-                                <li><span class="file-name">investments.py</span> - New holdings-for-comparison endpoint with current + sold holdings and gain calculations</li>
-                                <li><span class="file-name">ExpensesPage.jsx</span> - Added date range preset functions and average/month calculations</li>
-                                <li><span class="file-name">Schema Routes</span> - Added confidential table protection with 403 responses</li>
-                                <li><span class="file-name">ModelExplorerPage.jsx</span> - ReactFlow nodes for tables, edges for relationships, position layout algorithm</li>
-                                <li><span class="file-name">scripts/refetch_split_adjusted_prices.py</span> - New utility to refetch stock price history with split-adjusted data</li>
-                                <li><span class="file-name">scripts/update_portfolio_history_prices.py</span> - New utility to update portfolio history prices from stock_price_history</li>
+                                <li><strong>API performance optimization:</strong> Added materialized views for net worth history and monthly cash flow data, reducing page load times from ~850ms to ~190ms (4x improvement)</li>
+                                <li><strong>Lazy loading:</strong> Implemented on-demand loading for expensive external API calls - pages now load instantly with database-cached data</li>
+                                <li><strong>Endpoint separation:</strong> Split slow endpoints into fast database-only versions and on-demand external API versions for better user experience</li>
+                                <li><strong>Stock split detection:</strong> Automated pipeline checks for splits in portfolio holdings and adjusts quantities/prices accordingly</li>
+                                <li><strong>Transfer in-transit tracking:</strong> Net worth calculations now account for money moving between accounts</li>
+                                <li><strong>Holdings comparison:</strong> New feature to compare current holdings with sold positions showing "if held to today" calculations</li>
+                                <li><strong>Investment chart improvements:</strong> Added transfer smoothing for cleaner portfolio value visualization</li>
+                                <li><strong>Date range filtering:</strong> Added flexible date presets (YTD, Prior YTD, Past 3/6/12 Months, All Time) to expense analysis</li>
+                                <li><strong>12-month rolling averages:</strong> Monthly averages now use prior 12 months for more relevant comparisons</li>
+                                <li><strong>Balance page UX:</strong> Reordered tabs with bank accounts first, simplified default chart view to show total balance only</li>
+                                <li><strong>Data lineage visualization:</strong> Interactive visualization showing database table relationships and data flow</li>
+                                <li><strong>Security enhancements:</strong> Added protection for sensitive data in schema explorer</li>
                             </ul>
                         </div>
                     </div>
@@ -627,7 +614,7 @@
                             <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="8">2025</td><td>Dec</td><td>6</td><td>Stock split detection, transfer in-transit, date range filtering, 12-month averages</td></tr>
+                            <tr><td rowspan="8">2025</td><td>Dec</td><td>8</td><td>API performance (4x faster), stock splits, lazy loading, transfer smoothing</td></tr>
                             <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
                             <tr><td>Oct</td><td>3</td><td>Top N transactions, balance change tracking</td></tr>
                             <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
@@ -638,7 +625,7 @@
                             <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
                             <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
                             <tr><td>Jul</td><td>3</td><td>Project start, Flask + Plaid integration</td></tr>
-                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>136</strong></td><td></td></tr>
+                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>138</strong></td><td></td></tr>
                         </tbody>
                     </table>
 
@@ -657,7 +644,7 @@
                             <tr><td><span class="version-badge">v2.1.0</span></td><td>2025-08-30</td><td>Google-style chart interactions, drag-to-select</td></tr>
                             <tr><td><span class="version-badge">v2.2.0</span></td><td>2025-11-30</td><td>Materialized views, query optimization</td></tr>
                             <tr><td><span class="version-badge">v2.3.0</span></td><td>2025-12-17</td><td>Flexible date filtering, data lineage</td></tr>
-                            <tr><td><span class="version-badge">v2.4.0</span></td><td>2025-12-23</td><td>Stock split detection, transfer in-transit tracking</td></tr>
+                            <tr><td><span class="version-badge">v2.4.0</span></td><td>2025-12-23</td><td>API performance optimization, stock splits, lazy loading</td></tr>
                         </tbody>
                     </table>
                 </div>
