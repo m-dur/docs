@@ -267,7 +267,7 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">138</div>
+                        <div class="stat-value">140</div>
                         <div class="stat-label">Total Commits</div>
                     </div>
                     <div class="stat-card">
@@ -292,19 +292,21 @@
                 <div class="month-section" id="december-2025">
                     <div class="month-header">
                         <div class="month-title">December 2025</div>
-                        <div class="month-meta">8 commits</div>
+                        <div class="month-meta">10 commits</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Performance Optimization, Stock Split Detection & Enhanced Data Visualization</strong>
+                            <strong>Location Tracking, Raw Data Capture, Performance Optimization & Enhanced Analytics</strong>
                             <ul>
-                                <li><strong>API performance optimization:</strong> Added materialized views for net worth history and monthly cash flow data, reducing page load times from ~850ms to ~190ms (4x improvement)</li>
+                                <li><strong>Transaction location tracking:</strong> Added geocoding functionality using OpenStreetMap API with intelligent address cleaning and retry strategies. Interactive map visualization using Leaflet shows where spending occurs</li>
+                                <li><strong>Raw API data capture:</strong> New serialization system stores complete API payloads for debugging and analysis, handling complex nested objects and date types</li>
+                                <li><strong>Monthly cash flow impact:</strong> New analytics feature tracking income, expenses, and investment gains per month with running total calculations</li>
+                                <li><strong>API performance optimization:</strong> Added materialized views for database statistics (100x speedup), reducing common query times from ~720ms to ~7ms</li>
                                 <li><strong>Lazy loading:</strong> Implemented on-demand loading for expensive external API calls - pages now load instantly with database-cached data</li>
                                 <li><strong>Endpoint separation:</strong> Split slow endpoints into fast database-only versions and on-demand external API versions for better user experience</li>
                                 <li><strong>Stock split detection:</strong> Automated pipeline checks for splits in portfolio holdings and adjusts quantities/prices accordingly</li>
-                                <li><strong>Transfer in-transit tracking:</strong> Net worth calculations now account for money moving between accounts</li>
+                                <li><strong>Transfer smoothing system:</strong> Incoming transfers backdated and outgoing transfers forward-dated to prevent sudden jumps/drops in portfolio charts</li>
                                 <li><strong>Holdings comparison:</strong> New feature to compare current holdings with sold positions showing "if held to today" calculations</li>
-                                <li><strong>Investment chart improvements:</strong> Added transfer smoothing for cleaner portfolio value visualization</li>
                                 <li><strong>Date range filtering:</strong> Added flexible date presets (YTD, Prior YTD, Past 3/6/12 Months, All Time) to expense analysis</li>
                                 <li><strong>12-month rolling averages:</strong> Monthly averages now use prior 12 months for more relevant comparisons</li>
                                 <li><strong>Balance page UX:</strong> Reordered tabs with bank accounts first, simplified default chart view to show total balance only</li>
@@ -614,7 +616,7 @@
                             <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="8">2025</td><td>Dec</td><td>8</td><td>API performance (4x faster), stock splits, lazy loading, transfer smoothing</td></tr>
+                            <tr><td rowspan="8">2025</td><td>Dec</td><td>10</td><td>Location tracking, raw data capture, 100x performance gains, transfer smoothing, monthly cash flow</td></tr>
                             <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
                             <tr><td>Oct</td><td>3</td><td>Top N transactions, balance change tracking</td></tr>
                             <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
@@ -625,7 +627,7 @@
                             <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
                             <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
                             <tr><td>Jul</td><td>3</td><td>Project start, Flask + Plaid integration</td></tr>
-                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>138</strong></td><td></td></tr>
+                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>140</strong></td><td></td></tr>
                         </tbody>
                     </table>
 
@@ -645,6 +647,7 @@
                             <tr><td><span class="version-badge">v2.2.0</span></td><td>2025-11-30</td><td>Materialized views, query optimization</td></tr>
                             <tr><td><span class="version-badge">v2.3.0</span></td><td>2025-12-17</td><td>Flexible date filtering, data lineage</td></tr>
                             <tr><td><span class="version-badge">v2.4.0</span></td><td>2025-12-23</td><td>API performance optimization, stock splits, lazy loading</td></tr>
+                            <tr><td><span class="version-badge">v2.5.0</span></td><td>2025-12-26</td><td>Location tracking, raw data capture, monthly cash flow analytics</td></tr>
                         </tbody>
                     </table>
                 </div>

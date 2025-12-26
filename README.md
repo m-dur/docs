@@ -30,9 +30,11 @@ package "Frontend Layer" #E8F5E9 {
   [Vite Dev Server] as Vite
   [TanStack Query] as Query
   [Chart.js + Plotly] as Charts
+  [Leaflet Maps] as Maps
   React --> Query : State Management
   React --> Vite : Build & HMR
   React --> Charts : Visualizations
+  React --> Maps : Location Display
 }
 
 package "API Gateway" #E3F2FD {
@@ -58,8 +60,10 @@ package "Data Processing" #F3E5F5 {
 package "External APIs" #FFEBEE {
   cloud "Plaid API" as PlaidAPI
   cloud "Market Data API" as MarketAPI
+  cloud "OpenStreetMap" as OSM
   PlaidSvc ..> PlaidAPI : HTTPS
   Processors ..> MarketAPI : Market Data
+  Routes ..> OSM : Geocoding
 }
 
 package "Data Layer" #E0F2F1 {
@@ -69,6 +73,7 @@ package "Data Layer" #E0F2F1 {
     collections "Investment Store"
     collections "Cash Management Store"
     collections "Analytics Store"
+    collections "Location Cache"
   }
   [Connection Pool] as Pool
   [Materialized Views] as MatViews
@@ -203,6 +208,18 @@ API -> DB : Record transactions
 API -> DB : FIFO processing
 API -> UI : Import summary
 
+== Transaction Location Geocoding ==
+U -> UI : View transaction map
+UI -> API : GET /api/transactions/locations
+API -> DB : Check location cache
+alt Location not cached
+  API -> EXT : OpenStreetMap Nominatim
+  EXT -> API : Coordinates
+  API -> DB : Cache geocoded location
+end
+API -> UI : Location data
+UI -> U : Display on Leaflet map
+
 @enduml
 ```
 
@@ -211,9 +228,11 @@ API -> UI : Import summary
 ### Financial Data Management
 - **Multi-Institution Support**: Connect and sync data from multiple banks and financial institutions
 - **Real-time Transaction Syncing**: Automated transaction categorization and tracking
+- **Transaction Location Mapping**: Geocoded transaction locations with interactive map visualization
 - **Investment Portfolio Tracking**: Stock holdings, performance metrics, and capital gains calculations
 - **Net Worth Monitoring**: Historical net worth tracking with asset allocation analysis and transfer in-transit handling
 - **Cash Flow Analysis**: Income and expense tracking with transfer filtering and flexible date range presets
+- **Monthly Cash Flow Impact**: Comprehensive monthly analysis of income, expenses, and investment gains
 
 ### Investment Management
 - **Portfolio Dashboard**: Real-time portfolio valuation with performance metrics
@@ -222,6 +241,8 @@ API -> UI : Import summary
 - **CSV Import**: Bulk import investment transactions from brokers
 - **Duplicate Detection**: Intelligent handling of duplicate transactions across imports
 - **Market Data**: Cached pricing with scheduled updates via Airflow DAGs
+- **Holdings Comparison**: Compare current holdings vs sold positions with "what if held" analysis
+- **Transfer Smoothing**: Intelligent smoothing of transfers in portfolio charts to prevent sudden jumps
 
 ### Data Pipeline & ETL
 - **Automated Syncing**: Scheduled data pulls via Airflow DAGs
@@ -229,6 +250,8 @@ API -> UI : Import summary
 - **Data Quality Checks**: Validation and consistency monitoring
 - **Transaction Processing**: Complex SQL transformations for financial analytics
 - **API Telemetry**: Comprehensive tracking of all API calls
+- **Raw Data Capture**: Serialization and storage of complete API payloads for debugging and analysis
+- **Materialized Views**: Pre-computed aggregations for significantly faster API responses (100x speedup)
 
 ## Project Structure
 
@@ -386,6 +409,7 @@ API -> UI : Import summary
 
 **Performance Optimizations**:
 - Materialized views reduced query time from 400ms to <1ms
+- Database statistics materialized view provides 100x speedup (~720ms to ~7ms)
 - Cached market data (no API calls on page load)
 - Batch processing for efficiency
 - Incremental data loading
