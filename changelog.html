@@ -267,7 +267,7 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">140</div>
+                        <div class="stat-value">144</div>
                         <div class="stat-label">Total Commits</div>
                     </div>
                     <div class="stat-card">
@@ -292,26 +292,38 @@
                 <div class="month-section" id="december-2025">
                     <div class="month-header">
                         <div class="month-title">December 2025</div>
-                        <div class="month-meta">10 commits</div>
+                        <div class="month-meta">14 commits</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Location Tracking, Raw Data Capture, Performance Optimization & Enhanced Analytics</strong>
+                            <strong>Mobile App, Token Encryption, Location Tracking & Performance Optimization</strong>
                             <ul>
-                                <li><strong>Transaction location tracking:</strong> Added geocoding functionality using OpenStreetMap API with intelligent address cleaning and retry strategies. Interactive map visualization using Leaflet shows where spending occurs</li>
-                                <li><strong>Raw API data capture:</strong> New serialization system stores complete API payloads for debugging and analysis, handling complex nested objects and date types</li>
-                                <li><strong>Monthly cash flow impact:</strong> New analytics feature tracking income, expenses, and investment gains per month with running total calculations</li>
-                                <li><strong>API performance optimization:</strong> Added materialized views for database statistics (100x speedup), reducing common query times from ~720ms to ~7ms</li>
-                                <li><strong>Lazy loading:</strong> Implemented on-demand loading for expensive external API calls - pages now load instantly with database-cached data</li>
-                                <li><strong>Endpoint separation:</strong> Split slow endpoints into fast database-only versions and on-demand external API versions for better user experience</li>
-                                <li><strong>Stock split detection:</strong> Automated pipeline checks for splits in portfolio holdings and adjusts quantities/prices accordingly</li>
-                                <li><strong>Transfer smoothing system:</strong> Incoming transfers backdated and outgoing transfers forward-dated to prevent sudden jumps/drops in portfolio charts</li>
-                                <li><strong>Holdings comparison:</strong> New feature to compare current holdings with sold positions showing "if held to today" calculations</li>
-                                <li><strong>Date range filtering:</strong> Added flexible date presets (YTD, Prior YTD, Past 3/6/12 Months, All Time) to expense analysis</li>
-                                <li><strong>12-month rolling averages:</strong> Monthly averages now use prior 12 months for more relevant comparisons</li>
-                                <li><strong>Balance page UX:</strong> Reordered tabs with bank accounts first, simplified default chart view to show total balance only</li>
-                                <li><strong>Data lineage visualization:</strong> Interactive visualization showing database table relationships and data flow</li>
-                                <li><strong>Security enhancements:</strong> Added protection for sensitive data in schema explorer</li>
+                                <li><strong>Mobile-first responsive app:</strong> Built complete mobile experience with Apple Stocks-inspired dark theme. Five bottom navigation tabs (Home, Activity, Cash Flow, Invest, Accounts) with gesture support including pull-to-refresh, swipe-to-categorize, and long-press context menus</li>
+                                <li><strong>Mobile Home dashboard:</strong> Three stat cards showing Net Worth, Cash Available, and Credit Used with daily change indicators and trend arrows</li>
+                                <li><strong>Mobile Activity tab:</strong> Transactions and subscriptions view with inline expand, swipe actions for categorization, and long-press options for quick actions</li>
+                                <li><strong>Mobile Cash Flow:</strong> Trend line chart with pill time selectors (1W, 1M, 3M, 1Y, YTD) showing income, expenses, and net cash flow</li>
+                                <li><strong>Mobile Invest tab:</strong> Simplified portfolio view with total value, day change, and holdings list</li>
+                                <li><strong>Mobile Accounts tab:</strong> Expandable accordion groups by account type (Checking, Savings, Credit Cards, Investments) with totals</li>
+                                <li><strong>Mobile-optimized API endpoints:</strong> New endpoints using pre-aggregated data for instant mobile page loads</li>
+                                <li><strong>Token encryption:</strong> AES-256-GCM encryption for external integration tokens stored in macOS Keychain with migration script for existing data</li>
+                                <li><strong>Transaction location tracking:</strong> Geocoding via OpenStreetMap with intelligent address cleaning. Interactive Leaflet map visualization shows where spending occurs</li>
+                                <li><strong>Raw API data capture:</strong> Serialization system stores complete API payloads for debugging and analysis</li>
+                                <li><strong>Monthly cash flow impact:</strong> Analytics tracking income, expenses, and investment gains per month with running totals</li>
+                                <li><strong>API performance optimization:</strong> Materialized views for database statistics (100x speedup, ~720ms to ~7ms)</li>
+                                <li><strong>Stock split detection:</strong> Automated pipeline checks for splits and adjusts holdings quantities/prices</li>
+                                <li><strong>Transfer smoothing system:</strong> Backdated incoming and forward-dated outgoing transfers prevent chart jumps</li>
+                                <li><strong>Data lineage visualization:</strong> Interactive diagram showing database table relationships and data flow</li>
+                                <li><strong>Security enhancements:</strong> Protected sensitive data in schema explorer, encrypted token storage</li>
+                            </ul>
+                        </div>
+
+                        <div class="category">
+                            <div class="category-title">Key Code Changes</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">Mobile Components</span> - Complete mobile UI with 5 tabs, gesture hooks, and responsive design</li>
+                                <li><span class="file-name">Mobile API Routes</span> - Optimized endpoints serving pre-aggregated data for fast mobile loads</li>
+                                <li><span class="file-name">Encryption Utility</span> - AES-256-GCM encryption with Keychain integration for secure token storage</li>
+                                <li><span class="file-name">Mobile Detection Hook</span> - Viewport-based detection (768px breakpoint) for automatic mobile/desktop switching</li>
                             </ul>
                         </div>
                     </div>
@@ -616,7 +628,7 @@
                             <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="8">2025</td><td>Dec</td><td>10</td><td>Location tracking, raw data capture, 100x performance gains, transfer smoothing, monthly cash flow</td></tr>
+                            <tr><td rowspan="8">2025</td><td>Dec</td><td>14</td><td>Mobile app with 5 tabs, token encryption, location tracking, 100x performance gains</td></tr>
                             <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
                             <tr><td>Oct</td><td>3</td><td>Top N transactions, balance change tracking</td></tr>
                             <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
@@ -627,7 +639,7 @@
                             <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
                             <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
                             <tr><td>Jul</td><td>3</td><td>Project start, Flask + Plaid integration</td></tr>
-                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>140</strong></td><td></td></tr>
+                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>144</strong></td><td></td></tr>
                         </tbody>
                     </table>
 
@@ -648,6 +660,7 @@
                             <tr><td><span class="version-badge">v2.3.0</span></td><td>2025-12-17</td><td>Flexible date filtering, data lineage</td></tr>
                             <tr><td><span class="version-badge">v2.4.0</span></td><td>2025-12-23</td><td>API performance optimization, stock splits, lazy loading</td></tr>
                             <tr><td><span class="version-badge">v2.5.0</span></td><td>2025-12-26</td><td>Location tracking, raw data capture, monthly cash flow analytics</td></tr>
+                            <tr><td><span class="version-badge">v3.0.0</span></td><td>2025-12-30</td><td>Mobile app with 5-tab navigation, token encryption, mobile-optimized APIs</td></tr>
                         </tbody>
                     </table>
                 </div>

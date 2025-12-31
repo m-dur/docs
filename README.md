@@ -27,6 +27,7 @@ title Financial Data Fetcher - System Architecture
 
 package "Frontend Layer" #E8F5E9 {
   [React 18 Application] as React
+  [Mobile App] as Mobile
   [Vite Dev Server] as Vite
   [TanStack Query] as Query
   [Chart.js + Plotly] as Charts
@@ -35,6 +36,7 @@ package "Frontend Layer" #E8F5E9 {
   React --> Vite : Build & HMR
   React --> Charts : Visualizations
   React --> Maps : Location Display
+  React --> Mobile : <768px viewport
 }
 
 package "API Gateway" #E3F2FD {
@@ -44,8 +46,10 @@ package "API Gateway" #E3F2FD {
 package "Backend Layer" #FFF3E0 {
   [Flask Application] as Flask
   [Blueprint Routes] as Routes
+  [Mobile API Routes] as MobileRoutes
   [Plaid Service] as PlaidSvc
   Flask --> Routes : /api/*
+  Flask --> MobileRoutes : /api/mobile/*
   Routes --> PlaidSvc : Financial Data
 }
 
@@ -102,8 +106,10 @@ package "Infrastructure" #F1F8E9 {
 
 ' Connections
 React --> Proxy : HTTPS
+Mobile --> Proxy : HTTPS
 Proxy --> Flask : HTTP
 Routes --> FDH : Process
+MobileRoutes --> MatViews : Pre-aggregated
 FDH --> Pool : Query/Update
 DAG1 --> Pool : Batch Processing
 DAG1 --> MatViews : REFRESH
@@ -220,10 +226,31 @@ end
 API -> UI : Location data
 UI -> U : Display on Leaflet map
 
+== Mobile App Data Flow ==
+U -> UI : Open mobile app (<768px)
+UI -> UI : Detect mobile viewport
+UI -> API : GET /api/mobile/home_dashboard
+API -> DB : Query materialized views (pre-aggregated)
+DB -> API : Instant response (<10ms)
+API -> UI : Net worth, cash, credit data
+UI -> U : Display stat cards with change arrows
+note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
+
 @enduml
 ```
 
 ## Key Features
+
+### Mobile Experience
+- **Apple Stocks-Inspired Design**: Dark theme mobile app with green/red accent colors
+- **5-Tab Navigation**: Home, Activity, Cash Flow, Invest, Accounts with bottom navigation
+- **Home Dashboard**: Net Worth, Cash Available, Credit Used stat cards with daily change arrows
+- **Activity Tab**: Transactions and subscriptions with inline expand, swipe-to-categorize, long-press actions
+- **Cash Flow Tab**: Trend line chart with pill time selectors (1W, 1M, 3M, 1Y, YTD)
+- **Invest Tab**: Simplified portfolio view with total value and holdings list
+- **Accounts Tab**: Expandable accordion groups by account type with totals
+- **Touch Gestures**: Pull-to-refresh, swipe actions, long-press context menus
+- **Mobile-Optimized APIs**: Pre-aggregated endpoints for instant page loads
 
 ### Financial Data Management
 - **Multi-Institution Support**: Connect and sync data from multiple banks and financial institutions
@@ -282,9 +309,21 @@ UI -> U : Display on Leaflet map
 │   │   │   ├── common/         # Header, Sidebar, shared components
 │   │   │   ├── dashboard/      # Dashboard widgets
 │   │   │   ├── investments/    # Investment components
-│   │   │   └── networth/       # Net worth visualizations
+│   │   │   ├── networth/       # Net worth visualizations
+│   │   │   └── mobile/         # Mobile-specific components
+│   │   │       ├── MobileApp.jsx          # Mobile app wrapper
+│   │   │       ├── MobileBottomNav.jsx    # 5-tab bottom navigation
+│   │   │       └── tabs/                  # Tab-specific views
+│   │   │           ├── HomeTab/           # Net worth, cash, credit cards
+│   │   │           ├── ActivityTab/       # Transactions, subscriptions
+│   │   │           ├── CashFlowTab/       # Income/expense charts
+│   │   │           ├── InvestTab/         # Portfolio summary
+│   │   │           └── AccountsTab/       # Account balances
+│   │   ├── hooks/              # Custom React hooks
+│   │   │   └── useIsMobile.js  # Mobile detection hook
 │   │   ├── pages/              # Route-level pages
 │   │   └── context/            # React context providers
+│   │       └── MobileNavContext.jsx  # Mobile tab state
 │   ├── vite.config.js          # Vite config with API proxy
 │   └── package.json            # Frontend dependencies
 │
@@ -335,6 +374,14 @@ UI -> U : Display on Leaflet map
 - Vite dev server with HTTPS and API proxy
 - CSS Modules for component styling
 - Chart.js and Plotly.js for data visualization
+- Responsive design with dedicated mobile experience
+
+**Mobile Architecture**:
+- Viewport-based detection (768px breakpoint) automatically switches between desktop and mobile
+- Complete separation of mobile/desktop UX - desktop view unchanged
+- Mobile-specific context for tab state management
+- Touch gesture support (swipe, long-press, pull-to-refresh)
+- Mobile-optimized API endpoints for instant page loads
 
 **Pages** organized by domain:
 
@@ -464,4 +511,17 @@ The application supports sophisticated CSV import for investment transactions:
 - Consistency monitoring
 - Error detection and logging
 - Historical quality trends
+
+## Security
+
+### Token Encryption
+- **AES-256-GCM Encryption**: All sensitive tokens encrypted at rest
+- **macOS Keychain Integration**: Encryption keys stored securely in system Keychain
+- **Migration Support**: Scripts to encrypt existing plaintext tokens
+- **Verification Tools**: Encryption verification without exposing sensitive data
+
+### Access Control
+- **VPN-Based Access**: Remote access via Tailscale for secure mobile connectivity
+- **No Public Endpoints**: Application only accessible on local network or VPN
+- **Credential Protection**: Schema explorer hides sensitive database fields
 
