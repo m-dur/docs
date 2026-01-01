@@ -267,7 +267,7 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">144</div>
+                        <div class="stat-value">149</div>
                         <div class="stat-label">Total Commits</div>
                     </div>
                     <div class="stat-card">
@@ -292,12 +292,18 @@
                 <div class="month-section" id="december-2025">
                     <div class="month-header">
                         <div class="month-title">December 2025</div>
-                        <div class="month-meta">14 commits</div>
+                        <div class="month-meta">19 commits</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Mobile App, Token Encryption, Location Tracking & Performance Optimization</strong>
+                            <strong>Docker Containerization, API Authentication, Mobile App & Security Hardening</strong>
                             <ul>
+                                <li><strong>Docker containerization:</strong> Dockerfiles for Flask backend and React frontend with docker-compose orchestration. Port binding restricted to localhost and Tailscale IP for network isolation</li>
+                                <li><strong>API key authentication:</strong> All routes now require X-API-Key header validation. Centralized before_request middleware protects every endpoint except explicit whitelist (public pages, health checks, webhooks). Constant-time HMAC comparison prevents timing attacks</li>
+                                <li><strong>Frontend API client:</strong> Created authenticated Axios instance with automatic API key injection. Updated 20+ frontend files to use authenticated client</li>
+                                <li><strong>Health check endpoint:</strong> Added /api/health for container monitoring and orchestration readiness checks</li>
+                                <li><strong>Makefile automation:</strong> New commands for Docker operations (make plaid, make build-plaid, make logs-plaid, make restart-plaid)</li>
+                                <li><strong>Chart precision fix:</strong> Fixed floating-point precision issues in portfolio and net worth chart labels</li>
                                 <li><strong>Mobile-first responsive app:</strong> Built complete mobile experience with Apple Stocks-inspired dark theme. Five bottom navigation tabs (Home, Activity, Cash Flow, Invest, Accounts) with gesture support including pull-to-refresh, swipe-to-categorize, and long-press context menus</li>
                                 <li><strong>Mobile Home dashboard:</strong> Three stat cards showing Net Worth, Cash Available, and Credit Used with daily change indicators and trend arrows</li>
                                 <li><strong>Mobile Activity tab:</strong> Transactions and subscriptions view with inline expand, swipe actions for categorization, and long-press options for quick actions</li>
@@ -313,13 +319,15 @@
                                 <li><strong>Stock split detection:</strong> Automated pipeline checks for splits and adjusts holdings quantities/prices</li>
                                 <li><strong>Transfer smoothing system:</strong> Backdated incoming and forward-dated outgoing transfers prevent chart jumps</li>
                                 <li><strong>Data lineage visualization:</strong> Interactive diagram showing database table relationships and data flow</li>
-                                <li><strong>Security enhancements:</strong> Protected sensitive data in schema explorer, encrypted token storage</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
+                                <li><span class="file-name">API Authentication Middleware</span> - Flask before_request hook protecting all routes with whitelist exceptions</li>
+                                <li><span class="file-name">Frontend API Client</span> - Axios instance with X-API-Key interceptor for authenticated requests</li>
+                                <li><span class="file-name">Docker Configuration</span> - Dockerfiles and docker-compose with port binding security and volume mounts</li>
                                 <li><span class="file-name">Mobile Components</span> - Complete mobile UI with 5 tabs, gesture hooks, and responsive design</li>
                                 <li><span class="file-name">Mobile API Routes</span> - Optimized endpoints serving pre-aggregated data for fast mobile loads</li>
                                 <li><span class="file-name">Encryption Utility</span> - AES-256-GCM encryption with Keychain integration for secure token storage</li>
@@ -628,7 +636,7 @@
                             <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="8">2025</td><td>Dec</td><td>14</td><td>Mobile app with 5 tabs, token encryption, location tracking, 100x performance gains</td></tr>
+                            <tr><td rowspan="8">2025</td><td>Dec</td><td>19</td><td>Docker containers, API key auth, mobile app, token encryption, 100x performance gains</td></tr>
                             <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
                             <tr><td>Oct</td><td>3</td><td>Top N transactions, balance change tracking</td></tr>
                             <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
@@ -639,7 +647,7 @@
                             <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
                             <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
                             <tr><td>Jul</td><td>3</td><td>Project start, Flask + Plaid integration</td></tr>
-                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>144</strong></td><td></td></tr>
+                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>149</strong></td><td></td></tr>
                         </tbody>
                     </table>
 
@@ -661,6 +669,7 @@
                             <tr><td><span class="version-badge">v2.4.0</span></td><td>2025-12-23</td><td>API performance optimization, stock splits, lazy loading</td></tr>
                             <tr><td><span class="version-badge">v2.5.0</span></td><td>2025-12-26</td><td>Location tracking, raw data capture, monthly cash flow analytics</td></tr>
                             <tr><td><span class="version-badge">v3.0.0</span></td><td>2025-12-30</td><td>Mobile app with 5-tab navigation, token encryption, mobile-optimized APIs</td></tr>
+                            <tr><td><span class="version-badge">v3.1.0</span></td><td>2025-12-31</td><td>Docker containerization, API key authentication for all routes, network isolation</td></tr>
                         </tbody>
                     </table>
                 </div>

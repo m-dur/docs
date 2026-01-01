@@ -96,18 +96,26 @@ package "Orchestration" #FCE4EC {
   DAG1 --> Flask : Trigger Updates
 }
 
+package "Security Layer" #FFCDD2 {
+  [API Key Auth] as APIAuth
+  note right of APIAuth : X-API-Key header\nrequired on all routes\n(except whitelist)
+}
+
 package "Infrastructure" #F1F8E9 {
   node "Docker Compose" as Docker {
-    [Flask Container]
+    [React Container] as ReactC
+    [Flask Container] as FlaskC
     [Airflow Container]
     [Postgres Container]
   }
+  note bottom of Docker : Ports bound to\nlocalhost + Tailscale only
 }
 
 ' Connections
 React --> Proxy : HTTPS
 Mobile --> Proxy : HTTPS
-Proxy --> Flask : HTTP
+Proxy --> APIAuth : Validate Key
+APIAuth --> Flask : Authenticated
 Routes --> FDH : Process
 MobileRoutes --> MatViews : Pre-aggregated
 FDH --> Pool : Query/Update
@@ -146,6 +154,7 @@ title Financial Data Flow - Complete ETL Pipeline
 
 actor User as U
 participant "React UI" as UI
+participant "API Key Auth" as Auth
 participant "Flask API" as API
 participant "Plaid Service" as PS
 participant "Airflow DAG" as DAG
@@ -154,7 +163,9 @@ participant "External APIs" as EXT
 
 == User Initiated Flow ==
 U -> UI : Request Data
-UI -> API : GET /api/data
+UI -> Auth : GET /api/data + X-API-Key
+Auth -> Auth : Validate key (HMAC)
+Auth -> API : Authenticated request
 API -> DB : Query materialized views
 DB -> API : Return cached results
 API -> UI : JSON response
@@ -162,7 +173,8 @@ UI -> U : Display data
 
 == Plaid Institution Sync (Sequential) ==
 U -> UI : Click "Sync All"
-UI -> API : POST /sync
+UI -> Auth : POST /sync + X-API-Key
+Auth -> API : Authenticated
 loop For each institution (rate limited)
   API -> PS : Get credentials
   PS -> EXT : Plaid transactions/sync
@@ -229,7 +241,8 @@ UI -> U : Display on Leaflet map
 == Mobile App Data Flow ==
 U -> UI : Open mobile app (<768px)
 UI -> UI : Detect mobile viewport
-UI -> API : GET /api/mobile/home_dashboard
+UI -> Auth : GET /api/mobile/home_dashboard + X-API-Key
+Auth -> API : Authenticated
 API -> DB : Query materialized views (pre-aggregated)
 DB -> API : Instant response (<10ms)
 API -> UI : Net worth, cash, credit data
@@ -514,6 +527,21 @@ The application supports sophisticated CSV import for investment transactions:
 
 ## Security
 
+### Docker Containerization
+- **Isolated Containers**: Flask backend and React frontend run in separate Docker containers
+- **Port Binding Security**: Docker ports bound to localhost + Tailscale IP only (not exposed to WiFi network)
+- **Hot-Reload Development**: Volume mounts enable code changes without container rebuilds
+- **Health Checks**: Container health monitoring via `/api/health` endpoint
+- **Makefile Commands**: Simplified operations (`make plaid`, `make build-plaid`, `make logs-plaid`)
+
+### API Key Authentication
+- **All Routes Protected**: Every endpoint requires valid `X-API-Key` header except explicit whitelist
+- **Whitelist System**: Only public pages, health checks, webhooks, and static files bypass authentication
+- **Constant-Time Comparison**: Timing-attack resistant key validation using HMAC
+- **Centralized Middleware**: Flask `before_request` hook validates all incoming requests
+- **Frontend Integration**: Axios interceptor automatically adds API key to all requests
+- **Keychain Storage**: API keys stored securely in macOS Keychain (not in code or config files)
+
 ### Token Encryption
 - **AES-256-GCM Encryption**: All sensitive tokens encrypted at rest
 - **macOS Keychain Integration**: Encryption keys stored securely in system Keychain
@@ -524,4 +552,5 @@ The application supports sophisticated CSV import for investment transactions:
 - **VPN-Based Access**: Remote access via Tailscale for secure mobile connectivity
 - **No Public Endpoints**: Application only accessible on local network or VPN
 - **Credential Protection**: Schema explorer hides sensitive database fields
+- **Network Isolation**: WiFi users cannot access the application (Tailscale-only remote access)
 
