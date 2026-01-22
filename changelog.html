@@ -303,14 +303,14 @@
                         <div class="month-summary">
                             <strong>Historical Bank Balances, PWA Support, Mobile Enhancements & Server Migration</strong>
                             <ul>
-                                <li><strong>Historical bank balance system:</strong> New routes for bridged account history combining PDF bank statement data (2016+) with Plaid API data (Dec 2024+). Materialized views for monthly and daily balance tracking with gap bridging</li>
+                                <li><strong>Historical bank balance system:</strong> New routes for bridged account history combining historical statement data with real-time API data. Materialized views for monthly and daily balance tracking with gap bridging</li>
                                 <li><strong>Bank statement import:</strong> Infrastructure for importing historical bank statement PDFs with transaction extraction and account mapping</li>
                                 <li><strong>PWA support:</strong> Added service worker and manifest.json for installable progressive web app with offline capability</li>
                                 <li><strong>Mobile Invest tab enhancements:</strong> Improved portfolio display with better stock price tracking integration</li>
                                 <li><strong>Mobile Activity tab:</strong> Enhanced transaction list with category editing modal, bulk selection, and autocomplete suggestions</li>
                                 <li><strong>All Balances page overhaul:</strong> Major expansion with historical balance charts, account comparison views, and balance change analysis</li>
-                                <li><strong>Analytics materialized views:</strong> New mat_account_history_daily, mat_account_history_monthly, mat_account_history_monthly_range, mat_current_balances for fast balance queries</li>
-                                <li><strong>Expense analytics:</strong> Added mat_expenses_daily, mat_expenses_monthly_by_group, mat_expenses_summary views</li>
+                                <li><strong>Analytics materialized views:</strong> New account history views with daily, monthly, and range-based balance tracking for fast balance queries</li>
+                                <li><strong>Expense analytics:</strong> Added expense analytics views for daily and monthly aggregations views</li>
                                 <li><strong>Stock price DAG improvements:</strong> Enhanced stock price tracker with better split detection and price history backfill</li>
                                 <li><strong>Server migration:</strong> Codebase migrated from Mac to Ubuntu server with Docker deployment. Schema definitions synchronized between environments</li>
                                 <li><strong>Schema documentation:</strong> Complete schema inventory update documenting all 31 tables, 20 views, 7 materialized views</li>
@@ -320,13 +320,13 @@
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">bank_balance_history.py</span> - New routes for bridged account history with monthly/daily endpoints</li>
-                                <li><span class="file-name">analytics_materialized_views.sql</span> - 8 new materialized views for account history and expense analytics</li>
+                                <li><span class="file-name">Balance History API</span> - New endpoints for historical balance data with monthly and daily views</li>
+                                <li><span class="file-name">Analytics Views</span> - New materialized views for account history and expense analytics</li>
                                 <li><span class="file-name">AllBalancesPage.jsx</span> - Major expansion (+450 lines) with historical charts and balance comparison</li>
                                 <li><span class="file-name">BankBalanceChangeView.jsx</span> - Enhanced balance change tracking with bridged data support</li>
                                 <li><span class="file-name">MobileInvestTab.jsx</span> - Portfolio view improvements with real-time price integration</li>
                                 <li><span class="file-name">MobileActivityTab.jsx</span> - Transaction editing with category autocomplete and bulk actions</li>
-                                <li><span class="file-name">account_history_bridged_table.sql</span> - Bridged table combining statement + Plaid data</li>
+                                <li><span class="file-name">Account History</span> - Bridged data layer combining historical and real-time sources</li>
                                 <li><span class="file-name">stock_price_tracker_dag.py</span> - Enhanced DAG with split detection improvements</li>
                                 <li><span class="file-name">manifest.json + sw.js</span> - PWA configuration for installable app</li>
                             </ul>
