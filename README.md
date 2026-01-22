@@ -32,11 +32,13 @@ package "Frontend Layer" #E8F5E9 {
   [TanStack Query] as Query
   [Chart.js + Plotly] as Charts
   [Leaflet Maps] as Maps
+  [Service Worker] as SW
   React --> Query : State Management
   React --> Vite : Build & HMR
   React --> Charts : Visualizations
   React --> Maps : Location Display
   React --> Mobile : <768px viewport
+  React --> SW : PWA & Offline
 }
 
 package "API Gateway" #E3F2FD {
@@ -78,6 +80,7 @@ package "Data Layer" #E0F2F1 {
     collections "Cash Management Store"
     collections "Analytics Store"
     collections "Location Cache"
+    collections "Historical Balance Store"
   }
   [Connection Pool] as Pool
   [Materialized Views] as MatViews
@@ -264,6 +267,7 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 - **Accounts Tab**: Expandable accordion groups by account type with totals
 - **Touch Gestures**: Pull-to-refresh, swipe actions, long-press context menus
 - **Mobile-Optimized APIs**: Pre-aggregated endpoints for instant page loads
+- **Progressive Web App (PWA)**: Installable app with service worker for offline capability and native-like experience
 
 ### Financial Data Management
 - **Multi-Institution Support**: Connect and sync data from multiple banks and financial institutions
@@ -273,6 +277,8 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 - **Net Worth Monitoring**: Historical net worth tracking with asset allocation analysis and transfer in-transit handling
 - **Cash Flow Analysis**: Income and expense tracking with transfer filtering and flexible date range presets
 - **Monthly Cash Flow Impact**: Comprehensive monthly analysis of income, expenses, and investment gains
+- **Historical Balance Tracking**: Bridged data system combining historical records with real-time API data for complete balance history
+- **Statement Import**: Import and reconcile historical financial statements for extended data coverage
 
 ### Investment Management
 - **Portfolio Dashboard**: Real-time portfolio valuation with performance metrics
