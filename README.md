@@ -126,6 +126,32 @@ DAG1 --> Pool : Batch Processing
 DAG1 --> MatViews : REFRESH
 
 ' Styling
+package "Intelligent Assistants" #E1BEE7 {
+  [Discord Finance Bot] as DiscordBot
+  [Telegram LLM Bot] as TelegramBot
+  [Docker Error Monitor] as DockerMon
+  [Claude Fixer] as ClaudeFix
+  DiscordBot --> Pool : SQL Queries
+  TelegramBot --> Pool : SQL Queries
+  DockerMon --> ClaudeFix : Error Analysis
+  ClaudeFix ..> Docker : Fix & Restart
+}
+
+package "External Services" #B2DFDB {
+  cloud "Discord API" as DiscordAPI
+  cloud "Telegram API" as TelegramAPI
+  cloud "Claude CLI" as ClaudeCLI
+  cloud "Ollama (Local)" as Ollama
+  DiscordBot ..> DiscordAPI : Notifications
+  DiscordBot ..> ClaudeCLI : SQL Generation
+  TelegramBot ..> TelegramAPI : Messages
+  TelegramBot ..> ClaudeCLI : SQL Generation
+  TelegramBot ..> Ollama : Fallback
+  DockerMon ..> TelegramAPI : Alerts
+  ClaudeFix ..> ClaudeCLI : Code Analysis
+}
+
+' Styling
 skinparam component {
   BackgroundColor #FFFFFF
   BorderColor #90A4AE
