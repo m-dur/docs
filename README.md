@@ -531,6 +531,29 @@ The application supports sophisticated CSV import for investment transactions:
 - Error detection and logging
 - Historical quality trends
 
+## Intelligent Assistants & Automation
+
+
+### Discord Finance Bot
+- **Natural Language Queries**: Ask financial questions in plain English
+- **Claude CLI Integration**: Uses Claude Code CLI for accurate SQL generation
+- **Chart Generation**: Matplotlib-powered charts for spending trends and portfolio visualization
+- **Secure**: Only responds to authorized Discord user ID
+
+### Telegram LLM Bot
+- **Hybrid Processing**: Claude CLI for SQL generation with Ollama fallback for local processing
+- **Financial Query Support**: Natural language queries for transactions, balances, investments
+- **Direct Formatting**: Results formatted directly without hallucination risk
+
+### Docker Error Monitor
+- **Real-time Log Monitoring**: Watches container logs for ERROR, CRITICAL, FATAL, EXCEPTION patterns
+- **Smart Error Parsing**: Extracts DAG name, task ID, and error message from Airflow errors
+- **Deduplication**: Groups repeated errors with cooldown to reduce notification spam
+- **Interactive Telegram Alerts**: Approve or Ignore buttons for proposed fixes
+- **Claude-Based Auto-Fixing**: Analyzes codebase and proposes code fixes for errors
+- **ShellFish Handoff**: Mobile debugging support with prompt handoff to Claude Code
+
+
 ## Security
 
 ### Docker Containerization
