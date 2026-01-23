@@ -271,7 +271,7 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">153</div>
+                        <div class="stat-value">157</div>
                         <div class="stat-label">Total Commits</div>
                     </div>
                     <div class="stat-card">
@@ -297,7 +297,7 @@
                 <div class="month-section" id="january-2026">
                     <div class="month-header">
                         <div class="month-title">January 2026</div>
-                        <div class="month-meta">4 commits</div>
+                        <div class="month-meta">8 commits</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -314,6 +314,10 @@
                                 <li><strong>Stock price DAG improvements:</strong> Enhanced stock price tracker with better split detection and price history backfill</li>
                                 <li><strong>Server migration:</strong> Codebase migrated from Mac to Ubuntu server with Docker deployment. Schema definitions synchronized between environments</li>
                                 <li><strong>Schema documentation:</strong> Complete schema inventory update documenting all 31 tables, 20 views, 7 materialized views</li>
+                                <li><strong>Discord Finance Bot:</strong> Natural language financial query bot using Claude CLI for SQL generation with chart support</li>
+                                <li><strong>Telegram LLM Bot:</strong> Hybrid query bot using Claude CLI for SQL generation with Ollama fallback for local processing</li>
+                                <li><strong>Docker Error Monitor:</strong> Automated container log monitoring with Telegram alerts, interactive approve/ignore buttons, and Claude-based automatic code fixing</li>
+                                <li><strong>Discord Integration Research:</strong> Evaluation of Discord vs Telegram for notifications including webhook setup and interactive button implementation</li>
                             </ul>
                         </div>
 
@@ -329,6 +333,11 @@
                                 <li><span class="file-name">Account History</span> - Bridged data layer combining historical and real-time sources</li>
                                 <li><span class="file-name">stock_price_tracker_dag.py</span> - Enhanced DAG with split detection improvements</li>
                                 <li><span class="file-name">manifest.json + sw.js</span> - PWA configuration for installable app</li>
+                                <li><span class="file-name">discord_finance_bot.py</span> - Discord bot with Claude CLI integration for natural language SQL queries and chart generation</li>
+                                <li><span class="file-name">llm_telegram_bot.py</span> - Telegram bot with hybrid Claude/Ollama SQL generation and financial query support</li>
+                                <li><span class="file-name">docker-monitor/</span> - Container monitoring suite with error detection, Telegram notifications, and Claude-based auto-fixing</li>
+                                <li><span class="file-name">telegram_notifier.py</span> - Interactive notification service with approve/ignore buttons and conversation support</li>
+                                <li><span class="file-name">claude_fixer.py</span> - Claude CLI integration for automated error diagnosis and code fix proposals</li>
                             </ul>
                         </div>
                     </div>
