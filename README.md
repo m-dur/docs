@@ -13,6 +13,7 @@ This application is built as a modern full-stack solution with enterprise-grade 
 - **Database**: PostgreSQL with sophisticated financial data modeling
 - **Orchestration**: Apache Airflow for automated ETL pipelines
 - **API Integration**: Plaid API for multi-institution financial data
+- **Brokerage Integration**: Schwab and SnapTrade APIs for multi-broker portfolio aggregation
 
 ### System Architecture Diagram
 
@@ -53,6 +54,10 @@ package "Backend Layer" #FFF3E0 {
   Flask --> Routes : /api/*
   Flask --> MobileRoutes : /api/mobile/*
   Routes --> PlaidSvc : Financial Data
+  [Schwab Service] as SchwabSvc
+  [SnapTrade Service] as SnapSvc
+  Routes --> SchwabSvc : Brokerage Data
+  Routes --> SnapSvc : Brokerage Data
 }
 
 package "Data Processing" #F3E5F5 {
@@ -68,6 +73,10 @@ package "External APIs" #FFEBEE {
   cloud "Market Data API" as MarketAPI
   cloud "OpenStreetMap" as OSM
   PlaidSvc ..> PlaidAPI : HTTPS
+  cloud "Schwab API" as SchwabAPI
+  cloud "SnapTrade API" as SnapAPI
+  SchwabSvc ..> SchwabAPI : OAuth + HTTPS
+  SnapSvc ..> SnapAPI : HTTPS
   Processors ..> MarketAPI : Market Data
   Routes ..> OSM : Geocoding
 }
@@ -111,7 +120,7 @@ package "Infrastructure" #F1F8E9 {
     [Airflow Container]
     [Postgres Container]
   }
-  note bottom of Docker : Ports bound to\nlocalhost + Tailscale only
+  note bottom of Docker : Service ports bound to\nTailscale IP only;\nDB ports not externally exposed
 }
 
 ' Connections
@@ -255,6 +264,16 @@ API -> DB : Record transactions
 API -> DB : FIFO processing
 API -> UI : Import summary
 
+== Brokerage Sync Flow ==
+U -> UI : View Brokerage Portfolio
+UI -> Auth : GET /api/brokerage + X-API-Key
+Auth -> API : Authenticated
+API -> EXT : Schwab/SnapTrade API
+EXT -> API : Positions & transactions
+API -> DB : Upsert holdings & history
+API -> UI : Unified portfolio data
+UI -> U : Display multi-broker portfolio
+
 == Transaction Location Geocoding ==
 U -> UI : View transaction map
 UI -> API : GET /api/transactions/locations
@@ -285,12 +304,16 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 
 ### Mobile Experience
 - **Apple Stocks-Inspired Design**: Dark theme mobile app with green/red accent colors
-- **5-Tab Navigation**: Home, Activity, Cash Flow, Invest, Accounts with bottom navigation
+- **9-Tab Navigation**: Home, Activity, Cash Flow, Invest, Accounts, Brokerage, Income, Payments, Subscriptions with bottom navigation
 - **Home Dashboard**: Net Worth, Cash Available, Credit Used stat cards with daily change arrows
 - **Activity Tab**: Transactions and subscriptions with inline expand, swipe-to-categorize, long-press actions
 - **Cash Flow Tab**: Trend line chart with pill time selectors (1W, 1M, 3M, 1Y, YTD)
 - **Invest Tab**: Simplified portfolio view with total value and holdings list
 - **Accounts Tab**: Expandable accordion groups by account type with totals
+- **Brokerage Tab**: Multi-broker portfolio view with performance charts and holdings across Schwab and SnapTrade
+- **Income Tab**: Income analytics with category breakdowns, stacked bar charts, and monthly trends
+- **Payments Tab**: Credit card payment tracking with account color-coding and payment history
+- **Subscriptions Tab**: Recurring subscription overview with cost breakdowns and icon support
 - **Touch Gestures**: Pull-to-refresh, swipe actions, long-press context menus
 - **Mobile-Optimized APIs**: Pre-aggregated endpoints for instant page loads
 - **Progressive Web App (PWA)**: Installable app with service worker for offline capability and native-like experience
@@ -305,6 +328,7 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 - **Monthly Cash Flow Impact**: Comprehensive monthly analysis of income, expenses, and investment gains
 - **Historical Balance Tracking**: Bridged data system combining historical records with real-time API data for complete balance history
 - **Statement Import**: Import and reconcile historical financial statements for extended data coverage
+- **Reimbursement Tracking**: Link incoming Venmo, PayPal, and Zelle payments to original expenses with split support
 
 ### Investment Management
 - **Portfolio Dashboard**: Real-time portfolio valuation with performance metrics
@@ -315,6 +339,8 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 - **Market Data**: Cached pricing with scheduled updates via Airflow DAGs
 - **Holdings Comparison**: Compare current holdings vs sold positions with "what if held" analysis
 - **Transfer Smoothing**: Intelligent smoothing of transfers in portfolio charts to prevent sudden jumps
+- **Multi-Broker Aggregation**: Unified portfolio view combining Plaid, Schwab, and SnapTrade brokerage data
+- **Plaid Investment Sync**: Direct investment holdings and transaction syncing via Plaid API
 
 ### Data Pipeline & ETL
 - **Automated Syncing**: Scheduled data pulls via Airflow DAGs
@@ -324,6 +350,7 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 - **API Telemetry**: Comprehensive tracking of all API calls
 - **Raw Data Capture**: Serialization and storage of complete API payloads for debugging and analysis
 - **Materialized Views**: Pre-computed aggregations for significantly faster API responses (100x speedup)
+- **Brokerage Sync Pipeline**: Automated syncing of positions and transactions from connected brokerages
 
 ## Project Structure
 
@@ -338,12 +365,20 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 │   │   ├── api_routes.py        # Core API endpoints
 │   │   ├── investments.py       # Portfolio operations, realized gains, CSV import
 │   │   ├── net_worth_routes.py  # Net worth calculations
-│   │   └── transactions.py      # Transaction management
+│   │   ├── transactions.py      # Transaction management
+│   │   ├── reimbursements.py   # Reimbursement tracking & linking
+│   │   ├── schwab.py           # Schwab brokerage integration
+│   │   ├── snaptrade.py        # SnapTrade brokerage integration
+│   │   ├── plaid_investments.py # Plaid investment data
+│   │   └── mapping_rules.py    # Unified transaction mapping rules
 │   └── financial_data/          # Clean architecture data layer
 │       ├── db_operations/       # Database access layer
 │       ├── handlers/            # Business logic coordination
 │       ├── processors/          # Data transformation
 │       ├── services/            # Domain-specific services
+│       │   ├── schwab_service.py      # Schwab OAuth & API
+│       │   ├── snaptrade_service.py   # SnapTrade SDK integration
+│       │   └── plaid_investments_service.py  # Plaid investment sync
 │       └── utils/               # Shared utilities
 │
 ├── frontend/                    # React frontend application
@@ -357,16 +392,25 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 │   │   │   ├── networth/       # Net worth visualizations
 │   │   │   └── mobile/         # Mobile-specific components
 │   │   │       ├── MobileApp.jsx          # Mobile app wrapper
-│   │   │       ├── MobileBottomNav.jsx    # 5-tab bottom navigation
+│   │   │       ├── MobileBottomNav.jsx    # 9-tab bottom navigation
 │   │   │       └── tabs/                  # Tab-specific views
 │   │   │           ├── HomeTab/           # Net worth, cash, credit cards
 │   │   │           ├── ActivityTab/       # Transactions, subscriptions
 │   │   │           ├── CashFlowTab/       # Income/expense charts
 │   │   │           ├── InvestTab/         # Portfolio summary
-│   │   │           └── AccountsTab/       # Account balances
+│   │   │           ├── AccountsTab/       # Account balances
+│   │   │           ├── BrokerageTab/       # Multi-broker portfolio
+│   │   │           ├── IncomeTab/          # Income analytics
+│   │   │           ├── PaymentsTab/        # Payment tracking
+│   │   │           └── SubsTab/            # Subscription overview
 │   │   ├── hooks/              # Custom React hooks
 │   │   │   └── useIsMobile.js  # Mobile detection hook
 │   │   ├── pages/              # Route-level pages
+│   │   │   ├── IncomePageV2.jsx          # Income analytics dashboard
+│   │   │   ├── PaymentHistoryPageV2.jsx  # Payment history with charts
+│   │   │   ├── SubscriptionsPageV2.jsx   # Subscription management
+│   │   │   ├── SnapTradePage.jsx         # Brokerage portfolio view
+│   │   │   └── ReimbursementsPage.jsx    # Reimbursement tracking
 │   │   └── context/            # React context providers
 │   │       └── MobileNavContext.jsx  # Mobile tab state
 │   ├── vite.config.js          # Vite config with API proxy
@@ -432,8 +476,8 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 
 | Category | Pages |
 |----------|-------|
-| **Financial** | Expenses, Transactions, Payment History, Subscriptions, Analysis |
-| **Investment** | Investments, Net Worth, All Balances |
+| **Financial** | Expenses, Transactions, Payment History, Subscriptions, Analysis, Reimbursements |
+| **Investment** | Investments, Net Worth, All Balances, SnapTrade/Brokerage |
 | **Admin/Dev** | SQL Editor, Database Schema, Model Explorer, Route Map, Institutions |
 
 **Key Components**:
@@ -442,6 +486,8 @@ note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
 - `NetWorthChart`: Historical trends with asset allocation breakdown
 - `TransferDetectionBanner`: Pattern-based transfer identification
 - `RealizedGains`: Three-tab view (summary/detailed/by-symbol) with FIFO tracking
+- `InstitutionToggle`: Multi-broker institution selector for filtering portfolio views
+- `SplitReimbursementModal`: Split and link reimbursement payments to original expenses
 
 ### Database Design
 
@@ -584,7 +630,7 @@ The application supports sophisticated CSV import for investment transactions:
 
 ### Docker Containerization
 - **Isolated Containers**: Flask backend and React frontend run in separate Docker containers
-- **Port Binding Security**: Docker ports bound to localhost + Tailscale IP only (not exposed to WiFi network)
+- **Port Binding Security**: Service ports bound to Tailscale IP only; database ports are no longer externally exposed (not accessible from WiFi network)
 - **Hot-Reload Development**: Volume mounts enable code changes without container rebuilds
 - **Health Checks**: Container health monitoring via `/api/health` endpoint
 - **Makefile Commands**: Simplified operations (`make plaid`, `make build-plaid`, `make logs-plaid`)
