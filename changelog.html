@@ -240,7 +240,6 @@
             <div class="toc-section-title">2026</div>
             <ul class="toc-list">
                 <li><a href="#march-2026">March 2026</a></li>
-                <li><a href="#february-2026">February 2026</a></li>
                 <li><a href="#january-2026">January 2026</a></li>
             </ul>
             <div class="toc-section-title">2025</div>
@@ -300,49 +299,20 @@
                 <div class="month-section" id="march-2026">
                     <div class="month-header">
                         <div class="month-title">March 2026</div>
-                        <div class="month-meta">2 commits</div>
-                    </div>
-                    <div class="month-content">
-                        <div class="month-summary">
-                            <strong>Reimbursement Tracking & Analytics Expansion</strong>
-                            <ul>
-                                <li><strong>Reimbursement tracking system:</strong> New expense-to-payment linking workflow for tracking reimbursable expenses with status tracking and resolution</li>
-                                <li><strong>Reimbursements page:</strong> Dedicated page with bar charts, year/month filtering, and search for managing reimbursement records</li>
-                                <li><strong>Mobile reimbursement support:</strong> Split reimbursement modal integrated into mobile Activity tab for on-the-go expense splitting</li>
-                                <li><strong>Analytics expansion:</strong> Major expansion of analytics routes with new aggregation endpoints and reporting capabilities</li>
-                                <li><strong>Transaction handling improvements:</strong> Enhanced transaction processing with better edge case handling and data validation</li>
-                                <li><strong>Investment route enhancements:</strong> Expanded investment data endpoints with additional filtering and reporting options</li>
-                            </ul>
-                        </div>
-
-                        <div class="category">
-                            <div class="category-title">Key Code Changes</div>
-                            <ul class="category-list">
-                                <li><span class="file-name">ReimbursementsPage.jsx</span> - New page with bar charts, filtering by year/month, and search functionality</li>
-                                <li><span class="file-name">SplitReimbursementModal.jsx</span> - Mobile modal for splitting expenses and linking reimbursement payments</li>
-                                <li><span class="file-name">Analytics Routes</span> - Major expansion with new aggregation and reporting endpoints</li>
-                                <li><span class="file-name">Investment Routes</span> - Enhanced endpoints with expanded filtering and mapping statistics</li>
-                                <li><span class="file-name">Transaction Routes</span> - Improved handling with edge case fixes and validation enhancements</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- February 2026 -->
-                <div class="month-section" id="february-2026">
-                    <div class="month-header">
-                        <div class="month-title">February 2026</div>
                         <div class="month-meta">5 commits</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>Brokerage Integrations, Page Redesigns & Mobile Expansion</strong>
+                            <strong>Brokerage Integrations, Reimbursement Tracking, Page Redesigns & Mobile Expansion</strong>
                             <ul>
                                 <li><strong>Schwab brokerage integration:</strong> OAuth-based connection to Charles Schwab with automated token management and portfolio syncing</li>
                                 <li><strong>SnapTrade brokerage integration:</strong> SDK-based brokerage connection supporting account discovery and position syncing across multiple institutions</li>
                                 <li><strong>Plaid investment syncing:</strong> Extended Plaid integration to sync investment holdings, transactions, and securities data</li>
                                 <li><strong>Unified mapping rules:</strong> Centralized transaction categorization system with configurable mapping rules across all data sources</li>
                                 <li><strong>Brokerage page:</strong> New dual-source portfolio view with institution and account toggles, interactive portfolio charts, and combined holdings display</li>
+                                <li><strong>Reimbursement tracking system:</strong> New expense-to-payment linking workflow for tracking reimbursable expenses with status tracking and resolution</li>
+                                <li><strong>Reimbursements page:</strong> Dedicated page with bar charts, year/month filtering, and search for managing reimbursement records</li>
+                                <li><strong>Mobile reimbursement support:</strong> Split reimbursement modal integrated into mobile Activity tab for on-the-go expense splitting</li>
                                 <li><strong>Income page redesign:</strong> Rebuilt with Plotly charts, category color-coding, and sortable data tables</li>
                                 <li><strong>Payment history redesign:</strong> Rebuilt with Plotly charts, account color-coding, and credit card filtering</li>
                                 <li><strong>Subscriptions page redesign:</strong> Rebuilt with icon support, name normalization, and Plotly visualizations</li>
@@ -350,6 +320,9 @@
                                 <li><strong>Mobile Income tab:</strong> Stacked bar charts with category breakdowns for income analysis</li>
                                 <li><strong>Mobile Payments tab:</strong> Credit card account mapping with payment tracking</li>
                                 <li><strong>Mobile Subscriptions tab:</strong> Subscription overview with color-coded categories</li>
+                                <li><strong>Analytics expansion:</strong> Major expansion of analytics routes with new aggregation endpoints and reporting capabilities</li>
+                                <li><strong>Transaction handling improvements:</strong> Enhanced transaction processing with better edge case handling and data validation</li>
+                                <li><strong>Investment route enhancements:</strong> Expanded investment data endpoints with additional filtering and reporting options</li>
                                 <li><strong>Docker security hardening:</strong> Container ports bound to Tailscale IP only, database ports no longer externally exposed</li>
                                 <li><strong>Airflow improvements:</strong> Database migration timeout handling and parsing process limits for stability</li>
                             </ul>
@@ -361,12 +334,17 @@
                                 <li><span class="file-name">Schwab Integration</span> - OAuth token management with automatic refresh and portfolio data syncing</li>
                                 <li><span class="file-name">SnapTrade Integration</span> - SDK-based account and position syncing with multi-institution support</li>
                                 <li><span class="file-name">BrokeragePage.jsx</span> - Dual-source portfolio view with institution/account toggles and charts</li>
+                                <li><span class="file-name">ReimbursementsPage.jsx</span> - New page with bar charts, filtering by year/month, and search functionality</li>
+                                <li><span class="file-name">SplitReimbursementModal.jsx</span> - Mobile modal for splitting expenses and linking reimbursement payments</li>
                                 <li><span class="file-name">IncomePageV2.jsx</span> - Redesigned with Plotly charts, category colors, and sortable tables</li>
                                 <li><span class="file-name">PaymentHistoryPageV2.jsx</span> - Redesigned with Plotly charts and credit card filtering</li>
                                 <li><span class="file-name">SubscriptionsPageV2.jsx</span> - Redesigned with icon support and Plotly visualizations</li>
                                 <li><span class="file-name">PortfolioChart.jsx</span> - Major expansion with enhanced multi-source charting</li>
                                 <li><span class="file-name">InstitutionToggle / AccountToggle</span> - Shared filter components for brokerage data views</li>
                                 <li><span class="file-name">Mobile Tabs</span> - Four new mobile tabs (Brokerage, Income, Payments, Subscriptions)</li>
+                                <li><span class="file-name">Analytics Routes</span> - Major expansion with new aggregation and reporting endpoints</li>
+                                <li><span class="file-name">Investment Routes</span> - Enhanced endpoints with expanded filtering and mapping statistics</li>
+                                <li><span class="file-name">Transaction Routes</span> - Improved handling with edge case fixes and validation enhancements</li>
                                 <li><span class="file-name">Docker Compose</span> - Security hardening with Tailscale IP binding and port restrictions</li>
                                 <li><span class="file-name">Financial Data DAG</span> - NaN balance auto-detection and auto-fix pipeline</li>
                                 <li><span class="file-name">Stock Price Tracker DAG</span> - Major expansion with improved tracking capabilities</li>
@@ -772,8 +750,7 @@
                             <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="3">2026</td><td>Mar</td><td>2</td><td>Reimbursement tracking, analytics expansion</td></tr>
-                            <tr><td>Feb</td><td>5</td><td>Schwab/SnapTrade brokerage integrations, page redesigns, mobile expansion</td></tr>
+                            <tr><td rowspan="2">2026</td><td>Mar</td><td>5</td><td>Brokerage integrations (Schwab, SnapTrade), reimbursement tracking, page redesigns, mobile expansion</td></tr>
                             <tr><td>Jan</td><td>4</td><td>Historical bank balances, PWA support, server migration, analytics mat views</td></tr>
                             <tr><td rowspan="8">2025</td><td>Dec</td><td>19</td><td>Docker containers, API key auth, mobile app, token encryption, 100x performance gains</td></tr>
                             <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
@@ -809,8 +786,7 @@
                             <tr><td><span class="version-badge">v2.5.0</span></td><td>2025-12-26</td><td>Location tracking, raw data capture, monthly cash flow analytics</td></tr>
                             <tr><td><span class="version-badge">v3.0.0</span></td><td>2025-12-30</td><td>Mobile app with 5-tab navigation, token encryption, mobile-optimized APIs</td></tr>
                             <tr><td><span class="version-badge">v3.2.0</span></td><td>2026-01-22</td><td>Historical bank balances, PWA support, analytics materialized views, server migration</td></tr>
-                            <tr><td><span class="version-badge">v3.3.0</span></td><td>2026-02-28</td><td>Brokerage integrations (Schwab, SnapTrade), page redesigns, mobile expansion</td></tr>
-                            <tr><td><span class="version-badge">v3.4.0</span></td><td>2026-03-06</td><td>Reimbursement tracking system, analytics expansion</td></tr>
+                            <tr><td><span class="version-badge">v3.3.0</span></td><td>2026-03-06</td><td>Brokerage integrations (Schwab, SnapTrade), reimbursement tracking, page redesigns, mobile expansion</td></tr>
                             <tr><td><span class="version-badge">v3.1.0</span></td><td>2025-12-31</td><td>Docker containerization, API key authentication for all routes, network isolation</td></tr>
                         </tbody>
                     </table>
