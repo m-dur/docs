@@ -20,163 +20,89 @@ This application is built as a modern full-stack solution with enterprise-grade 
 ```plantuml
 @startuml
 !theme plain
-skinparam backgroundColor #FEFEFE
-skinparam boxPadding 10
-skinparam defaultFontSize 11
+skinparam backgroundColor #faf7f1
+skinparam defaultFontName "IBM Plex Sans, Helvetica, Arial"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam padding 6
+skinparam roundCorner 8
+skinparam linetype ortho
+skinparam arrowThickness 1.2
+skinparam arrowColor #6b6154
+skinparam arrowFontColor #6b6154
+skinparam arrowFontSize 10
 
-title Financial Data Fetcher - System Architecture
-
-package "Frontend Layer" #E8F5E9 {
-  [React 18 Application] as React
-  [Mobile App] as Mobile
-  [Vite Dev Server] as Vite
-  [TanStack Query] as Query
-  [Chart.js + Plotly] as Charts
-  [Leaflet Maps] as Maps
-  [Service Worker] as SW
-  React --> Query : State Management
-  React --> Vite : Build & HMR
-  React --> Charts : Visualizations
-  React --> Maps : Location Display
-  React --> Mobile : <768px viewport
-  React --> SW : PWA & Offline
+skinparam rectangle {
+  BorderColor #2c5e3f
+  BorderThickness 1.2
+  BackgroundColor #ffffff
+  FontColor #2a2420
+  RoundCorner 8
 }
 
-package "API Gateway" #E3F2FD {
-  [HTTPS Proxy] as Proxy
-}
-
-package "Backend Layer" #FFF3E0 {
-  [Flask Application] as Flask
-  [Blueprint Routes] as Routes
-  [Mobile API Routes] as MobileRoutes
-  [Plaid Service] as PlaidSvc
-  Flask --> Routes : /api/*
-  Flask --> MobileRoutes : /api/mobile/*
-  Routes --> PlaidSvc : Financial Data
-  [Schwab Service] as SchwabSvc
-  [SnapTrade Service] as SnapSvc
-  Routes --> SchwabSvc : Brokerage Data
-  Routes --> SnapSvc : Brokerage Data
-}
-
-package "Data Processing" #F3E5F5 {
-  [FinancialDataHandler] as FDH
-  [SingleInstitutionHandler] as SIH
-  [Processors] as Processors
-  FDH --> SIH : Per-Institution
-  SIH --> Processors : Transform
-}
-
-package "External APIs" #FFEBEE {
-  cloud "Plaid API" as PlaidAPI
-  cloud "Market Data API" as MarketAPI
-  cloud "OpenStreetMap" as OSM
-  PlaidSvc ..> PlaidAPI : HTTPS
-  cloud "Schwab API" as SchwabAPI
-  cloud "SnapTrade API" as SnapAPI
-  SchwabSvc ..> SchwabAPI : OAuth + HTTPS
-  SnapSvc ..> SnapAPI : HTTPS
-  Processors ..> MarketAPI : Market Data
-  Routes ..> OSM : Geocoding
-}
-
-package "Data Layer" #E0F2F1 {
-  database "PostgreSQL" as DB {
-    collections "Plaid Integration Layer"
-    collections "Transaction Store"
-    collections "Investment Store"
-    collections "Cash Management Store"
-    collections "Analytics Store"
-    collections "Location Cache"
-    collections "Historical Balance Store"
-  }
-  [Connection Pool] as Pool
-  [Materialized Views] as MatViews
-  Pool --> DB
-  Pool --> MatViews
-}
-
-package "Orchestration" #FCE4EC {
-  [Apache Airflow] as Airflow
-  [Sync Pipeline] as DAG1
-  [Price Update Pipeline] as DAG2
-  [Snapshot Pipeline] as DAG3
-  Airflow --> DAG1 : Plaid Sync
-  Airflow --> DAG2 : Price Updates
-  Airflow --> DAG3 : Snapshots
-  DAG1 --> Flask : Trigger Updates
-}
-
-package "Security Layer" #FFCDD2 {
-  [API Key Auth] as APIAuth
-  note right of APIAuth : X-API-Key header\nrequired on all routes\n(except whitelist)
-}
-
-package "Infrastructure" #F1F8E9 {
-  node "Docker Compose" as Docker {
-    [React Container] as ReactC
-    [Flask Container] as FlaskC
-    [Airflow Container]
-    [Postgres Container]
-  }
-  note bottom of Docker : Service ports bound to\nTailscale IP only;\nDB ports not externally exposed
-}
-
-' Connections
-React --> Proxy : HTTPS
-Mobile --> Proxy : HTTPS
-Proxy --> APIAuth : Validate Key
-APIAuth --> Flask : Authenticated
-Routes --> FDH : Process
-MobileRoutes --> MatViews : Pre-aggregated
-FDH --> Pool : Query/Update
-DAG1 --> Pool : Batch Processing
-DAG1 --> MatViews : REFRESH
-
-' Styling
-package "Intelligent Assistants" #E1BEE7 {
-  [Discord Finance Bot] as DiscordBot
-  [Telegram LLM Bot] as TelegramBot
-  [Docker Error Monitor] as DockerMon
-  [Claude Fixer] as ClaudeFix
-  DiscordBot --> Pool : SQL Queries
-  TelegramBot --> Pool : SQL Queries
-  DockerMon --> ClaudeFix : Error Analysis
-  ClaudeFix ..> Docker : Fix & Restart
-}
-
-package "External Services" #B2DFDB {
-  cloud "Discord API" as DiscordAPI
-  cloud "Telegram API" as TelegramAPI
-  cloud "Claude CLI" as ClaudeCLI
-  cloud "Ollama (Local)" as Ollama
-  DiscordBot ..> DiscordAPI : Notifications
-  DiscordBot ..> ClaudeCLI : SQL Generation
-  TelegramBot ..> TelegramAPI : Messages
-  TelegramBot ..> ClaudeCLI : SQL Generation
-  TelegramBot ..> Ollama : Fallback
-  DockerMon ..> TelegramAPI : Alerts
-  ClaudeFix ..> ClaudeCLI : Code Analysis
-}
-
-' Styling
-skinparam component {
-  BackgroundColor #FFFFFF
-  BorderColor #90A4AE
-  FontColor #37474F
-  ArrowColor #607D8B
+skinparam package {
+  BorderColor #b8552e
+  BorderThickness 1.5
+  BackgroundColor #fbf8f1
+  FontColor #b8552e
+  FontStyle italic
+  FontSize 11
+  RoundCorner 12
 }
 
 skinparam database {
-  BackgroundColor #ECEFF1
-  BorderColor #607D8B
+  BorderColor #2c5e3f
+  BackgroundColor #ffffff
+  FontColor #2a2420
 }
 
 skinparam cloud {
-  BackgroundColor #FFF9C4
-  BorderColor #F57C00
+  BorderColor #c19a3d
+  BackgroundColor #fbf8f1
+  FontColor #7a6830
 }
+
+title <size:18><color:#2a2420><b>Financial Data Fetcher</b></color></size>\n<size:11><color:#6b6154>System Architecture</color></size>
+
+package "Clients" as Clients {
+  rectangle "Web & Mobile\n<size:10><color:#857964>PWA · offline-capable</color></size>" as Web
+}
+
+package "Application" as App {
+  rectangle "Frontend\n<size:10><color:#857964>React · Vite · charts</color></size>" as FE
+  rectangle "API\n<size:10><color:#857964>Flask · blueprints</color></size>" as API
+  FE -down-> API
+}
+
+package "Orchestration" as Orch {
+  rectangle "Airflow\n<size:10><color:#857964>sync · snapshots · prices</color></size>" as Airflow
+}
+
+package "Integrations" as Integ {
+  cloud "Plaid\n<size:10>banks & cards</size>" as Plaid
+  cloud "Schwab\n<size:10>brokerage</size>" as Schwab
+  cloud "SnapTrade\n<size:10>multi-broker</size>" as SnapTrade
+  cloud "Market Data" as Market
+}
+
+package "Data" as Data {
+  database "PostgreSQL\n<size:10><color:#857964>transactions · holdings</color>\n<color:#857964>balances · analytics</color></size>" as DB
+}
+
+package "Assistants" as Assist {
+  rectangle "Discord · Telegram\n<size:10><color:#857964>alerts · NL queries</color></size>" as Bots
+}
+
+Web -right-> FE : HTTPS
+API -right-> Plaid
+API -right-> Schwab
+API -right-> SnapTrade
+Airflow -down-> API : triggers
+Airflow -left-> Market : prices
+API -down-> DB
+Airflow -down-> DB : batch writes
+Bots -up-> DB : read-only
+Bots -right-> API : notifications
 
 @enduml
 ```
