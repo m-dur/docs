@@ -499,41 +499,39 @@
                 <div class="month-section" id="april-2026">
                     <div class="month-header">
                         <div class="month-title">April 2026</div>
-                        <div class="month-meta">Production hardening &amp; brokerage lot tracking</div>
+                        <div class="month-meta">Production hardening &amp; brokerage detail</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
-                            <strong>SnapTrade production Fidelity, Holdings view variants, Schwab token reliability &amp; Airflow recovery</strong>
+                            <strong>Production Fidelity integration, holdings redesign, reliability improvements &amp; documentation restyle</strong>
                             <ul>
-                                <li><strong>SnapTrade production Fidelity:</strong> Upgraded from test client to production credentials, established Fidelity connection, daily sync of accounts + balances + holdings + activities into <code>snaptrade.*</code> tables under fresh UUIDs</li>
-                                <li><strong>Cost basis derivation for 401(k):</strong> Fidelity&rsquo;s SnapTrade feed returns null <code>average_purchase_price</code>; new post-sync step reconstructs cost basis from <code>TRANSFER/contribution</code> activity history (weighted average across all contributions) so VLXVX and similar holdings show accurate P&amp;L and return</li>
-                                <li><strong>Holdings view variants:</strong> Two new view modes &mdash; <strong>Ledger</strong> (editorial serif, warm paper, residual-fold) and <strong>Terminal</strong> (trading-desk grid, inline P&amp;L bars scaled to magnitude). Classic view preserved. Choice persists in localStorage</li>
-                                <li><strong>Group-by modes:</strong> Both new views support grouping by brokerage, account, symbol, or flat. Symbol mode aggregates same tickers across accounts so you can see total META / GOOG / AAPL / etc. regardless of which broker holds it. Each lot shows its originating account</li>
-                                <li><strong>Schwab refresh-token bug fix:</strong> Stopped overwriting <code>refresh_expires_at</code> on every access-token refresh. Schwab refresh tokens expire 7 days from initial OAuth grant, not from last use; the old code silently pushed the DB expiry forward on every rotation, masking the true expiry and causing unexpected 7-day failures</li>
-                                <li><strong>Schwab expiry alerting:</strong> New DAG task pings Telegram when the refresh token has &lt;24h remaining, so re-auth can happen before the integration breaks</li>
-                                <li><strong>Host-side liveness cron:</strong> External check every 30 min that alerts if net_worth_v2 snapshot is &gt;36h stale, scheduler container is down, or postgres is in a crash loop. Independent of Airflow so it can report when Airflow itself is dead</li>
-                                <li><strong>Airflow metadata DB recovery:</strong> After an unnoticed duplicate postgres container corrupted the shared volume (both writing simultaneously, invalid checkpoint, crash loop for days), diagnosed and rebuilt the Airflow metadata DB. All DAG runs restored, financial data untouched</li>
-                                <li><strong>net_worth_v2 snapshot logic:</strong> Changed trigger rule to <code>ALL_DONE</code> so the daily NW snapshot still runs if Schwab/SnapTrade sync fails. Stale-but-present history beats gaps. Added backfill for Apr 11-13 using latest-available per-source data</li>
-                                <li><strong>Per-symbol chart continuity fix:</strong> <code>/api/snaptrade/stock-history</code> now merges BUY/SELL/TRANSFER activities across SnapTrade and Schwab sources and preserves sign on transfers, so a position like AAPL that moved Fidelity → Schwab on Mar 13 shows one continuous line instead of dropping to zero or doubling</li>
-                                <li><strong>Duplicate activity dedup:</strong> Removed 81 FID-prefixed CSV-imported activity records that duplicated existing UUID sibling entries. Fixed the AMZN / GOOG doubling bug in the per-symbol charts</li>
-                                <li><strong>Fidelity residual reconstruction:</strong> Post-transfer residual holdings (fractional shares that failed to ACAT) now show accurate per-day values using current quantities × historical prices, merged into net_worth_v2 history for Mar 14 - Apr 8</li>
-                                <li><strong>Notification overhaul:</strong> Telegram and Discord NW updates pull from <code>net_worth_v2</code> (not legacy <code>net_worth_snapshots</code>), show combined Bank + Investments breakdown, and include a per-stock daily gain/loss table</li>
-                                <li><strong>PortfolioPulse public site:</strong> Static landing page deployed to Cloudflare Pages with custom subdomain; serves the SnapTrade app-profile reviewer and keeps the real brokerage data off the public internet</li>
-                                <li><strong>Changelog restyle:</strong> Dropped the AI-generic purple gradient for a warm editorial palette &mdash; cream paper background, forest green accent, terracotta emphasis. Fraunces serif for display, IBM Plex Sans for body, JetBrains Mono for monospace</li>
+                                <li><strong>Fidelity production integration:</strong> Upgraded SnapTrade from test to production credentials, connected Fidelity, and added daily sync of accounts, balances, holdings, and activities</li>
+                                <li><strong>401(k) cost basis derivation:</strong> Reconstructs cost basis from contribution history for retirement accounts where brokers do not expose it directly, so P&amp;L and total return display correctly</li>
+                                <li><strong>Holdings view variants:</strong> Two new view modes &mdash; an editorial Ledger view and a trading-desk Terminal view &mdash; alongside the original Classic table, with per-user preference persisted across sessions</li>
+                                <li><strong>Group-by modes:</strong> Holdings can now be grouped by brokerage, account, symbol, or flattened, with same-ticker positions across brokerages consolidated into a single aggregated row</li>
+                                <li><strong>Schwab token reliability fix:</strong> Corrected a refresh-token handling bug that silently shifted the database&rsquo;s recorded expiry and caused intermittent integration failures around the 7-day mark</li>
+                                <li><strong>Brokerage expiry alerting:</strong> Proactive notifications before brokerage OAuth tokens expire, so re-authentication happens before syncing breaks</li>
+                                <li><strong>External liveness monitoring:</strong> Independent operational check that surfaces silent pipeline failures &mdash; stale snapshots, scheduler outages, database crash loops &mdash; even when the orchestrator itself is down</li>
+                                <li><strong>Net worth snapshot resilience:</strong> The daily snapshot now runs and records the latest-available data even when upstream brokerage syncs fail, preferring stale-but-present history over gaps</li>
+                                <li><strong>Per-symbol chart continuity:</strong> Stock history charts now merge activity from multiple sources and preserve transfer direction, so positions that moved between brokerages show one continuous line instead of dropping or doubling</li>
+                                <li><strong>Activity deduplication:</strong> Removed duplicate transaction records created during an earlier CSV import, fixing apparent position doubling in per-symbol charts</li>
+                                <li><strong>Residual holding reconstruction:</strong> Post-transfer residual fractional shares now show accurate historical values using current quantities and historical prices</li>
+                                <li><strong>Notification overhaul:</strong> Daily Telegram and Discord updates switched to the authoritative net worth source, added a per-stock gain/loss summary, and combined bank and investment breakdowns</li>
+                                <li><strong>Public landing page:</strong> Static marketing page on a custom domain to satisfy brokerage-partner review without exposing personal financial data</li>
+                                <li><strong>Documentation restyle:</strong> Changelog moved off the generic purple template to a warm editorial palette with distinctive typography</li>
                             </ul>
                         </div>
 
                         <div class="category">
                             <div class="category-title">Key Code Changes</div>
                             <ul class="category-list">
-                                <li><span class="file-name">app/services/snaptrade_prod_service.py</span> &mdash; new reusable module for prod-client sync; functions for accounts, equity, holdings, activities, cost-basis backfill</li>
-                                <li><span class="file-name">airflow/dags/stock_price_tracker_dag.py</span> &mdash; added <code>sync_snaptrade_prod_fidelity</code> task, <code>check_schwab_token_expiry</code> alert task, fixed <code>create_net_worth_v2_snapshot</code> trigger rule to ALL_DONE, switched Telegram NW notification to query net_worth_v2</li>
-                                <li><span class="file-name">airflow/dags/financial_data_dag.py</span> &mdash; Discord transaction notification now includes NW change + per-stock gain/loss table</li>
-                                <li><span class="file-name">app/services/schwab_service.py</span> &mdash; fixed <code>refresh_access_token</code> to preserve <code>refresh_expires_at</code> from initial grant</li>
-                                <li><span class="file-name">app/routes/snaptrade.py</span> &mdash; <code>/stock-history</code> endpoint merges both sources and respects TRANSFER direction</li>
-                                <li><span class="file-name">HoldingsLedgerView / HoldingsTerminalView</span> &mdash; new React components with shared <code>holdingsGrouping.js</code> helper for brokerage/account/symbol/flat modes and collapsible institution sections</li>
-                                <li><span class="file-name">pages/SnapTradePage.jsx</span> &mdash; Holdings tab gained VIEW + GROUP BY pill switchers with localStorage persistence</li>
-                                <li><span class="file-name">/home/miguel/scripts/check_dag_liveness.sh</span> &mdash; host-level cron that alerts via Telegram independent of Airflow</li>
+                                <li><span class="file-name">SnapTrade Production Service</span> &mdash; Reusable module for production-client sync covering accounts, equity, holdings, activities, and cost-basis backfill</li>
+                                <li><span class="file-name">Stock Price Tracker DAG</span> &mdash; Added Fidelity prod sync task, token-expiry alert task, and fixed the net-worth snapshot trigger rule so it runs even when upstream syncs fail</li>
+                                <li><span class="file-name">Financial Data DAG</span> &mdash; Discord notifications expanded with net worth change and per-stock gain/loss table</li>
+                                <li><span class="file-name">Schwab Service</span> &mdash; Refresh-token flow preserves initial-grant expiry instead of sliding it forward on every access-token rotation</li>
+                                <li><span class="file-name">SnapTrade Routes</span> &mdash; Stock history endpoint merges multiple sources and respects transfer direction for accurate per-symbol charts</li>
+                                <li><span class="file-name">HoldingsLedgerView / HoldingsTerminalView</span> &mdash; New React components with a shared grouping helper and collapsible institution sections</li>
+                                <li><span class="file-name">SnapTradePage.jsx</span> &mdash; Holdings tab gained view-mode and group-by switchers with preference persistence</li>
                             </ul>
                         </div>
                     </div>
