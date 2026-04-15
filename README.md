@@ -112,116 +112,62 @@ Bots -right-> API : notifications
 ```plantuml
 @startuml
 !theme plain
-skinparam backgroundColor #FEFEFE
+skinparam backgroundColor #faf7f1
+skinparam defaultFontName "IBM Plex Sans, Helvetica, Arial"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam roundCorner 8
+skinparam linetype ortho
+skinparam arrowThickness 1.2
+skinparam arrowColor #6b6154
+skinparam arrowFontColor #6b6154
+skinparam arrowFontSize 10
 
-title Financial Data Flow - Complete ETL Pipeline
+skinparam rectangle {
+  BorderColor #2c5e3f
+  BorderThickness 1.2
+  BackgroundColor #ffffff
+  FontColor #2a2420
+  RoundCorner 8
+  Padding 8
+}
 
-actor User as U
-participant "React UI" as UI
-participant "API Key Auth" as Auth
-participant "Flask API" as API
-participant "Plaid Service" as PS
-participant "Airflow DAG" as DAG
-database "PostgreSQL" as DB
-participant "External APIs" as EXT
+skinparam cloud {
+  BorderColor #c19a3d
+  BackgroundColor #fbf8f1
+  FontColor #7a6830
+}
 
-== User Initiated Flow ==
-U -> UI : Request Data
-UI -> Auth : GET /api/data + X-API-Key
-Auth -> Auth : Validate key (HMAC)
-Auth -> API : Authenticated request
-API -> DB : Query materialized views
-DB -> API : Return cached results
-API -> UI : JSON response
-UI -> U : Display data
+skinparam database {
+  BorderColor #2c5e3f
+  BackgroundColor #ffffff
+  FontColor #2a2420
+}
 
-== Plaid Institution Sync (Sequential) ==
-U -> UI : Click "Sync All"
-UI -> Auth : POST /sync + X-API-Key
-Auth -> API : Authenticated
-loop For each institution (rate limited)
-  API -> PS : Get credentials
-  PS -> EXT : Plaid transactions/sync
-  EXT -> PS : Financial data
-  PS -> API : Process & validate
-  API -> DB : Upsert transactions
-  API -> DB : Update history
-end
-API -> DB : REFRESH MATERIALIZED VIEWS
-API -> UI : Success with counts
+title <size:18><color:#2a2420><b>Data Flow</b></color></size>\n<size:11><color:#6b6154>From source to user, and the scheduled pipeline that keeps it fresh</color></size>
 
-== Plaid Link Flow ==
-U -> UI : Add Institution
-UI -> API : GET /link-token
-API -> EXT : Plaid Link Token
-EXT -> UI : Open Plaid Link
-U -> UI : Select bank & login
-UI -> API : POST /exchange-token
-API -> EXT : Exchange for credentials
-API -> DB : Store encrypted credentials
+cloud "Banks & Brokerages" as Sources
+rectangle "Scheduled Sync\n<size:10><color:#857964>Airflow · every 3h + daily</color></size>" as Sync
+database "PostgreSQL\n<size:10><color:#857964>transactions · holdings\nbalances · snapshots</color></size>" as DB
+rectangle "API\n<size:10><color:#857964>Flask · materialized views</color></size>" as API
+rectangle "Web & Mobile\n<size:10><color:#857964>React · PWA</color></size>" as UI
+actor "User" as User
+rectangle "Notifications\n<size:10><color:#857964>Telegram · Discord</color></size>" as Notif
 
-== Automated Airflow Pipeline ==
-DAG -> DAG : Scheduled trigger (daily)
-DAG -> API : Sync all institutions
-API -> DB : Process transactions
-DAG -> DB : Refresh materialized views
-DAG -> DB : Log telemetry
+Sources -right-> Sync : <size:10>transactions\nprices\nholdings</size>
+Sync -right-> DB : <size:10>upsert</size>
+Sync -down-> Notif : <size:10>summary</size>
+DB -right-> API : <size:10>fresh data</size>
+API -right-> UI : <size:10>JSON</size>
+UI -right-> User
+Notif -right-> User : <size:10>push</size>
 
-== Investment Price Updates ==
-DAG -> DAG : Check if trading day
-alt Is Trading Day
-  DAG -> EXT : Check for stock splits (yfinance)
-  DAG -> DB : Update holdings/history if split detected
-  DAG -> EXT : Market Data API
-  EXT -> DAG : Market prices
-  DAG -> DB : Update price history
-  DAG -> DB : Update portfolio history
-else Weekend/Holiday
-  DAG -> DAG : Skip
-end
-
-== CSV Import Flow ==
-U -> UI : Upload Broker CSV
-UI -> UI : Parse & detect duplicates
-UI -> API : POST /api/investments/import
-API -> DB : Check existing holdings
-API -> DB : Create holdings
-API -> DB : Record transactions
-API -> DB : FIFO processing
-API -> UI : Import summary
-
-== Brokerage Sync Flow ==
-U -> UI : View Brokerage Portfolio
-UI -> Auth : GET /api/brokerage + X-API-Key
-Auth -> API : Authenticated
-API -> EXT : Schwab/SnapTrade API
-EXT -> API : Positions & transactions
-API -> DB : Upsert holdings & history
-API -> UI : Unified portfolio data
-UI -> U : Display multi-broker portfolio
-
-== Transaction Location Geocoding ==
-U -> UI : View transaction map
-UI -> API : GET /api/transactions/locations
-API -> DB : Check location cache
-alt Location not cached
-  API -> EXT : OpenStreetMap Nominatim
-  EXT -> API : Coordinates
-  API -> DB : Cache geocoded location
-end
-API -> UI : Location data
-UI -> U : Display on Leaflet map
-
-== Mobile App Data Flow ==
-U -> UI : Open mobile app (<768px)
-UI -> UI : Detect mobile viewport
-UI -> Auth : GET /api/mobile/home_dashboard + X-API-Key
-Auth -> API : Authenticated
-API -> DB : Query materialized views (pre-aggregated)
-DB -> API : Instant response (<10ms)
-API -> UI : Net worth, cash, credit data
-UI -> U : Display stat cards with change arrows
-note right: Mobile endpoints use\npre-aggregated data for\ninstant page loads
+note bottom of Sync
+  <size:10><color:#6b6154>One-off flows share this pipeline:</color>
+  · New institution via Plaid Link
+  · CSV import of broker history
+  · Manual sync on demand</size>
+end note
 
 @enduml
 ```
