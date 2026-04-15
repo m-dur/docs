@@ -153,355 +153,79 @@ Containerized and self-hosted. Public access is mediated by a tunnel and an iden
 ## Key Features
 
 ### Mobile Experience
-- **Apple Stocks-Inspired Design**: Dark theme mobile app with green/red accent colors
-- **9-Tab Navigation**: Home, Activity, Cash Flow, Invest, Accounts, Brokerage, Income, Payments, Subscriptions with bottom navigation
-- **Home Dashboard**: Net Worth, Cash Available, Credit Used stat cards with daily change arrows
-- **Activity Tab**: Transactions and subscriptions with inline expand, swipe-to-categorize, long-press actions
-- **Cash Flow Tab**: Trend line chart with pill time selectors (1W, 1M, 3M, 1Y, YTD)
-- **Invest Tab**: Simplified portfolio view with total value and holdings list
-- **Accounts Tab**: Expandable accordion groups by account type with totals
-- **Brokerage Tab**: Multi-broker portfolio view with performance charts and holdings across Schwab and SnapTrade
-- **Income Tab**: Income analytics with category breakdowns, stacked bar charts, and monthly trends
-- **Payments Tab**: Credit card payment tracking with account color-coding and payment history
-- **Subscriptions Tab**: Recurring subscription overview with cost breakdowns and icon support
-- **Touch Gestures**: Pull-to-refresh, swipe actions, long-press context menus
-- **Mobile-Optimized APIs**: Pre-aggregated endpoints for instant page loads
-- **Progressive Web App (PWA)**: Installable app with service worker for offline capability and native-like experience
+
+Installable progressive web app with a tab-based bottom navigation, designed for quick daily check-ins rather than deep analysis. Each tab consumes pre-aggregated endpoints so page loads feel instant. Gesture support (pull-to-refresh, swipe, long-press) is layered on where it matters without replacing tap targets.
+
+Tabs cover: home summary, activity, cash flow, investments, accounts, brokerage, income, payments, subscriptions, and net worth.
 
 ### Financial Data Management
-- **Multi-Institution Support**: Connect and sync data from multiple banks and financial institutions
-- **Real-time Transaction Syncing**: Automated transaction categorization and tracking
-- **Transaction Location Mapping**: Geocoded transaction locations with interactive map visualization
-- **Investment Portfolio Tracking**: Stock holdings, performance metrics, and capital gains calculations
-- **Net Worth Monitoring**: Historical net worth tracking with asset allocation analysis and transfer in-transit handling
-- **Cash Flow Analysis**: Income and expense tracking with transfer filtering and flexible date range presets
-- **Monthly Cash Flow Impact**: Comprehensive monthly analysis of income, expenses, and investment gains
-- **Historical Balance Tracking**: Bridged data system combining historical records with real-time API data for complete balance history
-- **Statement Import**: Import and reconcile historical financial statements for extended data coverage
-- **Reimbursement Tracking**: Link incoming Venmo, PayPal, and Zelle payments to original expenses with split support
+
+- Aggregates transactions and balances across multiple banks and credit cards
+- Auto-categorizes using user-defined rules, with per-transaction overrides
+- Builds a continuous net-worth history by bridging statement-era records with live API data
+- Links peer-to-peer payments (splits and reimbursements) back to the original expenses
+- Surfaces transaction locations on a map when geocoded data is available
 
 ### Investment Management
-- **Portfolio Dashboard**: Real-time portfolio valuation with performance metrics
-- **Stock Trading**: Buy/sell functionality with FIFO tax lot tracking
-- **Stock Split Handling**: Automatic detection and adjustment of stock splits via Airflow DAG
-- **CSV Import**: Bulk import investment transactions from brokers
-- **Duplicate Detection**: Intelligent handling of duplicate transactions across imports
-- **Market Data**: Cached pricing with scheduled updates via Airflow DAGs
-- **Holdings Comparison**: Compare current holdings vs sold positions with "what if held" analysis
-- **Transfer Smoothing**: Intelligent smoothing of transfers in portfolio charts to prevent sudden jumps
-- **Multi-Broker Aggregation**: Unified portfolio view combining Plaid, Schwab, and SnapTrade brokerage data
-- **Plaid Investment Sync**: Direct investment holdings and transaction syncing via Plaid API
 
-### Data Pipeline & ETL
-- **Automated Syncing**: Scheduled data pulls via Airflow DAGs
-- **Stock Split Detection**: Automatic detection of recent splits with holdings/history adjustment
-- **Data Quality Checks**: Validation and consistency monitoring
-- **Transaction Processing**: Complex SQL transformations for financial analytics
-- **API Telemetry**: Comprehensive tracking of all API calls
-- **Raw Data Capture**: Serialization and storage of complete API payloads for debugging and analysis
-- **Materialized Views**: Pre-computed aggregations for significantly faster API responses (100x speedup)
-- **Brokerage Sync Pipeline**: Automated syncing of positions and transactions from connected brokerages
+- Portfolio dashboard with per-symbol performance, realized and unrealized gains
+- Lot-aware cost-basis tracking with FIFO defaults
+- Automatic handling of stock splits detected from market data
+- Multi-broker aggregation so a single position is visible across whichever providers hold it
+- Support for bulk CSV import when a provider's history needs to be seeded
 
-## Project Structure
+### Data Pipeline
 
-```
-├── app/                          # Flask backend application
-│   ├── app.py                   # Main Flask application
-│   ├── config.py                # Environment configuration
-│   ├── plaid_service.py         # Plaid API integration
-│   ├── database_info.sql        # Consolidated database schema
-│   ├── routes/                  # API endpoints
-│   │   ├── analytics.py         # Financial analytics & date range presets
-│   │   ├── api_routes.py        # Core API endpoints
-│   │   ├── investments.py       # Portfolio operations, realized gains, CSV import
-│   │   ├── net_worth_routes.py  # Net worth calculations
-│   │   ├── transactions.py      # Transaction management
-│   │   ├── reimbursements.py   # Reimbursement tracking & linking
-│   │   ├── schwab.py           # Schwab brokerage integration
-│   │   ├── snaptrade.py        # SnapTrade brokerage integration
-│   │   ├── plaid_investments.py # Plaid investment data
-│   │   └── mapping_rules.py    # Unified transaction mapping rules
-│   └── financial_data/          # Clean architecture data layer
-│       ├── db_operations/       # Database access layer
-│       ├── handlers/            # Business logic coordination
-│       ├── processors/          # Data transformation
-│       ├── services/            # Domain-specific services
-│       │   ├── schwab_service.py      # Schwab OAuth & API
-│       │   ├── snaptrade_service.py   # SnapTrade SDK integration
-│       │   └── plaid_investments_service.py  # Plaid investment sync
-│       └── utils/               # Shared utilities
-│
-├── frontend/                    # React frontend application
-│   ├── src/
-│   │   ├── main.jsx            # Application entry point
-│   │   ├── App.jsx             # Main app component with routing
-│   │   ├── components/         # Reusable UI components
-│   │   │   ├── common/         # Header, Sidebar, shared components
-│   │   │   ├── dashboard/      # Dashboard widgets
-│   │   │   ├── investments/    # Investment components
-│   │   │   ├── networth/       # Net worth visualizations
-│   │   │   └── mobile/         # Mobile-specific components
-│   │   │       ├── MobileApp.jsx          # Mobile app wrapper
-│   │   │       ├── MobileBottomNav.jsx    # 9-tab bottom navigation
-│   │   │       └── tabs/                  # Tab-specific views
-│   │   │           ├── HomeTab/           # Net worth, cash, credit cards
-│   │   │           ├── ActivityTab/       # Transactions, subscriptions
-│   │   │           ├── CashFlowTab/       # Income/expense charts
-│   │   │           ├── InvestTab/         # Portfolio summary
-│   │   │           ├── AccountsTab/       # Account balances
-│   │   │           ├── BrokerageTab/       # Multi-broker portfolio
-│   │   │           ├── IncomeTab/          # Income analytics
-│   │   │           ├── PaymentsTab/        # Payment tracking
-│   │   │           └── SubsTab/            # Subscription overview
-│   │   ├── hooks/              # Custom React hooks
-│   │   │   └── useIsMobile.js  # Mobile detection hook
-│   │   ├── pages/              # Route-level pages
-│   │   │   ├── IncomePageV2.jsx          # Income analytics dashboard
-│   │   │   ├── PaymentHistoryPageV2.jsx  # Payment history with charts
-│   │   │   ├── SubscriptionsPageV2.jsx   # Subscription management
-│   │   │   ├── SnapTradePage.jsx         # Brokerage portfolio view
-│   │   │   └── ReimbursementsPage.jsx    # Reimbursement tracking
-│   │   └── context/            # React context providers
-│   │       └── MobileNavContext.jsx  # Mobile tab state
-│   ├── vite.config.js          # Vite config with API proxy
-│   └── package.json            # Frontend dependencies
-│
-├── airflow/                    # Apache Airflow orchestration
-│   └── dags/                   # Data pipeline definitions
-│       ├── sync_pipeline.py          # Main sync + materialized view refresh
-│       ├── stock_price_tracker_dag.py # Stock price updates + split detection
-│       └── snapshot_pipeline.py      # Net worth snapshot calculations
-│
-├── scripts/                    # Utility scripts
-│   ├── refetch_split_adjusted_prices.py   # Refetch prices with split adjustment
-│   └── update_portfolio_history_prices.py # Update portfolio history from price data
-│
-├── docker-compose.yml          # Multi-service orchestration
-├── Dockerfile                  # Custom Airflow image
-├── Makefile                    # Build automation
-└── requirements.txt            # Python dependencies
-```
+- Orchestrator pulls each connected source on a schedule, retries transient failures, and writes idempotent upserts
+- Pre-aggregated views refresh at the end of each sync so reporting queries stay fast
+- An independent external check surfaces failures *in* the orchestrator itself
+- Chat-based alerts summarize each run and notify on operational issues
 
 ## Technical Implementation
 
-### Backend Architecture
+### Backend
 
-**Flask Application**:
-- Modular blueprint architecture with `/api/` prefix
-- RESTful API design with comprehensive error handling
-- Database connection pooling for performance
-- Plaid webhook support for real-time updates
+Python web framework serving a JSON API grouped by domain. Integration services wrap each external provider with credential management, pagination, retries, and normalization. A layered ETL path moves raw responses through processors (dedupe, categorize) into idempotent database writes.
 
-**Data Layer** (Clean Architecture):
-- **db_operations**: Low-level database access with prepared statements
-- **handlers**: Main orchestrator and per-institution refresh handlers
-- **processors**: Data transformation and validation
-- **services**: Domain-specific business rules (investments, net worth)
-- **utils**: Database connections and shared helpers
+### Frontend
 
-**Key Backend Patterns**:
-- Sequential institution processing with rate limiting
-- Materialized view refresh after every sync
-- Plaid Link update mode for re-authentication without data loss
-- FIFO stock sale processing for capital gains tracking
+React single-page app with client-side routing, server state managed by a query/caching library, and a clear desktop/mobile split. Mobile views consume dedicated endpoints tuned for small-screen consumption. Charts use a mix of rich and lightweight libraries depending on the complexity of the visualization.
 
-### Frontend Architecture
+### Database
 
-**React + Vite**:
-- Modern React 18 with functional components
-- TanStack Query for server state management
-- Vite dev server with HTTPS and API proxy
-- CSS Modules for component styling
-- Chart.js and Plotly.js for data visualization
-- Responsive design with dedicated mobile experience
+A relational store with domain-partitioned schemas. Canonical records for transactions, balances, positions, and daily snapshots. Pre-aggregated views handle the expensive reporting queries so user-facing endpoints can stay snappy.
 
-**Mobile Architecture**:
-- Viewport-based detection (768px breakpoint) automatically switches between desktop and mobile
-- Complete separation of mobile/desktop UX - desktop view unchanged
-- Mobile-specific context for tab state management
-- Touch gesture support (swipe, long-press, pull-to-refresh)
-- Mobile-optimized API endpoints for instant page loads
+### Data Pipeline
 
-**Pages** organized by domain:
+Scheduled pipelines run on an orchestrator with explicit task dependencies and trigger rules that favor availability over strict upstream success — stale-but-present beats gaps. Market data and broker sync tasks run in parallel where safe. Pre-aggregated views are refreshed at the tail of each run.
 
-| Category | Pages |
-|----------|-------|
-| **Financial** | Expenses, Transactions, Payment History, Subscriptions, Analysis, Reimbursements |
-| **Investment** | Investments, Net Worth, All Balances, SnapTrade/Brokerage |
-| **Admin/Dev** | SQL Editor, Database Schema, Model Explorer, Route Map, Institutions |
+## Key Capabilities in Detail
 
-**Key Components**:
-- `PortfolioChart`: Drag-to-select with gain/loss calculation, crosshair plugin
-- `TransactionImporter`: CSV parsing with duplicate detection (1% price tolerance)
-- `NetWorthChart`: Historical trends with asset allocation breakdown
-- `TransferDetectionBanner`: Pattern-based transfer identification
-- `RealizedGains`: Three-tab view (summary/detailed/by-symbol) with FIFO tracking
-- `InstitutionToggle`: Multi-broker institution selector for filtering portfolio views
-- `SplitReimbursementModal`: Split and link reimbursement payments to original expenses
+### Bulk Import
 
-### Database Design
+Provider-exported CSV files can be ingested directly. The importer handles duplicate detection with a small price tolerance, applies the same categorization rules as the live sync, and writes through the same idempotent path so there is no "import drift."
 
-**Transaction-Based Accounting**:
-- All cash balances calculated from transaction sums
-- No stored balances to prevent discrepancies
-- FIFO stock sale tracking for accurate tax reporting
+### Cash Flow
 
-**Data Stores** organized by domain:
+Transfers between a user's own accounts are filtered out of income and expense roll-ups to avoid double counting. Date-range presets (YTD, prior YTD, rolling 3/6/12-month windows, all time) drive consistent comparisons across pages.
 
-| Domain | Description |
-|--------|-------------|
-| **Plaid Integration** | Institution connections and encrypted credentials |
-| **Transactions** | Transaction records with categorization and mappings |
-| **Investments** | Portfolio holdings, sales history, price data, stock splits |
-| **Cash Management** | Cash transactions and account balances |
-| **Transfers** | Custom transfer patterns and detected transfers |
-| **Analytics** | Net worth snapshots (with in-transit tracking), account history, earnings |
+### Net Worth
 
-**Key Tables**:
-- `portfolio_holdings`: Individual stock lots with cost basis
-- `cash_transactions`: All cash movements with categorization
-- `stock_sales`: Capital gains tracking with tax implications
-- `stock_splits`: Stock split events for price/quantity normalization
-- `net_worth_snapshots`: Daily snapshots with in_transit_amount for transfers between accounts
+Daily snapshots back-fill from statement data where available and continue forward with live API data. In-transit amounts between a user's own accounts are tracked so mid-transfer snapshots don't show phantom dips.
 
-**Materialized Views** (for performance, refreshed via Airflow):
-- Pre-aggregated transaction data
-- Income aggregation with transfer filtering
-- Expense aggregation with transfer filtering
+## Operations
 
-**Calculated Views**:
+### Observability
 
-| Category | Purpose |
-|----------|---------|
-| **Accounts** | Account listings by type |
-| **Net Worth** | Current and historical net worth with breakdowns |
-| **Investments** | Portfolio value, performance, capital gains |
-| **Transactions** | Enhanced transaction views with mappings |
-| **Stock Splits** | Cumulative split factors for price adjustment |
+Each external API call is logged with timing so slow or failing providers can be identified. Data-quality checks catch obvious inconsistencies (missing fields, impossible values) before they propagate.
 
-### Data Pipeline Architecture
+### Conversational Interfaces
 
-**Apache Airflow DAGs**:
-- Plaid sync + materialized view refresh
-- Stock split detection with automatic holdings/history adjustment
-- Market data price updates with market hours detection
-- Daily price batch updates for all holdings
-- Net worth snapshot calculations
-
-**Stock Split Detection**:
-- Checks yfinance for splits in last 60 days for all portfolio symbols
-- Records new splits in `stock_splits` table
-- Automatically adjusts `portfolio_holdings` (quantity × ratio, price ÷ ratio)
-- Updates `portfolio_history` for dates before split
-- Pre-populated with known major splits (NFLX, GOOGL, AMZN, TSLA, AAPL, NVDA)
-
-**Performance Optimizations**:
-- Materialized views reduced query time from 400ms to <1ms
-- Database statistics materialized view provides 100x speedup (~720ms to ~7ms)
-- Cached market data (no API calls on page load)
-- Batch processing for efficiency
-- Incremental data loading
-- Connection pooling
-
-## Key Features in Detail
-
-### Investment CSV Import System
-
-The application supports sophisticated CSV import for investment transactions:
-
-**Supported Formats**:
-- Major brokerage statements
-- 401k/retirement account exports
-- Custom CSV formats (configurable)
-
-**Intelligent Processing**:
-- Duplicate detection with price tolerance (1% variance allowed)
-- Automatic cash flow calculation
-- FIFO stock sale processing
-- Capital gains tracking
-- Transaction categorization
-
-### Cash Flow Analysis
-
-**Accurate Tracking**:
-- Transfer transactions excluded to prevent double-counting
-- Income vs expense categorization
-- Monthly and yearly aggregations
-- Custom date range analysis with presets (YTD, Prior YTD, Past 3/6/12 Months, All Time)
-- 12-month rolling averages for expense comparisons
-
-### Net Worth Monitoring
-
-**Comprehensive Coverage**:
-- Bank accounts (checking, savings)
-- Investment portfolios
-- Credit card balances
-- Historical trending
-- Asset allocation breakdown
-- Transfer in-transit handling (money between accounts)
-
-## Monitoring & Observability
-
-### API Telemetry
-- All external API calls tracked with response times
-- Error rates and rate limits monitored
-- Request/response correlation for debugging
-
-### Data Quality
-- Automated validation checks
-- Consistency monitoring
-- Error detection and logging
-- Historical quality trends
-
-## Intelligent Assistants & Automation
-
-
-### Discord Finance Bot
-- **Natural Language Queries**: Ask financial questions in plain English
-- **Claude CLI Integration**: Uses Claude Code CLI for accurate SQL generation
-- **Chart Generation**: Matplotlib-powered charts for spending trends and portfolio visualization
-- **Secure**: Only responds to authorized Discord user ID
-
-### Telegram LLM Bot
-- **Hybrid Processing**: Claude CLI for SQL generation with Ollama fallback for local processing
-- **Financial Query Support**: Natural language queries for transactions, balances, investments
-- **Direct Formatting**: Results formatted directly without hallucination risk
-
-### Docker Error Monitor
-- **Real-time Log Monitoring**: Watches container logs for ERROR, CRITICAL, FATAL, EXCEPTION patterns
-- **Smart Error Parsing**: Extracts DAG name, task ID, and error message from Airflow errors
-- **Deduplication**: Groups repeated errors with cooldown to reduce notification spam
-- **Interactive Telegram Alerts**: Approve or Ignore buttons for proposed fixes
-- **Claude-Based Auto-Fixing**: Analyzes codebase and proposes code fixes for errors
-- **ShellFish Handoff**: Mobile debugging support with prompt handoff to Claude Code
-
+Chat-based assistants offer natural-language access to the data for quick questions. A separate error-monitoring assistant watches container logs and surfaces failures with actionable context.
 
 ## Security
 
-### Docker Containerization
-- **Isolated Containers**: Flask backend and React frontend run in separate Docker containers
-- **Port Binding Security**: Service ports bound to Tailscale IP only; database ports are no longer externally exposed (not accessible from WiFi network)
-- **Hot-Reload Development**: Volume mounts enable code changes without container rebuilds
-- **Health Checks**: Container health monitoring via `/api/health` endpoint
-- **Makefile Commands**: Simplified operations (`make plaid`, `make build-plaid`, `make logs-plaid`)
-
-### API Key Authentication
-- **All Routes Protected**: Every endpoint requires valid `X-API-Key` header except explicit whitelist
-- **Whitelist System**: Only public pages, health checks, webhooks, and static files bypass authentication
-- **Constant-Time Comparison**: Timing-attack resistant key validation using HMAC
-- **Centralized Middleware**: Flask `before_request` hook validates all incoming requests
-- **Frontend Integration**: Axios interceptor automatically adds API key to all requests
-- **Keychain Storage**: API keys stored securely in macOS Keychain (not in code or config files)
-
-### Token Encryption
-- **AES-256-GCM Encryption**: All sensitive tokens encrypted at rest
-- **macOS Keychain Integration**: Encryption keys stored securely in system Keychain
-- **Migration Support**: Scripts to encrypt existing plaintext tokens
-- **Verification Tools**: Encryption verification without exposing sensitive data
-
-### Access Control
-- **VPN-Based Access**: Remote access via Tailscale for secure mobile connectivity
-- **No Public Endpoints**: Application only accessible on local network or VPN
-- **Credential Protection**: Schema explorer hides sensitive database fields
-- **Network Isolation**: WiFi users cannot access the application (Tailscale-only remote access)
-
+- Containerized services with private-network binding; public access is mediated by a tunnel and an identity provider rather than direct port exposure
+- OIDC authentication with bearer tokens; no shared static keys in production
+- Provider credentials encrypted at rest; encryption keys held outside the application
+- Remote access layered behind a VPN overlay so the ingress surface stays minimal
