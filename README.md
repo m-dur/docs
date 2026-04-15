@@ -20,16 +20,20 @@ This application is built as a modern full-stack solution with enterprise-grade 
 ```plantuml
 @startuml
 !theme plain
+
 skinparam backgroundColor #faf7f1
 skinparam defaultFontName "IBM Plex Sans, Helvetica, Arial"
-skinparam defaultFontSize 13
+skinparam defaultFontSize 12
 skinparam shadowing false
+skinparam roundCorner 10
 skinparam padding 6
-skinparam roundCorner 8
 skinparam linetype ortho
-skinparam arrowThickness 1.2
-skinparam arrowColor #6b6154
-skinparam arrowFontColor #6b6154
+skinparam nodesep 50
+skinparam ranksep 55
+
+skinparam arrowThickness 1.1
+skinparam arrowColor #8a7f70
+skinparam arrowFontColor #8a7f70
 skinparam arrowFontSize 10
 
 skinparam rectangle {
@@ -37,17 +41,15 @@ skinparam rectangle {
   BorderThickness 1.2
   BackgroundColor #ffffff
   FontColor #2a2420
-  RoundCorner 8
 }
 
 skinparam package {
   BorderColor #b8552e
-  BorderThickness 1.5
+  BorderThickness 1.4
   BackgroundColor #fbf8f1
   FontColor #b8552e
   FontStyle italic
   FontSize 11
-  RoundCorner 12
 }
 
 skinparam database {
@@ -62,47 +64,49 @@ skinparam cloud {
   FontColor #7a6830
 }
 
-title <size:18><color:#2a2420><b>Financial Data Fetcher</b></color></size>\n<size:11><color:#6b6154>System Architecture</color></size>
+title <b>Financial Data Fetcher</b>\nSystem Architecture
 
-package "Clients" as Clients {
-  rectangle "Web & Mobile\n<size:10><color:#857964>PWA · offline-capable</color></size>" as Web
+' ── Top row: clients + assistants ──
+package "Clients" as ClientPkg {
+  rectangle "Web &\nMobile PWA" as Web
 }
 
-package "Application" as App {
-  rectangle "Frontend\n<size:10><color:#857964>React · Vite · charts</color></size>" as FE
-  rectangle "API\n<size:10><color:#857964>Flask · blueprints</color></size>" as API
+package "Assistants" as AssistPkg {
+  rectangle "Discord · Telegram\nbots & alerts" as Bots
+}
+
+' ── Middle row: application + orchestration ──
+package "Application" as AppPkg {
+  rectangle "Frontend\nReact · Vite" as FE
+  rectangle "Flask API\nblueprints · auth" as API
   FE -down-> API
 }
 
-package "Orchestration" as Orch {
-  rectangle "Airflow\n<size:10><color:#857964>sync · snapshots · prices</color></size>" as Airflow
+package "Orchestration" as OrchPkg {
+  rectangle "Airflow\nsync · prices\nsnapshots" as Airflow
 }
 
-package "Integrations" as Integ {
-  cloud "Plaid\n<size:10>banks & cards</size>" as Plaid
-  cloud "Schwab\n<size:10>brokerage</size>" as Schwab
-  cloud "SnapTrade\n<size:10>multi-broker</size>" as SnapTrade
-  cloud "Market Data" as Market
+' ── Bottom row: data + integrations ──
+database "PostgreSQL" as DB
+
+package "Integrations" as IntegPkg {
+  cloud "Plaid" as Plaid
+  cloud "Schwab" as Schwab
+  cloud "SnapTrade" as SnapTrade
+  cloud "Market\nData" as Market
 }
 
-package "Data" as Data {
-  database "PostgreSQL\n<size:10><color:#857964>transactions · holdings</color>\n<color:#857964>balances · analytics</color></size>" as DB
-}
-
-package "Assistants" as Assist {
-  rectangle "Discord · Telegram\n<size:10><color:#857964>alerts · NL queries</color></size>" as Bots
-}
-
-Web -right-> FE : HTTPS
+' ── Connections (simple, minimal crossings) ──
+Web -down-> FE : HTTPS
+API -down-> DB : query / write
+Airflow -down-> DB : batch writes
+Airflow -left-> API : trigger sync
 API -right-> Plaid
 API -right-> Schwab
 API -right-> SnapTrade
-Airflow -down-> API : triggers
-Airflow -left-> Market : prices
-API -down-> DB
-Airflow -down-> DB : batch writes
-Bots -up-> DB : read-only
-Bots -right-> API : notifications
+Airflow -right-> Market : prices
+Bots -down-> DB : read
+Bots -down-> API : notify
 
 @enduml
 ```
@@ -112,15 +116,19 @@ Bots -right-> API : notifications
 ```plantuml
 @startuml
 !theme plain
+
 skinparam backgroundColor #faf7f1
 skinparam defaultFontName "IBM Plex Sans, Helvetica, Arial"
 skinparam defaultFontSize 13
 skinparam shadowing false
 skinparam roundCorner 8
 skinparam linetype ortho
+skinparam nodesep 60
+skinparam ranksep 50
+
 skinparam arrowThickness 1.2
-skinparam arrowColor #6b6154
-skinparam arrowFontColor #6b6154
+skinparam arrowColor #8a7f70
+skinparam arrowFontColor #8a7f70
 skinparam arrowFontSize 10
 
 skinparam rectangle {
@@ -128,14 +136,6 @@ skinparam rectangle {
   BorderThickness 1.2
   BackgroundColor #ffffff
   FontColor #2a2420
-  RoundCorner 8
-  Padding 8
-}
-
-skinparam cloud {
-  BorderColor #c19a3d
-  BackgroundColor #fbf8f1
-  FontColor #7a6830
 }
 
 skinparam database {
@@ -144,29 +144,48 @@ skinparam database {
   FontColor #2a2420
 }
 
-title <size:18><color:#2a2420><b>Data Flow</b></color></size>\n<size:11><color:#6b6154>From source to user, and the scheduled pipeline that keeps it fresh</color></size>
+skinparam cloud {
+  BorderColor #c19a3d
+  BackgroundColor #fbf8f1
+  FontColor #7a6830
+}
 
-cloud "Banks & Brokerages" as Sources
-rectangle "Scheduled Sync\n<size:10><color:#857964>Airflow · every 3h + daily</color></size>" as Sync
-database "PostgreSQL\n<size:10><color:#857964>transactions · holdings\nbalances · snapshots</color></size>" as DB
-rectangle "API\n<size:10><color:#857964>Flask · materialized views</color></size>" as API
-rectangle "Web & Mobile\n<size:10><color:#857964>React · PWA</color></size>" as UI
-actor "User" as User
-rectangle "Notifications\n<size:10><color:#857964>Telegram · Discord</color></size>" as Notif
+skinparam actor {
+  BorderColor #2c5e3f
+  FontColor #2a2420
+}
 
-Sources -right-> Sync : <size:10>transactions\nprices\nholdings</size>
-Sync -right-> DB : <size:10>upsert</size>
-Sync -down-> Notif : <size:10>summary</size>
-DB -right-> API : <size:10>fresh data</size>
-API -right-> UI : <size:10>JSON</size>
-UI -right-> User
-Notif -right-> User : <size:10>push</size>
+skinparam note {
+  BorderColor #d9d1bf
+  BackgroundColor #fbf8f1
+  FontColor #6b6154
+  FontSize 11
+}
+
+title <b>Data Flow</b>\nFrom source to user, and the scheduled pipeline that keeps it fresh
+
+cloud "Banks &\nBrokerages" as Sources
+rectangle "Scheduled Sync\nAirflow · every 3h" as Sync
+database "PostgreSQL\ntransactions · holdings\nbalances · snapshots" as DB
+rectangle "Flask API\nmaterialized views" as API
+rectangle "Web & Mobile\nReact · PWA" as UI
+actor "User" as U
+rectangle "Notifications\nTelegram · Discord" as Notif
+
+Sources -right-> Sync : raw data
+Sync -right-> DB : upsert
+DB -right-> API : fresh data
+API -right-> UI : JSON
+UI -right-> U
+
+Sync -down-> Notif : summary
+Notif -down-> U : push
 
 note bottom of Sync
-  <size:10><color:#6b6154>One-off flows share this pipeline:</color>
+  One-off flows share this pipeline:
   · New institution via Plaid Link
   · CSV import of broker history
-  · Manual sync on demand</size>
+  · Manual sync on demand
 end note
 
 @enduml
