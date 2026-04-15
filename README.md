@@ -57,6 +57,22 @@ flowchart LR
     app --> ext
     clients --> AUTH --> app
     data -. read-only .-> notify
+
+    classDef extCls  fill:#f7d9c7,stroke:#b8552e,color:#7a3818,stroke-width:1.3px
+    classDef orchCls fill:#f5ead2,stroke:#c19a3d,color:#7a6830,stroke-width:1.3px
+    classDef appCls  fill:#dae8dd,stroke:#2c5e3f,color:#1a3d28,stroke-width:1.3px
+    classDef dataCls fill:#d5dfeb,stroke:#2d4a6b,color:#1a2838,stroke-width:1.3px
+    classDef cliCls  fill:#ebd8e1,stroke:#a8527a,color:#5a2a42,stroke-width:1.3px
+    classDef notifCls fill:#f5e3ca,stroke:#b87d2b,color:#6a441a,stroke-width:1.3px
+    classDef authCls fill:#e1dbe8,stroke:#6b5b7e,color:#3a2d48,stroke-width:1.3px
+
+    class BANK,BROK,MKT extCls
+    class DAGS orchCls
+    class API,SVC appCls
+    class DB dataCls
+    class WEB,MOB cliCls
+    class ALERT notifCls
+    class AUTH authCls
 ```
 
 ### Data Flow Architecture
@@ -72,6 +88,16 @@ flowchart LR
     NOTIF["summary alert"]
 
     CHK --> TOK --> SYNC --> PROC --> SNAP --> NOTIF
+
+    classDef setupCls   fill:#e6e1d4,stroke:#6b6154,color:#3a342b,stroke-width:1.3px
+    classDef processCls fill:#dae8dd,stroke:#2c5e3f,color:#1a3d28,stroke-width:1.3px
+    classDef storeCls   fill:#d5dfeb,stroke:#2d4a6b,color:#1a2838,stroke-width:1.3px
+    classDef notifCls   fill:#f5e3ca,stroke:#b87d2b,color:#6a441a,stroke-width:1.3px
+
+    class CHK,TOK setupCls
+    class SYNC,PROC processCls
+    class SNAP storeCls
+    class NOTIF notifCls
 ```
 
 #### Portfolio &amp; Pricing Sync
@@ -90,6 +116,19 @@ flowchart LR
     NOTIF["net-worth delta alert"]
 
     CHK --> SYM --> PAR --> SNAP --> TOKEN --> NOTIF
+
+    classDef setupCls   fill:#e6e1d4,stroke:#6b6154,color:#3a342b,stroke-width:1.3px
+    classDef extCls     fill:#f7d9c7,stroke:#b8552e,color:#7a3818,stroke-width:1.3px
+    classDef processCls fill:#dae8dd,stroke:#2c5e3f,color:#1a3d28,stroke-width:1.3px
+    classDef storeCls   fill:#d5dfeb,stroke:#2d4a6b,color:#1a2838,stroke-width:1.3px
+    classDef securityCls fill:#e1dbe8,stroke:#6b5b7e,color:#3a2d48,stroke-width:1.3px
+    classDef notifCls   fill:#f5e3ca,stroke:#b87d2b,color:#6a441a,stroke-width:1.3px
+
+    class CHK,SYM setupCls
+    class PRICES,BROKER,RET extCls
+    class SNAP storeCls
+    class TOKEN securityCls
+    class NOTIF notifCls
 ```
 
 #### Operational Liveness
@@ -97,9 +136,22 @@ flowchart LR
 flowchart LR
     CRON["independent host check<br/>every 30 min"]
     CHECK{"snapshot fresh?<br/>scheduler healthy?"}
+    OK["silent"]
+    ALERT["push alert"]
+
     CRON --> CHECK
-    CHECK -- yes --> OK["silent"]
-    CHECK -- no --> ALERT["push alert"]
+    CHECK -- yes --> OK
+    CHECK -- no --> ALERT
+
+    classDef setupCls  fill:#e6e1d4,stroke:#6b6154,color:#3a342b,stroke-width:1.3px
+    classDef decideCls fill:#f5ead2,stroke:#c19a3d,color:#7a6830,stroke-width:1.3px
+    classDef okCls     fill:#dae8dd,stroke:#2c5e3f,color:#1a3d28,stroke-width:1.3px
+    classDef alertCls  fill:#f2d4cf,stroke:#9a3b2b,color:#5a1e14,stroke-width:1.3px
+
+    class CRON setupCls
+    class CHECK decideCls
+    class OK okCls
+    class ALERT alertCls
 ```
 
 
