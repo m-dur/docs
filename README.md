@@ -19,47 +19,36 @@ This application is built as a modern full-stack solution with enterprise-grade 
 
 ```mermaid
 flowchart LR
-    subgraph ext["External"]
-        direction TB
-        PL["Plaid"]
-        SC["Schwab"]
-        ST["SnapTrade<br/>test + prod"]
-        YF["Yahoo Finance<br/>prices"]
+    subgraph ext["External Sources"]
+        BANK["Banking APIs<br/>transactions · balances"]
+        BROK["Brokerage APIs<br/>holdings · activities"]
+        MKT["Market Data<br/>prices · earnings"]
     end
 
     subgraph orch["Orchestration"]
-        direction TB
-        DAG1["financial_data_pipeline<br/>every 3h · 7 institutions"]
-        DAG2["stock_price_tracker<br/>Mon-Fri 1:01 PM PT"]
+        DAGS["Scheduled Pipelines<br/>sync · snapshots · prices"]
     end
 
     subgraph app["Application"]
-        direction TB
-        API["Flask API<br/>23 blueprints"]
-        SVC["Services<br/>plaid · schwab · snaptrade<br/>ETL handlers"]
+        API["REST API<br/>grouped by domain"]
+        SVC["Integration Services<br/>auth · ETL · notifications"]
         API --- SVC
     end
 
-    subgraph data["Data"]
-        direction TB
-        DB[("PostgreSQL<br/>public · schwab · snaptrade<br/>16 materialized views")]
+    subgraph data["Data Store"]
+        DB[("Relational Database<br/>transactions · positions<br/>daily snapshots<br/>pre-aggregated views")]
     end
 
     subgraph clients["Clients"]
-        direction TB
-        WEB["Web<br/>React · TanStack Query"]
-        MOB["Mobile PWA<br/>10 tabs · /api/mobile/*"]
+        WEB["Web Dashboard"]
+        MOB["Mobile PWA<br/>optimized endpoints"]
     end
 
     subgraph notify["Notifications"]
-        direction TB
-        TG["Telegram"]
-        DC["Discord"]
+        ALERT["Chat-based Alerts"]
     end
 
-    subgraph sec["Auth"]
-        AUTH["Authentik OIDC<br/>Bearer tokens"]
-    end
+    AUTH["OIDC Auth"]
 
     ext -. raw data .-> orch
     orch -->|upsert| data
@@ -67,123 +56,97 @@ flowchart LR
     app --> data
     app --> ext
     clients --> AUTH --> app
-    data -. read .-> TG
-    data -. read .-> DC
-    orch -. refresh MVs .-> data
+    data -. read-only .-> notify
 ```
 
 ### Data Flow Architecture
 
+#### Banking Sync
 ```mermaid
 flowchart LR
-    subgraph fd["financial_data_pipeline · every 3h"]
-        direction TB
-        CHK1["check connectivity"]
-        GT["get_institution_tokens<br/>decrypt access tokens"]
-        subgraph par["7 institutions in parallel"]
-            direction TB
-            CITI["Citi"]
-            BECU["BECU"]
-            AMZN["Amazon"]
-            TJX["TJX"]
-            BOFA["BoA"]
-            AMEX["Amex"]
-            CAP1["Capital One"]
-        end
-        NW1["create net_worth_v2 snapshot"]
-        N1["Telegram · Discord summary"]
-        CHK1 --> GT --> par --> NW1 --> N1
-    end
+    CHK["connectivity check"]
+    TOK["decrypt stored credentials"]
+    SYNC["sync each connected institution<br/>in parallel"]
+    PROC["categorize &amp; dedupe<br/>new transactions"]
+    SNAP["write daily snapshot"]
+    NOTIF["summary alert"]
 
-    subgraph sp["stock_price_tracker · Mon-Fri 1:01 PM PT"]
-        direction TB
-        CHK2["check connectivity"]
-        SYM["get symbols from holdings"]
-        PRICES["fetch yfinance prices"]
-        SNAP["SnapTrade prod Fidelity sync<br/>accounts · balances · holdings · activities"]
-        SCH["Schwab sync"]
-        NW2["update NW v2 with investments"]
-        TOKEN["Schwab token expiry check"]
-        N2["Telegram net worth update"]
-        CHK2 --> SYM --> PRICES --> SCH
-        CHK2 --> SNAP
-        SCH --> NW2
-        SNAP --> NW2
-        NW2 --> TOKEN --> N2
-    end
+    CHK --> TOK --> SYNC --> PROC --> SNAP --> NOTIF
+```
 
-    subgraph host["Host-level"]
+#### Portfolio &amp; Pricing Sync
+```mermaid
+flowchart LR
+    CHK["connectivity check"]
+    SYM["gather held symbols"]
+    subgraph PAR["in parallel"]
         direction TB
-        CRON["check_dag_liveness.sh<br/>every 30 min"]
-        CRON -. alert if stale .-> N2
+        PRICES["market prices &amp; earnings"]
+        BROKER["brokerage sync<br/>positions · activities"]
+        RET["retirement account sync<br/>contributions · balances"]
     end
+    SNAP["roll into daily snapshot"]
+    TOKEN["check broker auth health"]
+    NOTIF["net-worth delta alert"]
+
+    CHK --> SYM --> PAR --> SNAP --> TOKEN --> NOTIF
+```
+
+#### Operational Liveness
+```mermaid
+flowchart LR
+    CRON["independent host check<br/>every 30 min"]
+    CHECK{"snapshot fresh?<br/>scheduler healthy?"}
+    CRON --> CHECK
+    CHECK -- yes --> OK["silent"]
+    CHECK -- no --> ALERT["push alert"]
 ```
 
 
 
 ## Component Catalog
 
-Grounded in code, not aspiration. Names link to real modules.
+A conceptual map of the moving parts. Specifics intentionally left to the code.
 
-### Backend (Flask)
+### Backend
 
-| Area | Blueprint | Prefix | Primary tables |
-|---|---|---|---|
-| Brokerage | `schwab.py` | `/api/schwab` | `schwab.accounts/holdings/transactions/balances` |
-| Brokerage | `snaptrade.py` | `/api/snaptrade` | `snaptrade.accounts/holdings/activities/portfolio_equity` |
-| Banking | `transactions.py` | `/transactions` | `transactions`, `accounts`, `institutions` |
-| Investments | `investments.py` | `/investments` | `portfolio_holdings`, `stock_price_history` |
-| Analytics | `analytics.py` | `/analytics` | `transactions`, `categories`, `mapping_rules` |
-| Net Worth | `net_worth_v2_routes.py` | `/api/net-worth-v2` | `net_worth_v2` |
-| Bank history | `bank_balance_history.py` | `/api/bank_balance_history` | `account_history` |
-| Reimbursements | `reimbursements.py` | `/reimbursements` | `reimbursements`, `transactions` |
-| Plaid Link | `misc.py` | `/` (root) | `access_tokens`, `items`, `institutions` |
-| Airflow ops | `airflow_routes.py` | `/api/airflow` | Airflow REST |
+| Layer | Responsibility |
+|---|---|
+| API blueprints | Grouped by domain — banking, brokerage, transactions, investments, analytics, net worth, categorization rules, reimbursements, admin |
+| Integration services | Wrap each external provider with token management, pagination, retries, and idempotent upserts |
+| ETL handlers | Normalize raw provider responses into canonical records; dedupe; apply user-defined categorization rules |
+| Auth | OIDC with a self-hosted identity provider; bearer tokens injected automatically on every request |
 
-Plus 13 more blueprints for categories, payment mappings, SQL editor, schema discovery, and dev utilities.
+### Orchestration
 
-### Services
+Two scheduled pipelines handle the bulk of data movement:
 
-| Service | Wraps | Key operations |
-|---|---|---|
-| `plaid_service` | Plaid API | OAuth, `transactions/sync`, investments |
-| `schwab_service` | Schwab Trader API | OAuth refresh, accounts, holdings, transactions, balances |
-| `snaptrade_service` | SnapTrade (test client) | connections, activities, equity |
-| `snaptrade_prod_service` | SnapTrade (prod client) | Fidelity: accounts, balances, holdings, activities, cost-basis derivation |
-| `InvestmentsService` | yfinance | price history, earnings |
+- **Banking pipeline** — runs several times daily, pulls transactions and balances from connected banks and credit cards, writes a daily snapshot, pushes a summary alert.
+- **Portfolio pipeline** — runs once per weekday after market close, refreshes market prices, syncs brokerage and retirement accounts, updates the investment section of the daily snapshot, pushes a net-worth-delta alert.
 
-ETL layer: `FinancialDataHandler` → `SingleInstitutionHandler` → processors (`AccountsProcessor`, `TransactionsProcessor`, `InstitutionsProcessor`) → DB ops (idempotent upserts).
+A third, host-level liveness check runs independently of the orchestrator so it can surface failures *in* the orchestrator.
 
-### Airflow DAGs
+### Data
 
-| DAG | Schedule | Purpose | Key writes |
-|---|---|---|---|
-| `financial_data_pipeline` | 7 AM / 12 PM / 5 PM / 10 PM PST | Sync 7 institutions via Plaid, refresh materialized views, push summary | `transactions`, `account_history`, `net_worth_v2` |
-| `stock_price_tracker` | Mon-Fri 1:01 PM PT | Fetch prices, sync Schwab + SnapTrade prod Fidelity, update NW investment section | `stock_price_history`, `schwab.*`, `snaptrade.*`, `net_worth_v2` |
+A single relational database organized into a few logical areas:
 
-### Data Layer
+- Canonical transactions and balances from banks
+- Per-broker positions and activities
+- Daily net-worth snapshots going back years
+- Pre-aggregated views for heavy reporting queries
 
-Three Postgres schemas on a single instance:
+### Clients
 
-- **`public`** · 56 tables — core Plaid data (`transactions`, `account_history`, `institutions`, `access_tokens`), net worth (`net_worth_v2`, `net_worth_snapshots`), investments (`portfolio_holdings`, `stock_price_history`), reimbursements, categorization rules
-- **`schwab`** · 7 tables — accounts, balances, holdings, transactions, orders, `oauth_tokens`, `sync_state`
-- **`snaptrade`** · 13 tables — accounts, holdings, activities, portfolio_equity, orders, connections, option_holdings, `prod_users`, sync_state
+- **Web dashboard** — multi-page desktop app with deep analytics, transaction management, and portfolio views
+- **Mobile PWA** — tab-based navigation over endpoints pre-shaped for mobile consumption; installable to a phone home screen
 
-16 materialized views accelerate common queries (monthly cash flow, expense summaries, daily net worth history). Refreshed at the end of each sync run.
+### Notifications
 
-### Frontend
-
-- **Auth**: Authentik OIDC via `oidc-client-ts`; bearer tokens auto-injected by Axios interceptor
-- **State**: TanStack Query (no Redux) with Context providers for sidebar + mobile nav
-- **Desktop**: 18 pages (Transactions, Expenses, Investments, Net Worth v2, Brokerage, Reimbursements, etc.)
-- **Mobile PWA**: 10-tab bottom navigation with dedicated `/api/mobile/*` pre-aggregated endpoints for instant loads
+Daily activity summaries and net-worth updates are pushed through chat-based channels. Operational alerts (token expiring, pipeline stale, scheduler down) use the same channels so everything lands in one place.
 
 ### Infrastructure
 
-- **Containers** (plaid-app compose): `plaid_backend` (Flask), `plaid_frontend` (Vite), `airflow_scheduler`, `airflow_webserver`, `airflow_postgres`, `docker-monitor`
-- **Remote access**: Cloudflare Tunnel to `miguelduran.me` + Tailscale overlay network
-- **Host-level cron**: `check_dag_liveness.sh` every 30 min, alerts via Telegram if Airflow itself is down
-- **Public static**: `portfoliopulse.pages.dev` (Cloudflare Pages) for brokerage-partner-facing landing
+Containerized and self-hosted. Public access is mediated by a tunnel and an identity provider rather than direct port exposure. A lightweight static site handles any vendor-approval flow without involving the real application.
 
 ---
 
