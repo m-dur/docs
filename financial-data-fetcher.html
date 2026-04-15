@@ -57,7 +57,7 @@
             backdrop-filter: blur(8px);
         }
         .header-content {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -98,14 +98,15 @@
         }
 
         /* Layout */
-        .layout { display: flex; max-width: 1400px; margin: 0 auto; }
+        .layout { display: flex; max-width: 1600px; margin: 0 auto; }
         .sidebar {
-            width: 280px;
+            width: 240px;
+            flex-shrink: 0;
             position: sticky;
             top: 74px;
             height: calc(100vh - 74px);
             overflow-y: auto;
-            padding: 2rem 1rem 2rem 2rem;
+            padding: 2rem 0.75rem 2rem 1.25rem;
             border-right: 1px solid var(--rule);
         }
         .sidebar::-webkit-scrollbar { width: 6px; }
@@ -146,9 +147,9 @@
             min-height: calc(100vh - 74px);
         }
         .markdown-body {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 0 2.5rem;
+            max-width: none;
+            margin: 0;
+            padding: 0 3rem 0 1.5rem;
         }
         .markdown-body h1 {
             font-family: 'Fraunces', serif;
