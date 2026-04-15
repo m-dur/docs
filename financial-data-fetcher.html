@@ -368,6 +368,7 @@
 
     <!-- PlantUML support -->
     <script src="https://unpkg.com/plantuml-encoder@1.4.0/dist/plantuml-encoder.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
@@ -496,6 +497,58 @@
             });
         }
 
+        // Render Mermaid diagrams (custom warm-editorial theme)
+        function renderMermaid() {
+            if (typeof mermaid === 'undefined') return;
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: 'base',
+                themeVariables: {
+                    fontFamily: 'IBM Plex Sans, Helvetica, Arial, sans-serif',
+                    fontSize: '14px',
+                    primaryColor: '#ffffff',
+                    primaryBorderColor: '#2c5e3f',
+                    primaryTextColor: '#2a2420',
+                    lineColor: '#8a7f70',
+                    secondaryColor: '#fbf8f1',
+                    secondaryBorderColor: '#c19a3d',
+                    tertiaryColor: '#fbf8f1',
+                    tertiaryBorderColor: '#b8552e',
+                    edgeLabelBackground: '#faf7f1',
+                    clusterBkg: 'transparent',
+                    clusterBorder: '#d9d1bf',
+                    titleColor: '#2a2420',
+                },
+                flowchart: {
+                    curve: 'basis',
+                    padding: 20,
+                    nodeSpacing: 60,
+                    rankSpacing: 80,
+                    useMaxWidth: true,
+                    htmlLabels: true,
+                },
+            });
+            const blocks = document.querySelectorAll('code.language-mermaid');
+            blocks.forEach((codeBlock, idx) => {
+                const pre = codeBlock.parentElement;
+                const graph = codeBlock.textContent;
+                const container = document.createElement('div');
+                container.className = 'mermaid-diagram';
+                container.style.textAlign = 'center';
+                container.style.margin = '1.5rem 0';
+                const id = 'mermaid-' + idx + '-' + Date.now();
+                try {
+                    mermaid.render(id, graph).then(({ svg }) => {
+                        container.innerHTML = svg;
+                    });
+                } catch (err) {
+                    console.error('Mermaid render error', err);
+                    container.textContent = 'Diagram failed to render';
+                }
+                pre.parentNode.replaceChild(container, pre);
+            });
+        }
+
         // Render PlantUML diagrams
         function renderPlantUML() {
             const plantumlServer = 'https://www.plantuml.com/plantuml/svg/';
@@ -560,6 +613,7 @@
 
                 // Render PlantUML diagrams
                 renderPlantUML();
+                renderMermaid();
 
                 // Add copy buttons to code blocks
                 addCopyButtons();

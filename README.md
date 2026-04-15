@@ -17,138 +17,36 @@ This application is built as a modern full-stack solution with enterprise-grade 
 
 ### System Architecture Diagram
 
-```plantuml
-@startuml
-!theme plain
+```mermaid
+flowchart LR
+    S["<b>Data sources</b><br/>Plaid · Schwab<br/>SnapTrade"]
+    A["<b>Airflow</b><br/>scheduled sync<br/>every 3 hours"]
+    D[("<b>PostgreSQL</b><br/>transactions · holdings<br/>balances · snapshots")]
+    API["<b>Flask API</b><br/>blueprints · auth<br/>materialized views"]
+    U["<b>Web &amp; Mobile</b><br/>React · PWA"]
 
-skinparam backgroundColor #faf7f1
-skinparam defaultFontName "IBM Plex Sans, Helvetica, Arial"
-skinparam defaultFontSize 13
-skinparam shadowing false
-skinparam roundCorner 10
-skinparam padding 8
-skinparam nodesep 70
-skinparam ranksep 55
-
-skinparam arrowThickness 1.2
-skinparam arrowColor #8a7f70
-skinparam arrowFontColor #8a7f70
-skinparam arrowFontSize 10
-
-skinparam rectangle {
-  BorderColor #2c5e3f
-  BorderThickness 1.2
-  BackgroundColor #ffffff
-  FontColor #2a2420
-  FontSize 13
-}
-
-skinparam database {
-  BorderColor #2c5e3f
-  BackgroundColor #ffffff
-  FontColor #2a2420
-  FontSize 13
-}
-
-skinparam cloud {
-  BorderColor #c19a3d
-  BackgroundColor #fbf8f1
-  FontColor #7a6830
-  FontSize 12
-}
-
-skinparam actor {
-  BorderColor #2c5e3f
-  FontColor #2a2420
-}
-
-left to right direction
-
-title <b>System Architecture</b>
-
-cloud "Plaid\nSchwab\nSnapTrade" as Sources
-rectangle "Airflow\nscheduled sync" as Pipeline
-database "PostgreSQL" as DB
-rectangle "Flask API" as API
-rectangle "Web & Mobile\nReact · PWA" as Clients
-
-Sources -right-> Pipeline
-Pipeline -right-> DB
-DB -right-> API
-API -right-> Clients
-
-@enduml
+    S --> A --> D --> API --> U
 ```
 
 ### Data Flow Architecture
 
-```plantuml
-@startuml
-!theme plain
+```mermaid
+flowchart LR
+    S["Banks &amp;<br/>Brokerages"]
+    Sync["<b>Scheduled Sync</b><br/>Airflow · every 3h"]
+    DB[("PostgreSQL")]
+    API["<b>Flask API</b><br/>materialized views"]
+    UI["<b>Web &amp; Mobile</b><br/>React · PWA"]
+    U(("User"))
+    N["Telegram · Discord<br/>alerts"]
 
-skinparam backgroundColor #faf7f1
-skinparam defaultFontName "IBM Plex Sans, Helvetica, Arial"
-skinparam defaultFontSize 13
-skinparam shadowing false
-skinparam roundCorner 10
-skinparam padding 8
-skinparam nodesep 70
-skinparam ranksep 55
-
-skinparam arrowThickness 1.2
-skinparam arrowColor #8a7f70
-skinparam arrowFontColor #8a7f70
-skinparam arrowFontSize 10
-
-skinparam rectangle {
-  BorderColor #2c5e3f
-  BorderThickness 1.2
-  BackgroundColor #ffffff
-  FontColor #2a2420
-  FontSize 13
-}
-
-skinparam database {
-  BorderColor #2c5e3f
-  BackgroundColor #ffffff
-  FontColor #2a2420
-  FontSize 13
-}
-
-skinparam cloud {
-  BorderColor #c19a3d
-  BackgroundColor #fbf8f1
-  FontColor #7a6830
-  FontSize 12
-}
-
-skinparam actor {
-  BorderColor #2c5e3f
-  FontColor #2a2420
-}
-
-left to right direction
-
-title <b>Data Flow</b>
-
-cloud "Banks &\nBrokerages" as Sources
-rectangle "Scheduled Sync\nevery 3 hours" as Sync
-database "PostgreSQL" as DB
-rectangle "Flask API\nmaterialized views" as API
-rectangle "Web & Mobile" as UI
-actor User
-
-Sources -right-> Sync : raw data
-Sync -right-> DB : upsert
-DB -right-> API : fresh data
-API -right-> UI : JSON
-UI -right-> User
-
-rectangle "Telegram · Discord\nalerts" as Notif
-Sync .down.> Notif : summary
-Notif .right.> User : push
-
-@enduml
+    S -- raw data --> Sync
+    Sync -- upsert --> DB
+    DB -- fresh data --> API
+    API -- JSON --> UI
+    UI --> U
+    Sync -. summary .-> N
+    N -. push .-> U
 ```
 
 ## Key Features
