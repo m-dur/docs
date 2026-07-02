@@ -221,7 +221,7 @@ Tabs cover: home summary, activity, cash flow, investments, accounts, brokerage,
 ### Investment Management
 
 - Portfolio dashboard with per-symbol performance, realized and unrealized gains
-- Lot-aware cost-basis tracking with FIFO defaults
+- Lot-aware cost-basis tracking per symbol
 - Automatic handling of stock splits detected from market data
 - Multi-broker aggregation so a single position is visible across whichever providers hold it
 - Support for bulk CSV import when a provider's history needs to be seeded
@@ -269,11 +269,11 @@ Daily snapshots back-fill from statement data where available and continue forwa
 
 ### Observability
 
-Each external API call is logged with timing so slow or failing providers can be identified. Data-quality checks catch obvious inconsistencies (missing fields, impossible values) before they propagate.
+API route calls are logged with timing through a telemetry layer so slow paths can be identified. A host-level liveness probe checks pipeline freshness every 30 minutes from outside the orchestrator.
 
 ### Conversational Interfaces
 
-Chat-based assistants offer natural-language access to the data for quick questions. A separate error-monitoring assistant watches container logs and surfaces failures with actionable context.
+Prototype chat assistants (natural-language queries over the data) exist in the repo but are not part of the running deployment.
 
 ## Security
 
