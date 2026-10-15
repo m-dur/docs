@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<title>Not found</title>
+<script>
+// Demo pages are routes inside one app: send /docs/demo/<page> back to the app,
+// which restores the path (GitHub Pages only serves the site-root 404.html).
+(function () {
+  var base = '/docs/demo';
+  var p = location.pathname;
+  if (p.indexOf(base + '/') === 0 && p !== base + '/') {
+    location.replace(base + '/?route=' + encodeURIComponent(p.slice(base.length) + location.search + location.hash));
+  }
+})();
+</script>
+<style>
+  html,body{margin:0;background:#080a10;color:#efe8d6;font:16px/1.6 Georgia,serif}
+  main{max-width:520px;margin:18vh auto;padding:0 1.4rem;text-align:center}
+  h1{font-weight:300;font-size:2.2rem;margin:0 0 .4rem}
+  a{color:#d2a74d}
+</style>
+</head>
+<body>
+<main>
+  <h1>Not found</h1>
+  <p>That page doesn't exist. <a href="/docs/">Back to the portfolio</a></p>
+</main>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import{V as g,W as p,X as V,Y,Z as z,_ as f,$ as q,a0 as J,a1 as K,a2 as Z,a3 as Q,P as ee,B as re}from"./index-BX8tLFjp.js";/*!
+import{V as g,W as p,X as V,Y,Z as z,_ as f,$ as q,a0 as J,a1 as K,a2 as Z,a3 as Q,P as ee,B as re}from"./index-CK-4utzR.js";/*!
  * chartjs-plugin-datalabels v2.2.0
  * https://chartjs-plugin-datalabels.netlify.app
  * (c) 2017-2022 chartjs-plugin-datalabels contributors
