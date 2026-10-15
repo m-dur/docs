@@ -1,0 +1,5086 @@
+{
+"GET /api/account_history?type=credit": {
+"file": "1bf4d173b08e74c7.json",
+"status": 200
+},
+"GET /api/account_history_v2": {
+"file": "58fae468d8ecf6cf.json",
+"status": 200
+},
+"GET /api/account_history_v2?source=plaid&type=credit": {
+"file": "58fae468d8ecf6cf.json",
+"status": 200
+},
+"GET /api/account_types": {
+"file": "ef2c14cb56fb568a.json",
+"status": 200
+},
+"GET /api/balances": {
+"file": "ec61186852feb721.json",
+"status": 200
+},
+"GET /api/bank_balance_history_v2?days=3650&source=plaid": {
+"file": "903e8f73f349d60d.json",
+"status": 200
+},
+"GET /api/bank_balances": {
+"file": "117cc8299e15294e.json",
+"status": 200
+},
+"GET /api/bank_balances_v2": {
+"file": "b7d414a4fec75cff.json",
+"status": 200
+},
+"GET /api/bank_balances_v2?source=plaid": {
+"file": "b7d414a4fec75cff.json",
+"status": 200
+},
+"GET /api/cash_flow": {
+"file": "47cff998069de82d.json",
+"status": 200
+},
+"GET /api/cash_flow/details": {
+"file": "fe6dfaa8bef91390.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2016-12-31&start_date=2016-01-01": {
+"file": "9d6f3183761241e0.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2017-12-31&start_date=2017-01-01": {
+"file": "0e51d6e19834409c.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2018-12-31&start_date=2018-01-01": {
+"file": "ed26efc7a512bc77.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2019-12-31&start_date=2019-01-01": {
+"file": "bc129e03bbb9afd5.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2020-12-31&start_date=2020-01-01": {
+"file": "e6a723389943a786.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2021-12-31&start_date=2021-01-01": {
+"file": "2f2ca9922951edd4.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2022-12-31&start_date=2022-01-01": {
+"file": "ed3ba22932fd034d.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2023-12-31&start_date=2023-01-01": {
+"file": "40bd3c21d78cbbf0.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2024-12-31&start_date=2024-01-01": {
+"file": "7c2bff7855c25e0d.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2025-12-31&start_date=2025-01-01": {
+"file": "08efc9f434c776fa.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2019-10-14": {
+"file": "e335785f0c081d50.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2020-10-14": {
+"file": "4dd01efd565019a9.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2021-10-14": {
+"file": "31d6ccf93d665442.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2022-10-14": {
+"file": "fdbc9e093b9d94fd.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2023-10-14": {
+"file": "b527463cf8c68e73.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2024-10-14": {
+"file": "7e923572316d3689.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2025-10-14": {
+"file": "14d5328bdce675b0.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2026-01-01": {
+"file": "e8c952c06e692159.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2026-03-14": {
+"file": "b6e19618d1b58f6e.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2026-04-14": {
+"file": "9dac40b5add2dcbb.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2026-07-14": {
+"file": "f4b196faf3010d35.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-14&start_date=2026-09-14": {
+"file": "b78cbca18ded28ea.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-15&start_date=2026-03-15": {
+"file": "455ab3923903673a.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-10-15&start_date=2026-04-15": {
+"file": "fe4e3de72b6cad4c.json",
+"status": 200
+},
+"GET /api/cash_flow?end_date=2026-12-31&start_date=2026-01-01": {
+"file": "9979d265d04b6991.json",
+"status": 200
+},
+"GET /api/categories/groups": {
+"file": "4140bd62f452852b.json",
+"status": 200
+},
+"GET /api/credit-card-accounts": {
+"file": "90dd0726329260f0.json",
+"status": 200
+},
+"GET /api/credit_card_accounts": {
+"file": "f617a62bf2dd229b.json",
+"status": 200
+},
+"GET /api/current_balances": {
+"file": "fda4dc3f092ced1b.json",
+"status": 200
+},
+"GET /api/daily_balances_v2": {
+"file": "9b9db505f2a90f70.json",
+"status": 200
+},
+"GET /api/daily_balances_v2?source=plaid&type=depository": {
+"file": "9b9db505f2a90f70.json",
+"status": 200
+},
+"GET /api/dashboard-data": {
+"file": "d1cd5e5f096d89c1.json",
+"status": 200
+},
+"GET /api/database_statistics": {
+"file": "9d5b92601021abe5.json",
+"status": 200
+},
+"GET /api/expenses/accounts": {
+"file": "da96e0ca10d30a66.json",
+"status": 200
+},
+"GET /api/expenses/daily": {
+"file": "6d3192fc70379b61.json",
+"status": 500
+},
+"GET /api/expenses/daily-calendar": {
+"file": "ea03dc05ca76280f.json",
+"status": 200
+},
+"GET /api/expenses/daily-calendar?month=2026-10": {
+"file": "ea03dc05ca76280f.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Airplane Ticket&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "84d5c1e9429a7958.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Bills&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "34aa7f6cba76d6a3.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Delivery&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "6fd21b4acd338c3b.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Dividend&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "8105028ce6574709.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Fast Food&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "fc3594de91f150e7.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Gas&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "3c9bbb15478eb1b9.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Groceries&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "b0442037fc9f6ac6.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Gym&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "1727395cf1beddd4.json",
+"status": 200
+},
+"GET /api/expenses/daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Haircut&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "0c0e180416126a2c.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Airplane Ticket&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "a98c7461d85a12ae.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Bills&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "1ec569649c8b4ccf.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Delivery&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "4fd956232b26cc90.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Dividend&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "182aceec15dcc665.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Fast Food&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "29aa3e2528b1f49a.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Gas&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "738c4ef7bdc718e7.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Groceries&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "0d31f8bca4a7cbd2.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Gym&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "5af31f59a5a5d11f.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Haircut&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "eae23355ef7cf9d9.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Insurance&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "b818f911c3e7c083.json",
+"status": 200
+},
+"GET /api/expenses/daily?category=Lodging&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "bb2e51ebd385bdde.json",
+"status": 200
+},
+"GET /api/expenses/filter_options": {
+"file": "e393e3aa840b83aa.json",
+"status": 200
+},
+"GET /api/expenses/filter_options?grouping_mode=category": {
+"file": "e393e3aa840b83aa.json",
+"status": 200
+},
+"GET /api/expenses/filter_options?grouping_mode=group": {
+"file": "932e7ac4271fab84.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown": {
+"file": "c6d9649ff0465072.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse&avg_months=12&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "e059d4b42907c2d4.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=OLOzuYqWBKm9eSvnhyga2Udxrz7h5Byfi94j1&avg_months=12&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "15790ee56d1629a9.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "1ee26a8f88a1c9ca.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "003af866c55e357d.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "ead16a0840f8fb36.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-01&month=all&start_date=2023-01-01": {
+"file": "5848439a241577b7.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2024-01-01": {
+"file": "fe0e16be5af65938.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "4f24a051c50249a2.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "f854f60c7445ff47.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "1d06631ebb85b156.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "70c3334d763bb5ab.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "2358721bfb8f44c9.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "f854f60c7445ff47.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&avg_months=12&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "a32d77fc7caa0882.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&avg_months=12&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "f932c8bed31e8a43.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "1e9bb84e9025b87d.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2022-12-31&month=all&start_date=2022-01-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2023-12-31&month=all&start_date=2023-01-01": {
+"file": "ad1e57f54f34ae8c.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "45542dc2a053bce8.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "0dafd195d3f144bc.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "9dc8f2561e082096.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-01-31&month=2026-01&start_date=2026-01-01": {
+"file": "19b278f82e7afc45.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "d7510617b6dbe679.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "02d9a9e51386590f.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "68043d97e970bd09.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "cde29b29f6b8e3bd.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "df27ed90e1d028ce.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "f4130c71a7abb9d7.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "89cb751d9e5ee107.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "fcbbde0472a8871c.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "8bf2691689cf6465.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "1037bf11e1592d53.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "54802d80b903ca2b.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "cf81710dc9615742.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "ebfb7a7a2b176865.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-15&month=all&start_date=2026-01-01": {
+"file": "54802d80b903ca2b.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "4aeadb52cc0de27d.json",
+"status": 200
+},
+"GET /api/expenses/group_breakdown?avg_months=12&end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "54802d80b903ca2b.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse&avg_months=12&end_date=2026-10-14&group=Travel&month=all&start_date=2023-01-01": {
+"file": "2443f0f61d9d619c.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "34b0c9a7895062f2.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=OLOzuYqWBKm9eSvnhyga2Udxrz7h5Byfi94j1&avg_months=12&end_date=2026-10-14&group=Travel&month=all&start_date=2023-01-01": {
+"file": "51982a23e40b730d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=OLOzuYqWBKm9eSvnhyga2Udxrz7h5Byfi94j1&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "87f886bbe3327077.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "7c89ef1742e3288b.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "acbe685c0731943d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Bills&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Education&month=2026-02&start_date=2026-02-01": {
+"file": "5d11b06ccc6b82e5.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Food&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Income&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Living&month=2026-02&start_date=2026-02-01": {
+"file": "050bdfd4b702ebf0.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Misc&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Reimbursement&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Transfer&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&group=Travel&month=2026-02&start_date=2026-02-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-01&group=Travel&month=all&start_date=2023-01-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-01&month=all&start_date=2023-01-01": {
+"file": "c960b560db4dcd89.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2024-01-01": {
+"file": "65035999a5045fc9.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "4debec3eac487ca1.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "faeb11da27059848.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "d613e833b391c589.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "ad672625dc8bde3e.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "050bdfd4b702ebf0.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&avg_months=12&end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "faeb11da27059848.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "7c89ef1742e3288b.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "acbe685c0731943d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "b83bd9fc8f4a0254.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&month=all&start_date=2023-01-01": {
+"file": "c960b560db4dcd89.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2024-01-01": {
+"file": "65035999a5045fc9.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "4debec3eac487ca1.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "faeb11da27059848.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "d613e833b391c589.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "ad672625dc8bde3e.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "050bdfd4b702ebf0.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "faeb11da27059848.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&avg_months=12&end_date=2025-12-31&group=Travel&month=2025-12&start_date=2025-12-01": {
+"file": "3dc28dc43af6d5aa.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&avg_months=12&end_date=2026-10-14&group=Travel&month=all&start_date=2023-01-01": {
+"file": "85bc8c68ef5976be.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&avg_months=12&end_date=2026-10-14&group=Travel&month=all&start_date=2026-01-01": {
+"file": "35f01b7ecbf27344.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "b63f78af7bdf2a15.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "f28ef7daae38bf06.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "cebb3bad7a62be71.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2022-12-31&month=all&start_date=2022-01-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2023-12-31&month=all&start_date=2023-01-01": {
+"file": "b877adaf681d42f2.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "0c9f97f28e682790.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Bills&month=2025-12&start_date=2025-12-01": {
+"file": "706b6d0b5dcc2ace.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Education&month=2025-12&start_date=2025-12-01": {
+"file": "5d11b06ccc6b82e5.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Food&month=2025-12&start_date=2025-12-01": {
+"file": "278387c8b9fd1071.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Income&month=2025-12&start_date=2025-12-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Living&month=2025-12&start_date=2025-12-01": {
+"file": "24375f1862cf8376.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Misc&month=2025-12&start_date=2025-12-01": {
+"file": "805963ef7f7048bf.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Reimbursement&month=2025-12&start_date=2025-12-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Transfer&month=2025-12&start_date=2025-12-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&group=Travel&month=2025-12&start_date=2025-12-01": {
+"file": "6f373dc51842da55.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "9a718e38e6185ef1.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "349d10e471c5c46d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-01-31&month=2026-01&start_date=2026-01-01": {
+"file": "b682ceb04de800a0.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-02-28&group=Travel&month=2026-02&start_date=2026-02-01": {
+"file": "c2f832a538c1c820.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "87a8cedfa053b00b.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "6159a6b1a4e7192a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "91a5ede95ad2ba7a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "cd2e588433b52c6d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "31b5e6f0eecf9a81.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "bf76195dca96bfda.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "7e4230863eb7672d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "545e029532d3bb96.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-14&group=Travel&month=all&start_date=2026-01-01": {
+"file": "aba0d32006c18f25.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "4e0e8df1f7e43f8a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "969dd057815afd56.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "753d26c720d50cec.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "5fbd4a8f181a9d06.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "17176945b04a4fb5.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-15&month=all&start_date=2026-01-01": {
+"file": "753d26c720d50cec.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "c11b88a9f993ecc2.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?avg_months=12&end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "753d26c720d50cec.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2022-12-31&month=all&start_date=2022-01-01": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2023-12-31&month=all&start_date=2023-01-01": {
+"file": "b877adaf681d42f2.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "0c9f97f28e682790.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "9a718e38e6185ef1.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "349d10e471c5c46d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-01-31&month=2026-01&start_date=2026-01-01": {
+"file": "b682ceb04de800a0.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "87a8cedfa053b00b.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "6159a6b1a4e7192a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "91a5ede95ad2ba7a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "cd2e588433b52c6d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "31b5e6f0eecf9a81.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "bf76195dca96bfda.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "7e4230863eb7672d.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "545e029532d3bb96.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "4e0e8df1f7e43f8a.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "969dd057815afd56.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "753d26c720d50cec.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "5fbd4a8f181a9d06.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "17176945b04a4fb5.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-15&month=all&start_date=2026-01-01": {
+"file": "753d26c720d50cec.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "c11b88a9f993ecc2.json",
+"status": 200
+},
+"GET /api/expenses/group_category_breakdown?end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "753d26c720d50cec.json",
+"status": 200
+},
+"GET /api/expenses/group_daily": {
+"file": "6d3192fc70379b61.json",
+"status": 500
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Bills&month=2026-02&start_date=2026-02-01": {
+"file": "34aa7f6cba76d6a3.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Education&month=2026-02&start_date=2026-02-01": {
+"file": "a227b76a937da0d5.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Food&month=2026-02&start_date=2026-02-01": {
+"file": "c8bd665f379343ba.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Income&month=2026-02&start_date=2026-02-01": {
+"file": "3657f3f3baa172f5.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Living&month=2026-02&start_date=2026-02-01": {
+"file": "98a2ad5a558d44da.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Misc&month=2026-02&start_date=2026-02-01": {
+"file": "817d7264cdcbb736.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Reimbursement&month=2026-02&start_date=2026-02-01": {
+"file": "b69cac6ffc8c2f4f.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Transfer&month=2026-02&start_date=2026-02-01": {
+"file": "24cf49fce9966c3c.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Travel&month=2026-02&start_date=2026-02-01": {
+"file": "d5433d8d757955d0.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "f92370a3d283fed9.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "910deeccae20e9aa.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "61f8f1e74579f73b.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "1c1a807d4555334b.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "94049c75c52958bc.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "bb2d4f3240dc810d.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "fed3ad8eaeac0c43.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "21874b1274e5db41.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "c4b33aceb3d6b52c.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2025-12-31&group=Travel&month=2025-12&start_date=2025-12-01": {
+"file": "65cf0dc7b05fe0c6.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Bills&month=2025-12&start_date=2025-12-01": {
+"file": "3c839cae32bfdfbb.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Education&month=2025-12&start_date=2025-12-01": {
+"file": "137e19b9b0a3d1bf.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Food&month=2025-12&start_date=2025-12-01": {
+"file": "b84a933ca7b94e07.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Income&month=2025-12&start_date=2025-12-01": {
+"file": "91f343fb2ce6f645.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Living&month=2025-12&start_date=2025-12-01": {
+"file": "84cdc20e781be011.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Misc&month=2025-12&start_date=2025-12-01": {
+"file": "b074373a74244ab1.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Reimbursement&month=2025-12&start_date=2025-12-01": {
+"file": "5b4c00aeaa771f16.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Transfer&month=2025-12&start_date=2025-12-01": {
+"file": "d2138e3abc284b22.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&group=Travel&month=2025-12&start_date=2025-12-01": {
+"file": "6dd2c52cb93fc353.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2025-12-31&month=2025-12&start_date=2025-12-01": {
+"file": "bdb632eca8a1c9af.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-01-31&month=2026-01&start_date=2026-01-01": {
+"file": "5062068f004dafcc.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-02-28&group=Travel&month=2026-02&start_date=2026-02-01": {
+"file": "c9ca34ed4cb904fc.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-02-28&month=2026-02&start_date=2026-02-01": {
+"file": "a9def3e4b677766b.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-03-31&month=2026-03&start_date=2026-03-01": {
+"file": "437e43ec1700939b.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-04-30&month=2026-04&start_date=2026-04-01": {
+"file": "343a5085166517e3.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-05-31&month=2026-05&start_date=2026-05-01": {
+"file": "638c5044f04de0b6.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-06-30&month=2026-06&start_date=2026-06-01": {
+"file": "0f6b836b01358488.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-07-31&month=2026-07&start_date=2026-07-01": {
+"file": "49900319823709b4.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-08-31&month=2026-08&start_date=2026-08-01": {
+"file": "e4602bd92557063e.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-09-30&month=2026-09&start_date=2026-09-01": {
+"file": "32b3eba062d34546.json",
+"status": 200
+},
+"GET /api/expenses/group_daily?end_date=2026-10-31&month=2026-10&start_date=2026-10-01": {
+"file": "5fbb597ba60d1160.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse&end_date=2026-10-14&group=Travel&month=all&start_date=2023-01-01": {
+"file": "86f9ea2915636875.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=OLOzuYqWBKm9eSvnhyga2Udxrz7h5Byfi94j1&end_date=2026-10-14&group=Travel&month=all&start_date=2023-01-01": {
+"file": "e46d9aa88a6d74e9.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "e80c40641827b07e.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "4a604439d53f532d.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&group=Travel&month=all&start_date=2023-01-01": {
+"file": "4d60b0f29341fd66.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&month=all&start_date=2023-01-01": {
+"file": "d2cfe1ae44502987.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2024-01-01": {
+"file": "cb4fcb226ad165c7.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "bef03fb0fa6a3c6b.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "d1ed7fca1bddd8cf.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "f339b2326916d864.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "60c50f764386390d.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "707325c84d870328.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&group=Travel&month=all&start_date=2023-01-01": {
+"file": "28cdc86ee9de4fbb.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&group=Travel&month=all&start_date=2026-01-01": {
+"file": "2e6abebb2190e20c.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2022-12-31&month=all&start_date=2022-01-01": {
+"file": "a8af8fe060d3b448.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2023-12-31&month=all&start_date=2023-01-01": {
+"file": "fb10331dfb3605ee.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2024-12-31&month=all&start_date=2024-01-01": {
+"file": "14a5f457f67fb347.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2025-12-31&month=all&start_date=2025-01-01": {
+"file": "5112eca24615f326.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-14&group=Travel&month=all&start_date=2026-01-01": {
+"file": "3b3f5f16d0ca96b9.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-14&month=all&start_date=2023-01-01": {
+"file": "a2a41c54a700f8e9.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-14&month=all&start_date=2025-11-01": {
+"file": "5939f9ebf922ee09.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-14&month=all&start_date=2026-01-01": {
+"file": "8c90fa866ecf6334.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-14&month=all&start_date=2026-05-01": {
+"file": "d1284af388580a87.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-14&month=all&start_date=2026-08-01": {
+"file": "ecb0dc352cf70f0c.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-10-15&month=all&start_date=2026-01-01": {
+"file": "8c90fa866ecf6334.json",
+"status": 200
+},
+"GET /api/expenses/group_monthly?end_date=2026-12-31&month=all&start_date=2026-01-01": {
+"file": "37c9da1732769bae.json",
+"status": 200
+},
+"GET /api/expenses/group_summary": {
+"file": "456c691689d61515.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse&end_date=2026-10-14&group=Travel&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "b32779445b65f80b.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=OLOzuYqWBKm9eSvnhyga2Udxrz7h5Byfi94j1&end_date=2026-10-14&group=Travel&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "17b12cee43ce8c29.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2024-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2024-01-01": {
+"file": "9d7f8b54c2dc4e5f.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2025-01-01": {
+"file": "b5ef22beb7bfd6a3.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Bills&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Education&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "600bb4cb6cd97814.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Food&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Income&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Living&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "12e688c45d73e445.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Misc&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Reimbursement&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Transfer&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Travel&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "ff25a3e808e28f0a.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-03-31&include_all_transactions=true&limit=1000&month=2026-03&page_size=1000&start_date=2026-03-01": {
+"file": "a22bdef743a8a453.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-04-30&include_all_transactions=true&limit=1000&month=2026-04&page_size=1000&start_date=2026-04-01": {
+"file": "69c5126f68aca3ab.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-05-31&include_all_transactions=true&limit=1000&month=2026-05&page_size=1000&start_date=2026-05-01": {
+"file": "f74f3e2339b6061d.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-06-30&include_all_transactions=true&limit=1000&month=2026-06&page_size=1000&start_date=2026-06-01": {
+"file": "db4b7d48d607149a.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-07-31&include_all_transactions=true&limit=1000&month=2026-07&page_size=1000&start_date=2026-07-01": {
+"file": "e7a7b9c44d411e16.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-08-31&include_all_transactions=true&limit=1000&month=2026-08&page_size=1000&start_date=2026-08-01": {
+"file": "01c1c4c96ec5fd39.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-09-30&include_all_transactions=true&limit=1000&month=2026-09&page_size=1000&start_date=2026-09-01": {
+"file": "15481919b06f4e9d.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&group=Travel&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "1c1c47e577da4d05.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2024-01-01": {
+"file": "1b041884333a446d.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2025-11-01": {
+"file": "8b9ce7c66e73b049.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "0e59623ce15cca8f.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-05-01": {
+"file": "f245374107b82221.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-08-01": {
+"file": "2acfa9e5b603b691.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-31&include_all_transactions=true&limit=1000&month=2026-10&page_size=1000&start_date=2026-10-01": {
+"file": "a5d4aee1ed387f39.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "0e59623ce15cca8f.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2025-12-31&group=Travel&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "28ef1925cde7ad07.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&group=Travel&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "dcf43bb84ae61aaa.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&group=Travel&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "e7614e085b79675c.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2022-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2022-01-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2023-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "88bab832c7f65dc4.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2024-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2024-01-01": {
+"file": "99ebd9bd78d214c5.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Bills&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "b4bf01cb27672d16.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Education&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "581a55dd222fd493.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Food&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "ac40b67d86c62a78.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Income&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Living&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "07a8e0a2ce090f1f.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Misc&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "b03ba99e74f4639b.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Reimbursement&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Transfer&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "08b641686e2bc053.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&group=Travel&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "e2ae640ece54f597.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "09a874b7e121d33b.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2025-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2025-01-01": {
+"file": "a5498c7648b63b48.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-01-31&include_all_transactions=true&limit=1000&month=2026-01&page_size=1000&start_date=2026-01-01": {
+"file": "09cd52f91eaeae63.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-02-28&group=Travel&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "679f249a3db785da.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "3c046be309c20a28.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-03-31&include_all_transactions=true&limit=1000&month=2026-03&page_size=1000&start_date=2026-03-01": {
+"file": "32c6e65f26239361.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-04-30&include_all_transactions=true&limit=1000&month=2026-04&page_size=1000&start_date=2026-04-01": {
+"file": "482e1840d76d6469.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-05-31&include_all_transactions=true&limit=1000&month=2026-05&page_size=1000&start_date=2026-05-01": {
+"file": "faf2e0e0803768d2.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-06-30&include_all_transactions=true&limit=1000&month=2026-06&page_size=1000&start_date=2026-06-01": {
+"file": "fe3c0f84fadaeb47.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-07-31&include_all_transactions=true&limit=1000&month=2026-07&page_size=1000&start_date=2026-07-01": {
+"file": "9f2571f57fbaf656.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-08-31&include_all_transactions=true&limit=1000&month=2026-08&page_size=1000&start_date=2026-08-01": {
+"file": "b71be86a8e553121.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-09-30&include_all_transactions=true&limit=1000&month=2026-09&page_size=1000&start_date=2026-09-01": {
+"file": "b84b4cd4a7693493.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-14&group=Travel&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "3b3d8ca252636f49.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2023-01-01": {
+"file": "f055a3e55d5084a2.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2025-11-01": {
+"file": "8fba731164abed50.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "e786bdd3c72e1f80.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-05-01": {
+"file": "7b01ed1a42593f3f.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-14&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-08-01": {
+"file": "ddd8e2f2cb71fc1c.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-15&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "e786bdd3c72e1f80.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-10-31&include_all_transactions=true&limit=1000&month=2026-10&page_size=1000&start_date=2026-10-01": {
+"file": "11e457d524cd0609.json",
+"status": 200
+},
+"GET /api/expenses/group_summary?end_date=2026-12-31&include_all_transactions=true&limit=1000&month=all&page_size=1000&start_date=2026-01-01": {
+"file": "e786bdd3c72e1f80.json",
+"status": 200
+},
+"GET /api/expenses/monthly": {
+"file": "a2a41c54a700f8e9.json",
+"status": 200
+},
+"GET /api/expenses/subs_stats": {
+"file": "a2fb6611ec6ca3f3.json",
+"status": 200
+},
+"GET /api/expenses/summary": {
+"file": "3db73ce20091428b.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Airplane Ticket&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Bills&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Delivery&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Dividend&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Fast Food&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Gas&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Groceries&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Gym&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Haircut&end_date=2026-02-28&include_all_transactions=true&limit=1000&month=2026-02&page_size=1000&start_date=2026-02-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Airplane Ticket&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Bills&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "a05e166bbc482407.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Delivery&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "eff3756aecb1e911.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Dividend&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Fast Food&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "f8d44d1fe5d98eea.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Gas&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "f251387594ebb4e7.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Groceries&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "6f1917ce484369f4.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Gym&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "50f965f07c87e6da.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Haircut&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "832a39942e04e783.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Insurance&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "80ff265900842b9a.json",
+"status": 200
+},
+"GET /api/expenses/summary?category=Lodging&end_date=2025-12-31&include_all_transactions=true&limit=1000&month=2025-12&page_size=1000&start_date=2025-12-01": {
+"file": "b488c472db842013.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions": {
+"file": "25be8d23abeb8304.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse&end_date=2026-10-14&group=Travel&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "52d33f2ca0279bdf.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=OLOzuYqWBKm9eSvnhyga2Udxrz7h5Byfi94j1&end_date=2026-10-14&group=Travel&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "f27af78e7ef85611.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Airplane Ticket&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Bills&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Delivery&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Dividend&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Fast Food&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Gas&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Groceries&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Gym&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&category=Haircut&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2024-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2024-01-01": {
+"file": "30dd8a1ea03ba7d0.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2025-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2025-01-01": {
+"file": "39a34b302565e963.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Bills&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Education&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "2d9120b112ea7ea4.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Food&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Income&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Living&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "0d28f4887500a02c.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Misc&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Reimbursement&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Transfer&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&group=Travel&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "01b15f13fbdb2039.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-03-31&limit=10&month=2026-03&sort_by=amount_desc&start_date=2026-03-01": {
+"file": "d6193e7d19d99be4.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-04-30&limit=10&month=2026-04&sort_by=amount_desc&start_date=2026-04-01": {
+"file": "89012adea7dd8b2a.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-05-31&limit=10&month=2026-05&sort_by=amount_desc&start_date=2026-05-01": {
+"file": "5a02fc8699ad9459.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-06-30&limit=10&month=2026-06&sort_by=amount_desc&start_date=2026-06-01": {
+"file": "042f444c77b2e1b6.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-07-31&limit=10&month=2026-07&sort_by=amount_desc&start_date=2026-07-01": {
+"file": "a7b699c11997cf00.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-08-31&limit=10&month=2026-08&sort_by=amount_desc&start_date=2026-08-01": {
+"file": "f77eafc14642fe12.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-09-30&limit=10&month=2026-09&sort_by=amount_desc&start_date=2026-09-01": {
+"file": "e13fd3ca6ed3a87b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&group=Travel&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-01&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "fb96ae4ba684f09c.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2024-01-01": {
+"file": "568409cdc7f22800.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2025-11-01": {
+"file": "14acd84fa99883d6.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "1f77d53e6147558d.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2026-05-01": {
+"file": "f19a467becd03d19.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2026-08-01": {
+"file": "d85c1737f2e52d76.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-10-31&limit=10&month=2026-10&sort_by=amount_desc&start_date=2026-10-01": {
+"file": "0d28f4887500a02c.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=UIlRXjZELGvOwuHwYj7IBZt5CBrpdS1CTuQGY&end_date=2026-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "1f77d53e6147558d.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2025-12-31&group=Travel&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "41af96864e6754fc.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&group=Travel&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "c601a9b8dc2963d1.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI&end_date=2026-10-14&group=Travel&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "74ba3b3be69b39f5.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Airplane Ticket&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Bills&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "fa3b6303f30c4e0b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Delivery&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "8e59f526976a552f.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Dividend&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Fast Food&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "e95d3758760d1ed8.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Gas&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "4f59954e910e5aac.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Groceries&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "76ea24d137e5424a.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Gym&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "003e1d71781b93f1.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Haircut&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "d78a00a9181eb23b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Insurance&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "da85b51a7053490e.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?category=Lodging&end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2022-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2022-01-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2023-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "3cab48be11190ca5.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2024-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2024-01-01": {
+"file": "8eb1e3fcb310e34d.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Bills&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "850d9943145251d3.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Education&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "5d63d70fe919e8a5.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Food&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "d5b574c2b6f944b0.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Income&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Living&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "7ec975b1d2091f05.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Misc&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "7ffeecc8889391e5.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Reimbursement&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Transfer&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "14c7f878f6154093.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&group=Travel&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "ce0737f842c929d7.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&limit=10&month=2025-12&sort_by=amount_desc&start_date=2025-12-01": {
+"file": "2f677551447b976b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2025-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2025-01-01": {
+"file": "afbbb2fd4be27859.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-01-31&limit=10&month=2026-01&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "0ce2bb5e8fafc29b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-02-28&group=Travel&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "a0f63841c6d32dd8.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-02-28&limit=10&month=2026-02&sort_by=amount_desc&start_date=2026-02-01": {
+"file": "2106375dc0f9e56b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-03-31&limit=10&month=2026-03&sort_by=amount_desc&start_date=2026-03-01": {
+"file": "ce2c94448babfa6c.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-04-30&limit=10&month=2026-04&sort_by=amount_desc&start_date=2026-04-01": {
+"file": "f51ed43314e9cfa9.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-05-31&limit=10&month=2026-05&sort_by=amount_desc&start_date=2026-05-01": {
+"file": "dd2ccd2a197b89bc.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-06-30&limit=10&month=2026-06&sort_by=amount_desc&start_date=2026-06-01": {
+"file": "3e84a1e02a0cffc7.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-07-31&limit=10&month=2026-07&sort_by=amount_desc&start_date=2026-07-01": {
+"file": "6c58fed87ddeac39.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-08-31&limit=10&month=2026-08&sort_by=amount_desc&start_date=2026-08-01": {
+"file": "e2dc2d3f62ea6b8b.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-09-30&limit=10&month=2026-09&sort_by=amount_desc&start_date=2026-09-01": {
+"file": "b6b1d8a594e63a31.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-14&group=Travel&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "6734d6a099683a09.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2023-01-01": {
+"file": "25be8d23abeb8304.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2025-11-01": {
+"file": "88784a4ec21c88ea.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "6eb728d3bc0b59a2.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2026-05-01": {
+"file": "ead7fc8dc2c53b29.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-14&limit=10&month=all&sort_by=amount_desc&start_date=2026-08-01": {
+"file": "2cf7b22d8a17b8d1.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-15&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "6eb728d3bc0b59a2.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-10-31&limit=10&month=2026-10&sort_by=amount_desc&start_date=2026-10-01": {
+"file": "768df6ecd6e830d8.json",
+"status": 200
+},
+"GET /api/expenses/top_transactions?end_date=2026-12-31&limit=10&month=all&sort_by=amount_desc&start_date=2026-01-01": {
+"file": "6eb728d3bc0b59a2.json",
+"status": 200
+},
+"GET /api/expenses/transaction_names": {
+"file": "18b01e0b2655f341.json",
+"status": 500
+},
+"GET /api/income/monthly": {
+"file": "445ec0b99d93b95f.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2016-12-31": {
+"file": "cfc0b845145cdf59.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2017-12-31": {
+"file": "fd3b3e07238370ca.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2018-12-31": {
+"file": "2f56b2af508510f3.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2019-12-31": {
+"file": "2161ad40fc66246b.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2020-12-31": {
+"file": "57541d653f9754d5.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2021-12-31": {
+"file": "9a8747bff4aa365c.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2022-12-31": {
+"file": "36c2ca81be55047a.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2023-12-31": {
+"file": "3289d5c72b0812aa.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2024-12-31": {
+"file": "befca620420d1381.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2025-12-31": {
+"file": "e2ac91c7f012e531.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2026-10-14": {
+"file": "445ec0b99d93b95f.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2026-10-15": {
+"file": "445ec0b99d93b95f.json",
+"status": 200
+},
+"GET /api/income/monthly?end_date=2026-12-31": {
+"file": "ce1be1169a4f10d7.json",
+"status": 200
+},
+"GET /api/income/summary": {
+"file": "fb06eed0642a6bc4.json",
+"status": 200
+},
+"GET /api/institutions": {
+"file": "9179f3d71398ebd0.json",
+"status": 200
+},
+"GET /api/institutions_status": {
+"file": "ec13c968570c0dc5.json",
+"status": 200
+},
+"GET /api/investment-transfers/accounts": {
+"file": "400fb709f13cb4da.json",
+"status": 200
+},
+"GET /api/investment-transfers/pattern-usage/*": {
+"file": "632fcbc7e18db524.json",
+"status": 200
+},
+"GET /api/investment-transfers/pattern-usage/bank_to_evergreen": {
+"file": "262e92d19e35cbec.json",
+"status": 200
+},
+"GET /api/investment-transfers/pattern-usage/evergreen_to_bank": {
+"file": "c5d5f908a935a926.json",
+"status": 200
+},
+"GET /api/investment-transfers/pattern-usage/schwab_patterns": {
+"file": "632fcbc7e18db524.json",
+"status": 200
+},
+"GET /api/investment-transfers/pattern-usage/swiftrade_patterns": {
+"file": "52b6299614b82bc8.json",
+"status": 200
+},
+"GET /api/investment-transfers/patterns": {
+"file": "fcd96f4913ad81a1.json",
+"status": 200
+},
+"GET /api/investments/available-stocks": {
+"file": "bce077223a1a5bc8.json",
+"status": 200
+},
+"GET /api/investments/available-symbols": {
+"file": "a8ecde03cbf5293f.json",
+"status": 200
+},
+"GET /api/investments/cash": {
+"file": "5195a9403b555e72.json",
+"status": 200
+},
+"GET /api/investments/cash/transactions": {
+"file": "715cfd166e1a416f.json",
+"status": 200
+},
+"GET /api/investments/cash/transactions?limit=1000": {
+"file": "f05fa91c64a626ca.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=1D": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=1M": {
+"file": "bca90cf9835fa7dd.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=1W": {
+"file": "8b8cf1d581e67887.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=1Y": {
+"file": "49aff2caaa8d6280.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2016": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2017": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2018": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2019": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2020": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2021": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2022": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2023": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2024": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2025": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2026": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=2Y": {
+"file": "c06896728340cd5f.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=3M": {
+"file": "80059f663213d937.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=3Y": {
+"file": "6af517f5a21aa6c4.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=4Y": {
+"file": "2012b8e1c5ef3ac9.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=5Y": {
+"file": "2012b8e1c5ef3ac9.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=6M": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=6Y": {
+"file": "2012b8e1c5ef3ac9.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=7Y": {
+"file": "2012b8e1c5ef3ac9.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=ALL": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=All": {
+"file": "2012b8e1c5ef3ac9.json",
+"status": 200
+},
+"GET /api/investments/dashboard-data?timeRange=YTD": {
+"file": "3eda1b5f1265f609.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/AAPL?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "11e4493848003654.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/AMD?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "373dbfdb647dd236.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/AMZN?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "b594b9bb486d8131.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/GOOGL?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "ea0045c02c09bd73.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/META?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "a0c0119332b4eb9b.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/MSFT?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "2e0af6436d943e72.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/NVDA?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "d818b0939f2250e1.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/QQQ?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "013c899f54421a46.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/SCHB?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "ab193038433e2fec.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/SPY?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "a914aff396272b07.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/SWPPX?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "fd94c589c8108ff5.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/TSLA?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "cbb0a2b87ac45bb3.json",
+"status": 200
+},
+"GET /api/investments/earnings/symbol/VOO?end_date=2026-12-31&start_date=2026-10-14": {
+"file": "432c02e7a2b45caa.json",
+"status": 200
+},
+"GET /api/investments/groups": {
+"file": "4ed3dd6257b274b6.json",
+"status": 200
+},
+"GET /api/investments/holdings": {
+"file": "27e5aaf370e53372.json",
+"status": 200
+},
+"GET /api/investments/holdings-for-comparison": {
+"file": "59bd8790c561c2c7.json",
+"status": 200
+},
+"GET /api/investments/price-history/AAPL": {
+"file": "d431f7a25e23cc47.json",
+"status": 200
+},
+"GET /api/investments/price-history/AMD": {
+"file": "6e5fccd7344fe057.json",
+"status": 200
+},
+"GET /api/investments/price-history/AMZN": {
+"file": "baee0adfe79f838b.json",
+"status": 200
+},
+"GET /api/investments/price-history/GOOGL": {
+"file": "05e88b7dab1fe47f.json",
+"status": 200
+},
+"GET /api/investments/price-history/META": {
+"file": "898f5fe93679fbe7.json",
+"status": 200
+},
+"GET /api/investments/price-history/MSFT": {
+"file": "9d0655ed964c9f44.json",
+"status": 200
+},
+"GET /api/investments/price-history/NVDA": {
+"file": "a4f78384a6411e57.json",
+"status": 200
+},
+"GET /api/investments/price-history/QQQ": {
+"file": "8bb3a17562a317a1.json",
+"status": 200
+},
+"GET /api/investments/price-history/SCHB": {
+"file": "7ae315cfa5ab56da.json",
+"status": 200
+},
+"GET /api/investments/price-history/SPY": {
+"file": "fa2a324005904cc7.json",
+"status": 200
+},
+"GET /api/investments/price-history/SWPPX": {
+"file": "4ffb8a0617e3ba1f.json",
+"status": 200
+},
+"GET /api/investments/price-history/TSLA": {
+"file": "96eaace09d19a4b7.json",
+"status": 200
+},
+"GET /api/investments/price-history/VOO": {
+"file": "6bdf91532ac8def1.json",
+"status": 200
+},
+"GET /api/investments/realized-gains": {
+"file": "c963195944808120.json",
+"status": 200
+},
+"GET /api/investments/realized-gains?limit=50": {
+"file": "c963195944808120.json",
+"status": 200
+},
+"GET /api/investments/realized-gains?limit=50&year=2024": {
+"file": "c963195944808120.json",
+"status": 200
+},
+"GET /api/investments/realized-gains?limit=50&year=2025": {
+"file": "1f71be075ed7be42.json",
+"status": 200
+},
+"GET /api/investments/sales/by-date": {
+"file": "957967177c0117dd.json",
+"status": 200
+},
+"GET /api/investments/sales/by-date?end_date=2026-10-14&start_date=2026-04-20": {
+"file": "52364056d3757f7c.json",
+"status": 200
+},
+"GET /api/investments/sales/by-date?end_date=2026-10-14&start_date=2026-09-15": {
+"file": "52364056d3757f7c.json",
+"status": 200
+},
+"GET /api/investments/sales/by-date?end_date=2026-10-14&start_date=2026-10-08": {
+"file": "52364056d3757f7c.json",
+"status": 200
+},
+"GET /api/investments/spy-comparison": {
+"file": "2fdefab12bac9dd2.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=AAPL": {
+"file": "2d757629fe3d9c2b.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=AMD": {
+"file": "29c81e683a823760.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=AMZN": {
+"file": "79223b25bcd85edf.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=GOOGL": {
+"file": "b6ad7f511c38d015.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=META": {
+"file": "26889ce7888978fc.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=MSFT": {
+"file": "dc48bd99ae574456.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=NVDA": {
+"file": "201a61f48fdc8eda.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=QQQ": {
+"file": "44e509dd0d227e6d.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=SCHB": {
+"file": "115d9acdd512020d.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=SPY": {
+"file": "8b4327a9de94e3f8.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=SWPPX": {
+"file": "9d1e2d4c4af00e1d.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=TSLA": {
+"file": "a54ec3a1479550a5.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=1825&symbol=VOO": {
+"file": "0171be61314df48b.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=AAPL": {
+"file": "1e882c8ddcc8c087.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=AMD": {
+"file": "4a6d5a220bdb800e.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=AMZN": {
+"file": "d7867780daeb134c.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=GOOGL": {
+"file": "99b89809d62cbc0d.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=META": {
+"file": "39ae5b989710d4f3.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=MSFT": {
+"file": "7e1c87b7ec935162.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=NVDA": {
+"file": "a5513c63fdfc9286.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=QQQ": {
+"file": "a55be300eb770ec1.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=SCHB": {
+"file": "f7edc4d8b38a8820.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=SPY": {
+"file": "64e48bad1bed9af9.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=SWPPX": {
+"file": "67abc84eaf91fbd2.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=TSLA": {
+"file": "928be4f7518d03a6.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=30&symbol=VOO": {
+"file": "00454f668702b594.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=AAPL": {
+"file": "e643f349f4d6cf89.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=AMD": {
+"file": "2ac27a03da8d4089.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=AMZN": {
+"file": "01aebef5afe3ea48.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=GOOGL": {
+"file": "917fc232559dcb0f.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=META": {
+"file": "62960d9d5bfde91e.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=MSFT": {
+"file": "21830556746e5706.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=NVDA": {
+"file": "e96cbbc439a64162.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=QQQ": {
+"file": "520c3329b7b37ea7.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=SCHB": {
+"file": "cdb21abc18b68c0b.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=SPY": {
+"file": "7a44a9324bc3361c.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=SWPPX": {
+"file": "6e742f6fae2247ff.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=TSLA": {
+"file": "b132b3336f47a26b.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=365&symbol=VOO": {
+"file": "5575ff99fade9fdd.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=AAPL": {
+"file": "0d1161d8f49aa7a5.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=AMD": {
+"file": "14d58ca7b1eb4a78.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=AMZN": {
+"file": "38c2c4c83aa06c57.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=GOOGL": {
+"file": "2cb07d97d72a331e.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=META": {
+"file": "e326e0c00abf9732.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=MSFT": {
+"file": "5d55ad888312a05d.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=NVDA": {
+"file": "57b226dcd79959d8.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=QQQ": {
+"file": "177446a6a121fca4.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=SCHB": {
+"file": "4d3a29f0c46497e5.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=SPY": {
+"file": "ddb958f4e2fe251e.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=SWPPX": {
+"file": "e583bbb28efcf9dd.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=TSLA": {
+"file": "0565315e070382a9.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=3650&symbol=VOO": {
+"file": "b76b669e687c1a2e.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=AAPL": {
+"file": "a1dac0aa0ae1b8ef.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=AMD": {
+"file": "b8b2a611cdb1ad26.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=AMZN": {
+"file": "f9c89ca66fde38fa.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=GOOGL": {
+"file": "67066fb0773cc438.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=META": {
+"file": "52a93fa78448887a.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=MSFT": {
+"file": "59872601f0c71c6f.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=NVDA": {
+"file": "8837c1be314f3b89.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=QQQ": {
+"file": "b444f65dbf935e38.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=SCHB": {
+"file": "8dd3d28f5f3a02b3.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=SPY": {
+"file": "81e3d7f61aa7c00c.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=SWPPX": {
+"file": "cfdb1e436849202f.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=TSLA": {
+"file": "59985026d058a24d.json",
+"status": 200
+},
+"GET /api/investments/stock-history?days=90&symbol=VOO": {
+"file": "b34d4b748aec4fd1.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/AAPL": {
+"file": "11c25ac56b710f10.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/AMD": {
+"file": "b8185d928a2c1f43.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/AMZN": {
+"file": "f1f6c30fe8951016.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/GOOGL": {
+"file": "f6f75061b7b20e1f.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/META": {
+"file": "5b051481e18a6636.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/MSFT": {
+"file": "544aabd5c4c83c4d.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/NVDA": {
+"file": "dcd17c9672c4f7ed.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/QQQ": {
+"file": "b10d671444658ad7.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/SCHB": {
+"file": "5ad616de5bdf23dd.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/SPY": {
+"file": "0a49c87ea3255a32.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/SWPPX": {
+"file": "50a7d69428e9eaab.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/TSLA": {
+"file": "b1abe7b74ff1ea56.json",
+"status": 200
+},
+"GET /api/investments/transaction-history/VOO": {
+"file": "731c477002f6a9b3.json",
+"status": 200
+},
+"GET /api/loans/allocations": {
+"file": "df87b877255f6381.json",
+"status": 200
+},
+"GET /api/loans/amortization": {
+"file": "992dbc683f376ba8.json",
+"status": 200
+},
+"GET /api/loans/loans": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=1D": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=1M": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=1W": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=1Y": {
+"file": "dde4b9581e2cf0fa.json",
+"status": 200
+},
+"GET /api/loans/loans?period=2Y": {
+"file": "62b3dcec97e8e71e.json",
+"status": 200
+},
+"GET /api/loans/loans?period=3M": {
+"file": "a638774808f08b10.json",
+"status": 200
+},
+"GET /api/loans/loans?period=3Y": {
+"file": "52f30e08e8f9ef81.json",
+"status": 200
+},
+"GET /api/loans/loans?period=4Y": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=5Y": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=6M": {
+"file": "04d78aa0bef6e747.json",
+"status": 200
+},
+"GET /api/loans/loans?period=6Y": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=7Y": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=ALL": {
+"file": "9622dc429c5a90b8.json",
+"status": 200
+},
+"GET /api/loans/loans?period=YTD": {
+"file": "6164cb4a09a48cf6.json",
+"status": 200
+},
+"GET /api/loans/overview": {
+"file": "7335431215070d41.json",
+"status": 200
+},
+"GET /api/loans/payments": {
+"file": "d15276e023a9a4d0.json",
+"status": 200
+},
+"GET /api/mapped-payment-account-types": {
+"file": "c46204236e6fa4e0.json",
+"status": 200
+},
+"GET /api/mapped-payment-history-monthly": {
+"file": "ff8ead29d33fd5c4.json",
+"status": 200
+},
+"GET /api/mapped-payment-stats-summary": {
+"file": "aab3e5103b017ceb.json",
+"status": 200
+},
+"GET /api/mapping-rules/": {
+"file": "e7fb88e02eb5bbbe.json",
+"status": 200
+},
+"GET /api/metrics/ratios": {
+"file": "e281a707a8c4dd8a.json",
+"status": 200
+},
+"GET /api/metrics/ratios?level=category": {
+"file": "33bd4d38d4bb3168.json",
+"status": 200
+},
+"GET /api/metrics/ratios?level=group": {
+"file": "e281a707a8c4dd8a.json",
+"status": 200
+},
+"GET /api/mobile/accounts": {
+"file": "ecc329f1af8a1b72.json",
+"status": 200
+},
+"GET /api/mobile/cash_flow": {
+"file": "7f81629985dc4112.json",
+"status": 200
+},
+"GET /api/mobile/expenses_trend": {
+"file": "111f0af5c9cfa7b0.json",
+"status": 200
+},
+"GET /api/net-worth-v2/cash-flow": {
+"file": "c6581b290a2db65d.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=1D": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=1M": {
+"file": "5526dc2b017b3d9b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=1W": {
+"file": "006abc01266845ef.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=1Y": {
+"file": "0bc90cdc58542b69.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2016": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2017": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2018": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2019": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2020": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2021": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2022": {
+"file": "a26767a4d95ff5fd.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2023": {
+"file": "c5255ea7727c5752.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2024": {
+"file": "0d05d96c17781b7e.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2025": {
+"file": "89a934d43655d3dc.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2026": {
+"file": "6eb0d42bfa997fa1.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=2Y": {
+"file": "3e3c1428310c3b6c.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=3M": {
+"file": "b7182ec8544d41e7.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=3Y": {
+"file": "552b22ce238950da.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=4Y": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=5Y": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=6M": {
+"file": "4c34435d3272287d.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=6Y": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=7Y": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=ALL": {
+"file": "d297f5465758096b.json",
+"status": 200
+},
+"GET /api/net-worth-v2/dashboard?range=YTD": {
+"file": "6eb0d42bfa997fa1.json",
+"status": 200
+},
+"GET /api/net_income/monthly": {
+"file": "ed4f69f0a207b123.json",
+"status": 200
+},
+"GET /api/payment_history": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/payment_history_monthly": {
+"file": "fbc6deed47cf579b.json",
+"status": 200
+},
+"GET /api/recurring_balance/forecast": {
+"file": "33073bd56c07696e.json",
+"status": 200
+},
+"GET /api/reimbursements/available-months": {
+"file": "075fcebf27b2b696.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/*": {
+"file": "03237686b966fbba.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/1PrQyCf3I4Q349BUjitD3KzkyNbPqWWr2CCV2": {
+"file": "65d5572d7dfbc52b.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/23U8Et11JDsFJS86zqcAybD5xmpPp8VTZ62GZ": {
+"file": "66555bcdb8f03d9f.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/9E9VR9E3WwrfB1aUbc9YOSMkIfZXt7fTt9CtO": {
+"file": "e0a15420d3e917a5.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/DAhUaVn7FXD1xiYzePexONx44WINQmHS4iX0i": {
+"file": "038363f7cdbcae15.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/GXlpxFGbyybZD0NTMEQAcxhstfgxmQWaAnwnc": {
+"file": "12530720256f8b27.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/LPtbkhZUhagKmuC2WV15W2eJ8SU8ewrrzFyh6": {
+"file": "59cc7f335bde67e3.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/NUN1BQtUvrq9dMmPtO4N9wkpNVVE0EUBXSODT": {
+"file": "a1de09989d5bbc0f.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/P8cIh1NAQ284hwLM7B2sg84BxYqvyrvV6calL": {
+"file": "7defb91fc44ae720.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/VDqhTIDl1G6CrTRttlajLnydELWk7zyneNW43": {
+"file": "12868e406dfeca4a.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/Wk6WPxpmJ7pk8BEhVHNzRb1VcR2IA7bTkoGEM": {
+"file": "91bc16e5c7ec3c78.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/WuO63YdTLY6F8nB9kVgbT0QBYlas3hXZ10LGh": {
+"file": "d87068fa20f2dd28.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/WyklvSwsTRSLY4YUHLAKL3mbKRiZNlRPXekT2": {
+"file": "b68790e4eec6704e.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/bseXNB3dU9gIN1GZ5CxcCQgEZ34DiPdcS6C9b": {
+"file": "d662352bab548c1c.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/cv2Lm3kkeeRx9WIaJizSBGgXKhHftAOfdwHPh": {
+"file": "faa7c1f4cfa563d9.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/dVXXMPbDxAeAC0UyRcQqXQ92kAz9SXP9dT3A7": {
+"file": "7f966ee7b52c23b9.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/gETmSBaP00jjm7W07onXvi4P4KmkcsDr6aw6a": {
+"file": "297128e69ffa6019.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/lI8jfuZNNmrEg2DC7ZKcGXu229pPTHsKJ0wmy": {
+"file": "f89ca4eea36ca25a.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/qyl2tgZvgvdcMOtpSSQkOpBoEzmLCdLc1S2np": {
+"file": "d39b79c7f2470d4a.json",
+"status": 200
+},
+"GET /api/reimbursements/for-expense/vDe0oLdNe55Zq3blaxZymqWARHblxRWdp5Fac": {
+"file": "019f4c246d46fe46.json",
+"status": 200
+},
+"GET /api/reimbursements/monthly-totals?months=all": {
+"file": "b93a677e6bbe2b1f.json",
+"status": 200
+},
+"GET /api/reimbursements/potential-expenses/*": {
+"file": "7a81e04da6277c9e.json",
+"status": 200
+},
+"GET /api/reimbursements/search": {
+"file": "1ec03fe6699f8ac8.json",
+"status": 200
+},
+"GET /api/reimbursements/search?exclude_expense_id=GXlpxFGbyybZD0NTMEQAcxhstfgxmQWaAnwnc": {
+"file": "1ec03fe6699f8ac8.json",
+"status": 200
+},
+"GET /api/reimbursements/summary?limit=100&month=2026-08": {
+"file": "f88673831e805b30.json",
+"status": 200
+},
+"GET /api/reimbursements/summary?limit=100&month=all-NaN": {
+"file": "cc12ec41fca5f826.json",
+"status": 200
+},
+"GET /api/reimbursements/summary?limit=500": {
+"file": "4f5764619f87ba82.json",
+"status": 200
+},
+"GET /api/reimbursements/unallocated": {
+"file": "9498a7b3e442bd61.json",
+"status": 200
+},
+"GET /api/schwab/accounts": {
+"file": "65539e08cfbabfeb.json",
+"status": 200
+},
+"GET /api/schwab/holdings": {
+"file": "82e336493ba8b1a8.json",
+"status": 200
+},
+"GET /api/schwab/orders": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/schwab/overview": {
+"file": "08f205059e738537.json",
+"status": 200
+},
+"GET /api/schwab/performance": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=1D": {
+"file": "c82cb9f55cb228a6.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=1M": {
+"file": "5ede143076f59c6f.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=1W": {
+"file": "5bcf281a65bf6aeb.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=1Y": {
+"file": "8d1644bd68b1423c.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2016": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2017": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2018": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2019": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2020": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2021": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2022": {
+"file": "94c5bd5fbe9c4661.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2023": {
+"file": "475317809bb27e03.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2024": {
+"file": "4acecfbe4332ed26.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2025": {
+"file": "25dab5046a9b3110.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2026": {
+"file": "27d837fa62fd645a.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=2Y": {
+"file": "3fa906593812b8e1.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=3M": {
+"file": "7f66092eecf2a5f8.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=3Y": {
+"file": "9e99a6108827bcbf.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=4Y": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=5Y": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=6M": {
+"file": "3052ec586a63a122.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=6Y": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=7Y": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=ALL": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=All": {
+"file": "beb40491bec362ee.json",
+"status": 200
+},
+"GET /api/schwab/performance?period=YTD": {
+"file": "27d837fa62fd645a.json",
+"status": 200
+},
+"GET /api/schwab/transactions": {
+"file": "2a764aea9e475d87.json",
+"status": 200
+},
+"GET /api/snaptrade/accounts": {
+"file": "9e30e8650e308139.json",
+"status": 200
+},
+"GET /api/snaptrade/accounts?institution=Swiftrade": {
+"file": "1e83f5dd85bdaa3f.json",
+"status": 200
+},
+"GET /api/snaptrade/activities": {
+"file": "21c76a85931c9d03.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Evergreen&limit=300&start_date=2026-04-14": {
+"file": "9309f143cf6dd758.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Schwab&limit=300&start_date=2026-04-14": {
+"file": "37766786611d0387.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=1000&offset=0&type=CONTRIBUTION": {
+"file": "be723b2479adeb90.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=1000&offset=0&type=WITHDRAWAL": {
+"file": "88c46f208c8f6943.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=25&offset=0": {
+"file": "d8a6cea97b8e9eda.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=25&offset=0&type=DIVIDEND": {
+"file": "a5686dacd44b601f.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=25&offset=0&type=FEE": {
+"file": "a5686dacd44b601f.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=25&offset=0&type=INTEREST": {
+"file": "a5686dacd44b601f.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?institution=Swiftrade&limit=300&start_date=2026-04-14": {
+"file": "3acfcb617a62796a.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2020-01-01": {
+"file": "af4116bf032cbb74.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2021-01-01": {
+"file": "af4116bf032cbb74.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2022-01-01": {
+"file": "af4116bf032cbb74.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2023-01-01": {
+"file": "af4116bf032cbb74.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2024-01-01": {
+"file": "15b2f833da2a81a9.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2025-01-01": {
+"file": "9a34904eed89a2ca.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2026-01-01": {
+"file": "92a7fd714648b297.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2026-04-14": {
+"file": "d9d142cc4724037d.json",
+"status": 200
+},
+"GET /api/snaptrade/activities?limit=300&start_date=2026-04-15": {
+"file": "d9d142cc4724037d.json",
+"status": 200
+},
+"GET /api/snaptrade/all-symbols": {
+"file": "de4d1aa59b2973bd.json",
+"status": 200
+},
+"GET /api/snaptrade/all-symbols?institution=Evergreen": {
+"file": "3e095d383c2fbadf.json",
+"status": 200
+},
+"GET /api/snaptrade/all-symbols?institution=Schwab": {
+"file": "28fbf3ae511b71c5.json",
+"status": 200
+},
+"GET /api/snaptrade/all-symbols?institution=Swiftrade": {
+"file": "0cd7b3cf301c7930.json",
+"status": 200
+},
+"GET /api/snaptrade/all-symbols?institution=[object Object]": {
+"file": "5043054a3881fba0.json",
+"status": 200
+},
+"GET /api/snaptrade/fees/breakdown?institution=Swiftrade": {
+"file": "f5359a95dd3b0b02.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings": {
+"file": "5ffda29b09e8573a.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=1D": {
+"file": "17950fff3ccd36ac.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=1M": {
+"file": "e5acd5f56cf51061.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=1W": {
+"file": "3b18a673fb4f7198.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=1Y": {
+"file": "55123aa98fb0aa85.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=2Y": {
+"file": "4dbbd9656c09781e.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=3M": {
+"file": "5ab10c512b96ca88.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=3Y": {
+"file": "5f5382b2a0de1656.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=4Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=5Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=6M": {
+"file": "5d2d5e428440dbcc.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=6Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=7Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=ALL": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Evergreen&period=YTD": {
+"file": "62ab70ee9ccb37f2.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=1D": {
+"file": "bb3829dc34d9d79a.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=1M": {
+"file": "02b6fdd2a808157e.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=1W": {
+"file": "d141c922c1f3b33f.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=1Y": {
+"file": "4834a67a8befb651.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=2Y": {
+"file": "f512aa96f201e4c1.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=3M": {
+"file": "f9b3470e0a41e573.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=3Y": {
+"file": "f09a5a30e2d5501d.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=4Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=5Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=6M": {
+"file": "91bbe58612330406.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=6Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=7Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=ALL": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Schwab&period=YTD": {
+"file": "c136d018ed22310e.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=1D": {
+"file": "d1d7cba5a75fa318.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=1M": {
+"file": "d0c047b33ce517bc.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=1W": {
+"file": "f8af87e75aede8db.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=1Y": {
+"file": "9b9a93f659ed0eb9.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=2Y": {
+"file": "6fc0ec60fd88f96f.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=3M": {
+"file": "ebe4a0d3462f3f09.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=3Y": {
+"file": "4313fbae8ae1504f.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=4Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=5Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=6M": {
+"file": "f888389ff0b15572.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=6Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=7Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=ALL": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?institution=Swiftrade&period=YTD": {
+"file": "b62816d384ec0590.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=1D": {
+"file": "cf8f630a1b22a659.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=1M": {
+"file": "f7c7112871c8fb4f.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=1W": {
+"file": "7cb7cb8ac8b6b66d.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=1Y": {
+"file": "c7b240f1d6d734f4.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2020": {
+"file": "d13b7a4e4a5124be.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2021": {
+"file": "5c48d3e73abc0bd9.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2022": {
+"file": "b3c59637f49bd5d6.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2023": {
+"file": "67c14ae4af5c82ae.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2024": {
+"file": "268f2573c2d73b49.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2025": {
+"file": "2b6600f95e973332.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2026": {
+"file": "5d86ce341dc5d7c1.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=2Y": {
+"file": "af244add06b13125.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=3M": {
+"file": "7b4c3bd05eedc01b.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=3Y": {
+"file": "cf0a11e9603a19ea.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=4Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=5Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=6M": {
+"file": "8f6017aa12287ae7.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=6Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=7Y": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=ALL": {
+"file": "9246370edcd61974.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings/period-pnl?period=YTD": {
+"file": "37b2ab3adc57943c.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings?institution=Evergreen": {
+"file": "f06b6c1d4a27a522.json",
+"status": 200
+},
+"GET /api/snaptrade/holdings?institution=Swiftrade": {
+"file": "67248cd43e1065e6.json",
+"status": 200
+},
+"GET /api/snaptrade/income/breakdown?institution=Swiftrade": {
+"file": "f5359a95dd3b0b02.json",
+"status": 200
+},
+"GET /api/snaptrade/orders?institution=Swiftrade": {
+"file": "97d170e1550eee4a.json",
+"status": 200
+},
+"GET /api/snaptrade/overview": {
+"file": "21cb11064e02a94d.json",
+"status": 200
+},
+"GET /api/snaptrade/overview?institution=Evergreen": {
+"file": "21cba3bce45379f4.json",
+"status": 200
+},
+"GET /api/snaptrade/overview?institution=Swiftrade": {
+"file": "e3fb54d0d1cdb66d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance": {
+"file": "f137bdd25f1fb1a8.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=1D": {
+"file": "92d798495da19cb5.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=1M": {
+"file": "9c6af2c4aed835a1.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=1W": {
+"file": "0608d72f44cad81e.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=1Y": {
+"file": "d0d28bb1af6a936a.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=2Y": {
+"file": "22eaf1e41d47cae3.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=3M": {
+"file": "c646e88faae81e12.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=3Y": {
+"file": "c16d7db711620246.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=4Y": {
+"file": "2d68797cc8f36e32.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=5Y": {
+"file": "2d68797cc8f36e32.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=6M": {
+"file": "c0df6202dc0224b8.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=6Y": {
+"file": "2d68797cc8f36e32.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=7Y": {
+"file": "2d68797cc8f36e32.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=ALL": {
+"file": "2f6a8f38bef59d8d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Evergreen&period=YTD": {
+"file": "7ef473696238d461.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=1D": {
+"file": "0c7bbc048cef09f3.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=1M": {
+"file": "ff451e77331c09e8.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=1W": {
+"file": "bb1545f20293b857.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=1Y": {
+"file": "adff2626fb0d4962.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=2Y": {
+"file": "350d6cd6f5d58242.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=3M": {
+"file": "b7c998fb76b43194.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=3Y": {
+"file": "d3b6f79a59527742.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=4Y": {
+"file": "7a3d65ff5ce46914.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=5Y": {
+"file": "7a3d65ff5ce46914.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=6M": {
+"file": "a65656be2260e043.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=6Y": {
+"file": "7a3d65ff5ce46914.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=7Y": {
+"file": "7a3d65ff5ce46914.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=ALL": {
+"file": "ea012a902714b566.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?institution=Swiftrade&period=YTD": {
+"file": "b6780c852b927c75.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=1D": {
+"file": "5f0908136829decf.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=1M": {
+"file": "2a75cbc8339c60bf.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=1W": {
+"file": "aea9bc6ca600df29.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=1Y": {
+"file": "e12d990f2c36bfb2.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2016": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2017": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2018": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2019": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2020": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2021": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2022": {
+"file": "95e3445b0c20e23d.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2023": {
+"file": "c68b77d2824737f9.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2024": {
+"file": "47d0dbc428fdcace.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2025": {
+"file": "f85ee2a7356a0f24.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2026": {
+"file": "e4e4780ea2c71e02.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=2Y": {
+"file": "99a77fc26756bee0.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=3M": {
+"file": "a682134b9543d1b8.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=3Y": {
+"file": "93d449a33ae40679.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=4Y": {
+"file": "9779791d784b3fb5.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=5Y": {
+"file": "9779791d784b3fb5.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=6M": {
+"file": "9b03c9b9dd582061.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=6Y": {
+"file": "9779791d784b3fb5.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=7Y": {
+"file": "9779791d784b3fb5.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=ALL": {
+"file": "f137bdd25f1fb1a8.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=All": {
+"file": "9779791d784b3fb5.json",
+"status": 200
+},
+"GET /api/snaptrade/performance?period=YTD": {
+"file": "e4e4780ea2c71e02.json",
+"status": 200
+},
+"GET /api/snaptrade/price-ranges": {
+"file": "bf21a9e8fbc5a384.json",
+"status": 200
+},
+"GET /api/snaptrade/price-ranges?symbols=GOOGL,AMD,META": {
+"file": "5d285040703f1eb1.json",
+"status": 200
+},
+"GET /api/snaptrade/price-ranges?symbols=SPY": {
+"file": "865721835cc34582.json",
+"status": 200
+},
+"GET /api/snaptrade/price-ranges?symbols=SWPPX,QQQ,VOO,SCHB,AAPL,MSFT,AMZN,GOOGL,AMD,NVDA,META": {
+"file": "19aeec12643fd6e7.json",
+"status": 200
+},
+"GET /api/snaptrade/price-ranges?symbols=SWPPX,QQQ,VOO,SCHB,AAPL,MSFT,AMZN,GOOGL,AMD,NVDA,META,SPY": {
+"file": "3156478541429434.json",
+"status": 200
+},
+"GET /api/snaptrade/price-ranges?symbols=SWPPX,QQQ,VOO,SCHB,AAPL,MSFT,AMZN,NVDA": {
+"file": "1af89114f64b016f.json",
+"status": 200
+},
+"GET /api/snaptrade/rh-equity-v2": {
+"file": "70f772eea8085496.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history": {
+"file": "5bf31c5052c49631.json",
+"status": 400
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=11.9495&symbol=NVDA": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=18.9183&symbol=GOOGL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=19.384&symbol=MSFT": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=3.1586&symbol=META": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=31.6554&symbol=AAPL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=32.2773&symbol=AMZN": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=56.1497&symbol=QQQ": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=9.8572&symbol=AMD": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&shares=959.2185&symbol=SCHB": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1D&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=11.9495&symbol=NVDA": {
+"file": "8b6eb96ac5294d45.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=18.9183&symbol=GOOGL": {
+"file": "f5443a6545b64ef9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=19.384&symbol=MSFT": {
+"file": "7b567f15d7f9c0ee.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=21.2458&symbol=SPY": {
+"file": "99e7ccb0cd5b4db4.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=3.1586&symbol=META": {
+"file": "ca53fedccd69f425.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=31.6554&symbol=AAPL": {
+"file": "d80720a83620b9a6.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=32.2773&symbol=AMZN": {
+"file": "90f3d0ab12753383.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=5262.806&symbol=SWPPX": {
+"file": "caa2de9be875742d.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=54.4465&symbol=VOO": {
+"file": "c3bafa5d34eb1126.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=56.1497&symbol=QQQ": {
+"file": "158db86a10bd76d3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=9.8572&symbol=AMD": {
+"file": "cb057faec0b6586e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&shares=959.2185&symbol=SCHB": {
+"file": "5fb9f719ffe291c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=AAPL": {
+"file": "d80720a83620b9a6.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=AMD": {
+"file": "cb057faec0b6586e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=AMZN": {
+"file": "90f3d0ab12753383.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=GOOGL": {
+"file": "f5443a6545b64ef9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=META": {
+"file": "ca53fedccd69f425.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=MSFT": {
+"file": "7b567f15d7f9c0ee.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=NVDA": {
+"file": "8b6eb96ac5294d45.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=QQQ": {
+"file": "158db86a10bd76d3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=SCHB": {
+"file": "5fb9f719ffe291c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=SPY": {
+"file": "fe3a6eeb3618e6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=SWPPX": {
+"file": "caa2de9be875742d.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1M&symbol=VOO": {
+"file": "c3bafa5d34eb1126.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=11.9495&symbol=NVDA": {
+"file": "d997bf1459bfd7cd.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=18.9183&symbol=GOOGL": {
+"file": "170d1a93419e2716.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=19.384&symbol=MSFT": {
+"file": "6b8e0b28470debbc.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=3.1586&symbol=META": {
+"file": "13c9670990c21b52.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=31.6554&symbol=AAPL": {
+"file": "3f3b8ed48a8225e8.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=32.2773&symbol=AMZN": {
+"file": "113affd64f4db6a7.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=56.1497&symbol=QQQ": {
+"file": "ea2069c3fc18aa77.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=9.8572&symbol=AMD": {
+"file": "522fea6abd521c0a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&shares=959.2185&symbol=SCHB": {
+"file": "048badf7d4a88cb2.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1W&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=11.9495&symbol=NVDA": {
+"file": "a9ff398b435db612.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=18.9183&symbol=GOOGL": {
+"file": "add1ab0d6b57618c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=19.384&symbol=MSFT": {
+"file": "bdf84bf1b20967aa.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=21.2458&symbol=SPY": {
+"file": "944135d11ffe3cc2.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=3.1586&symbol=META": {
+"file": "a898714b5bb9b54e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=31.6554&symbol=AAPL": {
+"file": "d5ed482061457daf.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=32.2773&symbol=AMZN": {
+"file": "9c6559a5fc460115.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=5262.806&symbol=SWPPX": {
+"file": "06bfa50da1071ff6.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=54.4465&symbol=VOO": {
+"file": "729d35829414d026.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=56.1497&symbol=QQQ": {
+"file": "160bf79cc036b241.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=9.8572&symbol=AMD": {
+"file": "1833543bba9957b5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&shares=959.2185&symbol=SCHB": {
+"file": "f7393dbc92e8e1f5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=AAPL": {
+"file": "d5ed482061457daf.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=AMD": {
+"file": "1833543bba9957b5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=AMZN": {
+"file": "9c6559a5fc460115.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=GOOGL": {
+"file": "add1ab0d6b57618c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=META": {
+"file": "a898714b5bb9b54e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=MSFT": {
+"file": "bdf84bf1b20967aa.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=NVDA": {
+"file": "a9ff398b435db612.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=QQQ": {
+"file": "160bf79cc036b241.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=SCHB": {
+"file": "f7393dbc92e8e1f5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=SPY": {
+"file": "fe3a6eeb3618e6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=SWPPX": {
+"file": "06bfa50da1071ff6.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=1Y&symbol=VOO": {
+"file": "729d35829414d026.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=11.9495&symbol=NVDA": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=18.9183&symbol=GOOGL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=19.384&symbol=MSFT": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=3.1586&symbol=META": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=31.6554&symbol=AAPL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=32.2773&symbol=AMZN": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=56.1497&symbol=QQQ": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=9.8572&symbol=AMD": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&shares=959.2185&symbol=SCHB": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2020&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=11.9495&symbol=NVDA": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=18.9183&symbol=GOOGL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=19.384&symbol=MSFT": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=3.1586&symbol=META": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=31.6554&symbol=AAPL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=32.2773&symbol=AMZN": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=56.1497&symbol=QQQ": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=9.8572&symbol=AMD": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&shares=959.2185&symbol=SCHB": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2021&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=11.9495&symbol=NVDA": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=18.9183&symbol=GOOGL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=19.384&symbol=MSFT": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=3.1586&symbol=META": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=31.6554&symbol=AAPL": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=32.2773&symbol=AMZN": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=56.1497&symbol=QQQ": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=9.8572&symbol=AMD": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&shares=959.2185&symbol=SCHB": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2022&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=11.9495&symbol=NVDA": {
+"file": "0235b5cf4ba881c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=18.9183&symbol=GOOGL": {
+"file": "ea5675af8790321d.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=19.384&symbol=MSFT": {
+"file": "41dc446f50987f8e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=3.1586&symbol=META": {
+"file": "050dc5294e7deb36.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=31.6554&symbol=AAPL": {
+"file": "e9ca1fa4af6fd024.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=32.2773&symbol=AMZN": {
+"file": "9487ae788ce1d596.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=56.1497&symbol=QQQ": {
+"file": "09d0dab21d0c93b7.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=9.8572&symbol=AMD": {
+"file": "4e5deb7a1529be01.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&shares=959.2185&symbol=SCHB": {
+"file": "9c531a7013901309.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2023&symbol=TSLA": {
+"file": "e15978b4f28aae4a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=11.9495&symbol=NVDA": {
+"file": "6ecb68d3690d20df.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=18.9183&symbol=GOOGL": {
+"file": "e684b662de58dbf4.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=19.384&symbol=MSFT": {
+"file": "500be65b3ca4a198.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=3.1586&symbol=META": {
+"file": "3b74dbb2b371ca55.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=31.6554&symbol=AAPL": {
+"file": "8cb46b0fa773a7d9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=32.2773&symbol=AMZN": {
+"file": "c5704d30acc8f757.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=56.1497&symbol=QQQ": {
+"file": "f25ebdc562950c2e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=9.8572&symbol=AMD": {
+"file": "155007ece1968715.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&shares=959.2185&symbol=SCHB": {
+"file": "c76d42e0e6ae07c3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2024&symbol=TSLA": {
+"file": "8fa3c48b8b36fa10.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=11.9495&symbol=NVDA": {
+"file": "5f309b4ae794a05d.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=18.9183&symbol=GOOGL": {
+"file": "676d377909e35717.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=19.384&symbol=MSFT": {
+"file": "03569ea17f6dab7d.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=3.1586&symbol=META": {
+"file": "cf01fe9f85143143.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=31.6554&symbol=AAPL": {
+"file": "e786fae9af43e71a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=32.2773&symbol=AMZN": {
+"file": "9b1d595d2522e3a0.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=56.1497&symbol=QQQ": {
+"file": "258431fc407145bc.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=9.8572&symbol=AMD": {
+"file": "3a18cdbf1cb37c4c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&shares=959.2185&symbol=SCHB": {
+"file": "7531898a51d36d8e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2025&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=11.9495&symbol=NVDA": {
+"file": "24074b35f9d0525b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=18.9183&symbol=GOOGL": {
+"file": "e7079ff9ccbcdc39.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=19.384&symbol=MSFT": {
+"file": "db6d6ecc4e8d6e53.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=3.1586&symbol=META": {
+"file": "8695c2d3d3a8671b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=31.6554&symbol=AAPL": {
+"file": "54d15fdf8ca1fa61.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=32.2773&symbol=AMZN": {
+"file": "098ee1feeba54925.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=56.1497&symbol=QQQ": {
+"file": "0b4a85826942d171.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=9.8572&symbol=AMD": {
+"file": "03fc288362a7fb0e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&shares=959.2185&symbol=SCHB": {
+"file": "65eae1766aec0219.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2026&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=11.9495&symbol=NVDA": {
+"file": "0a8017471e0583bd.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=18.9183&symbol=GOOGL": {
+"file": "a306f6f59b84f7de.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=19.384&symbol=MSFT": {
+"file": "b9cfd86c932c9a92.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=3.1586&symbol=META": {
+"file": "febd1d17b03a4e12.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=31.6554&symbol=AAPL": {
+"file": "dee71ee8e5fae998.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=32.2773&symbol=AMZN": {
+"file": "91894f3a32e0a3b2.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=56.1497&symbol=QQQ": {
+"file": "b8dee6ca66f46950.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=9.8572&symbol=AMD": {
+"file": "d970b90a542e9f88.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&shares=959.2185&symbol=SCHB": {
+"file": "53bcb90f02cd8044.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=2Y&symbol=TSLA": {
+"file": "7a38cf397198acf1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=11.9495&symbol=NVDA": {
+"file": "7a2b0c7ff7f62272.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=18.9183&symbol=GOOGL": {
+"file": "af94be84406eb585.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=19.384&symbol=MSFT": {
+"file": "9d9bf973a1920ae0.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=3.1586&symbol=META": {
+"file": "491b8fa68a712b16.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=31.6554&symbol=AAPL": {
+"file": "920b1fcf93e4d389.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=32.2773&symbol=AMZN": {
+"file": "8da6ce86906791d5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=56.1497&symbol=QQQ": {
+"file": "3f0a2ef24e669bd2.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=9.8572&symbol=AMD": {
+"file": "95da06e027e2561a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&shares=959.2185&symbol=SCHB": {
+"file": "4e44aaa8f873db99.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3M&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=11.9495&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=18.9183&symbol=GOOGL": {
+"file": "e2c85d29fd9ee675.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=19.384&symbol=MSFT": {
+"file": "eacb04d223dced64.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=3.1586&symbol=META": {
+"file": "3c7fbc46bbc8b48a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=31.6554&symbol=AAPL": {
+"file": "ce043927c09c5e05.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=32.2773&symbol=AMZN": {
+"file": "06fe1cdcb56bfe58.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=56.1497&symbol=QQQ": {
+"file": "3bd32255fb0f8db3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=9.8572&symbol=AMD": {
+"file": "0ada6756f9563bc1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&shares=959.2185&symbol=SCHB": {
+"file": "965321c77b9f7d9a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=3Y&symbol=TSLA": {
+"file": "4cba26a6a9e32015.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=11.9495&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=18.9183&symbol=GOOGL": {
+"file": "83b27d37123fea0b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=19.384&symbol=MSFT": {
+"file": "2a55a7628e04a334.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=3.1586&symbol=META": {
+"file": "137d6fe007eb0792.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=31.6554&symbol=AAPL": {
+"file": "b28fa54abbc7300c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=32.2773&symbol=AMZN": {
+"file": "349e9b40708ab405.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=56.1497&symbol=QQQ": {
+"file": "f6c723a32a381112.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=9.8572&symbol=AMD": {
+"file": "36d42c5f13402520.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&shares=959.2185&symbol=SCHB": {
+"file": "5273577e499c58ac.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=4Y&symbol=TSLA": {
+"file": "eb4f757584d4d6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=11.9495&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=18.9183&symbol=GOOGL": {
+"file": "83b27d37123fea0b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=19.384&symbol=MSFT": {
+"file": "2a55a7628e04a334.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=3.1586&symbol=META": {
+"file": "137d6fe007eb0792.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=31.6554&symbol=AAPL": {
+"file": "b28fa54abbc7300c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=32.2773&symbol=AMZN": {
+"file": "349e9b40708ab405.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=56.1497&symbol=QQQ": {
+"file": "f6c723a32a381112.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=9.8572&symbol=AMD": {
+"file": "36d42c5f13402520.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&shares=959.2185&symbol=SCHB": {
+"file": "5273577e499c58ac.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=5Y&symbol=TSLA": {
+"file": "eb4f757584d4d6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=11.9495&symbol=NVDA": {
+"file": "c9c5cb2ef815ba9a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=18.9183&symbol=GOOGL": {
+"file": "80f388d12778ee21.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=19.384&symbol=MSFT": {
+"file": "955f5b01934491b9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=21.2458&symbol=SPY": {
+"file": "fa40797ebb91a256.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=3.1586&symbol=META": {
+"file": "c9e18d07f0fbd863.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=31.6554&symbol=AAPL": {
+"file": "615a6c36c910d72e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=32.2773&symbol=AMZN": {
+"file": "c8cf3c899d305c5b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=5262.806&symbol=SWPPX": {
+"file": "385f7d07fb5ec2f9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=54.4465&symbol=VOO": {
+"file": "2a958ab116d627ee.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=56.1497&symbol=QQQ": {
+"file": "2acb2255ea1477e1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=9.8572&symbol=AMD": {
+"file": "cf0aae3fcfd57fc3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&shares=959.2185&symbol=SCHB": {
+"file": "1477938bf1ce7662.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=*": {
+"file": "fe3a6eeb3618e6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=AAPL": {
+"file": "615a6c36c910d72e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=AMD": {
+"file": "cf0aae3fcfd57fc3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=AMZN": {
+"file": "c8cf3c899d305c5b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=GOOGL": {
+"file": "80f388d12778ee21.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=META": {
+"file": "c9e18d07f0fbd863.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=MSFT": {
+"file": "955f5b01934491b9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=NVDA": {
+"file": "c9c5cb2ef815ba9a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=QQQ": {
+"file": "2acb2255ea1477e1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=SCHB": {
+"file": "1477938bf1ce7662.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=SPY": {
+"file": "fe3a6eeb3618e6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=SWPPX": {
+"file": "385f7d07fb5ec2f9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6M&symbol=VOO": {
+"file": "2a958ab116d627ee.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=11.9495&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=18.9183&symbol=GOOGL": {
+"file": "83b27d37123fea0b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=19.384&symbol=MSFT": {
+"file": "2a55a7628e04a334.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=3.1586&symbol=META": {
+"file": "137d6fe007eb0792.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=31.6554&symbol=AAPL": {
+"file": "b28fa54abbc7300c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=32.2773&symbol=AMZN": {
+"file": "349e9b40708ab405.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=56.1497&symbol=QQQ": {
+"file": "f6c723a32a381112.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=9.8572&symbol=AMD": {
+"file": "36d42c5f13402520.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&shares=959.2185&symbol=SCHB": {
+"file": "5273577e499c58ac.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=6Y&symbol=TSLA": {
+"file": "eb4f757584d4d6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=11.9495&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=18.9183&symbol=GOOGL": {
+"file": "83b27d37123fea0b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=19.384&symbol=MSFT": {
+"file": "2a55a7628e04a334.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=3.1586&symbol=META": {
+"file": "137d6fe007eb0792.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=31.6554&symbol=AAPL": {
+"file": "b28fa54abbc7300c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=32.2773&symbol=AMZN": {
+"file": "349e9b40708ab405.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=56.1497&symbol=QQQ": {
+"file": "f6c723a32a381112.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=9.8572&symbol=AMD": {
+"file": "36d42c5f13402520.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&shares=959.2185&symbol=SCHB": {
+"file": "5273577e499c58ac.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=7Y&symbol=TSLA": {
+"file": "eb4f757584d4d6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=11.9495&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=18.9183&symbol=GOOGL": {
+"file": "83b27d37123fea0b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=19.384&symbol=MSFT": {
+"file": "2a55a7628e04a334.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=21.2458&symbol=SPY": {
+"file": "e4e68b0504b12be1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=3.1586&symbol=META": {
+"file": "137d6fe007eb0792.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=31.6554&symbol=AAPL": {
+"file": "b28fa54abbc7300c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=32.2773&symbol=AMZN": {
+"file": "349e9b40708ab405.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=5262.806&symbol=SWPPX": {
+"file": "84ecdf5ff961ca18.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=54.4465&symbol=VOO": {
+"file": "349ea77aca8ac516.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=56.1497&symbol=QQQ": {
+"file": "f6c723a32a381112.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=9.8572&symbol=AMD": {
+"file": "36d42c5f13402520.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&shares=959.2185&symbol=SCHB": {
+"file": "5273577e499c58ac.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=*": {
+"file": "fe3a6eeb3618e6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=AAPL": {
+"file": "b28fa54abbc7300c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=AMD": {
+"file": "36d42c5f13402520.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=AMZN": {
+"file": "349e9b40708ab405.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=GOOGL": {
+"file": "83b27d37123fea0b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=META": {
+"file": "137d6fe007eb0792.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=MSFT": {
+"file": "2a55a7628e04a334.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=NVDA": {
+"file": "9746587f62248066.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=QQQ": {
+"file": "f6c723a32a381112.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=SCHB": {
+"file": "5273577e499c58ac.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=SPY": {
+"file": "fe3a6eeb3618e6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=SWPPX": {
+"file": "84ecdf5ff961ca18.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=TSLA": {
+"file": "eb4f757584d4d6ff.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=ALL&symbol=VOO": {
+"file": "349ea77aca8ac516.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=11.9495&symbol=NVDA": {
+"file": "24074b35f9d0525b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=18.9183&symbol=GOOGL": {
+"file": "e7079ff9ccbcdc39.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=19.384&symbol=MSFT": {
+"file": "db6d6ecc4e8d6e53.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=3.1586&symbol=META": {
+"file": "8695c2d3d3a8671b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=31.6554&symbol=AAPL": {
+"file": "54d15fdf8ca1fa61.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=32.2773&symbol=AMZN": {
+"file": "098ee1feeba54925.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=56.1497&symbol=QQQ": {
+"file": "0b4a85826942d171.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=9.8572&symbol=AMD": {
+"file": "03fc288362a7fb0e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&shares=959.2185&symbol=SCHB": {
+"file": "65eae1766aec0219.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-history?period=YTD&symbol=TSLA": {
+"file": "5329cd4a4627d3c5.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings": {
+"file": "5bf31c5052c49631.json",
+"status": 400
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=AAPL": {
+"file": "aa25ecdbb8f575a1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=AMD": {
+"file": "30298f8dd291a366.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=AMZN": {
+"file": "f485d8f8319fe0a4.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=GOOGL": {
+"file": "4e68da4e24338b97.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=META": {
+"file": "c7cf4bcd491fb430.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=MSFT": {
+"file": "860c4f0ea84a5994.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=NVDA": {
+"file": "8c220fcff788a895.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=QQQ": {
+"file": "55e5c56a4b7d3b4b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=SCHB": {
+"file": "16faf6c2c895aeaf.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=SPY": {
+"file": "cc9dc59c8b681e5d.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=SWPPX": {
+"file": "378d304a0a980169.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=TSLA": {
+"file": "fef95545dea3a316.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1M&symbol=VOO": {
+"file": "860e9e97a967a286.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=AAPL": {
+"file": "5c3d6219b8797a49.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=AMD": {
+"file": "c2306aef463f8a59.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=AMZN": {
+"file": "e4a3e6debd1dfe4a.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=GOOGL": {
+"file": "1ac97a42744c29f0.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=META": {
+"file": "69a9dd404c86c01f.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=MSFT": {
+"file": "85ae43651e5aaf9f.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=NVDA": {
+"file": "f97bcc1bf6c8bedb.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=QQQ": {
+"file": "2464244778758f89.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=SCHB": {
+"file": "3ad3c53cbf66aa23.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=SPY": {
+"file": "f3654da97b6a2275.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=SWPPX": {
+"file": "245f44b9d864e10c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=TSLA": {
+"file": "057820dc4c4cbb6b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=1Y&symbol=VOO": {
+"file": "dfe02a9b9e2864cf.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=*": {
+"file": "40359f206120f7a0.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=AAPL": {
+"file": "818f9b341d2c905c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=AMD": {
+"file": "035d99ac110eb67c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=AMZN": {
+"file": "e94fee3184359951.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=GOOGL": {
+"file": "1a5d13a4bbf2eab9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=META": {
+"file": "c23dd5a27d03f7be.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=MSFT": {
+"file": "3bef466c58a2cfdd.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=NVDA": {
+"file": "f71c97bef74dc522.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=QQQ": {
+"file": "9aebc9b607be2aa1.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=SCHB": {
+"file": "1f00ecb4787286e3.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=SPY": {
+"file": "0046a787633efc42.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=SWPPX": {
+"file": "e0dfe33479784edd.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=TSLA": {
+"file": "8b6342a22a3dc878.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=6M&symbol=VOO": {
+"file": "61d3cd7576535c76.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=*": {
+"file": "f7978037cf68a9b8.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=AAPL": {
+"file": "16d957252b8c7c30.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=AMD": {
+"file": "ff10fe28c5f83c96.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=AMZN": {
+"file": "a199803e9d3a7695.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=GOOGL": {
+"file": "add890b7f7b0a70e.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=META": {
+"file": "e6e9242de5d5faae.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=MSFT": {
+"file": "fc765a52c32ca0e9.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=NVDA": {
+"file": "c367d66743ec0bdc.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=QQQ": {
+"file": "ab26f7fda7f12b84.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=SCHB": {
+"file": "e3f494c5a8cc974b.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=SPY": {
+"file": "1448b8932e2b5147.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=SWPPX": {
+"file": "b3803b2ca8c42297.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=TSLA": {
+"file": "268851a17e14245c.json",
+"status": 200
+},
+"GET /api/snaptrade/stock-holdings?period=ALL&symbol=VOO": {
+"file": "2b0f6686b5d02fdb.json",
+"status": 200
+},
+"GET /api/snaptrade/what-if": {
+"file": "9bbc7976ef8778ce.json",
+"status": 400
+},
+"GET /api/statement_reconciliation?account_id=3qGjYYMnjbbDZLHEENDQZS0aE3UDYtqo1XZse": {
+"file": "bc7738226dbd7f3f.json",
+"status": 200
+},
+"GET /api/statement_reconciliation?account_id=qahWKE8Sbna1VknJuSo0xsanjg8ULLnpgTnxI": {
+"file": "d3aee0928db3aaa3.json",
+"status": 200
+},
+"GET /api/stg_transaction_counts": {
+"file": "a257c13e118d72ef.json",
+"status": 200
+},
+"GET /api/transaction-mappings-stats": {
+"file": "caaa5f6037960c03.json",
+"status": 200
+},
+"GET /api/transaction-specific-mappings": {
+"file": "95290552c33c9758.json",
+"status": 200
+},
+"GET /api/transactions/": {
+"file": "2d0919db014896e9.json",
+"status": 200
+},
+"GET /api/transactions/categories": {
+"file": "a055dbc440341b0b.json",
+"status": 200
+},
+"GET /api/transactions/excluded_transactions?per_page=100": {
+"file": "3e887059384b4067.json",
+"status": 200
+},
+"GET /api/transactions/find_potential_duplicates": {
+"file": "14c7f7466231022e.json",
+"status": 200
+},
+"GET /api/transactions/groups": {
+"file": "d38b7f4966575289.json",
+"status": 200
+},
+"GET /api/transactions/marked_duplicates": {
+"file": "352d6372bf22c518.json",
+"status": 200
+},
+"GET /api/transactions/with-location": {
+"file": "75c33902f2912566.json",
+"status": 200
+},
+"GET /api/transactions/with-location?category=Fast Food": {
+"file": "75c33902f2912566.json",
+"status": 200
+},
+"GET /api/transactions/with-location?category=Gas": {
+"file": "75c33902f2912566.json",
+"status": 200
+},
+"GET /api/unmapped-transactions": {
+"file": "d964402a96fda806.json",
+"status": 200
+}
+}

@@ -1,0 +1,1 @@
+{"period":"2Y","positions":[{"account_id":"DEMO-SCHWAB-HASH-0001","net_invested":3000.02,"period_pnl":4631.54,"period_pnl_pct":39.52,"start_mv":8720.69,"symbol":"SPY"}],"symbol_totals":{"SPY":{"net_invested":3000.02,"period_pnl":13352.23,"period_pnl_pct":445.07,"source":"activities_only","start_mv":0.0,"start_qty":0.0}}}

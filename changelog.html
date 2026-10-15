@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'self'">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -282,6 +283,7 @@
             font-weight: 500;
             letter-spacing: -0.01em;
         }
+        .note { color: var(--ink-muted, #857964); font-style: italic; font-size: .92em; }
         .month-meta {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
@@ -440,6 +442,12 @@
             <div class="toc-title">Jump to Month</div>
             <div class="toc-section-title">2026</div>
             <ul class="toc-list">
+                <li><a href="#october-2026">October 2026</a></li>
+                <li><a href="#september-2026">September 2026</a></li>
+                <li><a href="#august-2026">August 2026</a></li>
+                <li><a href="#july-2026">July 2026</a></li>
+                <li><a href="#june-2026">June 2026</a></li>
+                <li><a href="#may-2026">May 2026</a></li>
                 <li><a href="#april-2026">April 2026</a></li>
                 <li><a href="#march-2026">March 2026</a></li>
                 <li><a href="#january-2026">January 2026</a></li>
@@ -470,34 +478,161 @@
         <main class="main-content">
             <div class="markdown-body">
                 <h1>Changelog</h1>
-                <p>Complete development history based on code analysis of all commits.</p>
+                <p>Development history, month by month. Entries through April 2026 were written from the commit history; later entries come from the build notes kept while the work shipped, since most of it landed in one checkpoint commit.</p>
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">165</div>
-                        <div class="stat-label">Total Commits</div>
+                        <div class="stat-value">Jul 2024</div>
+                        <div class="stat-label">Started</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">190+</div>
-                        <div class="stat-label">API Endpoints</div>
+                        <div class="stat-value">Oct 2026</div>
+                        <div class="stat-label">Latest entry</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">23</div>
-                        <div class="stat-label">Frontend Pages</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">28+</div>
-                        <div class="stat-label">Database Tables</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value">20</div>
-                        <div class="stat-label">Months Active</div>
+                        <div class="stat-value">Self-hosted</div>
+                        <div class="stat-label">Flask · React · Postgres · Airflow</div>
                     </div>
                 </div>
 
                 
                 
-                <!-- March 2026 -->
+                <!-- October 2026 -->
+                <div class="month-section" id="october-2026">
+                    <div class="month-header">
+                        <div class="month-title">October 2026</div>
+                        <div class="month-meta">Data correctness &amp; holdings detail</div>
+                    </div>
+                    <div class="month-content">
+                        <div class="month-summary">
+                            <strong>Raw response archive, provider removals, a rebuilt staging layer, per-lot holdings and a learning categorizer</strong>
+                            <ul>
+                                <li><strong>Raw response archive:</strong> Every transaction page the provider returns is stored as-is, deduplicated by content hash, with a per-record version history and a drift check against the live tables</li>
+                                <li><strong>Provider removals honored:</strong> Transactions the provider withdraws (usually card holds replaced by the final charge) are flagged out of reporting, never deleted, and can be restored from the Excluded list</li>
+                                <li><strong>Staging layer rebuild:</strong> The reporting staging view moved from name-and-amount duplicate guessing to explicit flags: real repeat purchases are no longer hidden, results are deterministic, and refreshes take milliseconds. The old pipeline runs alongside for a month with twice-daily automated comparison</li>
+                                <li><strong>Downstream refresh chain:</strong> Every summary view built on the staging layer is refreshed with it, so dashboards never lag the transactions</li>
+                                <li><strong>Pending charges:</strong> A pending charge counts until its posted charge arrives, and stops counting after a week if it never posts</li>
+                                <li><strong>Auto-categorizer:</strong> Transactions no rule matches get a locally learned guess; confident guesses apply automatically, the rest wait as one-tap suggestions, and accepting one writes a rule</li>
+                                <li><strong>CSV card import:</strong> Card exports with no API ingest through the same idempotent CSV path as the live sync</li>
+                                <li><strong>Per-holding and per-lot view:</strong> Selecting a stock (or all stocks) opens a sortable per-holding and per-lot panel, including an &ldquo;if never sold&rdquo; what-if using split and dividend history</li>
+                                <li><strong>Dashboard comparisons:</strong> Annual subscriptions tab, custom date ranges, and month-over-month and year-over-year views on the dashboard</li>
+                                <li><strong>Sign-in only:</strong> The legacy API-key path was removed; every request now needs an OIDC bearer token</li>
+                                <li><strong>Brokerage fixes:</strong> Activities with an unusual symbol format are no longer saved blank; the brokerage chart no longer starts at zero when an old feed has gone quiet</li>
+                                <li><strong>App loading fix:</strong> A hidden background tab no longer triggers repeated reloads</li>
+                            </ul>
+                        </div>
+                        <div class="category">
+                            <div class="category-title">Key Code Changes</div>
+                            <ul class="category-list">
+                                <li><span class="file-name">plaid_raw schema</span> &mdash; Bronze layer: deduplicated pages plus per-transaction versions and drift views</li>
+                                <li><span class="file-name">removed_transactions.py</span> &mdash; Applies the provider&rsquo;s removed list as exclusion flags</li>
+                                <li><span class="file-name">stg_transactions</span> &mdash; Flag-based materialized view with a frozen per-row decision table for legacy history</li>
+                                <li><span class="file-name">legacy_compare.py</span> &mdash; Twice-daily comparison of old and new pipelines (rows, summary views, API responses) with alerts</li>
+                                <li><span class="file-name">telemetry.py</span> &mdash; Background refresh now cascades to every dependent summary view</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- September 2026 -->
+                <div class="month-section" id="september-2026">
+                    <div class="month-header">
+                        <div class="month-title">September 2026</div>
+                        <div class="month-meta">Payments redesign &amp; linking</div>
+                    </div>
+                    <div class="month-content">
+                        <div class="month-summary">
+                            <strong>Payments redesign, linking new banks from the app, card-benefit monitoring and cash reconciliation</strong>
+                            <ul>
+                                <li><strong>Payments redesign:</strong> A visual pass on the payments page: shared fonts, a fixed treemap, and a quieter palette</li>
+                                <li><strong>Connect Institution:</strong> New banks can be linked from the Institutions page, separate from re-authenticating existing ones</li>
+                                <li><strong>Card benefits check:</strong> A weekly job fingerprints card issuers&rsquo; benefit pages and flags changes for review in Card Rewards</li>
+                                <li><strong>Another brokerage in the scheduled sync:</strong> A second brokerage joined the banking pipeline&rsquo;s parallel institution tasks</li>
+                                <li><strong>Brokerage cash reconciliation:</strong> A reconciliation view compares broker activity against the cash feed, so a trade that has not settled no longer shows as a phantom gain or loss in net worth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- August 2026 -->
+                <div class="month-section" id="august-2026">
+                    <div class="month-header">
+                        <div class="month-title">August 2026</div>
+                        <div class="month-meta">Resilience</div>
+                    </div>
+                    <div class="month-content">
+                        <div class="month-summary">
+                            <strong>Faster recovery from wake-ups and feed gaps</strong>
+                            <ul>
+                                <li><strong>App boot watchdog:</strong> The installed app no longer hangs on &ldquo;Loading&rdquo; after the device wakes</li>
+                                <li><strong>Feed gap reconstruction:</strong> When a broker connection lapses, the missing days are backfilled and re-priced instead of being smeared across the gap</li>
+                                <li><strong>Expenses drill-down:</strong> Expense groups drill down into their categories</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- July 2026 -->
+                <div class="month-section" id="july-2026">
+                    <div class="month-header">
+                        <div class="month-title">July 2026</div>
+                        <div class="month-meta">Speed, ratios &amp; subscriptions</div>
+                    </div>
+                    <div class="month-content">
+                        <div class="month-summary">
+                            <strong>An app-wide performance pass, a Ratios page, yearly subscriptions and expenses search</strong>
+                            <ul>
+                                <li><strong>Performance pass:</strong> Category edits apply instantly (background view refresh), the charting library loads only on pages that use it, balance reads are cached by data version, and the frontend is served as a production build</li>
+                                <li><strong>Annual subscriptions:</strong> Yearly charges are tracked and shown in their anniversary month</li>
+                                <li><strong>Ratios page:</strong> Spending mix and savings rate over time</li>
+                                <li><strong>Investment re-pricing:</strong> Portfolio equity is re-priced from market closes when written, because broker-reported prices can lag a day</li>
+                                <li><strong>Expenses search:</strong> One search box filters every chart and table on the Expenses page</li>
+                                <li><strong>Refresh stall fix:</strong> Summary views refresh concurrently, so reads are never blocked by a refresh</li>
+                                <li><strong>Documentation redesign:</strong> The project page was rebuilt with an interactive architecture diagram</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- June 2026 -->
+                <div class="month-section" id="june-2026">
+                    <div class="month-header">
+                        <div class="month-title">June 2026</div>
+                        <div class="month-meta">Real-time sync &amp; alerts</div>
+                    </div>
+                    <div class="month-content">
+                        <div class="month-summary">
+                            <strong>Signed webhooks, a quadrant dashboard, and proactive alerts</strong>
+                            <ul>
+                                <li><strong>Real-time webhooks:</strong> Signed provider webhooks arrive through a path-scoped tunnel, are verified (ES256 signature and source allowlist), and sync just the affected institution; the scheduled pipeline stays as a backstop</li>
+                                <li><strong>Quadrant dashboard:</strong> The home page became a single-screen 2&times;2 layout: Overview, Spending, Investing, and Debts &amp; Bills</li>
+                                <li><strong>Loan ledger without a scraper:</strong> Student-loan payments and balances are derived daily from the bank-side transfers, with an amortization projection</li>
+                                <li><strong>Low-balance runway alert:</strong> Forecasts the account that pays the autopays and warns once before a payment would overdraw it</li>
+                                <li><strong>Payments-due digest:</strong> A morning message lists card payments and subscriptions due soon, and stays silent when nothing is due</li>
+                                <li><strong>Email summaries retired:</strong> Pipeline summaries go to chat only</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- May 2026 -->
+                <div class="month-section" id="may-2026">
+                    <div class="month-header">
+                        <div class="month-title">May 2026</div>
+                        <div class="month-meta">Sign-in &amp; history bridging</div>
+                    </div>
+                    <div class="month-content">
+                        <div class="month-summary">
+                            <strong>Self-hosted sign-in and a continuous history for a closed card</strong>
+                            <ul>
+                                <li><strong>OIDC sign-in:</strong> The dashboard and API moved behind a self-hosted identity provider; clients send bearer tokens</li>
+                                <li><strong>Closed-card history:</strong> Balance history for a card that is no longer connected was rebuilt from statements so net worth stays continuous</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- April 2026 -->
                 <div class="month-section" id="april-2026">
                     <div class="month-header">
                         <div class="month-title">April 2026</div>
@@ -543,7 +678,7 @@
                 <div class="month-section" id="march-2026">
                     <div class="month-header">
                         <div class="month-title">March 2026</div>
-                        <div class="month-meta">5 commits</div>
+                        <div class="month-meta">Brokerages &amp; mobile expansion</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -601,7 +736,7 @@
                 <div class="month-section" id="january-2026">
                     <div class="month-header">
                         <div class="month-title">January 2026</div>
-                        <div class="month-meta">8 commits</div>
+                        <div class="month-meta">Balances, PWA &amp; server move</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -618,9 +753,9 @@
                                 <li><strong>Stock price DAG improvements:</strong> Enhanced stock price tracker with better split detection and price history backfill</li>
                                 <li><strong>Server migration:</strong> Codebase migrated from Mac to Ubuntu server with Docker deployment. Schema definitions synchronized between environments</li>
                                 <li><strong>Schema documentation:</strong> Complete schema inventory update documenting all 31 tables, 20 views, 7 materialized views</li>
-                                <li><strong>Discord Finance Bot:</strong> Natural language financial query bot using Claude CLI for SQL generation with chart support</li>
-                                <li><strong>Telegram LLM Bot:</strong> Hybrid query bot using Claude CLI for SQL generation with Ollama fallback for local processing</li>
-                                <li><strong>Docker Error Monitor:</strong> Automated container log monitoring with Telegram alerts, interactive approve/ignore buttons, and Claude-based automatic code fixing</li>
+                                <li><strong>Discord Finance Bot:</strong> Natural language financial query bot using Claude CLI for SQL generation with chart support <em class="note">(experiment; no longer running)</em></li>
+                                <li><strong>Telegram LLM Bot:</strong> Hybrid query bot using Claude CLI for SQL generation with Ollama fallback for local processing <em class="note">(experiment; no longer running)</em></li>
+                                <li><strong>Docker Error Monitor:</strong> Automated container log monitoring with Telegram alerts, interactive approve/ignore buttons, and Claude-based automatic code fixing <em class="note">(experiment; no longer running)</em></li>
                                 <li><strong>Discord Integration Research:</strong> Evaluation of Discord vs Telegram for notifications including webhook setup and interactive button implementation</li>
                             </ul>
                         </div>
@@ -650,14 +785,14 @@
                 <div class="month-section" id="december-2025">
                     <div class="month-header">
                         <div class="month-title">December 2025</div>
-                        <div class="month-meta">19 commits</div>
+                        <div class="month-meta">Containers, auth &amp; mobile</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
                             <strong>Docker Containerization, API Authentication, Mobile App & Security Hardening</strong>
                             <ul>
                                 <li><strong>Docker containerization:</strong> Dockerfiles for Flask backend and React frontend with docker-compose orchestration. Port binding restricted to localhost and Tailscale IP for network isolation</li>
-                                <li><strong>API key authentication:</strong> All routes now require X-API-Key header validation. Centralized before_request middleware protects every endpoint except explicit whitelist (public pages, health checks, webhooks). Constant-time HMAC comparison prevents timing attacks</li>
+                                <li><strong>API key authentication:</strong> All routes now require X-API-Key header validation. Centralized before_request middleware protects every endpoint except explicit whitelist (public pages, health checks, webhooks). Constant-time HMAC comparison prevents timing attacks <em class="note">(replaced by OIDC sign-in in 2026; the API-key path was removed in October 2026)</em></li>
                                 <li><strong>Frontend API client:</strong> Created authenticated Axios instance with automatic API key injection. Updated 20+ frontend files to use authenticated client</li>
                                 <li><strong>Health check endpoint:</strong> Added /api/health for container monitoring and orchestration readiness checks</li>
                                 <li><strong>Makefile automation:</strong> New commands for Docker operations (make plaid, make build-plaid, make logs-plaid, make restart-plaid)</li>
@@ -669,7 +804,7 @@
                                 <li><strong>Mobile Invest tab:</strong> Simplified portfolio view with total value, day change, and holdings list</li>
                                 <li><strong>Mobile Accounts tab:</strong> Expandable accordion groups by account type (Checking, Savings, Credit Cards, Investments) with totals</li>
                                 <li><strong>Mobile-optimized API endpoints:</strong> New endpoints using pre-aggregated data for instant mobile page loads</li>
-                                <li><strong>Token encryption:</strong> AES-256-GCM encryption for external integration tokens stored in macOS Keychain with migration script for existing data</li>
+                                <li><strong>Token encryption:</strong> AES-256-GCM encryption for external integration tokens stored in macOS Keychain with migration script for existing data <em class="note">(since the 2026 move to a Linux server the key comes from the environment rather than Keychain)</em></li>
                                 <li><strong>Transaction location tracking:</strong> Geocoding via OpenStreetMap with intelligent address cleaning. Interactive Leaflet map visualization shows where spending occurs</li>
                                 <li><strong>Raw API data capture:</strong> Serialization system stores complete API payloads for debugging and analysis</li>
                                 <li><strong>Monthly cash flow impact:</strong> Analytics tracking income, expenses, and investment gains per month with running totals</li>
@@ -699,7 +834,7 @@
                 <div class="month-section" id="november-2025">
                     <div class="month-header">
                         <div class="month-title">November 2025</div>
-                        <div class="month-meta">8 commits</div>
+                        <div class="month-meta">Materialized views</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -727,7 +862,7 @@
                 <div class="month-section" id="october-2025">
                     <div class="month-header">
                         <div class="month-title">October 2025</div>
-                        <div class="month-meta">3 commits</div>
+                        <div class="month-meta">Top transactions &amp; balance changes</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -754,7 +889,7 @@
                 <div class="month-section" id="september-2025">
                     <div class="month-header">
                         <div class="month-title">September 2025</div>
-                        <div class="month-meta">2 commits</div>
+                        <div class="month-meta">Chart scaling</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -780,7 +915,7 @@
                 <div class="month-section" id="august-2025">
                     <div class="month-header">
                         <div class="month-title">August 2025</div>
-                        <div class="month-meta">6 commits</div>
+                        <div class="month-meta">Chart interactions</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -810,7 +945,7 @@
                 <div class="month-section" id="july-2025">
                     <div class="month-header">
                         <div class="month-title">July 2025</div>
-                        <div class="month-meta">30 commits</div>
+                        <div class="month-meta">Transfers &amp; realized gains</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -842,7 +977,7 @@
                 <div class="month-section" id="june-2025">
                     <div class="month-header">
                         <div class="month-title">June 2025</div>
-                        <div class="month-meta">3 commits</div>
+                        <div class="month-meta">React frontend &amp; Airflow</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -873,7 +1008,7 @@
                 <div class="month-section" id="january-2025">
                     <div class="month-header">
                         <div class="month-title">January 2025</div>
-                        <div class="month-meta">10 commits</div>
+                        <div class="month-meta">Treemap &amp; subscriptions</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -905,7 +1040,7 @@
                 <div class="month-section" id="december-2024">
                     <div class="month-header">
                         <div class="month-title">December 2024</div>
-                        <div class="month-meta">27 commits</div>
+                        <div class="month-meta">Cash flow &amp; telemetry</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -936,7 +1071,7 @@
                 <div class="month-section" id="november-2024">
                     <div class="month-header">
                         <div class="month-title">November 2024</div>
-                        <div class="month-meta">38 commits</div>
+                        <div class="month-meta">Core infrastructure</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -969,7 +1104,7 @@
                 <div class="month-section" id="july-2024">
                     <div class="month-header">
                         <div class="month-title">July 2024</div>
-                        <div class="month-meta">3 commits - Project Start</div>
+                        <div class="month-meta">Project start</div>
                     </div>
                     <div class="month-content">
                         <div class="month-summary">
@@ -988,27 +1123,32 @@
                 <div id="summary">
                     <h2>Summary</h2>
 
-                    <h3>Commits by Month</h3>
+                    <h3>Highlights by Month</h3>
                     <table class="summary-table">
                         <thead>
-                            <tr><th>Year</th><th>Month</th><th>Commits</th><th>Key Features</th></tr>
+                            <tr><th>Year</th><th>Month</th><th>Key Features</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td rowspan="3">2026</td><td>Apr</td><td>1</td><td>Production brokerage connection, holdings view variants, token reliability fix, Airflow recovery, external liveness monitoring</td></tr>
-                            <tr><td>Mar</td><td>5</td><td>Brokerage integrations (Schwab, SnapTrade), reimbursement tracking, page redesigns, mobile expansion</td></tr>
-                            <tr><td>Jan</td><td>4</td><td>Historical bank balances, PWA support, server migration, analytics mat views</td></tr>
-                            <tr><td rowspan="8">2025</td><td>Dec</td><td>19</td><td>Docker containers, API key auth, mobile app, token encryption, 100x performance gains</td></tr>
-                            <tr><td>Nov</td><td>8</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
-                            <tr><td>Oct</td><td>3</td><td>Top N transactions, balance change tracking</td></tr>
-                            <tr><td>Sep</td><td>2</td><td>Chart scaling, net worth refinements</td></tr>
-                            <tr><td>Aug</td><td>6</td><td>Drag-to-select charts, payment filtering overhaul</td></tr>
-                            <tr><td>Jul</td><td>30</td><td>Transfer detection, realized gains, stock sales FIFO</td></tr>
-                            <tr><td>Jun</td><td>3</td><td>React 18 frontend, Vite, TanStack Query, Airflow DAGs</td></tr>
-                            <tr><td>Jan</td><td>10</td><td>D3 treemap, subscriptions, transaction CRUD, Docker</td></tr>
-                            <tr><td rowspan="3">2024</td><td>Dec</td><td>27</td><td>Cash flow views, API telemetry, deduplication</td></tr>
-                            <tr><td>Nov</td><td>38</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
-                            <tr><td>Jul</td><td>3</td><td>Project start, Flask + Plaid integration</td></tr>
-                            <tr style="background: #ddf4ff;"><td colspan="2"><strong>Total</strong></td><td><strong>165</strong></td><td></td></tr>
+                            <tr><td rowspan="9">2026</td><td>Oct</td><td>Raw archive, provider removals, staging rebuild, per-lot holdings, auto-categorizer, CSV card import</td></tr>
+                            <tr><td>Sep</td><td>Payments redesign, Connect Institution, card benefits check, cash reconciliation</td></tr>
+                            <tr><td>Aug</td><td>Boot watchdog, feed gap reconstruction, expenses drill-down</td></tr>
+                            <tr><td>Jul</td><td>Performance pass, Ratios page, annual subscriptions, expenses search</td></tr>
+                            <tr><td>Jun</td><td>Real-time webhooks, quadrant dashboard, loan ledger, runway and payments alerts</td></tr>
+                            <tr><td>May</td><td>OIDC sign-in, closed-card history</td></tr>
+                            <tr><td>Apr</td><td>Production brokerage connection, holdings view variants, token reliability fix, Airflow recovery, external liveness monitoring</td></tr>
+                            <tr><td>Mar</td><td>Brokerage integrations (Schwab, SnapTrade), reimbursement tracking, page redesigns, mobile expansion</td></tr>
+                            <tr><td>Jan</td><td>Historical bank balances, PWA support, server migration, analytics mat views</td></tr>
+                            <tr><td rowspan="8">2025</td><td>Dec</td><td>Docker containers, API key auth, mobile app, token encryption, 100x performance gains</td></tr>
+                            <tr><td>Nov</td><td>Materialized views (400ms to &lt;1ms), DAG refresh task</td></tr>
+                            <tr><td>Oct</td><td>Top N transactions, balance change tracking</td></tr>
+                            <tr><td>Sep</td><td>Chart scaling, net worth refinements</td></tr>
+                            <tr><td>Aug</td><td>Drag-to-select charts, payment filtering overhaul</td></tr>
+                            <tr><td>Jul</td><td>Transfer detection, realized gains, stock sales FIFO</td></tr>
+                            <tr><td>Jun</td><td>React 18 frontend, Vite, TanStack Query, Airflow DAGs</td></tr>
+                            <tr><td>Jan</td><td>D3 treemap, subscriptions, transaction CRUD, Docker</td></tr>
+                            <tr><td rowspan="3">2024</td><td>Dec</td><td>Cash flow views, API telemetry, deduplication</td></tr>
+                            <tr><td>Nov</td><td>Core infrastructure, cursor pagination, expense charts</td></tr>
+                            <tr><td>Jul</td><td>Project start, Flask + Plaid integration</td></tr>
                         </tbody>
                     </table>
 
@@ -1034,6 +1174,12 @@
                             <tr><td><span class="version-badge">v3.2.0</span></td><td>2026-01-22</td><td>Historical bank balances, PWA support, analytics materialized views, server migration</td></tr>
                             <tr><td><span class="version-badge">v3.3.0</span></td><td>2026-03-06</td><td>Brokerage integrations (Schwab, SnapTrade), reimbursement tracking, page redesigns, mobile expansion</td></tr>
                             <tr><td><span class="version-badge">v3.4.0</span></td><td>2026-04-14</td><td>Production brokerage connection, holdings view variants, reliability hardening, external liveness monitoring</td></tr>
+                            <tr><td><span class="version-badge">v3.5.0</span></td><td>2026-05-05</td><td>OIDC sign-in</td></tr>
+                            <tr><td><span class="version-badge">v3.6.0</span></td><td>2026-06-19</td><td>Real-time webhooks, quadrant dashboard, proactive alerts</td></tr>
+                            <tr><td><span class="version-badge">v3.7.0</span></td><td>2026-07-03</td><td>Performance pass, Ratios page, annual subscriptions</td></tr>
+                            <tr><td><span class="version-badge">v3.8.0</span></td><td>2026-08-14</td><td>Boot watchdog, feed gap reconstruction</td></tr>
+                            <tr><td><span class="version-badge">v3.9.0</span></td><td>2026-09-02</td><td>Payments redesign, Connect Institution</td></tr>
+                            <tr><td><span class="version-badge">v4.0.0</span></td><td>2026-10-13</td><td>Raw archive, staging rebuild, provider removals</td></tr>
                         </tbody>
                     </table>
                 </div>
